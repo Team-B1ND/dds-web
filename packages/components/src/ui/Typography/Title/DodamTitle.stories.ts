@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DodamTitle } from "./DodamTitle";
 
 const meta = {
-  title: "ui/Typograyphy/DodamTitle",
+  title: "ui/DodamTypograyphy/DodamTitle",
   component: DodamTitle,
   parameters: {
     layout: "centered",
