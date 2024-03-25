@@ -4,18 +4,18 @@ import { BUTTON_PRIMARY_STYLE, BUTTON_SIZE_STYLE } from "./constant";
 
 type ButtonSize = "small" | "medium" | "large";
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface DodamButtonProps extends HTMLAttributes<HTMLButtonElement> {
   isPrimary?: boolean;
   size?: ButtonSize;
   label: string;
 }
 
-export const Button = ({
+export const DodamButton = ({
   isPrimary = false,
   size = "medium",
   label,
   ...props
-}: ButtonProps) => {
+}: DodamButtonProps) => {
   return (
     <StyledButton isPrimary={isPrimary} size={size} {...props}>
       {label}

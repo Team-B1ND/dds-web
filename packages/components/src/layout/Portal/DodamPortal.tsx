@@ -1,12 +1,12 @@
 import ReactDom from "react-dom";
 import { ReactNode } from "react";
 
-interface PortalProps {
+interface DodamPortalProps {
   children: ReactNode;
   id: string;
 }
 
-export const Portal = ({ children, id }: PortalProps) => {
+export const DodamPortal = ({ children, id }: DodamPortalProps) => {
   const portalId = document.getElementById(id);
 
   return portalId && ReactDom.createPortal(children, portalId);

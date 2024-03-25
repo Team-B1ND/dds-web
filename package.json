@@ -10,5 +10,13 @@
   "scripts": {
     "prepare": "husky",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm lint-staged"
+    }
   }
 }

@@ -1,23 +1,23 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 
-export interface ErrorBoundaryProps {
+export interface DodamErrorBoundaryProps {
   children: ReactNode;
   fallback: ReactNode;
 }
 
-export interface ErrorBoundaryState {
+export interface DodamErrorBoundaryState {
   hasError: boolean;
 }
 
-export class ErrorBoundary extends Component<
-  ErrorBoundaryProps,
-  ErrorBoundaryState
+export class DodamErrorBoundary extends Component<
+  DodamErrorBoundaryProps,
+  DodamErrorBoundaryState
 > {
-  public state: ErrorBoundaryState = {
+  public state: DodamErrorBoundaryState = {
     hasError: false,
   };
 
-  public static getDerivedStateFromError(_: Error): ErrorBoundaryState {
+  public static getDerivedStateFromError(_: Error): DodamErrorBoundaryState {
     return { hasError: true };
   }
 

@@ -3,18 +3,18 @@ import { Scale, TypographyProps } from "../type";
 import { DodamTypography } from "@dds-web/styles";
 import styled from "styled-components";
 
-export const Title = ({
+export const DodamBody = ({
   scale = "Medium",
   text,
   ...props
 }: TypographyProps) => {
   return (
-    <TitleText scale={scale} {...props}>
+    <BodyText scale={scale} {...props}>
       {text}
-    </TitleText>
+    </BodyText>
   );
 };
 
-const TitleText = styled.p<{ scale: Scale }>`
-  ${({ scale }) => DodamTypography.Title[scale]}
+const BodyText = styled.p<{ scale: Scale }>`
+  ${({ scale }) => DodamTypography.Body[scale]}
 `;
