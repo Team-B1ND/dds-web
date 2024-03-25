@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { css } from "styled-components";
-import { DodamFont } from "../../foundation";
+import { DodamFont } from "@dds-web/foundations";
 
 const generateFontFace = () => {
   return DodamFont.map(
