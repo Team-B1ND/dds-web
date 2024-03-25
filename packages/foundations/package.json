@@ -13,6 +13,7 @@
     "typescript": "^5.4.2"
   },
   "devDependencies": {
+    "@dds-web/styles": "workspace:*",
     "@types/react": "^18.2.67",
     "@types/styled-components": "^5.1.34"
   }
