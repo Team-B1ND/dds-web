@@ -1,0 +1,14 @@
+{
+  "name": "dds-web",
+  "private": true,
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  }
+}
