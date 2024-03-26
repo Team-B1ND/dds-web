@@ -1,2 +1,2 @@
 export * from "./useQueryInvalidates";
-export * from "./useSwitchTheme";
+export * from "./useDetectThemeMode";
