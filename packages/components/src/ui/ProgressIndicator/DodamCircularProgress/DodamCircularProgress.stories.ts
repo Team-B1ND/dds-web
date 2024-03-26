@@ -16,6 +16,10 @@ type Story = StoryObj<typeof meta>;
 
 export const StyledCircularProgress: Story = {
   args: {
-    gauge: 50,
+    size: 200,
+    gauge: 20,
+    strokeWidth: 20,
+
+    maxValue: 20,
   },
 };
