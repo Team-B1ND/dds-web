@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DodamFilledButton } from "./DodamFilledButton";
 
 const meta = {
-  title: "ui/Button/DodamFilledButton",
+  title: "ui/DodamButton/DodamFilledButton",
   component: DodamFilledButton,
   parameters: {
     layout: "centered",

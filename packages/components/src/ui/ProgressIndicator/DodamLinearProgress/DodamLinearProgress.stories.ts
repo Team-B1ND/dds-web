@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DodamLinearProgress } from "./DodamLinearProgress";
 
 const meta = {
-  title: "ui/ProgressIndicator/DodamLinearProgress",
+  title: "ui/DodamProgressIndicator/DodamLinearProgress",
   component: DodamLinearProgress,
   parameters: {
     layout: "centered",

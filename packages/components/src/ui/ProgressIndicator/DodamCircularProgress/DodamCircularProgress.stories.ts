@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DodamCircularProgress } from "./DodamCircularProgress";
 
 const meta = {
-  title: "ui/ProgressIndicator/DodamCircularProgress",
+  title: "ui/DodamProgressIndicator/DodamCircularProgress",
   component: DodamCircularProgress,
   parameters: {
     layout: "centered",
