@@ -45,7 +45,6 @@ const StyledIconButton = styled.button<{
   ${({ padding }) => padding}
   ${FlexLayout({ alignItems: "center", justifyContent: "center" })}
   ${({ radius }) => DodamShape[radius]}
-  border: 1px solid #ddd;
 
   ${({ customStyle }) => customStyle};
 `;
