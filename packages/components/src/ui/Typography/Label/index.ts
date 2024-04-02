@@ -1,1 +1,1 @@
-export * from "./Label";
+export * from "./DodamLabel";

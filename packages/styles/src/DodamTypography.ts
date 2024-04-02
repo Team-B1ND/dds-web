@@ -1,6 +1,6 @@
 import { css, RuleSet } from "styled-components";
 
-type TextSize = {
+export type TextSize = {
   Large: RuleSet;
   Medium: RuleSet;
   Small: RuleSet;

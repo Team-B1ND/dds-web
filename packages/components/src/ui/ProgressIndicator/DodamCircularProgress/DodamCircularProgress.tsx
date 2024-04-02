@@ -1,19 +1,11 @@
+import {
+  DodamDarkTheme,
+  DodamLightTheme,
+  DodamThemeProvider,
+} from "@dds-web/styles";
 import React from "react";
 import styled from "styled-components";
-
-export interface DodamCircularProgressProps {
-  size: number;
-  gauge: number;
-  strokeWidth: number;
-
-  color?: {
-    trail?: string;
-    path?: string;
-  };
-
-  minValue?: number;
-  maxValue?: number;
-}
+import { DodamCircularProgressProps } from "./type";
 
 export const DodamCircularProgress = ({
   size,
@@ -34,26 +26,28 @@ export const DodamCircularProgress = ({
     circumference - (adjustedProgressGauge / maxValue) * circumference;
 
   return (
-    <Svg width={size} height={size}>
-      <TrailCircle
-        trailColor={color?.trail!}
-        cx={size / 2}
-        cy={size / 2}
-        r={radius}
-        strokeWidth={strokeWidth}
-      />
+    <DodamThemeProvider theme={DodamLightTheme}>
+      <Svg width={size} height={size}>
+        <TrailCircle
+          trailColor={color?.trail!}
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          strokeWidth={strokeWidth}
+        />
 
-      <PathCircle
-        pathColor={color?.path!}
-        cx={size / 2}
-        cy={size / 2}
-        r={radius}
-        strokeWidth={strokeWidth}
-        strokeDasharray={circumference}
-        strokeDashoffset={offset}
-        strokeLinecap="round"
-      />
-    </Svg>
+        <PathCircle
+          pathColor={color?.path!}
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          strokeLinecap="round"
+        />
+      </Svg>
+    </DodamThemeProvider>
   );
 };
 

@@ -19,5 +19,10 @@ export const StyledLinearProgress: Story = {
     width: "233px",
     height: "14px",
     gauge: 50,
+
+    color: {
+      trail: "red",
+      path: "blue",
+    },
   },
 };

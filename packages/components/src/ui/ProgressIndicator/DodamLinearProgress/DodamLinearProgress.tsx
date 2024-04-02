@@ -1,17 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-
-export interface LinearProps {
-  width: string;
-  height: string;
-  gauge: number;
-
-  borderRadius?: string;
-  color?: {
-    trail?: string;
-    path?: string;
-  };
-}
+import styled, { css } from "styled-components";
+import { LinearProps } from "./type";
 
 export const DodamLinearProgress = ({
   width,
