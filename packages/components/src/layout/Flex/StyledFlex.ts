@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
 export type Align = "center" | "flex-start" | "flex-end";
 
@@ -9,9 +9,9 @@ export interface BaseFlexProps {
   justifyContent?: Align | "space-between";
   fill?: string;
   alignItems?: Align;
-  padding?: [number] | [number, number];
+  padding?: CSSProperties["padding"];
   wrap?: boolean;
-  backgroundColor?: string;
+  backgroundColor?: CSSProperties["backgroundColor"];
 }
 
 const BaseFlex = styled.div<BaseFlexProps>`
@@ -30,10 +30,7 @@ const BaseFlex = styled.div<BaseFlexProps>`
   background-color: ${({ backgroundColor }) =>
     backgroundColor || "transparent"};
 
-  padding: ${({ padding }) =>
-    padding
-      ? `${padding[0] || 0}px ${padding[1] ?? (padding[0] || 0)}px`
-      : "0"};
+  padding: ${({ padding }) => padding};
 `;
 
 export const Column = styled(BaseFlex)`
