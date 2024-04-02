@@ -18,7 +18,7 @@ export const StyledCircularProgress: Story = {
   args: {
     size: 200,
     gauge: 20,
-    strokeWidth: 20,
+    strokeWidth: 30,
 
     maxValue: 20,
   },
