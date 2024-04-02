@@ -1,10 +1,10 @@
 export const DodamColor = Object.freeze({
   blue: "#0083F0",
   red: "#EF2B2A",
-  white: "FFFFFF",
+  white: "#FFFFFF",
 
   gray100: "#FCFCFC",
-  gray150: "F5F5F5",
+  gray150: "#F5F5F5",
   gray200: "#EFEFEF",
   gray250: "#E8E8E8",
   gray300: "#DFDFDF",
@@ -12,7 +12,7 @@ export const DodamColor = Object.freeze({
   gray400: "#B7B7B7",
   gray500: "#949494",
   gray600: "#777777",
-  gray650: "##616161",
+  gray650: "#616161",
   gray700: "#555555",
   gray750: "#3F3F3F",
   gray770: "#383838",
