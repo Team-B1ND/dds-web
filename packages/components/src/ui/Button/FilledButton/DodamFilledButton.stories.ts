@@ -16,8 +16,6 @@ type Story = StoryObj<typeof meta>;
 
 export const StyledFilledButton: Story = {
   args: {
-    text: {
-      content: "Filled button",
-    },
+    children: "Filled button",
   },
 };
