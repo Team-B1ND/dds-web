@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DodamIconButton } from "./DodamIconButton";
+import { DodamContentButton } from "./DodamContentButton";
 
 const meta = {
-  title: "ui/DodamButton/DodamIconButton",
-  component: DodamIconButton,
+  title: "ui/DodamButton/DodamContentButton",
+  component: DodamContentButton,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof DodamIconButton>;
+} satisfies Meta<typeof DodamContentButton>;
 
 export default meta;
 
@@ -16,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const StyledIconButton: Story = {
   args: {
-    children: "",
+    children: "svg 아이콘",
+    typography: ["Body", "Medium"],
   },
 };

@@ -1,3 +1,2 @@
 export * from "./FilledButton";
-export * from "./IconButton";
-export * from "./TextButton";
+export * from "./ContentButton";
