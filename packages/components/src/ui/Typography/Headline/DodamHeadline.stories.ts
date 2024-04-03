@@ -16,21 +16,21 @@ type Story = StoryObj<typeof meta>;
 
 export const HeadlineLarge: Story = {
   args: {
-    scale: "Large",
+    fontScale: "Large",
     text: "도담도담은 학교에 다니는 학생과 교사에게 편리한 학교 생활을 제공합니다.",
   },
 };
 
 export const HeadlineMedium: Story = {
   args: {
-    scale: "Medium",
+    fontScale: "Medium",
     text: "도담도담은 학교에 다니는 학생과 교사에게 편리한 학교 생활을 제공합니다.",
   },
 };
 
 export const HeadlineSmall: Story = {
   args: {
-    scale: "Small",
+    fontScale: "Small",
     text: "도담도담은 학교에 다니는 학생과 교사에게 편리한 학교 생활을 제공합니다.",
   },
 };

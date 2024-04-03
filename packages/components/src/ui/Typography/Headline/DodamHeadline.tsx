@@ -1,23 +1,23 @@
 import React from "react";
-import { Scale, TypographyProps } from "../type";
+import { FontScale, TypographyProps } from "../type";
 import { DodamTypography } from "@dds-web/styles";
 import styled, { RuleSet } from "styled-components";
 
 export const DodamHeadline = ({
   text,
-  scale = "Medium",
+  fontScale = "Medium",
   customStyle,
   ...props
 }: TypographyProps) => {
   return (
-    <HeadlineText scale={scale} customStyle={customStyle!} {...props}>
+    <HeadlineText fontScale={fontScale} customStyle={customStyle!} {...props}>
       {text}
     </HeadlineText>
   );
 };
 
-const HeadlineText = styled.p<{ scale: Scale; customStyle: RuleSet }>`
+const HeadlineText = styled.p<{ fontScale: FontScale; customStyle: RuleSet }>`
   margin: 0;
-  ${({ scale }) => DodamTypography.Headline[scale]}
+  ${({ fontScale }) => DodamTypography.Headline[fontScale]}
   ${({ customStyle }) => customStyle}
 `;
