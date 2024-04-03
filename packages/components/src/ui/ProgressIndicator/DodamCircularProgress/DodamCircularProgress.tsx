@@ -5,7 +5,20 @@ import {
 } from "@dds-web/styles";
 import React from "react";
 import styled from "styled-components";
-import { DodamCircularProgressProps } from "./type";
+
+export interface DodamCircularProgressProps {
+  size: number;
+  gauge: number;
+  strokeWidth: number;
+
+  color?: {
+    trail?: string;
+    path?: string;
+  };
+
+  minValue?: number;
+  maxValue?: number;
+}
 
 export const DodamCircularProgress = ({
   size,

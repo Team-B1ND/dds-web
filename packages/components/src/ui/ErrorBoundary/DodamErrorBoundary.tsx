@@ -1,5 +1,13 @@
-import { Component, ErrorInfo } from "react";
-import { DodamErrorBoundaryProps, DodamErrorBoundaryState } from "./type";
+import { Component, ErrorInfo, ReactNode } from "react";
+
+export interface DodamErrorBoundaryProps {
+  children: ReactNode;
+  fallback: ReactNode;
+}
+
+export interface DodamErrorBoundaryState {
+  hasError: boolean;
+}
 
 export class DodamErrorBoundary extends Component<
   DodamErrorBoundaryProps,
