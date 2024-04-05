@@ -1,8 +1,3 @@
-import {
-  DodamDarkTheme,
-  DodamLightTheme,
-  DodamThemeProvider,
-} from "@dds-web/styles";
 import React from "react";
 import styled from "styled-components";
 
@@ -39,32 +34,30 @@ export const DodamCircularProgress = ({
     circumference - (adjustedProgressGauge / maxValue) * circumference;
 
   return (
-    <DodamThemeProvider theme={DodamLightTheme}>
-      <Svg width={size} height={size}>
-        <TrailCircle
-          trailColor={color?.trail!}
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          strokeWidth={strokeWidth}
-        />
+    <StyledCircularProgress width={size} height={size}>
+      <TrailCircle
+        trailColor={color?.trail!}
+        cx={size / 2}
+        cy={size / 2}
+        r={radius}
+        strokeWidth={strokeWidth}
+      />
 
-        <PathCircle
-          pathColor={color?.path!}
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          strokeWidth={strokeWidth}
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          strokeLinecap="round"
-        />
-      </Svg>
-    </DodamThemeProvider>
+      <PathCircle
+        pathColor={color?.path!}
+        cx={size / 2}
+        cy={size / 2}
+        r={radius}
+        strokeWidth={strokeWidth}
+        strokeDasharray={circumference}
+        strokeDashoffset={offset}
+        strokeLinecap="round"
+      />
+    </StyledCircularProgress>
   );
 };
 
-const Svg = styled.svg`
+const StyledCircularProgress = styled.svg`
   transform: rotate(-90deg); /* 시작 위치를 12시 방향으로 조정 */
 `;
 
