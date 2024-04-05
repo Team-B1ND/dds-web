@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DodamContentButton } from "./DodamContentButton";
+import { css } from "styled-components";
 
 const meta = {
   title: "ui/DodamButton/DodamContentButton",
@@ -14,9 +15,12 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const StyledIconButton: Story = {
+export const StyledContentButtonButton: Story = {
   args: {
     children: "svg 아이콘",
     typography: ["Body", "Medium"],
+    customStyle: css`
+      min-height: 30px;
+    `,
   },
 };
