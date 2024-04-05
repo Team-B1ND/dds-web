@@ -1,6 +1,6 @@
 import { DodamShape, ShapeSizeType } from "@dds-web/styles";
 import React from "react";
-import styled, { RuleSet, css } from "styled-components";
+import styled, { CSSProperties, RuleSet, css } from "styled-components";
 import { Column, FlexLayout, Row } from "../../layout";
 import { DodamBody, DodamTitle } from "../Typography";
 import { DodamFilledButton } from "../Button";
@@ -25,21 +25,35 @@ type DialogType =
 export interface DodamDialogProps {
   title: string;
   text: string;
-  radius?: ShapeSizeType;
   type: DialogType;
+  color?: {
+    dialogBackgroundColor?: CSSProperties["backgroundColor"];
+    titleColor?: CSSProperties["color"];
+    textColor?: CSSProperties["color"];
+  };
+  radius?: ShapeSizeType;
 }
 
 export const DodamDialog = ({
   title,
   text,
-  radius = "ExtraLarge",
   type,
+  color,
+  radius = "ExtraLarge",
 }: DodamDialogProps) => {
   return (
-    <StyledDialog radius={radius} dialogType={type.dialog}>
+    <StyledDialog
+      dialogType={type.dialog}
+      radius={radius}
+      backgroundColor={color?.dialogBackgroundColor}
+    >
       <Column rowGap={12} padding={type.dialog === "CONFIRM" ? "6px" : "12px"}>
-        <DodamTitle fontScale="Large" text={title} customStyle={StyledTitle} />
-        <DodamBody text={text} customStyle={StyledText} />
+        <DodamTitle
+          fontScale="Large"
+          text={title}
+          customStyle={StyledTitle(color?.titleColor)}
+        />
+        <DodamBody text={text} customStyle={StyledText(color?.textColor)} />
       </Column>
 
       {type.dialog === "CONFIRM" ? (
@@ -76,13 +90,14 @@ export const DodamDialog = ({
 const StyledDialog = styled.div<{
   radius: ShapeSizeType;
   dialogType: "ALERT" | "CONFIRM";
+  backgroundColor: CSSProperties["backgroundColor"];
 }>`
   min-width: 280px;
   max-width: 560px;
 
-  background-color: ${({ theme }) => theme.surfaceContainerHigh};
+  background-color: ${({ backgroundColor, theme }) =>
+    backgroundColor || theme.surfaceContainerHigh};
   padding: ${({ dialogType }) => (dialogType === "ALERT" ? "12px" : "18px")};
-  border: 1px solid #ddd;
 
   ${({ radius }) => DodamShape[radius]}
   ${({ dialogType }) =>
@@ -92,10 +107,10 @@ const StyledDialog = styled.div<{
     })}
 `;
 
-const StyledTitle = css`
-  color: ${({ theme }) => theme.onSurface};
+const StyledTitle = (titleColor: CSSProperties["color"]) => css`
+  color: ${({ theme }) => titleColor || theme.onSurface};
 `;
 
-const StyledText = css`
-  color: ${({ theme }) => theme.tertiary};
+const StyledText = (textColor: CSSProperties["color"]) => css`
+  color: ${({ theme }) => textColor || theme.tertiary};
 `;
