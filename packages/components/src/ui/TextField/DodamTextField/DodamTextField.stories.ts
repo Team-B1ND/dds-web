@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DodamTextField } from "./DodamTextField";
 
 const meta = {
-  title: "ui/DodamTextField",
+  title: "ui/DodamTextField/DodamTextField",
   component: DodamTextField,
   parameters: {
     layout: "centered",
