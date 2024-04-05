@@ -1,30 +1,50 @@
 import {
-  PretendardBold,
-  PretendardExtraBold,
-  PretendardMedium,
-  PretendardRegular,
-  PretendardSemibold,
+  SuitBold,
+  SuitExtraBold,
+  SuitExtraLight,
+  SuitHeavy,
+  SuitLight,
+  SuitMedium,
+  SuitRegular,
+  SuitSemiBold,
+  SuitThin,
 } from "@dds-web/assets";
 
 export const DodamFont = Object.freeze([
   {
-    font: "Pretendard-Bold",
-    url: PretendardBold,
+    font: "Suit-Bold",
+    url: SuitBold,
   },
   {
-    font: "Pretendard-ExtraBold",
-    url: PretendardExtraBold,
+    font: "Suit-ExtraBold",
+    url: SuitExtraBold,
   },
   {
-    font: "Pretendard-Medium",
-    url: PretendardMedium,
+    font: "Suit-ExtraLight",
+    url: SuitExtraLight,
   },
   {
-    font: "Pretendard-Normal",
-    url: PretendardRegular,
+    font: "Suit-Heavy",
+    url: SuitHeavy,
   },
   {
-    font: "Pretendard-SemiBold",
-    url: PretendardSemibold,
+    font: "Suit-Light",
+    url: SuitLight,
+  },
+  {
+    font: "Suit-Medium",
+    url: SuitMedium,
+  },
+  {
+    font: "Suit-Normal",
+    url: SuitRegular,
+  },
+  {
+    font: "Suit-SemiBold",
+    url: SuitSemiBold,
+  },
+  {
+    font: "Suit-Thin",
+    url: SuitThin,
   },
 ]);

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { ExecutionProps, createGlobalStyle } from "styled-components";
 import { css } from "styled-components";
 import { DodamFont } from "@dds-web/foundations";
 
@@ -9,14 +9,14 @@ const generateFontFace = () => {
         font-family: ${item.font};
         src: url(${item.url}) format("woff2");
       }
-    `,
+    `
   );
 };
 
-export const DodamGlobalFonts = createGlobalStyle`
+export const DodamGlobalFonts: React.NamedExoticComponent<ExecutionProps> = createGlobalStyle`
     ${generateFontFace()}
     
     * {
-      font-family: 'Pretendard-Normal';
+      font-family: 'Suit-Normal';
     }
 `;

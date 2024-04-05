@@ -1,6 +1,12 @@
-import { RuleSet, createGlobalStyle } from "styled-components";
+import { ExecutionProps, RuleSet, createGlobalStyle } from "styled-components";
 
-export const DodamGlobalStyles = createGlobalStyle<{ customStyle?: RuleSet }>`
+type CustomStlye = {
+  customStyle?: RuleSet;
+};
+
+export const DodamGlobalStyles: React.NamedExoticComponent<
+  ExecutionProps & CustomStlye
+> = createGlobalStyle<CustomStlye>`
   * {
       margin: 0;
       padding: 0;
