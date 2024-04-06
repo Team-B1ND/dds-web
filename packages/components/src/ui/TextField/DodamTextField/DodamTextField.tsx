@@ -1,11 +1,3 @@
-import {
-  DodamDarkTheme,
-  DodamGlobalFonts,
-  DodamGlobalStyles,
-  DodamLightTheme,
-  DodamThemeProvider,
-  DodamTypography,
-} from "@dds-web/styles";
 import React, {
   ForwardedRef,
   InputHTMLAttributes,
@@ -15,7 +7,7 @@ import React, {
 } from "react";
 import styled, { CSSProperties, css } from "styled-components";
 import { Column, FlexLayout, Row } from "../../../layout";
-import { Xmark } from "@dds-web/assets";
+import { DodamTypography } from "@dds-web/styles";
 
 type FieldColorType = {
   labelColor?: CSSProperties["color"];
@@ -56,52 +48,47 @@ export const DodamTextField = forwardRef(
     const [testValue, setTestValue] = useState("");
 
     return (
-      <DodamThemeProvider theme={DodamLightTheme}>
-        <DodamGlobalStyles />
-        <DodamGlobalFonts />
-
-        <Column width={width}>
-          <Column
-            width={"100%"}
-            height={height}
-            customStyle={css`
-              position: relative;
-            `}
+      <Column width={width}>
+        <Column
+          width={"100%"}
+          height={height}
+          customStyle={css`
+            position: relative;
+          `}
+        >
+          <StyledLabel
+            isFocused={focus}
+            isError={isError}
+            fontColor={colors?.labelColor}
           >
-            <StyledLabel
-              isFocused={focus}
-              isError={isError}
-              fontColor={colors?.labelColor}
-            >
-              {labelText}
-            </StyledLabel>
+            {labelText}
+          </StyledLabel>
 
-            <TextFieldWrap
-              isFocused={focus}
-              isError={isError}
-              borderBottomColor={colors?.borderBottomColor}
-            >
-              <TextFieldInput
-                fontColor={colors?.textValueColor}
-                ref={ref}
-                value={testValue}
-                onFocus={() => setFocus(true)}
-                onBlur={() => testValue.length <= 0 && setFocus(false)}
-                onChange={(e) => setTestValue(e.target.value)}
-                {...props}
-              />
+          <TextFieldWrap
+            isFocused={focus}
+            isError={isError}
+            borderBottomColor={colors?.borderBottomColor}
+          >
+            <TextFieldInput
+              fontColor={colors?.textValueColor}
+              ref={ref}
+              value={testValue}
+              onFocus={() => setFocus(true)}
+              onBlur={() => testValue.length <= 0 && setFocus(false)}
+              onChange={(e) => setTestValue(e.target.value)}
+              {...props}
+            />
 
-              <Row alignItems="center" columnGap={16} padding={"0 0 10px 0"}>
-                {focus && <>{icon}</>}
-              </Row>
-            </TextFieldWrap>
-          </Column>
-
-          <SupportText fontColor={colors?.supportColor} isError={isError}>
-            {supportText}
-          </SupportText>
+            <Row alignItems="center" columnGap={16} padding={"0 0 10px 0"}>
+              {focus && <>{icon}</>}
+            </Row>
+          </TextFieldWrap>
         </Column>
-      </DodamThemeProvider>
+
+        <SupportText fontColor={colors?.supportColor} isError={isError}>
+          {supportText}
+        </SupportText>
+      </Column>
     );
   }
 );
