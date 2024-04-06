@@ -3,7 +3,7 @@ import { IconProps } from "./type";
 import { StyledPath, StyledSvg } from "./style";
 import { DOOR_OPEN_PATH_ITEMS } from "./constant";
 
-export const DoorOpen = ({ size = 24, color, customStyle }: IconProps) => {
+export const DoorOpen = ({ size = 24, pathStyle, svgStyle }: IconProps) => {
   return (
     <StyledSvg
       width={size}
@@ -11,7 +11,7 @@ export const DoorOpen = ({ size = 24, color, customStyle }: IconProps) => {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      customStyle={customStyle!}
+      svgStyle={svgStyle!}
     >
       {DOOR_OPEN_PATH_ITEMS.map((item, idx) => (
         <StyledPath
@@ -19,7 +19,7 @@ export const DoorOpen = ({ size = 24, color, customStyle }: IconProps) => {
           fill-rule="evenodd"
           clip-rule="evenodd"
           d={item}
-          color={color!}
+          pathStyle={pathStyle!}
         />
       ))}
     </StyledSvg>

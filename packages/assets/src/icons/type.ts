@@ -1,7 +1,8 @@
+import { SVGAttributes } from "react";
 import { RuleSet } from "styled-components";
 
-export interface IconProps {
+export interface IconProps extends SVGAttributes<HTMLOrSVGElement> {
   size?: number;
-  color?: string;
-  customStyle?: RuleSet;
+  svgStyle?: RuleSet;
+  pathStyle?: RuleSet;
 }
