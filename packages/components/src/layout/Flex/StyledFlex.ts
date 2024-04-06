@@ -6,11 +6,15 @@ export interface BaseFlexProps {
   gap?: number;
   columnGap?: number;
   rowGap?: number;
-  justifyContent?: Align | "space-between";
-  fill?: string;
+
   alignItems?: Align;
-  padding?: CSSProperties["padding"];
+  justifyContent?: Align | "space-between";
+
+  width?: CSSProperties["width"];
+  height?: CSSProperties["height"];
+
   wrap?: boolean;
+  padding?: CSSProperties["padding"];
   backgroundColor?: CSSProperties["backgroundColor"];
 
   customStyle?: RuleSet;
@@ -27,7 +31,8 @@ const BaseFlex = styled.div<BaseFlexProps>`
   align-items: ${({ alignItems }) => alignItems || "flex-start"};
   flex-wrap: ${({ wrap }) => (wrap ? "wrap" : "nowrap")};
 
-  width: ${({ fill }) => fill || "auto"};
+  width: ${({ width }) => width || "auto"};
+  height: ${({ height }) => height || "auto"};
 
   background-color: ${({ backgroundColor }) =>
     backgroundColor || "transparent"};

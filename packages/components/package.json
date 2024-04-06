@@ -17,6 +17,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^1.2.24",
     "@dds-web/styles": "workspace:*",
+    "@dds-web/assets": "workspace:*",
     "@storybook/addon-essentials": "^8.0.2",
     "@storybook/addon-interactions": "^8.0.2",
     "@storybook/addon-links": "^8.0.2",

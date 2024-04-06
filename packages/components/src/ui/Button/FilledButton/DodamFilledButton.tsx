@@ -1,5 +1,5 @@
 import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, { ButtonHTMLAttributes, ReactNode } from "react";
 import styled, { CSSProperties, RuleSet, css } from "styled-components";
 import { FlexLayout } from "../../../layout";
 
@@ -11,7 +11,7 @@ type FilledColorsType = {
 };
 
 export interface DodamFilledButtonProps
-  extends HTMLAttributes<HTMLButtonElement> {
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 
   colors?: FilledColorsType;
