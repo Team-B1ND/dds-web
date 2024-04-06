@@ -1,4 +1,5 @@
 import { ExecutionProps, RuleSet, createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 type CustomStlye = {
   customStyle?: RuleSet;
@@ -14,4 +15,6 @@ export const DodamGlobalStyles: React.NamedExoticComponent<
 
       ${({ customStyle }) => customStyle}
     }
+
+    ${reset}
 `;

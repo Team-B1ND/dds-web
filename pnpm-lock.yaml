@@ -58,6 +58,9 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^1.2.24
         version: 1.2.24(react@18.2.0)
+      '@dds-web/assets':
+        specifier: workspace:*
+        version: link:../assets
       '@dds-web/styles':
         specifier: workspace:*
         version: link:../styles
@@ -147,6 +150,9 @@ importers:
       styled-components:
         specifier: ^6.1.8
         version: 6.1.8(react-dom@18.2.0)(react@18.2.0)
+      styled-reset:
+        specifier: ^4.5.2
+        version: 4.5.2(styled-components@6.1.8)
       typescript:
         specifier: ^5.4.2
         version: 5.4.2
@@ -8298,6 +8304,15 @@ packages:
       shallowequal: 1.1.0
       stylis: 4.3.1
       tslib: 2.5.0
+    dev: false
+
+  /styled-reset@4.5.2(styled-components@6.1.8):
+    resolution: {integrity: sha512-dbAaaVEhweBs2FGfqGBdW6oMcMK8238C2X5KCxBhUQJX92m/QyUfzRADOXhdXiXNkIPELtMCd72YY9eCdORfIw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      styled-components: '>=4.0.0 || >=5.0.0 || >=6.0.0'
+    dependencies:
+      styled-components: 6.1.8(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /stylis@4.3.1:
