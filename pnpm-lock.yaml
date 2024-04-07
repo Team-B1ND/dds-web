@@ -58,9 +58,6 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^1.2.24
         version: 1.2.24(react@18.2.0)
-      '@dds-web/assets':
-        specifier: workspace:*
-        version: link:../assets
       '@dds-web/styles':
         specifier: workspace:*
         version: link:../styles

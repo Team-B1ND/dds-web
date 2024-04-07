@@ -1,3 +1,4 @@
+import { DodamTypography } from "@dds-web/styles";
 import React, {
   ForwardedRef,
   InputHTMLAttributes,
@@ -7,7 +8,6 @@ import React, {
 } from "react";
 import styled, { CSSProperties, css } from "styled-components";
 import { Column, FlexLayout, Row } from "../../../layout";
-import { DodamTypography } from "@dds-web/styles";
 
 type FieldColorType = {
   labelColor?: CSSProperties["color"];
@@ -45,7 +45,6 @@ export const DodamTextField = forwardRef(
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const [focus, setFocus] = useState(false);
-    const [testValue, setTestValue] = useState("");
 
     return (
       <Column width={width}>
@@ -72,10 +71,9 @@ export const DodamTextField = forwardRef(
             <TextFieldInput
               fontColor={colors?.textValueColor}
               ref={ref}
-              value={testValue}
+              value={value}
               onFocus={() => setFocus(true)}
-              onBlur={() => testValue.length <= 0 && setFocus(false)}
-              onChange={(e) => setTestValue(e.target.value)}
+              onBlur={() => value.length <= 0 && setFocus(false)}
               {...props}
             />
 
