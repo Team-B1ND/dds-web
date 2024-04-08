@@ -1,6 +1,5 @@
 import React from "react";
 import { IconProps } from "./type";
-import styled from "styled-components";
 import { StyledPath, StyledSvg } from "./style";
 
 export const ForkAndKnife = ({ size = 24, pathStyle, svgStyle }: IconProps) => {
