@@ -13,12 +13,11 @@ class DateTransform {
     return dayjs(date).format("YYYY/MM/DD");
   }
 
-  public fullDateWithHourAndSecond(date?: ConfigType): string {
-    return dayjs(date).format("YYYY-MM-DD HH:mm");
-  }
-
-  public fullDateWithAll(date?: ConfigType): string {
-    return dayjs(date).format("YYYY-MM-DD HH:mm:ss");
+  public fullDate(
+    fullDateType: "HH" | "HH:mm" | "HH:mm:ss",
+    date?: ConfigType
+  ): string {
+    return dayjs(date).format(`YYYY-MM-DD ${fullDateType}`);
   }
 
   public customDate(formatStyle: string, date?: ConfigType): string {
