@@ -1,9 +1,0 @@
-export { default as SuitBold } from "./suit_bold.otf";
-export { default as SuitExtraBold } from "./suit_extrabold.otf";
-export { default as SuitExtraLight } from "./suit_extralight.otf";
-export { default as SuitHeavy } from "./suit_heavy.otf";
-export { default as SuitLight } from "./suit_light.otf";
-export { default as SuitMedium } from "./suit_medium.otf";
-export { default as SuitRegular } from "./suit_regular.otf";
-export { default as SuitSemiBold } from "./suit_semibold.otf";
-export { default as SuitThin } from "./suit_thin.otf";
