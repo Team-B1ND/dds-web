@@ -1,4 +1,9 @@
-import { DodamTypography } from "@dds-web/styles";
+import {
+  DodamGlobalStyles,
+  DodamLightTheme,
+  DodamThemeProvider,
+  DodamTypography,
+} from "@dds-web/styles";
 import React, {
   ForwardedRef,
   InputHTMLAttributes,
@@ -9,11 +14,14 @@ import React, {
 import styled, { CSSProperties, css } from "styled-components";
 import { Column, FlexLayout, Row } from "../../../layout";
 
+import "../../../fonts/font.css";
+
 type FieldColorType = {
   labelColor?: CSSProperties["color"];
   textValueColor?: CSSProperties["color"];
   supportColor?: CSSProperties["color"];
   borderBottomColor?: CSSProperties["color"];
+  errorColor?: CSSProperties["color"];
 };
 
 export interface DodamTextFieldProps
@@ -47,46 +55,55 @@ export const DodamTextField = forwardRef(
     const [focus, setFocus] = useState(false);
 
     return (
-      <Column width={width}>
-        <Column
-          width={"100%"}
-          height={height}
-          customStyle={css`
-            position: relative;
-          `}
-        >
-          <StyledLabel
-            isFocused={focus}
-            isError={isError}
-            fontColor={colors?.labelColor}
+      <DodamThemeProvider theme={DodamLightTheme}>
+        <DodamGlobalStyles />
+        <Column width={width}>
+          <Column
+            width={"100%"}
+            height={height}
+            customStyle={css`
+              position: relative;
+            `}
           >
-            {labelText}
-          </StyledLabel>
+            <StyledLabel
+              isFocused={focus}
+              isError={isError}
+              errorColor={colors?.errorColor}
+              fontColor={colors?.labelColor}
+            >
+              {labelText}
+            </StyledLabel>
 
-          <TextFieldWrap
-            isFocused={focus}
+            <TextFieldWrap
+              isFocused={focus}
+              isError={isError}
+              errorColor={colors?.errorColor}
+              borderBottomColor={colors?.borderBottomColor}
+            >
+              <TextFieldInput
+                fontColor={colors?.textValueColor}
+                ref={ref}
+                value={value}
+                onFocus={() => setFocus(true)}
+                onBlur={() => value.length <= 0 && setFocus(false)}
+                {...props}
+              />
+
+              <Row alignItems="center" columnGap={16} padding={"0 0 10px 0"}>
+                {focus && <>{icon}</>}
+              </Row>
+            </TextFieldWrap>
+          </Column>
+
+          <SupportText
+            fontColor={colors?.supportColor}
             isError={isError}
-            borderBottomColor={colors?.borderBottomColor}
+            errorColor={colors?.errorColor}
           >
-            <TextFieldInput
-              fontColor={colors?.textValueColor}
-              ref={ref}
-              value={value}
-              onFocus={() => setFocus(true)}
-              onBlur={() => value.length <= 0 && setFocus(false)}
-              {...props}
-            />
-
-            <Row alignItems="center" columnGap={16} padding={"0 0 10px 0"}>
-              {focus && <>{icon}</>}
-            </Row>
-          </TextFieldWrap>
+            {supportText}
+          </SupportText>
         </Column>
-
-        <SupportText fontColor={colors?.supportColor} isError={isError}>
-          {supportText}
-        </SupportText>
-      </Column>
+      </DodamThemeProvider>
     );
   }
 );
@@ -94,6 +111,7 @@ export const DodamTextField = forwardRef(
 const StyledLabel = styled.label<{
   isFocused: boolean;
   isError: boolean;
+  errorColor: CSSProperties["color"];
   fontColor: CSSProperties["color"];
 }>`
   transition: all 0.2s ease-in-out;
@@ -102,15 +120,17 @@ const StyledLabel = styled.label<{
   pointer-events: none;
   position: absolute;
 
-  ${({ isError, isFocused, fontColor, theme }) => {
+  ${({ isError, errorColor, isFocused, fontColor, theme }) => {
     let color = theme.onSurfaceVariant;
+
     let topPosition = isFocused ? "-7px" : "40%";
+
     let typographyStyle = isFocused
       ? DodamTypography.Label.Large
       : DodamTypography.Body.Large;
 
     if (isError) {
-      color = theme.error;
+      color = errorColor || theme.error;
     } else if (isFocused) {
       color = fontColor || theme.primary;
     }
@@ -126,6 +146,7 @@ const StyledLabel = styled.label<{
 const TextFieldWrap = styled.div<{
   borderBottomColor: CSSProperties["color"];
   isError: boolean;
+  errorColor: CSSProperties["color"];
   isFocused: boolean;
 }>`
   width: 100%;
@@ -133,11 +154,11 @@ const TextFieldWrap = styled.div<{
 
   transition: all 0.2s ease-in-out;
 
-  ${({ isError, borderBottomColor, isFocused, theme }) => {
+  ${({ isError, errorColor, borderBottomColor, isFocused, theme }) => {
     let bottomColor = theme.onSurfaceVariant;
 
     if (isError) {
-      bottomColor = theme.error;
+      bottomColor = errorColor || theme.error;
     } else if (isFocused) {
       bottomColor = borderBottomColor || theme.primary;
     }
@@ -173,12 +194,13 @@ const TextFieldInput = styled.input<{
 
 const SupportText = styled.p<{
   isError: boolean;
+  errorColor: CSSProperties["color"];
   fontColor: CSSProperties["color"];
 }>`
   padding-top: 4px;
   transition: all 0.2s ease-in-out;
-  color: ${({ isError, fontColor, theme }) =>
-    isError ? theme.error : fontColor || theme.onSurfaceVariant};
+  color: ${({ isError, errorColor, fontColor, theme }) =>
+    isError ? errorColor || theme.error : fontColor || theme.onSurfaceVariant};
 
   ${DodamTypography.Label.Large}
 `;
