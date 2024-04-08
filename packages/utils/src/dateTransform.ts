@@ -1,23 +1,27 @@
-import dayjs from "dayjs";
+import dayjs, { ConfigType } from "dayjs";
 
 class DateTransform {
-  public hyphen(date?: string): string {
+  public hyphen(date?: ConfigType): string {
     return dayjs(date).format("YYYY-MM-DD");
   }
 
-  public period(date?: string): string {
+  public period(date?: ConfigType): string {
     return dayjs(date).format("YYYY.MM.DD");
   }
 
-  public slash(date?: string): string {
+  public slash(date?: ConfigType): string {
     return dayjs(date).format("YYYY/MM/DD");
   }
 
-  public fullDate(date?: string): string {
+  public fullDateWithHourAndSecond(date?: ConfigType): string {
     return dayjs(date).format("YYYY-MM-DD HH:mm");
   }
 
-  public customDate(date?: string, formatStyle?: string): string {
+  public fullDateWithAll(date?: ConfigType): string {
+    return dayjs(date).format("YYYY-MM-DD HH:mm:ss");
+  }
+
+  public customDate(formatStyle: string, date?: ConfigType): string {
     return dayjs(date).format(formatStyle);
   }
 }
