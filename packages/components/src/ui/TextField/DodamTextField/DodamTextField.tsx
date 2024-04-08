@@ -1,9 +1,4 @@
-import {
-  DodamGlobalStyles,
-  DodamLightTheme,
-  DodamThemeProvider,
-  DodamTypography,
-} from "@dds-web/styles";
+import { DodamTypography } from "@dds-web/styles";
 import React, {
   ForwardedRef,
   InputHTMLAttributes,
@@ -13,8 +8,6 @@ import React, {
 } from "react";
 import styled, { CSSProperties, css } from "styled-components";
 import { Column, FlexLayout, Row } from "../../../layout";
-
-import "../../../fonts/font.css";
 
 type FieldColorType = {
   labelColor?: CSSProperties["color"];
@@ -55,55 +48,52 @@ export const DodamTextField = forwardRef(
     const [focus, setFocus] = useState(false);
 
     return (
-      <DodamThemeProvider theme={DodamLightTheme}>
-        <DodamGlobalStyles />
-        <Column width={width}>
-          <Column
-            width={"100%"}
-            height={height}
-            customStyle={css`
-              position: relative;
-            `}
-          >
-            <StyledLabel
-              isFocused={focus}
-              isError={isError}
-              errorColor={colors?.errorColor}
-              fontColor={colors?.labelColor}
-            >
-              {labelText}
-            </StyledLabel>
-
-            <TextFieldWrap
-              isFocused={focus}
-              isError={isError}
-              errorColor={colors?.errorColor}
-              borderBottomColor={colors?.borderBottomColor}
-            >
-              <TextFieldInput
-                fontColor={colors?.textValueColor}
-                ref={ref}
-                value={value}
-                onFocus={() => setFocus(true)}
-                onBlur={() => value.length <= 0 && setFocus(false)}
-                {...props}
-              />
-
-              <Row alignItems="center" columnGap={16} padding={"0 0 10px 0"}>
-                {focus && <>{icon}</>}
-              </Row>
-            </TextFieldWrap>
-          </Column>
-
-          <SupportText
-            fontColor={colors?.supportColor}
+      <Column width={width}>
+        <Column
+          width={"100%"}
+          height={height}
+          customStyle={css`
+            position: relative;
+          `}
+        >
+          <StyledLabel
+            isFocused={focus}
             isError={isError}
             errorColor={colors?.errorColor}
+            fontColor={colors?.labelColor}
           >
-            {supportText}
-          </SupportText>
+            {labelText}
+          </StyledLabel>
+
+          <TextFieldWrap
+            isFocused={focus}
+            isError={isError}
+            errorColor={colors?.errorColor}
+            borderBottomColor={colors?.borderBottomColor}
+          >
+            <TextFieldInput
+              fontColor={colors?.textValueColor}
+              ref={ref}
+              value={value}
+              onFocus={() => setFocus(true)}
+              onBlur={() => value.length <= 0 && setFocus(false)}
+              {...props}
+            />
+
+            <Row alignItems="center" columnGap={16} padding={"0 0 10px 0"}>
+              {focus && <>{icon}</>}
+            </Row>
+          </TextFieldWrap>
         </Column>
-      </DodamThemeProvider>
+
+        <SupportText
+          fontColor={colors?.supportColor}
+          isError={isError}
+          errorColor={colors?.errorColor}
+        >
+          {supportText}
+        </SupportText>
+      </Column>
     );
   }
 );
