@@ -16,6 +16,10 @@ class DateTransform {
   public fullDate(date?: string): string {
     return dayjs(date).format("YYYY-MM-DD HH:mm");
   }
+
+  public customDate(date?: string, formatStyle?: string): string {
+    return dayjs(date).format(formatStyle);
+  }
 }
 
 export default new DateTransform();
