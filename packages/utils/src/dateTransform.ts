@@ -17,7 +17,7 @@ class DateTransform {
     fullDateType: "HH" | "HH:mm" | "HH:mm:ss",
     date?: ConfigType
   ): string {
-    return dayjs(date).format(`YYYY-MM-DD ${fullDateType}`);
+    return dayjs(date).format(`YYYY-MM-DD ${fullDateType || "HH:mm:ss"}`);
   }
 
   public customDate(formatStyle: string, date?: ConfigType): string {
