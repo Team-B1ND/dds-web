@@ -6,8 +6,8 @@ import { CALENDER_PATH_ITEMS } from "./constant";
 export const Calender = ({ size = 24, pathStyle, svgStyle }: IconProps) => {
   return (
     <StyledSvg
-      width="24"
-      height="24"
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
