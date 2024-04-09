@@ -1,7 +1,7 @@
 import React from "react";
-import { IconProps } from "./type";
+import type { IconProps } from "./type";
 import { StyledSvg } from "./style";
-import styled, { RuleSet } from "styled-components";
+import styled, { type RuleSet } from "styled-components";
 
 export const Magnifyingglass = ({
   size = 24,

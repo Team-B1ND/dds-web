@@ -1,6 +1,14 @@
-import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
-import React, { ButtonHTMLAttributes, ReactNode } from "react";
-import styled, { CSSProperties, RuleSet, css } from "styled-components";
+import {
+  DodamShape,
+  DodamTypography,
+  type ShapeSizeType,
+} from "@dds-web/styles";
+import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
+import styled, {
+  type CSSProperties,
+  type RuleSet,
+  css,
+} from "styled-components";
 import { FlexLayout } from "../../../layout";
 
 type FilledColorsType = {

@@ -1,4 +1,8 @@
-import { ExecutionProps, RuleSet, createGlobalStyle } from "styled-components";
+import {
+  type ExecutionProps,
+  type RuleSet,
+  createGlobalStyle,
+} from "styled-components";
 import reset from "styled-reset";
 
 type CustomStlye = {

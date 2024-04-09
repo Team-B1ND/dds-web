@@ -1,6 +1,6 @@
 import React from "react";
-import { IconProps } from "./type";
-import styled, { RuleSet } from "styled-components";
+import type { IconProps } from "./type";
+import styled, { type RuleSet } from "styled-components";
 import { StyledSvg } from "./style";
 
 export const Megaphone = ({ size = 24, pathStyle, svgStyle }: IconProps) => {

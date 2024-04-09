@@ -1,4 +1,4 @@
-import { Component, ErrorInfo, ReactNode } from "react";
+import { Component, ErrorInfo, type ReactNode } from "react";
 
 export interface DodamErrorBoundaryProps {
   children: ReactNode;

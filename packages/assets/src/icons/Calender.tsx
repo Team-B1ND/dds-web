@@ -1,5 +1,5 @@
 import React from "react";
-import { IconProps } from "./type";
+import type { IconProps } from "./type";
 import { StyledSvg, StyledPath } from "./style";
 import { CALENDER_PATH_ITEMS } from "./constant";
 

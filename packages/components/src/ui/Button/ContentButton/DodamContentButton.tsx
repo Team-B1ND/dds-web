@@ -1,5 +1,9 @@
-import React, { ButtonHTMLAttributes, ReactNode } from "react";
-import styled, { CSSProperties, RuleSet, css } from "styled-components";
+import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
+import styled, {
+  type CSSProperties,
+  type RuleSet,
+  css,
+} from "styled-components";
 import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
 import { FlexLayout } from "../../../layout";
 

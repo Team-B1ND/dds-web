@@ -1,7 +1,7 @@
 import React from "react";
-import { FontScale, TypographyProps } from "../type";
+import type { FontScale, TypographyProps } from "../type";
 import { DodamTypography } from "@dds-web/styles";
-import styled, { RuleSet } from "styled-components";
+import styled, { type RuleSet } from "styled-components";
 
 export const DodamBody = ({
   text,

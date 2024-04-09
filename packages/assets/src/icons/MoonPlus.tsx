@@ -1,5 +1,5 @@
 import React from "react";
-import { IconProps } from "./type";
+import type { IconProps } from "./type";
 import { StyledPath, StyledSvg } from "./style";
 import { MOON_PLUS_PATH_ITEMS } from "./constant";
 

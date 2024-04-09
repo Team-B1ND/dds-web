@@ -1,5 +1,5 @@
-import { HTMLAttributes } from "react";
-import { RuleSet } from "styled-components";
+import type { HTMLAttributes } from "react";
+import type { RuleSet } from "styled-components";
 
 export type FontScale = "Large" | "Medium" | "Small";
 

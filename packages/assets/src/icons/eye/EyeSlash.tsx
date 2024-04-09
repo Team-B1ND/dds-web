@@ -1,7 +1,6 @@
 import React from "react";
-import { IconProps } from "../type";
+import type { IconProps } from "../type";
 import { StyledPath, StyledSvg } from "../style";
-import styled from "styled-components";
 
 export const EyeSlash = ({ size = 24, pathStyle, svgStyle }: IconProps) => {
   return (

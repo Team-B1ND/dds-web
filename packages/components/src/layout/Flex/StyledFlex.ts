@@ -1,4 +1,4 @@
-import styled, { CSSProperties, RuleSet } from "styled-components";
+import styled, { type CSSProperties, type RuleSet } from "styled-components";
 
 export type Align = "center" | "flex-start" | "flex-end";
 

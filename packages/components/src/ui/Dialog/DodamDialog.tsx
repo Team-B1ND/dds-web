@@ -1,6 +1,10 @@
-import { DodamShape, ShapeSizeType } from "@dds-web/styles";
+import { DodamShape, type ShapeSizeType } from "@dds-web/styles";
 import React from "react";
-import styled, { CSSProperties, RuleSet, css } from "styled-components";
+import styled, {
+  type CSSProperties,
+  type RuleSet,
+  css,
+} from "styled-components";
 import { Column, FlexLayout, Row } from "../../layout";
 import { DodamBody, DodamTitle } from "../Typography";
 import { DodamFilledButton } from "../Button";

@@ -1,4 +1,4 @@
-import { CSSProperties, css } from "styled-components";
+import { type CSSProperties, css } from "styled-components";
 
 export interface FlexLayoutProps {
   flexDirection?: CSSProperties["flexDirection"];

@@ -1,4 +1,4 @@
-import styled, { RuleSet } from "styled-components";
+import styled, { type RuleSet } from "styled-components";
 
 export const StyledSvg = styled.svg<{ svgStyle: RuleSet }>`
   ${({ svgStyle }) => svgStyle}
