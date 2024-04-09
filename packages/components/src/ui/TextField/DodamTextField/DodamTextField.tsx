@@ -41,6 +41,7 @@ export const DodamTextField = forwardRef(
       colors,
       width = "380px",
       height = "32px",
+      disabled = false,
       ...props
     }: DodamTextFieldProps,
     ref: ForwardedRef<HTMLInputElement>
@@ -61,6 +62,7 @@ export const DodamTextField = forwardRef(
             isError={isError}
             errorColor={colors?.errorColor}
             fontColor={colors?.labelColor}
+            isDisabled={disabled}
           >
             {labelText}
           </StyledLabel>
@@ -70,6 +72,7 @@ export const DodamTextField = forwardRef(
             isError={isError}
             errorColor={colors?.errorColor}
             borderBottomColor={colors?.borderBottomColor}
+            isDisabled={disabled}
           >
             <TextFieldInput
               fontColor={colors?.textValueColor}
@@ -77,6 +80,7 @@ export const DodamTextField = forwardRef(
               value={value}
               onFocus={() => setFocus(true)}
               onBlur={() => value.length <= 0 && setFocus(false)}
+              disabled={disabled}
               {...props}
             />
 
@@ -90,8 +94,9 @@ export const DodamTextField = forwardRef(
           fontColor={colors?.supportColor}
           isError={isError}
           errorColor={colors?.errorColor}
+          isDisabled={disabled}
         >
-          {supportText}
+          {supportText || ""}
         </SupportText>
       </Column>
     );
@@ -101,6 +106,7 @@ export const DodamTextField = forwardRef(
 const StyledLabel = styled.label<{
   isFocused: boolean;
   isError: boolean;
+  isDisabled: boolean;
   errorColor: CSSProperties["color"];
   fontColor: CSSProperties["color"];
 }>`
@@ -109,6 +115,7 @@ const StyledLabel = styled.label<{
 
   pointer-events: none;
   position: absolute;
+  opacity: ${({ isDisabled }) => isDisabled && "0.5"};
 
   ${({ isError, errorColor, isFocused, fontColor, theme }) => {
     let color = theme.onSurfaceVariant;
@@ -134,15 +141,17 @@ const StyledLabel = styled.label<{
 `;
 
 const TextFieldWrap = styled.div<{
-  borderBottomColor: CSSProperties["color"];
+  isFocused: boolean;
+  isDisabled: boolean;
   isError: boolean;
   errorColor: CSSProperties["color"];
-  isFocused: boolean;
+  borderBottomColor: CSSProperties["color"];
 }>`
   width: 100%;
   height: 100%;
 
   transition: all 0.2s ease-in-out;
+  opacity: ${({ isDisabled }) => isDisabled && "0.5"};
 
   ${({ isError, errorColor, borderBottomColor, isFocused, theme }) => {
     let bottomColor = theme.onSurfaceVariant;
@@ -183,14 +192,18 @@ const TextFieldInput = styled.input<{
 `;
 
 const SupportText = styled.p<{
+  isDisabled: boolean;
   isError: boolean;
   errorColor: CSSProperties["color"];
   fontColor: CSSProperties["color"];
 }>`
+  height: 23px;
   padding-top: 4px;
   transition: all 0.2s ease-in-out;
   color: ${({ isError, errorColor, fontColor, theme }) =>
     isError ? errorColor || theme.error : fontColor || theme.onSurfaceVariant};
 
-  ${DodamTypography.Label.Large}
+  opacity: ${({ isDisabled }) => isDisabled && "0.5"};
+
+  ${DodamTypography.Body.Small}
 `;
