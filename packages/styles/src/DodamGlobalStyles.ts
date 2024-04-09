@@ -13,6 +13,8 @@ export const DodamGlobalStyles: React.NamedExoticComponent<
       padding: 0;
       box-sizing: border-box;
 
+      font-family: 'Suit-Normal' !important;
+
       ${({ customStyle }) => customStyle}
     }
 
