@@ -6,6 +6,7 @@ export const ExclamationmarkCircle = ({
   size = 24,
   pathStyle,
   svgStyle,
+  ...props
 }: IconProps) => {
   return (
     <StyledSvg
@@ -15,6 +16,7 @@ export const ExclamationmarkCircle = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       svgStyle={svgStyle!}
+      {...props}
     >
       <mask
         id="mask0_2_962"

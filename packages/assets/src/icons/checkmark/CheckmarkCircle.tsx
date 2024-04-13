@@ -7,6 +7,7 @@ export const CheckmarkCircle = ({
   size = 24,
   pathStyle,
   svgStyle,
+  ...props
 }: IconProps) => {
   return (
     <StyledSvg
@@ -16,6 +17,7 @@ export const CheckmarkCircle = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       svgStyle={svgStyle!}
+      {...props}
     >
       {CHECKMARK_CIRCLE_PATH_ITEMS.map((item, idx) => (
         <StyledPath key={idx} d={item} pathStyle={pathStyle!} />

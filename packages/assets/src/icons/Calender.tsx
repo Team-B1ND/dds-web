@@ -3,7 +3,12 @@ import type { IconProps } from "./type";
 import { StyledSvg, StyledPath } from "./style";
 import { CALENDER_PATH_ITEMS } from "./constant";
 
-export const Calender = ({ size = 24, pathStyle, svgStyle }: IconProps) => {
+export const Calender = ({
+  size = 24,
+  pathStyle,
+  svgStyle,
+  ...props
+}: IconProps) => {
   return (
     <StyledSvg
       width={size}
@@ -12,6 +17,7 @@ export const Calender = ({ size = 24, pathStyle, svgStyle }: IconProps) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       svgStyle={svgStyle!}
+      {...props}
     >
       <StyledPath
         fill-rule="evenodd"

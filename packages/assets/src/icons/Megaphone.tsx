@@ -3,7 +3,12 @@ import type { IconProps } from "./type";
 import styled, { type RuleSet } from "styled-components";
 import { StyledSvg } from "./style";
 
-export const Megaphone = ({ size = 24, pathStyle, svgStyle }: IconProps) => {
+export const Megaphone = ({
+  size = 24,
+  pathStyle,
+  svgStyle,
+  ...props
+}: IconProps) => {
   return (
     <StyledMegaphoneSvg
       width={size}
@@ -13,6 +18,7 @@ export const Megaphone = ({ size = 24, pathStyle, svgStyle }: IconProps) => {
       xmlns="http://www.w3.org/2000/svg"
       svgStyle={svgStyle!}
       pathStyle={pathStyle!}
+      {...props}
     >
       <path
         fill-rule="evenodd"
