@@ -15,5 +15,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const StyledFilledTextField: Story = {
-  args: {},
+  args: {
+    value: "",
+    labelText: "Label",
+    placeholderText: "Input text",
+    supportText: "Supporting text",
+  },
 };
