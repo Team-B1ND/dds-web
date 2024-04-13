@@ -1,8 +1,4 @@
-import {
-  DodamShape,
-  DodamTypography,
-  type ShapeSizeType,
-} from "@dds-web/styles";
+import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
 import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
 import styled, {
   type CSSProperties,

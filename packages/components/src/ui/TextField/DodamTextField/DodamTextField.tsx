@@ -1,20 +1,33 @@
 import { DodamTypography } from "@dds-web/styles";
 import React, {
-  ForwardedRef,
-  InputHTMLAttributes,
-  ReactNode,
+  type ForwardedRef,
+  type InputHTMLAttributes,
+  type ReactNode,
   forwardRef,
   useState,
 } from "react";
-import styled, { CSSProperties, css } from "styled-components";
+import styled, { type CSSProperties, css, RuleSet } from "styled-components";
 import { Column, FlexLayout, Row } from "../../../layout";
 
+type StyleType = {
+  labelStyle?: RuleSet;
+  textFieldStyle?: RuleSet;
+  inputStyle?: RuleSet;
+  supportStyle?: RuleSet;
+};
+
+type FieldColorItemType = {
+  basicColor?: CSSProperties["color" | "backgroundColor"];
+  onFocusColor?: CSSProperties["color" | "backgroundColor"];
+  onErrorColor?: CSSProperties["color" | "backgroundColor"];
+  onDisabledColor?: CSSProperties["color" | "backgroundColor"];
+};
+
 type FieldColorType = {
-  labelColor?: CSSProperties["color"];
   textValueColor?: CSSProperties["color"];
-  supportColor?: CSSProperties["color"];
-  borderBottomColor?: CSSProperties["color"];
-  errorColor?: CSSProperties["color"];
+  label?: FieldColorItemType;
+  support?: Omit<FieldColorItemType, "onFocusColor">;
+  borderBottom?: FieldColorItemType;
 };
 
 export interface DodamTextFieldProps
@@ -23,11 +36,14 @@ export interface DodamTextFieldProps
   labelText: string;
   supportText: string;
 
+  width?: CSSProperties["width"];
+  height?: CSSProperties["height"];
+
   icon?: ReactNode;
   isError?: boolean;
   colors?: FieldColorType;
-  width?: CSSProperties["width"];
-  height?: CSSProperties["height"];
+  disabled?: boolean;
+  customStyle?: StyleType;
 }
 
 export const DodamTextField = forwardRef(
@@ -42,11 +58,12 @@ export const DodamTextField = forwardRef(
       width = "380px",
       height = "32px",
       disabled = false,
+      customStyle,
       ...props
     }: DodamTextFieldProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
-    const [focus, setFocus] = useState(false);
+    const [isFocus, setIsFocus] = useState(false);
 
     return (
       <Column width={width}>
@@ -58,43 +75,44 @@ export const DodamTextField = forwardRef(
           `}
         >
           <StyledLabel
-            isFocused={focus}
+            isFocused={isFocus}
             isError={isError}
-            errorColor={colors?.errorColor}
-            fontColor={colors?.labelColor}
+            labelColor={colors?.label!}
             isDisabled={disabled}
+            customStyle={customStyle?.labelStyle!}
           >
             {labelText}
           </StyledLabel>
 
           <TextFieldWrap
-            isFocused={focus}
+            isFocused={isFocus}
             isError={isError}
-            errorColor={colors?.errorColor}
-            borderBottomColor={colors?.borderBottomColor}
             isDisabled={disabled}
+            borderBottomColor={colors?.borderBottom!}
+            customStyle={customStyle?.textFieldStyle!}
           >
             <TextFieldInput
               fontColor={colors?.textValueColor}
               ref={ref}
               value={value}
-              onFocus={() => setFocus(true)}
-              onBlur={() => value.length <= 0 && setFocus(false)}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => value.length === 0 && setIsFocus(false)}
+              customStyle={customStyle?.inputStyle!}
               disabled={disabled}
               {...props}
             />
 
             <Row alignItems="center" columnGap={16} padding={"0 0 10px 0"}>
-              {focus && <>{icon}</>}
+              {isFocus && <>{icon}</>}
             </Row>
           </TextFieldWrap>
         </Column>
 
         <SupportText
-          fontColor={colors?.supportColor}
           isError={isError}
-          errorColor={colors?.errorColor}
           isDisabled={disabled}
+          supportColor={colors?.support!}
+          customStyle={customStyle?.supportStyle!}
         >
           {supportText || ""}
         </SupportText>
@@ -107,8 +125,8 @@ const StyledLabel = styled.label<{
   isFocused: boolean;
   isError: boolean;
   isDisabled: boolean;
-  errorColor: CSSProperties["color"];
-  fontColor: CSSProperties["color"];
+  labelColor: FieldColorItemType;
+  customStyle: RuleSet;
 }>`
   transition: all 0.2s ease-in-out;
   transform: translateY(-50%);
@@ -117,8 +135,8 @@ const StyledLabel = styled.label<{
   position: absolute;
   opacity: ${({ isDisabled }) => isDisabled && "0.5"};
 
-  ${({ isError, errorColor, isFocused, fontColor, theme }) => {
-    let color = theme.onSurfaceVariant;
+  ${({ isError, isDisabled, isFocused, labelColor, theme }) => {
+    let color = labelColor?.basicColor;
 
     let topPosition = isFocused ? "-7px" : "40%";
 
@@ -126,26 +144,31 @@ const StyledLabel = styled.label<{
       ? DodamTypography.Label.Large
       : DodamTypography.Body.Large;
 
-    if (isError) {
-      color = errorColor || theme.error;
+    if (isDisabled) {
+      color = labelColor?.onDisabledColor || theme.onSurfaceVariant;
+    } else if (isError) {
+      color = labelColor?.onErrorColor || theme.error;
     } else if (isFocused) {
-      color = fontColor || theme.primary;
+      color = labelColor?.onFocusColor || theme.primary;
     }
 
     return css`
-      color: ${color};
+      opacity: ${isDisabled && "0.5"};
+      color: ${color || theme.onSurfaceVariant};
       top: ${topPosition};
       ${typographyStyle};
     `;
   }};
+
+  ${({ customStyle }) => customStyle}
 `;
 
 const TextFieldWrap = styled.div<{
   isFocused: boolean;
   isDisabled: boolean;
   isError: boolean;
-  errorColor: CSSProperties["color"];
-  borderBottomColor: CSSProperties["color"];
+  borderBottomColor: FieldColorItemType;
+  customStyle: RuleSet;
 }>`
   width: 100%;
   height: 100%;
@@ -153,17 +176,20 @@ const TextFieldWrap = styled.div<{
   transition: all 0.2s ease-in-out;
   opacity: ${({ isDisabled }) => isDisabled && "0.5"};
 
-  ${({ isError, errorColor, borderBottomColor, isFocused, theme }) => {
-    let bottomColor = theme.onSurfaceVariant;
+  ${({ isError, isDisabled, isFocused, borderBottomColor, theme }) => {
+    let bottomColor = borderBottomColor?.basicColor;
 
-    if (isError) {
-      bottomColor = errorColor || theme.error;
+    if (isDisabled) {
+      bottomColor =
+        borderBottomColor?.onDisabledColor || theme.onSurfaceVariant;
+    } else if (isError) {
+      bottomColor = borderBottomColor?.onErrorColor || theme.error;
     } else if (isFocused) {
-      bottomColor = borderBottomColor || theme.primary;
+      bottomColor = borderBottomColor?.onFocusColor || theme.primary;
     }
 
     return css`
-      border-bottom: 1px solid ${bottomColor};
+      border-bottom: 1px solid ${bottomColor || theme.onSurfaceVariant};
     `;
   }}
 
@@ -172,10 +198,13 @@ const TextFieldWrap = styled.div<{
     justifyContent: "space-between",
     columnGap: "5px",
   })};
+
+  ${({ customStyle }) => customStyle}
 `;
 
 const TextFieldInput = styled.input<{
   fontColor: CSSProperties["color"];
+  customStyle: RuleSet;
 }>`
   width: 100%;
   height: 100%;
@@ -188,22 +217,36 @@ const TextFieldInput = styled.input<{
 
   transition: all 0.2s ease-in-out;
   color: ${({ fontColor, theme }) => fontColor || theme.onSurface};
+
   ${DodamTypography.Body.Large};
+  ${({ customStyle }) => customStyle}
 `;
 
 const SupportText = styled.p<{
   isDisabled: boolean;
   isError: boolean;
-  errorColor: CSSProperties["color"];
-  fontColor: CSSProperties["color"];
+  supportColor: FieldColorItemType;
+  customStyle: RuleSet;
 }>`
   height: 23px;
   padding-top: 4px;
   transition: all 0.2s ease-in-out;
-  color: ${({ isError, errorColor, fontColor, theme }) =>
-    isError ? errorColor || theme.error : fontColor || theme.onSurfaceVariant};
 
-  opacity: ${({ isDisabled }) => isDisabled && "0.5"};
+  ${({ isDisabled, isError, supportColor, theme }) => {
+    let color = supportColor?.basicColor;
+
+    if (isDisabled) {
+      color = supportColor?.onDisabledColor || theme.onSurfaceVariant;
+    } else if (isError) {
+      color = supportColor?.onErrorColor || theme.error;
+    }
+
+    return css`
+      opacity: ${isDisabled && "0.5"};
+      color: ${color || theme.onSurfaceVariant};
+    `;
+  }}
 
   ${DodamTypography.Body.Small}
+  ${({ customStyle }) => customStyle}
 `;
