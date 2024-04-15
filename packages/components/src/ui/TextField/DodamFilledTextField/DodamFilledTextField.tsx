@@ -63,7 +63,7 @@ export const DodamFilledTextField = forwardRef(
       supportText,
       icon,
       width = "380px",
-      height = "26px",
+      height = "56px",
       colors,
       radius = "Medium",
       isError = false,
@@ -188,6 +188,8 @@ const StyledTextField = styled.div<{
   padding: 15px 16px;
   border: 1px solid ${({ theme }) => theme.outline};
 
+  transition: all 0.15s ease-in-out;
+
   ${({ isDisabled, isFocused, isError, inputBackgroundColor, theme }) => {
     let backgroundColor = inputBackgroundColor?.basicColor;
 
@@ -237,6 +239,7 @@ const StyledInput = styled.input<{
   background-color: transparent;
   transition: all 0.2s ease-in-out;
 
+  // 다크모드일 때 텍스트 color가 완전하지 않음 나중에 디자인 문의 필요
   color: ${({ textValueColor, theme }) => textValueColor || theme.onSurface};
 
   &::placeholder {
