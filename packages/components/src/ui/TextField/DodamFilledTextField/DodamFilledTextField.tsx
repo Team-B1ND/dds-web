@@ -1,11 +1,6 @@
 import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
-import React, {
-  type ForwardedRef,
-  type InputHTMLAttributes,
-  type ReactNode,
-  forwardRef,
-  useState,
-} from "react";
+import React, { forwardRef, useState } from "react";
+import type { ForwardedRef, InputHTMLAttributes, ReactNode } from "react";
 import "../../../fonts/font.css";
 import styled, {
   type CSSProperties,
