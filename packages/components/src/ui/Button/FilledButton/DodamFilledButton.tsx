@@ -1,10 +1,7 @@
 import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
 import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
-import styled, {
-  type CSSProperties,
-  type RuleSet,
-  css,
-} from "styled-components";
+import styled, { css } from "styled-components";
+import type { CSSProperties, RuleSet } from "styled-components";
 import { FlexLayout } from "../../../layout";
 
 type FilledColorsType = {
@@ -53,7 +50,7 @@ export const DodamFilledButton = ({
           ))}
         </LoadingEllipseWrap>
       ) : (
-        <>{children}</>
+        <p>{children}</p>
       )}
     </StyledFilledButton>
   );
@@ -63,8 +60,8 @@ const StyledFilledButton = styled.button<{
   colors: FilledColorsType;
   radius: ShapeSizeType;
   isDisabled: boolean;
-  padding: CSSProperties["padding"];
   isLoading: boolean;
+  padding: CSSProperties["padding"];
   customStyle: RuleSet;
 }>`
   width: 380px;
@@ -86,13 +83,15 @@ const StyledFilledButton = styled.button<{
   `}
 
   transition: all 0.15s ease-in-out;
-  &:active {
-    ${({ disabled }) =>
-      !disabled &&
-      css`
+
+  ${({ isDisabled, isLoading }) =>
+    !isDisabled &&
+    !isLoading &&
+    css`
+      &:active {
         transform: scale(0.97);
-      `};
-  }
+      }
+    `};
 
   ${FlexLayout({ alignItems: "center", justifyContent: "center" })}
   ${DodamTypography.Body.Large}

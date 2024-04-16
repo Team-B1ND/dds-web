@@ -1,10 +1,7 @@
 import { DodamShape, type ShapeSizeType } from "@dds-web/styles";
 import React from "react";
-import styled, {
-  type CSSProperties,
-  type RuleSet,
-  css,
-} from "styled-components";
+import styled, { css } from "styled-components";
+import type { CSSProperties, RuleSet } from "styled-components";
 import { Column, FlexLayout, Row } from "../../layout";
 import { DodamBody, DodamTitle } from "../Typography";
 import { DodamFilledButton } from "../Button";
@@ -22,7 +19,10 @@ type DialogType =
     }
   | {
       dialog: "CONFIRM";
-      confirm: DialogHandlerType;
+      confirm: DialogHandlerType & {
+        isLoading?: boolean;
+        isDisabled?: boolean;
+      };
       dismiss: DialogHandlerType;
     };
 
@@ -75,6 +75,8 @@ export const DodamDialog = ({
           <DodamFilledButton
             customStyle={type.confirm.style}
             onClick={type.confirm.onClick}
+            isLoading={type.confirm.isLoading}
+            isDisabled={type.confirm.isDisabled}
             radius="Medium"
           >
             {type.confirm.content}
