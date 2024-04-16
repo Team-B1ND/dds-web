@@ -1,0 +1,44 @@
+@font-face {
+  src: url("./suit_regular.otf") format("woff2");
+  font-family: "suit-normal";
+}
+
+@font-face {
+  src: url("./suit_bold.otf") format("woff2");
+  font-family: "suit-bold";
+}
+
+@font-face {
+  src: url("./suit_extrabold.otf") format("woff2");
+  font-family: "suit-extrabold";
+}
+
+@font-face {
+  src: url("./suit_extralight.otf") format("woff2");
+  font-family: "suit-extralight";
+}
+
+@font-face {
+  src: url("./suit_heavy.otf") format("woff2");
+  font-family: "suit-heavy";
+}
+
+@font-face {
+  src: url("./suit_light.otf") format("woff2");
+  font-family: "suit-light";
+}
+
+@font-face {
+  src: url("./suit_medium.otf") format("woff2");
+  font-family: "suit-medium";
+}
+
+@font-face {
+  src: url("./suit_semibold.otf") format("woff2");
+  font-family: "suit-semibold";
+}
+
+@font-face {
+  src: url("./suit_thin.otf") format("woff2");
+  font-family: "suit-thin";
+}

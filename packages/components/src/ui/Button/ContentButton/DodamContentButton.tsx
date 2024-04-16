@@ -1,5 +1,9 @@
-import React, { HTMLAttributes, ReactNode } from "react";
-import styled, { CSSProperties, RuleSet, css } from "styled-components";
+import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
+import styled, {
+  type CSSProperties,
+  type RuleSet,
+  css,
+} from "styled-components";
 import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
 import { FlexLayout } from "../../../layout";
 
@@ -15,7 +19,8 @@ type ColorsType = {
   activeBackgroundColor?: CSSProperties["backgroundColor"];
 };
 
-export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
+export interface DodamContentButton
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 
   typography?: typographyType;

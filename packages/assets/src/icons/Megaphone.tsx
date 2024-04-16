@@ -1,9 +1,14 @@
 import React from "react";
-import { IconProps } from "./type";
-import styled from "styled-components";
+import type { IconProps } from "./type";
+import styled, { type RuleSet } from "styled-components";
 import { StyledSvg } from "./style";
 
-export const Megaphone = ({ size = 24, color, customStyle }: IconProps) => {
+export const Megaphone = ({
+  size = 24,
+  pathStyle,
+  svgStyle,
+  ...props
+}: IconProps) => {
   return (
     <StyledMegaphoneSvg
       width={size}
@@ -11,8 +16,9 @@ export const Megaphone = ({ size = 24, color, customStyle }: IconProps) => {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      customStyle={customStyle!}
-      color={color!}
+      svgStyle={svgStyle!}
+      pathStyle={pathStyle!}
+      {...props}
     >
       <path
         fill-rule="evenodd"
@@ -23,8 +29,8 @@ export const Megaphone = ({ size = 24, color, customStyle }: IconProps) => {
   );
 };
 
-const StyledMegaphoneSvg = styled(StyledSvg)<{ color: string }>`
+const StyledMegaphoneSvg = styled(StyledSvg)<{ pathStyle: RuleSet }>`
   path {
-    fill: ${({ color, theme }) => color || theme.onSurface};
+    fill: ${({ pathStyle, theme }) => pathStyle || theme.onSurface};
   }
 `;

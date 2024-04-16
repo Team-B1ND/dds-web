@@ -1,6 +1,10 @@
-import { DodamShape, ShapeSizeType } from "@dds-web/styles";
+import { DodamShape, type ShapeSizeType } from "@dds-web/styles";
 import React from "react";
-import styled, { CSSProperties, RuleSet, css } from "styled-components";
+import styled, {
+  type CSSProperties,
+  type RuleSet,
+  css,
+} from "styled-components";
 import { Column, FlexLayout, Row } from "../../layout";
 import { DodamBody, DodamTitle } from "../Typography";
 import { DodamFilledButton } from "../Button";
@@ -32,6 +36,7 @@ export interface DodamDialogProps {
     textColor?: CSSProperties["color"];
   };
   radius?: ShapeSizeType;
+  customStyle?: RuleSet;
 }
 
 export const DodamDialog = ({
@@ -40,12 +45,14 @@ export const DodamDialog = ({
   type,
   color,
   radius = "ExtraLarge",
+  customStyle,
 }: DodamDialogProps) => {
   return (
     <StyledDialog
       dialogType={type.dialog}
       radius={radius}
       backgroundColor={color?.dialogBackgroundColor}
+      customStyle={customStyle!}
     >
       <Column rowGap={12} padding={type.dialog === "CONFIRM" ? "6px" : "12px"}>
         <DodamTitle
@@ -91,6 +98,7 @@ const StyledDialog = styled.div<{
   radius: ShapeSizeType;
   dialogType: "ALERT" | "CONFIRM";
   backgroundColor: CSSProperties["backgroundColor"];
+  customStyle: RuleSet;
 }>`
   min-width: 280px;
   max-width: 560px;
@@ -105,6 +113,7 @@ const StyledDialog = styled.div<{
       flexDirection: "column",
       rowGap: dialogType === "CONFIRM" ? "18px" : "24px",
     })}
+  ${({ customStyle }) => customStyle}
 `;
 
 const StyledTitle = (titleColor: CSSProperties["color"]) => css`
