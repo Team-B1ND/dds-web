@@ -1,4 +1,4 @@
-import dayjs, { ConfigType } from "dayjs";
+import dayjs, { type ConfigType } from "dayjs";
 
 class DateTransform {
   public hyphen(date?: ConfigType): string {

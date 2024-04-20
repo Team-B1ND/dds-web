@@ -1,5 +1,5 @@
 import React, { type ReactNode } from "react";
-import { DodamTheme, ThemeProvider } from "styled-components";
+import { type DodamTheme, ThemeProvider } from "styled-components";
 
 export interface DodamThemeProviderProps {
   children: ReactNode;

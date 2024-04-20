@@ -1,17 +1,10 @@
-import {
-  type ExecutionProps,
-  type RuleSet,
-  createGlobalStyle,
-} from "styled-components";
+import { createGlobalStyle } from "styled-components";
+import type { ExecutionProps, RuleSet } from "styled-components";
 import reset from "styled-reset";
 
-type CustomStlye = {
-  customStyle?: RuleSet;
-};
-
-export const DodamGlobalStyles: React.NamedExoticComponent<
-  ExecutionProps & CustomStlye
-> = createGlobalStyle<CustomStlye>`
+export const DodamGlobalStyles: React.NamedExoticComponent<ExecutionProps> = createGlobalStyle<{
+  $customStyle?: RuleSet;
+}>`
   * {
       margin: 0;
       padding: 0;
@@ -19,7 +12,7 @@ export const DodamGlobalStyles: React.NamedExoticComponent<
 
       font-family: 'Suit-Normal' !important;
 
-      ${({ customStyle }) => customStyle}
+      ${({ $customStyle }) => $customStyle}
     }
 
     ${reset}
