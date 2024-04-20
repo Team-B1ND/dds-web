@@ -27,9 +27,9 @@ type DialogType =
     };
 
 export interface DodamDialogProps {
-  title: string;
-  text: string;
   type: DialogType;
+  title: string;
+  text?: string;
   color?: {
     dialogBackgroundColor?: CSSProperties["backgroundColor"];
     titleColor?: CSSProperties["color"];
@@ -49,22 +49,27 @@ export const DodamDialog = ({
 }: DodamDialogProps) => {
   return (
     <StyledDialog
-      dialogType={type.dialog}
-      radius={radius}
-      backgroundColor={color?.dialogBackgroundColor}
-      customStyle={customStyle!}
+      $dialogType={type.dialog}
+      $radius={radius}
+      $backgroundColor={color?.dialogBackgroundColor}
+      $customStyle={customStyle!}
     >
-      <Column rowGap={12} padding={type.dialog === "CONFIRM" ? "6px" : "12px"}>
+      <Column
+        $rowGap={"12px"}
+        $padding={type.dialog === "CONFIRM" ? "6px" : "12px"}
+      >
         <DodamTitle
           fontScale="Large"
           text={title}
           customStyle={StyledTitle(color?.titleColor)}
         />
-        <DodamBody text={text} customStyle={StyledText(color?.textColor)} />
+        {text && (
+          <DodamBody text={text} customStyle={StyledText(color?.textColor)} />
+        )}
       </Column>
 
       {type.dialog === "CONFIRM" ? (
-        <Row columnGap={8}>
+        <Row $columnGap={"8px"}>
           <DodamFilledButton
             customStyle={type.dismiss.style}
             onClick={type.dismiss.onClick}
@@ -83,7 +88,7 @@ export const DodamDialog = ({
           </DodamFilledButton>
         </Row>
       ) : (
-        <Row justifyContent="flex-end">
+        <Row $justifyContent="flex-end">
           <DodamBody
             fontScale="Large"
             text={type.close.content}
@@ -97,25 +102,29 @@ export const DodamDialog = ({
 };
 
 const StyledDialog = styled.div<{
-  radius: ShapeSizeType;
-  dialogType: "ALERT" | "CONFIRM";
-  backgroundColor: CSSProperties["backgroundColor"];
-  customStyle: RuleSet;
+  $radius: ShapeSizeType;
+  $dialogType: "ALERT" | "CONFIRM";
+  $backgroundColor: CSSProperties["backgroundColor"];
+  $customStyle: RuleSet;
 }>`
   min-width: 280px;
   max-width: 560px;
 
-  background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme.surfaceContainerHigh};
-  padding: ${({ dialogType }) => (dialogType === "ALERT" ? "12px" : "18px")};
+  border: 1px solid #ddd;
 
-  ${({ radius }) => DodamShape[radius]}
-  ${({ dialogType }) =>
+  background-color: ${({ $backgroundColor, theme }) =>
+    $backgroundColor || theme.surfaceContainerHigh};
+  padding: ${({ $dialogType }) => ($dialogType === "ALERT" ? "12px" : "18px")};
+
+  ${({ $radius }) => DodamShape[$radius]}
+
+  ${({ $dialogType }) =>
     FlexLayout({
-      flexDirection: "column",
-      rowGap: dialogType === "CONFIRM" ? "18px" : "24px",
+      $flexDirection: "column",
+      $rowGap: $dialogType === "CONFIRM" ? "18px" : "24px",
     })}
-  ${({ customStyle }) => customStyle}
+
+  ${({ $customStyle }) => $customStyle}
 `;
 
 const StyledTitle = (titleColor: CSSProperties["color"]) => css`

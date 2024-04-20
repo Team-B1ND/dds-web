@@ -36,7 +36,7 @@ export const DodamCircularProgress = ({
   return (
     <StyledCircularProgress width={size} height={size}>
       <TrailCircle
-        trailColor={color?.trail!}
+        $trailColor={color?.trail!}
         cx={size / 2}
         cy={size / 2}
         r={radius}
@@ -44,7 +44,7 @@ export const DodamCircularProgress = ({
       />
 
       <PathCircle
-        pathColor={color?.path!}
+        $pathColor={color?.path!}
         cx={size / 2}
         cy={size / 2}
         r={radius}
@@ -66,10 +66,10 @@ const BaseCircle = styled.circle`
   transition: all 0.7s ease-in-out;
 `;
 
-const TrailCircle = styled(BaseCircle)<{ trailColor: string }>`
-  stroke: ${({ trailColor, theme }) => trailColor || theme.secondary};
+const TrailCircle = styled(BaseCircle)<{ $trailColor: string }>`
+  stroke: ${({ $trailColor, theme }) => $trailColor || theme.secondary};
 `;
 
-const PathCircle = styled(BaseCircle)<{ pathColor: string }>`
-  stroke: ${({ pathColor, theme }) => pathColor || theme.primary};
+const PathCircle = styled(BaseCircle)<{ $pathColor: string }>`
+  stroke: ${({ $pathColor, theme }) => $pathColor || theme.primary};
 `;

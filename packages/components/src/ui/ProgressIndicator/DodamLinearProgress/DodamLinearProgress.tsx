@@ -22,49 +22,50 @@ export const DodamLinearProgress = ({
 }: LinearProps) => {
   return (
     <LinearWrap
-      width={width}
-      height={height}
-      borderRadius={borderRadius}
-      trailColor={color?.trail!}
+      $width={width}
+      $height={height}
+      $borderRadius={borderRadius}
+      $trailColor={color?.trail!}
     >
       <LinearGuage
-        gauge={gauge}
-        borderRadius={borderRadius}
-        pathColor={color?.path!}
+        $gauge={gauge}
+        $borderRadius={borderRadius}
+        $pathColor={color?.path!}
       />
     </LinearWrap>
   );
 };
 
 const LinearWrap = styled.div<{
-  width: string;
-  height: string;
-  borderRadius: string;
-  trailColor: string;
+  $width: string;
+  $height: string;
+  $borderRadius: string;
+  $trailColor: string;
 }>`
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
 
-  border-radius: ${({ borderRadius }) => borderRadius};
-  background-color: ${({ trailColor, theme }) => trailColor || theme.secondary};
+  border-radius: ${({ $borderRadius }) => $borderRadius};
+  background-color: ${({ $trailColor, theme }) =>
+    $trailColor || theme.secondary};
 
   position: relative;
   overflow: hidden;
 `;
 
 const LinearGuage = styled.div<{
-  gauge: number;
-  borderRadius: string;
-  pathColor: string;
+  $gauge: number;
+  $borderRadius: string;
+  $pathColor: string;
 }>`
-  width: ${({ gauge }) => gauge}%;
+  width: ${({ $gauge }) => $gauge}%;
   height: 100%;
 
-  background-color: ${({ pathColor, theme }) => pathColor || theme.primary};
+  background-color: ${({ $pathColor, theme }) => $pathColor || theme.primary};
   transition: width 0.7s ease;
 
-  border-top-right-radius: ${({ borderRadius }) => borderRadius};
-  border-bottom-right-radius: ${({ borderRadius }) => borderRadius};
+  border-top-right-radius: ${({ $borderRadius }) => $borderRadius};
+  border-bottom-right-radius: ${({ $borderRadius }) => $borderRadius};
 
   position: absolute;
   top: 0;

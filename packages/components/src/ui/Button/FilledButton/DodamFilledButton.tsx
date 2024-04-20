@@ -1,4 +1,5 @@
-import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
+import { DodamShape, DodamTypography } from "@dds-web/styles";
+import type { ShapeSizeType } from "@dds-web/styles";
 import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
 import styled, { css } from "styled-components";
 import type { CSSProperties, RuleSet } from "styled-components";
@@ -15,6 +16,9 @@ export interface DodamFilledButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 
+  width?: CSSProperties["width"];
+  height?: CSSProperties["height"];
+
   colors?: FilledColorsType;
   radius?: ShapeSizeType;
   padding?: CSSProperties["padding"];
@@ -25,6 +29,8 @@ export interface DodamFilledButtonProps
 
 export const DodamFilledButton = ({
   children,
+  width = "380px",
+  height = "58px",
   colors,
   isLoading = false,
   radius = "Large",
@@ -35,12 +41,14 @@ export const DodamFilledButton = ({
 }: DodamFilledButtonProps) => {
   return (
     <StyledFilledButton
-      colors={colors!}
-      radius={radius}
-      isDisabled={isDisabled}
-      isLoading={isLoading}
-      padding={padding}
-      customStyle={customStyle!}
+      $width={width}
+      $height={height}
+      $colors={colors!}
+      $radius={radius}
+      $isDisabled={isDisabled}
+      $isLoading={isLoading}
+      $padding={padding}
+      $customStyle={customStyle!}
       {...(!isDisabled && props)}
     >
       {isLoading ? (
@@ -57,51 +65,53 @@ export const DodamFilledButton = ({
 };
 
 const StyledFilledButton = styled.button<{
-  colors: FilledColorsType;
-  radius: ShapeSizeType;
-  isDisabled: boolean;
-  isLoading: boolean;
-  padding: CSSProperties["padding"];
-  customStyle: RuleSet;
+  $width: CSSProperties["width"];
+  $height: CSSProperties["height"];
+  $colors: FilledColorsType;
+  $radius: ShapeSizeType;
+  $isDisabled: boolean;
+  $isLoading: boolean;
+  $padding: CSSProperties["padding"];
+  $customStyle: RuleSet;
 }>`
-  width: 380px;
-  min-height: 58px;
-  padding: ${({ padding }) => padding};
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
 
-  opacity: ${({ isLoading }) => isLoading && "0.5"};
+  padding: ${({ $padding }) => $padding};
+  opacity: ${({ $isLoading }) => $isLoading && "0.5"};
 
   outline: none;
   border: none;
   cursor: pointer;
 
-  ${({ colors, isDisabled, theme }) => css`
-    background-color: ${(isDisabled
-      ? colors?.disabledBackgroundColor
-      : colors?.contentBackgroundColor) || theme.primary};
-    color: ${(isDisabled ? colors?.disabledColor : colors?.contentColor) ||
+  ${({ $colors, $isDisabled, theme }) => css`
+    background-color: ${($isDisabled
+      ? $colors?.disabledBackgroundColor
+      : $colors?.contentBackgroundColor) || theme.primary};
+    color: ${($isDisabled ? $colors?.disabledColor : $colors?.contentColor) ||
     theme.onPrimary};
   `}
 
   transition: all 0.15s ease-in-out;
 
-  ${({ isDisabled, isLoading }) =>
-    !isDisabled &&
-    !isLoading &&
+  ${({ $isDisabled, $isLoading }) =>
+    !$isDisabled &&
+    !$isLoading &&
     css`
       &:active {
         transform: scale(0.97);
       }
     `};
 
-  ${FlexLayout({ alignItems: "center", justifyContent: "center" })}
+  ${FlexLayout({ $alignItems: "center", $justifyContent: "center" })}
   ${DodamTypography.Body.Large}
-  ${({ radius }) => DodamShape[radius]}
+  ${({ $radius }) => DodamShape[$radius]}
   
-  ${({ customStyle }) => customStyle};
+  ${({ $customStyle }) => $customStyle};
 `;
 
 const LoadingEllipseWrap = styled.div`
-  ${FlexLayout({ columnGap: "8px" })}
+  ${FlexLayout({ $columnGap: "8px" })}
 `;
 
 const LoadingEllipseItem = styled.div`

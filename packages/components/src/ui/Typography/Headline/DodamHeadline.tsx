@@ -10,14 +10,14 @@ export const DodamHeadline = ({
   ...props
 }: TypographyProps) => {
   return (
-    <HeadlineText fontScale={fontScale} customStyle={customStyle!} {...props}>
+    <HeadlineText $fontScale={fontScale} $customStyle={customStyle!} {...props}>
       {text}
     </HeadlineText>
   );
 };
 
-const HeadlineText = styled.p<{ fontScale: FontScale; customStyle: RuleSet }>`
+const HeadlineText = styled.p<{ $fontScale: FontScale; $customStyle: RuleSet }>`
   margin: 0;
-  ${({ fontScale }) => DodamTypography.Headline[fontScale]}
-  ${({ customStyle }) => customStyle}
+  ${({ $fontScale }) => DodamTypography.Headline[$fontScale]}
+  ${({ $customStyle }) => $customStyle}
 `;
