@@ -16,11 +16,11 @@ export const MoonPlus = ({
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      svgStyle={svgStyle!}
+      $svgStyle={svgStyle!}
       {...props}
     >
       {MOON_PLUS_PATH_ITEMS.map((item, idx) => (
-        <StyledPath key={idx} d={item} pathStyle={pathStyle!} />
+        <StyledPath key={idx} d={item} $pathStyle={pathStyle!} />
       ))}
     </StyledSvg>
   );

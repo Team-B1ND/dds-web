@@ -10,14 +10,14 @@ export const DodamBody = ({
   ...props
 }: TypographyProps) => {
   return (
-    <BodyText fontScale={fontScale} customStyle={customStyle!} {...props}>
+    <BodyText $fontScale={fontScale} $customStyle={customStyle!} {...props}>
       {text}
     </BodyText>
   );
 };
 
-const BodyText = styled.p<{ fontScale: FontScale; customStyle: RuleSet }>`
+const BodyText = styled.p<{ $fontScale: FontScale; $customStyle: RuleSet }>`
   margin: 0;
-  ${({ fontScale }) => DodamTypography.Body[fontScale]}
-  ${({ customStyle }) => customStyle}
+  ${({ $fontScale }) => DodamTypography.Body[$fontScale]}
+  ${({ $customStyle }) => $customStyle}
 `;

@@ -10,14 +10,14 @@ export const DodamTitle = ({
   ...props
 }: TypographyProps) => {
   return (
-    <TitleText fontScale={fontScale} customStyle={customStyle!} {...props}>
+    <TitleText $fontScale={fontScale} $customStyle={customStyle!} {...props}>
       {text}
     </TitleText>
   );
 };
 
-const TitleText = styled.p<{ fontScale: FontScale; customStyle: RuleSet }>`
+const TitleText = styled.p<{ $fontScale: FontScale; $customStyle: RuleSet }>`
   margin: 0;
-  ${({ fontScale }) => DodamTypography.Title[fontScale]}
-  ${({ customStyle }) => customStyle}
+  ${({ $fontScale }) => DodamTypography.Title[$fontScale]}
+  ${({ $customStyle }) => $customStyle}
 `;
