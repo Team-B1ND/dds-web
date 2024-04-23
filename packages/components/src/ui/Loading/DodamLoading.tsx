@@ -4,20 +4,24 @@ import { FlexLayout } from "../../layout";
 import { CSSProperties } from "styled-components";
 
 export interface Props {
+  length?: number;
   size?: CSSProperties["width" | "height"];
+  loadingColors?: CSSProperties["backgroundColor"][];
 }
 
-const LOADING_COLORS_ITEMS = ["#b7b7b7", "#dfdfdf", "#ffffff"];
-
-export const DodamLoading = ({ size = "8px" }: Props) => {
+export const DodamLoading = ({
+  length = 3,
+  size = "8px",
+  loadingColors = ["#b7b7b7", "#dfdfdf", "#ffffff"],
+}: Props) => {
   const [currentColorIdx, setCurrentColorIdx] = useState(
-    LOADING_COLORS_ITEMS.length - 1
+    loadingColors.length - 1
   );
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentColorIdx((prev) =>
-        prev === 0 ? LOADING_COLORS_ITEMS.length - 1 : prev - 1
+        prev === 0 ? loadingColors.length - 1 : prev - 1
       );
     }, 160);
     return () => clearInterval(intervalId);
@@ -25,14 +29,12 @@ export const DodamLoading = ({ size = "8px" }: Props) => {
 
   return (
     <LoadingEllipseWrap>
-      {LOADING_COLORS_ITEMS.map((_, idx) => (
+      {Array.from({ length }).map((_, idx) => (
         <LoadingEllipseItem
           key={idx}
           $size={size}
           $backgroundColor={
-            LOADING_COLORS_ITEMS[
-              (currentColorIdx + idx) % LOADING_COLORS_ITEMS.length
-            ]
+            loadingColors[(currentColorIdx + idx) % loadingColors.length]
           }
         />
       ))}
