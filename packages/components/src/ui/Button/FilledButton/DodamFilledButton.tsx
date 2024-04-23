@@ -4,6 +4,7 @@ import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
 import styled, { css } from "styled-components";
 import type { CSSProperties, RuleSet } from "styled-components";
 import { FlexLayout } from "../../../layout";
+import { DodamLoading } from "../../Loading";
 
 type FilledColorsType = {
   contentColor?: CSSProperties["color"];
@@ -51,15 +52,7 @@ export const DodamFilledButton = ({
       $customStyle={customStyle!}
       {...(!isDisabled && props)}
     >
-      {isLoading ? (
-        <LoadingEllipseWrap>
-          {Array.from({ length: 3 }).map((_, idx) => (
-            <LoadingEllipseItem key={idx} />
-          ))}
-        </LoadingEllipseWrap>
-      ) : (
-        <p>{children}</p>
-      )}
+      {isLoading ? <DodamLoading /> : <>{children}</>}
     </StyledFilledButton>
   );
 };
@@ -78,7 +71,7 @@ const StyledFilledButton = styled.button<{
   height: ${({ $height }) => $height};
 
   padding: ${({ $padding }) => $padding};
-  opacity: ${({ $isLoading }) => $isLoading && "0.5"};
+  opacity: ${({ $isLoading }) => $isLoading && "0.7"};
 
   outline: none;
   border: none;
@@ -108,15 +101,4 @@ const StyledFilledButton = styled.button<{
   ${({ $radius }) => DodamShape[$radius]}
   
   ${({ $customStyle }) => $customStyle};
-`;
-
-const LoadingEllipseWrap = styled.div`
-  ${FlexLayout({ $columnGap: "8px" })}
-`;
-
-const LoadingEllipseItem = styled.div`
-  width: 8px;
-  height: 8px;
-  background-color: #fff;
-  border-radius: 100%;
 `;
