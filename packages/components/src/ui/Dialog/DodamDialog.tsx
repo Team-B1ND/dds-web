@@ -1,33 +1,29 @@
 import { DodamShape, type ShapeSizeType } from "@dds-web/styles";
-import React from "react";
+import React, { ParamHTMLAttributes } from "react";
 import styled, { css } from "styled-components";
 import type { CSSProperties, RuleSet } from "styled-components";
 import { Column, FlexLayout, Row } from "../../layout";
 import { DodamBody, DodamTitle } from "../Typography";
-import { DodamFilledButton } from "../Button";
+import { DodamFilledButton, type DodamFilledButtonProps } from "../Button";
 
 type DialogHandlerType = {
   content: string;
-  onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  style?: RuleSet;
 };
 
 type DialogType =
   | {
-      dialog: "ALERT";
-      close: DialogHandlerType;
+      type: "ALERT";
+      close: DialogHandlerType & ParamHTMLAttributes<HTMLParagraphElement>;
+      customStyle?: RuleSet;
     }
   | {
-      dialog: "CONFIRM";
-      confirm: DialogHandlerType & {
-        isLoading?: boolean;
-        isDisabled?: boolean;
-      };
-      dismiss: DialogHandlerType;
+      type: "CONFIRM";
+      confirm: DialogHandlerType & Omit<DodamFilledButtonProps, "children">;
+      dismiss: DialogHandlerType & Omit<DodamFilledButtonProps, "children">;
     };
 
 export interface DodamDialogProps {
-  type: DialogType;
+  dialog: DialogType;
   title: string;
   text?: string;
   color?: {
@@ -42,21 +38,21 @@ export interface DodamDialogProps {
 export const DodamDialog = ({
   title,
   text,
-  type,
+  dialog,
   color,
   radius = "ExtraLarge",
   customStyle,
 }: DodamDialogProps) => {
   return (
     <StyledDialog
-      $dialogType={type.dialog}
+      $dialogType={dialog.type}
       $radius={radius}
       $backgroundColor={color?.dialogBackgroundColor}
       $customStyle={customStyle!}
     >
       <Column
         $rowGap={"12px"}
-        $padding={type.dialog === "CONFIRM" ? "6px" : "12px"}
+        $padding={dialog.type === "CONFIRM" ? "6px" : "12px"}
       >
         <DodamTitle
           fontScale="Large"
@@ -68,32 +64,22 @@ export const DodamDialog = ({
         )}
       </Column>
 
-      {type.dialog === "CONFIRM" ? (
+      {dialog.type === "CONFIRM" ? (
         <Row $columnGap={"8px"}>
-          <DodamFilledButton
-            customStyle={type.dismiss.style}
-            onClick={type.dismiss.onClick}
-            radius="Medium"
-          >
-            {type.dismiss.content}
+          <DodamFilledButton radius="Medium" {...dialog.dismiss}>
+            {dialog.dismiss.content}
           </DodamFilledButton>
-          <DodamFilledButton
-            customStyle={type.confirm.style}
-            onClick={type.confirm.onClick}
-            isLoading={type.confirm.isLoading}
-            isDisabled={type.confirm.isDisabled}
-            radius="Medium"
-          >
-            {type.confirm.content}
+          <DodamFilledButton radius="Medium" {...dialog.confirm}>
+            {dialog.confirm.content}
           </DodamFilledButton>
         </Row>
       ) : (
         <Row $justifyContent="flex-end">
           <DodamBody
             fontScale="Large"
-            text={type.close.content}
-            onClick={type.close.onClick}
-            customStyle={type.close.style}
+            text={dialog.close.content}
+            customStyle={dialog.customStyle}
+            {...dialog.close}
           />
         </Row>
       )}

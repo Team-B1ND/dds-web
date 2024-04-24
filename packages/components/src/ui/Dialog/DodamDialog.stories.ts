@@ -26,13 +26,13 @@ export const AlertDialog: Story = {
     title: "제목을 입력해주세요",
     text: "본문을 입력해주세요",
 
-    type: {
-      dialog: "ALERT",
+    dialog: {
+      type: "ALERT",
       close: {
         content: "닫기",
         onClick: () => window.alert("닫기"),
-        style: AlertText,
       },
+      customStyle: AlertText,
     },
   },
 };
@@ -54,17 +54,17 @@ export const ConfirmDialog: Story = {
     title: "제목을 입력해주세요.",
     text: "본문을 입력해주세요",
 
-    type: {
-      dialog: "CONFIRM",
+    dialog: {
+      type: "CONFIRM",
       confirm: {
         content: "확인",
         onClick: () => window.alert("확인"),
-        style: StyledButton,
+        customStyle: StyledButton,
       },
       dismiss: {
         content: "취소",
         onClick: () => window.alert("취소"),
-        style: DismissButton,
+        customStyle: DismissButton,
       },
     },
   },
