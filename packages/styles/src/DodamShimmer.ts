@@ -1,15 +1,15 @@
 // shimmer는 로딩 중에 콘텐츠가 나타날 예정임을 강조하기 위한 시각적 효과이다.
 import { css, keyframes } from "styled-components";
 
-const skeletonAnimation = keyframes`
+const shimmerAnimation = keyframes`
   0% {
-    background-position: 100% 50%;
+    background-position: 100% 0%;
   }
   50% {
-    background-position: 0 100%;
+    background-position: 0% 100%;
   }
   100% {
-    background-position: 100% 50%;
+    background-position: 100% 0%;
   }
 `;
 
@@ -22,5 +22,6 @@ export const DodamShimmer = css`
     #e7e7e7 61.48%
   );
   background-size: 200% 100%;
-  animation: ${skeletonAnimation} 1s linear infinite;
+
+  animation: ${shimmerAnimation} 1s linear infinite;
 `;
