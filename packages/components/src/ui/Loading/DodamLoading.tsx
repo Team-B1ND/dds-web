@@ -1,6 +1,6 @@
+import { DodamFlexLayout } from "@dds-web/styles";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { FlexLayout } from "../../layout";
 import { CSSProperties } from "styled-components";
 
 export interface Props {
@@ -43,7 +43,7 @@ export const DodamLoading = ({
 };
 
 const LoadingEllipseWrap = styled.div`
-  ${FlexLayout({ $columnGap: "8px" })}
+  ${DodamFlexLayout({ $columnGap: "8px" })}
 `;
 
 const LoadingEllipseItem = styled.div<{

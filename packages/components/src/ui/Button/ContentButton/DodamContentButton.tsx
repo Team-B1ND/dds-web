@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import type { CSSProperties, RuleSet } from "styled-components";
 import {
   DodamDarkTheme,
+  DodamFlexLayout,
   DodamGlobalStyles,
   DodamLightTheme,
   DodamShape,
@@ -10,7 +11,6 @@ import {
   DodamTypography,
 } from "@dds-web/styles";
 import type { ShapeSizeType } from "@dds-web/styles";
-import { FlexLayout } from "../../../layout";
 import { useDetectThemeMode } from "@dds-web/hooks";
 import "../../../fonts/font.css";
 
@@ -103,7 +103,7 @@ const StyledContentButton = styled.button<{
     }
   `}
 
-  ${FlexLayout({ $alignItems: "center", $justifyContent: "center" })};
+  ${DodamFlexLayout({ $alignItems: "center", $justifyContent: "center" })};
   ${({ $radius }) => DodamShape[$radius]};
   ${({ $typography }) => DodamTypography[$typography[0]][$typography[1]]}
 

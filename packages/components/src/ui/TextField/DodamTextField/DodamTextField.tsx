@@ -1,5 +1,6 @@
 import {
   DodamDarkTheme,
+  DodamFlexLayout,
   DodamGlobalStyles,
   DodamLightTheme,
   DodamThemeProvider,
@@ -8,7 +9,7 @@ import {
 import React, { forwardRef, useState } from "react";
 import type { ForwardedRef, InputHTMLAttributes, ReactNode } from "react";
 import styled, { type CSSProperties, css, RuleSet } from "styled-components";
-import { Column, FlexLayout, Row } from "../../../layout";
+import { Column, Row } from "../../../layout";
 import "../../../fonts/font.css";
 import { useDetectThemeMode } from "@dds-web/hooks";
 
@@ -206,7 +207,7 @@ const TextFieldWrap = styled.div<{
     `;
   }}
 
-  ${FlexLayout({
+  ${DodamFlexLayout({
     $alignItems: "center",
     $justifyContent: "space-between",
     $columnGap: "5px",

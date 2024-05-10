@@ -6,12 +6,12 @@ import {
   DodamThemeProvider,
   DodamTypography,
 } from "@dds-web/styles";
-import { type ShapeSizeType } from "@dds-web/styles";
+import { type ShapeSizeType, DodamFlexLayout } from "@dds-web/styles";
 import React, { forwardRef, useState } from "react";
 import type { ForwardedRef, InputHTMLAttributes, ReactNode } from "react";
 import styled, { css } from "styled-components";
 import type { CSSProperties, RuleSet } from "styled-components";
-import { Column, FlexLayout, Row } from "../../../layout";
+import { Column, Row } from "../../../layout";
 import "../../../fonts/font.css";
 import { useDetectThemeMode } from "@dds-web/hooks";
 
@@ -228,7 +228,7 @@ const StyledTextField = styled.div<{
     `;
   }}
 
-  ${FlexLayout({ $alignItems: "center", $columnGap: "5px" })};
+  ${DodamFlexLayout({ $alignItems: "center", $columnGap: "5px" })};
   ${({ $radius }) => DodamShape[$radius]};
   ${({ $customStyle }) => $customStyle}
 `;

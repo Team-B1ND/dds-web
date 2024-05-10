@@ -1,5 +1,6 @@
 import {
   DodamDarkTheme,
+  DodamFlexLayout,
   DodamGlobalStyles,
   DodamLightTheme,
   DodamShape,
@@ -9,7 +10,7 @@ import {
 import React, { ParamHTMLAttributes } from "react";
 import styled, { css } from "styled-components";
 import type { CSSProperties, RuleSet } from "styled-components";
-import { Column, FlexLayout, Row } from "../../layout";
+import { Column, Row } from "../../layout";
 import { DodamBody, DodamTitle } from "../Typography";
 import { DodamFilledButton, type DodamFilledButtonProps } from "../Button";
 import "../../fonts/font.css";
@@ -119,7 +120,7 @@ const StyledDialog = styled.div<{
   ${({ $radius }) => DodamShape[$radius]}
 
   ${({ $dialogType }) =>
-    FlexLayout({
+    DodamFlexLayout({
       $flexDirection: "column",
       $rowGap: $dialogType === "CONFIRM" ? "18px" : "24px",
     })}
