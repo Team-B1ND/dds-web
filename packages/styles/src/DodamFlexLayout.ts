@@ -1,6 +1,6 @@
 import { type CSSProperties, css } from "styled-components";
 
-export interface FlexLayoutProps {
+export interface DodamFlexLayoutProps {
   $flexDirection?: CSSProperties["flexDirection"];
   $justifyContent?: CSSProperties["justifyContent"];
   $alignItems?: CSSProperties["alignItems"];
@@ -9,7 +9,7 @@ export interface FlexLayoutProps {
   $gap?: CSSProperties["gap"];
 }
 
-export const FlexLayout = ({ ...props }: FlexLayoutProps) => {
+export const DodamFlexLayout = ({ ...props }: DodamFlexLayoutProps) => {
   return css`
     display: flex;
 
