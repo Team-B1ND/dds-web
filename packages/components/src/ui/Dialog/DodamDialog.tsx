@@ -1,10 +1,19 @@
-import { DodamShape, type ShapeSizeType } from "@dds-web/styles";
+import {
+  DodamDarkTheme,
+  DodamGlobalStyles,
+  DodamLightTheme,
+  DodamShape,
+  DodamThemeProvider,
+  type ShapeSizeType,
+} from "@dds-web/styles";
 import React, { ParamHTMLAttributes } from "react";
 import styled, { css } from "styled-components";
 import type { CSSProperties, RuleSet } from "styled-components";
 import { Column, FlexLayout, Row } from "../../layout";
 import { DodamBody, DodamTitle } from "../Typography";
 import { DodamFilledButton, type DodamFilledButtonProps } from "../Button";
+import "../../fonts/font.css";
+import { useDetectThemeMode } from "@dds-web/hooks";
 
 type DialogHandlerType = {
   content: string;
@@ -43,47 +52,52 @@ export const DodamDialog = ({
   radius = "ExtraLarge",
   customStyle,
 }: DodamDialogProps) => {
-  return (
-    <StyledDialog
-      $dialogType={dialog.type}
-      $radius={radius}
-      $backgroundColor={color?.dialogBackgroundColor}
-      $customStyle={customStyle!}
-    >
-      <Column
-        $rowGap={"12px"}
-        $padding={dialog.type === "CONFIRM" ? "6px" : "12px"}
-      >
-        <DodamTitle
-          fontScale="Large"
-          text={title}
-          customStyle={StyledTitle(color?.titleColor)}
-        />
-        {text && (
-          <DodamBody text={text} customStyle={StyledText(color?.textColor)} />
-        )}
-      </Column>
+  const { isDarkMode } = useDetectThemeMode();
 
-      {dialog.type === "CONFIRM" ? (
-        <Row $columnGap={"8px"}>
-          <DodamFilledButton radius="Medium" {...dialog.dismiss}>
-            {dialog.dismiss.content}
-          </DodamFilledButton>
-          <DodamFilledButton radius="Medium" {...dialog.confirm}>
-            {dialog.confirm.content}
-          </DodamFilledButton>
-        </Row>
-      ) : (
-        <Row $justifyContent="flex-end">
-          <DodamBody
+  return (
+    <DodamThemeProvider theme={isDarkMode ? DodamDarkTheme : DodamLightTheme}>
+      <DodamGlobalStyles />
+      <StyledDialog
+        $dialogType={dialog.type}
+        $radius={radius}
+        $backgroundColor={color?.dialogBackgroundColor}
+        $customStyle={customStyle!}
+      >
+        <Column
+          $rowGap={"12px"}
+          $padding={dialog.type === "CONFIRM" ? "6px" : "12px"}
+        >
+          <DodamTitle
             fontScale="Large"
-            text={dialog.close.content}
-            customStyle={dialog.customStyle}
-            {...dialog.close}
+            text={title}
+            customStyle={StyledTitle(color?.titleColor)}
           />
-        </Row>
-      )}
-    </StyledDialog>
+          {text && (
+            <DodamBody text={text} customStyle={StyledText(color?.textColor)} />
+          )}
+        </Column>
+
+        {dialog.type === "CONFIRM" ? (
+          <Row $columnGap={"8px"}>
+            <DodamFilledButton radius="Medium" {...dialog.dismiss}>
+              {dialog.dismiss.content}
+            </DodamFilledButton>
+            <DodamFilledButton radius="Medium" {...dialog.confirm}>
+              {dialog.confirm.content}
+            </DodamFilledButton>
+          </Row>
+        ) : (
+          <Row $justifyContent="flex-end">
+            <DodamBody
+              fontScale="Large"
+              text={dialog.close.content}
+              customStyle={dialog.customStyle}
+              {...dialog.close}
+            />
+          </Row>
+        )}
+      </StyledDialog>
+    </DodamThemeProvider>
   );
 };
 

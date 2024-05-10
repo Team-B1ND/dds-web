@@ -1,10 +1,19 @@
-import { DodamShape, DodamTypography } from "@dds-web/styles";
+import {
+  DodamDarkTheme,
+  DodamGlobalStyles,
+  DodamLightTheme,
+  DodamShape,
+  DodamThemeProvider,
+  DodamTypography,
+} from "@dds-web/styles";
 import type { ShapeSizeType } from "@dds-web/styles";
 import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
 import styled, { css } from "styled-components";
 import type { CSSProperties, RuleSet } from "styled-components";
 import { FlexLayout } from "../../../layout";
 import { DodamLoading } from "../../Loading";
+import "../../../fonts/font.css";
+import { useDetectThemeMode } from "@dds-web/hooks";
 
 type FilledColorsType = {
   contentColor?: CSSProperties["color"];
@@ -40,20 +49,25 @@ export const DodamFilledButton = ({
   customStyle,
   ...props
 }: DodamFilledButtonProps) => {
+  const { isDarkMode } = useDetectThemeMode();
+
   return (
-    <StyledFilledButton
-      $width={width}
-      $height={height}
-      $colors={colors!}
-      $radius={radius}
-      $isDisabled={isDisabled}
-      $isLoading={isLoading}
-      $padding={padding}
-      $customStyle={customStyle!}
-      {...(!isDisabled && props)}
-    >
-      {isLoading ? <DodamLoading /> : <>{children}</>}
-    </StyledFilledButton>
+    <DodamThemeProvider theme={isDarkMode ? DodamDarkTheme : DodamLightTheme}>
+      <DodamGlobalStyles />
+      <StyledFilledButton
+        $width={width}
+        $height={height}
+        $colors={colors!}
+        $radius={radius}
+        $isDisabled={isDisabled}
+        $isLoading={isLoading}
+        $padding={padding}
+        $customStyle={customStyle!}
+        {...(!isDisabled && props)}
+      >
+        {isLoading ? <DodamLoading /> : <>{children}</>}
+      </StyledFilledButton>
+    </DodamThemeProvider>
   );
 };
 

@@ -1,8 +1,16 @@
-import { DodamTypography } from "@dds-web/styles";
+import {
+  DodamDarkTheme,
+  DodamGlobalStyles,
+  DodamLightTheme,
+  DodamThemeProvider,
+  DodamTypography,
+} from "@dds-web/styles";
 import React, { forwardRef, useState } from "react";
 import type { ForwardedRef, InputHTMLAttributes, ReactNode } from "react";
 import styled, { type CSSProperties, css, RuleSet } from "styled-components";
 import { Column, FlexLayout, Row } from "../../../layout";
+import "../../../fonts/font.css";
+import { useDetectThemeMode } from "@dds-web/hooks";
 
 type StyleType = {
   labelStyle?: RuleSet;
@@ -58,66 +66,70 @@ export const DodamTextField = forwardRef(
     }: DodamTextFieldProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
+    const { isDarkMode } = useDetectThemeMode();
     const [isFocus, setIsFocus] = useState(false);
 
     return (
-      <Column $width={width}>
-        <Column
-          $width={"100%"}
-          $height={height}
-          $customStyle={css`
-            position: relative;
-          `}
-        >
-          <StyledLabel
-            $isFocused={isFocus}
-            $isError={isError}
-            $labelColor={colors?.label!}
-            $isDisabled={disabled}
-            $customStyle={customStyle?.labelStyle!}
+      <DodamThemeProvider theme={isDarkMode ? DodamDarkTheme : DodamLightTheme}>
+        <DodamGlobalStyles />
+        <Column $width={width}>
+          <Column
+            $width={"100%"}
+            $height={height}
+            $customStyle={css`
+              position: relative;
+            `}
           >
-            {labelText}
-          </StyledLabel>
-
-          <TextFieldWrap
-            $isFocused={isFocus}
-            $isError={isError}
-            $isDisabled={disabled}
-            $borderBottomColor={colors?.borderBottom!}
-            $customStyle={customStyle?.textFieldStyle!}
-          >
-            <TextFieldInput
-              ref={ref}
-              value={value}
-              onFocus={() => setIsFocus(true)}
-              onBlur={() => value.length === 0 && setIsFocus(false)}
-              $fontColor={colors?.textValueColor}
-              $customStyle={customStyle?.inputStyle!}
-              disabled={disabled}
-              {...props}
-            />
-
-            <Row
-              $alignItems="center"
-              $columnGap={"16px"}
-              $padding={"0 0 10px 0"}
+            <StyledLabel
+              $isFocused={isFocus}
+              $isError={isError}
+              $labelColor={colors?.label!}
+              $isDisabled={disabled}
+              $customStyle={customStyle?.labelStyle!}
             >
-              {isFocus && <>{icon}</>}
-            </Row>
-          </TextFieldWrap>
-        </Column>
+              {labelText}
+            </StyledLabel>
 
-        {supportText && (
-          <SupportText
-            $isError={isError}
-            $isDisabled={disabled}
-            $supportColor={colors?.support!}
-            $customStyle={customStyle?.supportStyle!}
-          >
-            {supportText}
-          </SupportText>
-        )}
-      </Column>
+            <TextFieldWrap
+              $isFocused={isFocus}
+              $isError={isError}
+              $isDisabled={disabled}
+              $borderBottomColor={colors?.borderBottom!}
+              $customStyle={customStyle?.textFieldStyle!}
+            >
+              <TextFieldInput
+                ref={ref}
+                value={value}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => value.length === 0 && setIsFocus(false)}
+                $fontColor={colors?.textValueColor}
+                $customStyle={customStyle?.inputStyle!}
+                disabled={disabled}
+                {...props}
+              />
+
+              <Row
+                $alignItems="center"
+                $columnGap={"16px"}
+                $padding={"0 0 10px 0"}
+              >
+                {isFocus && <>{icon}</>}
+              </Row>
+            </TextFieldWrap>
+          </Column>
+
+          {supportText && (
+            <SupportText
+              $isError={isError}
+              $isDisabled={disabled}
+              $supportColor={colors?.support!}
+              $customStyle={customStyle?.supportStyle!}
+            >
+              {supportText}
+            </SupportText>
+          )}
+        </Column>
+      </DodamThemeProvider>
     );
   }
 );

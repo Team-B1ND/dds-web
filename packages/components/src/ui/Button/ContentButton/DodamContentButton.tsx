@@ -1,9 +1,18 @@
 import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
 import styled, { css } from "styled-components";
 import type { CSSProperties, RuleSet } from "styled-components";
-import { DodamShape, DodamTypography } from "@dds-web/styles";
+import {
+  DodamDarkTheme,
+  DodamGlobalStyles,
+  DodamLightTheme,
+  DodamShape,
+  DodamThemeProvider,
+  DodamTypography,
+} from "@dds-web/styles";
 import type { ShapeSizeType } from "@dds-web/styles";
 import { FlexLayout } from "../../../layout";
+import { useDetectThemeMode } from "@dds-web/hooks";
+import "../../../fonts/font.css";
 
 type typographyType = [
   "Headline" | "Title" | "Body" | "Label",
@@ -42,19 +51,24 @@ export const DodamContentButton = ({
   customStyle,
   ...props
 }: DodamContentButton) => {
+  const { isDarkMode } = useDetectThemeMode();
+
   return (
-    <StyledContentButton
-      $width={width}
-      $height={height}
-      $typography={typography!}
-      $colors={colors!}
-      $radius={radius}
-      $padding={padding}
-      $customStyle={customStyle!}
-      {...props}
-    >
-      {children}
-    </StyledContentButton>
+    <DodamThemeProvider theme={isDarkMode ? DodamDarkTheme : DodamLightTheme}>
+      <DodamGlobalStyles />
+      <StyledContentButton
+        $width={width}
+        $height={height}
+        $typography={typography!}
+        $colors={colors!}
+        $radius={radius}
+        $padding={padding}
+        $customStyle={customStyle!}
+        {...props}
+      >
+        {children}
+      </StyledContentButton>
+    </DodamThemeProvider>
   );
 };
 
@@ -75,6 +89,7 @@ const StyledContentButton = styled.button<{
   cursor: pointer;
 
   padding: ${({ $padding }) => $padding || "10px"};
+  border: 1px solid #ddd;
 
   transition: all 0.15s ease-in-out;
   ${({ $colors, theme }) => css`

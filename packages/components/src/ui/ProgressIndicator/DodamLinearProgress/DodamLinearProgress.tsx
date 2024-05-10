@@ -1,15 +1,23 @@
+import {
+  DodamDarkTheme,
+  DodamGlobalStyles,
+  DodamLightTheme,
+  DodamThemeProvider,
+} from "@dds-web/styles";
 import React from "react";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
+import "../../../fonts/font.css";
+import { useDetectThemeMode } from "@dds-web/hooks";
 
 export interface LinearProps {
-  width: string;
-  height: string;
+  width: CSSProperties["width"];
+  height: CSSProperties["height"];
   gauge: number;
 
-  borderRadius?: string;
+  borderRadius?: CSSProperties["borderRadius"];
   color?: {
-    trail?: string;
-    path?: string;
+    trail?: CSSProperties["backgroundColor"];
+    path?: CSSProperties["backgroundColor"];
   };
 }
 
@@ -20,27 +28,32 @@ export const DodamLinearProgress = ({
   borderRadius = "7px",
   color,
 }: LinearProps) => {
+  const { isDarkMode } = useDetectThemeMode();
+
   return (
-    <LinearWrap
-      $width={width}
-      $height={height}
-      $borderRadius={borderRadius}
-      $trailColor={color?.trail!}
-    >
-      <LinearGuage
-        $gauge={gauge}
+    <DodamThemeProvider theme={isDarkMode ? DodamDarkTheme : DodamLightTheme}>
+      <DodamGlobalStyles />
+      <LinearWrap
+        $width={width}
+        $height={height}
         $borderRadius={borderRadius}
-        $pathColor={color?.path!}
-      />
-    </LinearWrap>
+        $trailColor={color?.trail!}
+      >
+        <LinearGuage
+          $gauge={gauge}
+          $borderRadius={borderRadius}
+          $pathColor={color?.path!}
+        />
+      </LinearWrap>
+    </DodamThemeProvider>
   );
 };
 
 const LinearWrap = styled.div<{
-  $width: string;
-  $height: string;
-  $borderRadius: string;
-  $trailColor: string;
+  $width: CSSProperties["width"];
+  $height: CSSProperties["height"];
+  $borderRadius: CSSProperties["borderRadius"];
+  $trailColor: CSSProperties["backgroundColor"];
 }>`
   width: ${({ $width }) => $width};
   height: ${({ $height }) => $height};
@@ -55,8 +68,8 @@ const LinearWrap = styled.div<{
 
 const LinearGuage = styled.div<{
   $gauge: number;
-  $borderRadius: string;
-  $pathColor: string;
+  $borderRadius: CSSProperties["borderRadius"];
+  $pathColor: CSSProperties["backgroundColor"];
 }>`
   width: ${({ $gauge }) => $gauge}%;
   height: 100%;
