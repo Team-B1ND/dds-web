@@ -2,6 +2,8 @@ export * from "./Button";
 export * from "./DatePicker";
 export * from "./Dialog";
 export * from "./ErrorBoundary";
+export * from "./Loading";
 export * from "./ProgressIndicator";
+export * from "./Skeleton";
 export * from "./TextField";
 export * from "./Typography";

@@ -1,13 +1,19 @@
-import { DodamShape, DodamTypography } from "@dds-web/styles";
+import {
+  DodamDarkTheme,
+  DodamGlobalStyles,
+  DodamLightTheme,
+  DodamShape,
+  DodamThemeProvider,
+  DodamTypography,
+} from "@dds-web/styles";
 import { type ShapeSizeType } from "@dds-web/styles";
 import React, { forwardRef, useState } from "react";
 import type { ForwardedRef, InputHTMLAttributes, ReactNode } from "react";
-import styled, {
-  type CSSProperties,
-  type RuleSet,
-  css,
-} from "styled-components";
+import styled, { css } from "styled-components";
+import type { CSSProperties, RuleSet } from "styled-components";
 import { Column, FlexLayout, Row } from "../../../layout";
+import "../../../fonts/font.css";
+import { useDetectThemeMode } from "@dds-web/hooks";
 
 type StyleType = {
   labelStyle?: RuleSet;
@@ -68,56 +74,60 @@ export const DodamFilledTextField = forwardRef(
     }: DodamFilledTextFieldProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
+    const { isDarkMode } = useDetectThemeMode();
     const [isFocus, setIsFocus] = useState(false);
 
     return (
-      <Column $rowGap={"4px"}>
-        <StyledLabel
-          $isFocused={isFocus}
-          $isError={isError}
-          $isDisabled={disabled}
-          $labelColor={colors?.label!}
-          $customStyle={customStyle?.labelStyle!}
-        >
-          {labelText}
-        </StyledLabel>
-
-        <StyledTextField
-          $radius={radius}
-          $width={width}
-          $height={height}
-          $isFocused={isFocus}
-          $isError={isError}
-          $isDisabled={disabled}
-          $inputBackgroundColor={colors?.inputBackgroundColor!}
-          $customStyle={customStyle?.textFieldStyle!}
-        >
-          <StyledInput
-            ref={ref}
-            value={value}
-            placeholder={placeholderText}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => value.length === 0 && setIsFocus(false)}
-            $textValueColor={colors?.textValueColor}
-            $placeholderColor={colors?.placeholderColor}
-            $customStyle={customStyle?.inputStyle!}
-            disabled={disabled}
-            {...props}
-          />
-          <Row $columnGap={"16px"}>{icon}</Row>
-        </StyledTextField>
-
-        {supportText && (
-          <StyledSupportText
+      <DodamThemeProvider theme={isDarkMode ? DodamDarkTheme : DodamLightTheme}>
+        <DodamGlobalStyles />
+        <Column $rowGap={"4px"}>
+          <StyledLabel
+            $isFocused={isFocus}
             $isError={isError}
             $isDisabled={disabled}
-            $supportColor={colors?.support!}
-            $customStyle={customStyle?.supportStyle!}
+            $labelColor={colors?.label!}
+            $customStyle={customStyle?.labelStyle!}
           >
-            {supportText}
-          </StyledSupportText>
-        )}
-      </Column>
+            {labelText}
+          </StyledLabel>
+
+          <StyledTextField
+            $radius={radius}
+            $width={width}
+            $height={height}
+            $isFocused={isFocus}
+            $isError={isError}
+            $isDisabled={disabled}
+            $inputBackgroundColor={colors?.inputBackgroundColor!}
+            $customStyle={customStyle?.textFieldStyle!}
+          >
+            <StyledInput
+              ref={ref}
+              value={value}
+              placeholder={placeholderText}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => value.length === 0 && setIsFocus(false)}
+              $textValueColor={colors?.textValueColor}
+              $placeholderColor={colors?.placeholderColor}
+              $customStyle={customStyle?.inputStyle!}
+              disabled={disabled}
+              {...props}
+            />
+            <Row $columnGap={"16px"}>{icon}</Row>
+          </StyledTextField>
+
+          {supportText && (
+            <StyledSupportText
+              $isError={isError}
+              $isDisabled={disabled}
+              $supportColor={colors?.support!}
+              $customStyle={customStyle?.supportStyle!}
+            >
+              {supportText}
+            </StyledSupportText>
+          )}
+        </Column>
+      </DodamThemeProvider>
     );
   }
 );
