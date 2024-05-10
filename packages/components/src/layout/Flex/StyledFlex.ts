@@ -11,8 +11,9 @@ export interface BaseFlexProps {
   $width?: CSSProperties["width"];
   $height?: CSSProperties["height"];
 
-  $wrap?: CSSProperties["flexWrap"];
+  $flexWrap?: CSSProperties["flexWrap"];
   $padding?: CSSProperties["padding"];
+  $margin?: CSSProperties["margin"];
   $backgroundColor?: CSSProperties["backgroundColor"];
 
   $customStyle?: RuleSet;
@@ -27,7 +28,7 @@ const BaseFlex = styled.div<BaseFlexProps>`
 
   justify-content: ${({ $justifyContent }) => $justifyContent || "flex-start"};
   align-items: ${({ $alignItems }) => $alignItems || "flex-start"};
-  flex-wrap: ${({ $wrap }) => ($wrap ? "wrap" : "nowrap")};
+  flex-wrap: ${({ $flexWrap }) => ($flexWrap ? "wrap" : "nowrap")};
 
   width: ${({ $width }) => $width || "auto"};
   height: ${({ $height }) => $height || "auto"};
@@ -36,6 +37,7 @@ const BaseFlex = styled.div<BaseFlexProps>`
     $backgroundColor || "transparent"};
 
   padding: ${({ $padding }) => $padding};
+  margin: ${({ $margin }) => $margin};
 
   ${({ $customStyle }) => $customStyle}
 `;
