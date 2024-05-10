@@ -54,6 +54,9 @@ importers:
       styled-components:
         specifier: ^6.1.8
         version: 6.1.8(react-dom@18.2.0)(react@18.2.0)
+      typescript:
+        specifier: ^5.4.2
+        version: 5.4.2
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^1.2.24
