@@ -19,6 +19,7 @@
     "@chromatic-com/storybook": "^1.2.24",
     "@dds-web/styles": "workspace:*",
     "@dds-web/hooks": "workspace:*",
+    "@dds-web/assets": "workspace:*",
     "@storybook/addon-essentials": "^8.0.9",
     "@storybook/addon-interactions": "^8.0.9",
     "@storybook/addon-links": "^8.0.9",

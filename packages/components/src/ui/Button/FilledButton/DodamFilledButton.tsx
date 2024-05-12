@@ -1,5 +1,6 @@
 import {
   DodamDarkTheme,
+  DodamFlexLayout,
   DodamGlobalStyles,
   DodamLightTheme,
   DodamShape,
@@ -10,7 +11,6 @@ import type { ShapeSizeType } from "@dds-web/styles";
 import React, { type ButtonHTMLAttributes, type ReactNode } from "react";
 import styled, { css } from "styled-components";
 import type { CSSProperties, RuleSet } from "styled-components";
-import { FlexLayout } from "../../../layout";
 import { DodamLoading } from "../../Loading";
 import "../../../fonts/font.css";
 import { useDetectThemeMode } from "@dds-web/hooks";
@@ -110,7 +110,7 @@ const StyledFilledButton = styled.button<{
       }
     `};
 
-  ${FlexLayout({ $alignItems: "center", $justifyContent: "center" })}
+  ${DodamFlexLayout({ $alignItems: "center", $justifyContent: "center" })}
   ${DodamTypography.Body.Large}
   ${({ $radius }) => DodamShape[$radius]}
   
