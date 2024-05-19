@@ -7,21 +7,27 @@ import {
   DodamThemeProvider,
 } from "@dds-web/styles";
 import React, { useEffect, useRef, useState } from "react";
-import type { InputHTMLAttributes } from "react";
+import type { ComponentType, InputHTMLAttributes } from "react";
 import styled, { css, type CSSProperties } from "styled-components";
-import { Checkmark } from "@dds-web/assets";
+import { Checkmark, DoorOpen, Gear, type IconProps } from "@dds-web/assets";
 
 export interface DodamCheckboxProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onClick"> {
   width?: CSSProperties["width"];
   height?: CSSProperties["height"];
+
   checkedBackgroundColor?: CSSProperties["backgroundColor"];
+
+  IconComponent?: ComponentType<IconProps>;
+  IconColor?: CSSProperties["fill"];
 }
 
 export const DodamCheckbox = ({
   width = "18px",
   height = "18px",
   checkedBackgroundColor,
+  IconComponent = Checkmark,
+  IconColor,
   ...props
 }: DodamCheckboxProps) => {
   const { isDarkMode } = useDetectThemeMode();
@@ -70,10 +76,10 @@ export const DodamCheckbox = ({
           $isDisabled={props.disabled!}
         >
           {isClickCheckbox && (
-            <Checkmark
+            <IconComponent
               width={responsiveCheckmarkSize}
               height={responsiveCheckmarkSize}
-              pathStyle={CheckmarkPathStyle}
+              pathStyle={CheckmarkPathStyle(IconColor)}
             />
           )}
         </StyledCheckboxLabel>
@@ -138,6 +144,6 @@ const StyledCheckboxLabel = styled.label<{
   ${DodamFlexLayout({ $alignItems: "center", $justifyContent: "center" })};
 `;
 
-const CheckmarkPathStyle = css`
-  fill: ${({ theme }) => theme.onPrimary};
+const CheckmarkPathStyle = (iconColor: CSSProperties["fill"]) => css`
+  fill: ${({ theme }) => iconColor || theme.onPrimary};
 `;
