@@ -9,7 +9,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import type { ComponentType, InputHTMLAttributes } from "react";
 import styled, { css, type CSSProperties } from "styled-components";
-import { Checkmark, DoorOpen, Gear, type IconProps } from "@dds-web/assets";
+import { Checkmark, type IconProps } from "@dds-web/assets";
 
 export interface DodamCheckboxProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onClick"> {
@@ -61,7 +61,10 @@ export const DodamCheckbox = ({
           id="checkbox"
           type="checkbox"
           style={{ display: "none" }}
-          onClick={() => !props.disabled && setIsClickCheckbox((prev) => !prev)}
+          onChange={() =>
+            !props.disabled && setIsClickCheckbox((prev) => !prev)
+          }
+          checked={isClickCheckbox}
           {...props}
         />
 

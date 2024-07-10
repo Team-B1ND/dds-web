@@ -115,15 +115,16 @@ const StyledDialog = styled.div<{
 
   background-color: ${({ $backgroundColor, theme }) =>
     $backgroundColor || theme.surfaceContainerHigh};
-  padding: ${({ $dialogType }) => ($dialogType === "ALERT" ? "12px" : "18px")};
 
   ${({ $radius }) => DodamShape[$radius]}
 
-  ${({ $dialogType }) =>
-    DodamFlexLayout({
+  ${({ $dialogType }) => css`
+    padding: ${$dialogType === "CONFIRM" ? "18px" : "12px"};
+    ${DodamFlexLayout({
       $flexDirection: "column",
       $rowGap: $dialogType === "CONFIRM" ? "18px" : "24px",
     })}
+  `}
 
   ${({ $customStyle }) => $customStyle}
 `;
