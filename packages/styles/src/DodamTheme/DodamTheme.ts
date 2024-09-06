@@ -2,95 +2,67 @@ import { DodamTheme } from "styled-components";
 import { DodamColor } from "@dds-web/foundations";
 
 export const DodamLightTheme: DodamTheme = Object.freeze({
-  primary: {
-    normal: DodamColor.blue45,
-    alternative: "rgba(0, 131, 240, 0.65)",
-    assisitive: "rgba(0, 131, 240, 0.2)",
-  },
+  primaryNormal: DodamColor.blue45,
+  primaryAlternative: "rgba(0, 131, 240, 0.65)",
+  primaryAssisitive: "rgba(0, 131, 240, 0.2)",
 
-  label: {
-    normal: DodamColor.netural5,
-    strong: DodamColor.common0,
-    netural: DodamColor.netural25,
-    alternative: DodamColor.netural40,
-    assisitive: DodamColor.netural50,
-    disabled: DodamColor.netural97,
-  },
+  labelNormal: DodamColor.netural5,
+  labelStrong: DodamColor.common0,
+  labelNetural: DodamColor.netural25,
+  labelAlternative: DodamColor.netural40,
+  labelAssisitive: DodamColor.netural50,
+  labelDisabled: DodamColor.netural97,
 
-  line: {
-    normal: DodamColor.netural90,
-    netural: DodamColor.netural95,
-    alternative: DodamColor.netural97,
-  },
+  lineNormal: DodamColor.netural90,
+  lineNetural: DodamColor.netural95,
+  lineAlternative: DodamColor.netural97,
 
-  fill: {
-    normal: DodamColor.netural99,
-    netural: DodamColor.netural97,
-    alternative: DodamColor.netural95,
-    assisitive: DodamColor.common100,
-  },
+  fillNormal: DodamColor.netural99,
+  fillNetural: DodamColor.netural97,
+  fillAlternative: DodamColor.netural95,
+  fillAssistive: DodamColor.common100,
 
-  background: {
-    normal: DodamColor.common100,
-    netural: DodamColor.netural99,
-    alternative: DodamColor.netural99,
-  },
+  backgroundNormal: DodamColor.common100,
+  backgroundNetural: DodamColor.netural99,
+  backgroundAlternative: DodamColor.netural99,
 
-  status: {
-    negative: DodamColor.red50,
-    cautionary: DodamColor.yellow50,
-    positive: DodamColor.green50,
-  },
+  statusNegative: DodamColor.red50,
+  statusCautionary: DodamColor.yellow50,
+  statusPositive: DodamColor.green50,
 
-  static: {
-    white: DodamColor.common100,
-    black: DodamColor.common0,
-  },
+  staticWthie: DodamColor.common100,
+  staticBlack: DodamColor.common0,
 });
 
 export const DodamDarkTheme: DodamTheme = Object.freeze({
-  primary: {
-    normal: DodamColor.blue45,
-    alternative: "rgba(0, 131, 240, 0.65)",
-    assisitive: "rgba(0, 131, 240, 0.2)",
-  },
+  primaryNormal: DodamColor.blue45,
+  primaryAlternative: "rgba(0, 131, 240, 0.65)",
+  primaryAssisitive: "rgba(0, 131, 240, 0.2)",
 
-  label: {
-    normal: DodamColor.netural99,
-    strong: DodamColor.common100,
-    netural: DodamColor.netural95,
-    alternative: DodamColor.netural90,
-    assisitive: DodamColor.netural70,
-    disabled: DodamColor.netural30,
-  },
+  labelNormal: DodamColor.netural99,
+  labelStrong: DodamColor.common100,
+  labelNetural: DodamColor.netural95,
+  labelAlternative: DodamColor.netural90,
+  labelAssisitive: DodamColor.netural70,
+  labelDisabled: DodamColor.netural30,
 
-  line: {
-    normal: DodamColor.netural50,
-    netural: DodamColor.netural30,
-    alternative: DodamColor.netural25,
-  },
+  lineNormal: DodamColor.netural50,
+  lineNetural: DodamColor.netural30,
+  lineAlternative: DodamColor.netural25,
 
-  fill: {
-    normal: DodamColor.netural20,
-    netural: DodamColor.netural25,
-    alternative: DodamColor.netural30,
-    assisitive: DodamColor.netural60,
-  },
+  fillNormal: DodamColor.netural20,
+  fillNetural: DodamColor.netural25,
+  fillAlternative: DodamColor.netural30,
+  fillAssistive: DodamColor.netural60,
 
-  background: {
-    normal: DodamColor.netural15,
-    netural: DodamColor.netural10,
-    alternative: DodamColor.netural7,
-  },
+  backgroundNormal: DodamColor.netural15,
+  backgroundNetural: DodamColor.netural10,
+  backgroundAlternative: DodamColor.netural7,
 
-  status: {
-    negative: DodamColor.red50,
-    cautionary: DodamColor.yellow50,
-    positive: DodamColor.green50,
-  },
+  statusNegative: DodamColor.red50,
+  statusCautionary: DodamColor.yellow50,
+  statusPositive: DodamColor.green50,
 
-  static: {
-    white: DodamColor.common100,
-    black: DodamColor.common0,
-  },
+  staticWthie: DodamColor.common100,
+  staticBlack: DodamColor.common0,
 });

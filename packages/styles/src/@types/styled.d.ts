@@ -2,49 +2,35 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DodamTheme {
-    primary: {
-      normal: string;
-      alternative: string;
-      assisitive: string;
-    };
+    primaryNormal: string;
+    primaryAlternative: string;
+    primaryAssisitive: string;
 
-    label: {
-      normal: string;
-      strong: string;
-      netural: string;
-      alternative: string;
-      assisitive: string;
-      disabled: string;
-    };
+    labelNormal: string;
+    labelStrong: string;
+    labelNetural: string;
+    labelAlternative: string;
+    labelAssisitive: string;
+    labelDisabled: string;
 
-    line: {
-      normal: string;
-      netural: string;
-      alternative: string;
-    };
+    lineNormal: string;
+    lineNetural: string;
+    lineAlternative: string;
 
-    fill: {
-      normal: string;
-      netural: string;
-      alternative: string;
-      assisitive: string;
-    };
+    fillNormal: string;
+    fillNetural: string;
+    fillAlternative: string;
+    fillAssistive: string;
 
-    background: {
-      normal: string;
-      netural: string;
-      alternative: string;
-    };
+    backgroundNormal: string;
+    backgroundNetural: string;
+    backgroundAlternative: string;
 
-    status: {
-      negative: string;
-      cautionary: string;
-      positive: string;
-    };
+    statusNegative: string;
+    statusCautionary: string;
+    statusPositive: string;
 
-    static: {
-      white: string;
-      black: string;
-    };
+    staticWthie: string;
+    staticBlack: string;
   }
 }
