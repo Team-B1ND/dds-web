@@ -1,85 +1,258 @@
 import { css, RuleSet } from "styled-components";
 
 export type TextSize = {
-  Large: RuleSet;
+  Bold: RuleSet;
   Medium: RuleSet;
-  Small: RuleSet;
+  Regular: RuleSet;
 };
 
 export type TypographyStyles = {
+  Title1: TextSize;
+  Title2: TextSize;
+  Title3: TextSize;
+  Heading1: TextSize;
+  Heading2: TextSize;
   Headline: TextSize;
-  Title: TextSize;
   Body: TextSize;
   Label: TextSize;
+  Caption1: TextSize;
+  Caption2: TextSize;
 };
 
 export const DodamTypography: TypographyStyles = Object.freeze({
-  Headline: {
-    Large: css`
-      font-family: "Suit-ExtraBold";
-      font-size: 32px;
-      line-height: 40px;
+  Title1: {
+    Bold: css`
+      font-family: "Pretendard";
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 130%;
+      letter-spacing: -1.08px;
     `,
     Medium: css`
-      font-family: "Suit-Bold";
+      font-family: "Pretendard";
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 130%;
+      letter-spacing: -1.08px;
+    `,
+    Regular: css`
+      font-family: "Pretendard";
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 130%;
+      letter-spacing: -1.08px;
+    `,
+  },
+
+  Title2: {
+    Bold: css`
+      font-family: "Pretendard";
       font-size: 28px;
-      line-height: 32px;
+      font-weight: 800;
+      line-height: 130%;
+      letter-spacing: -0.84px;
     `,
-    Small: css`
-      font-family: "Suit-Bold";
+    Medium: css`
+      font-family: "Pretendard";
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 130%;
+      letter-spacing: -0.84px;
+    `,
+    Regular: css`
+      font-family: "Pretendard";
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 130%;
+      letter-spacing: -0.84px;
+    `,
+  },
+
+  Title3: {
+    Bold: css`
+      font-family: "Pretendard";
       font-size: 24px;
-      line-height: 32px;
+      font-weight: 800;
+      line-height: 130%;
+      letter-spacing: -0.48px;
+    `,
+    Medium: css`
+      font-family: "Pretendard";
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 130%;
+      letter-spacing: -0.48px;
+    `,
+    Regular: css`
+      font-family: "Pretendard";
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 130%;
+      letter-spacing: -0.48px;
     `,
   },
-  Title: {
-    Large: css`
-      font-family: "Suit-Bold";
+
+  Heading1: {
+    Bold: css`
+      font-family: "Pretendard";
       font-size: 22px;
-      line-height: 28px;
+      font-weight: 800;
+      line-height: 130%;
+      letter-spacing: -0.44px;
     `,
     Medium: css`
-      font-family: "Suit-Bold";
-      font-size: 18px;
-      line-height: 26px;
+      font-family: "Pretendard";
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 130%;
+      letter-spacing: -0.44px;
     `,
-    Small: css`
-      font-family: "Suit-Bold";
-      font-size: 16px;
-      line-height: 24px;
+    Regular: css`
+      font-family: "Pretendard";
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 130%;
+      letter-spacing: -0.44px;
     `,
   },
+
+  Heading2: {
+    Bold: css`
+      font-family: "Pretendard";
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 140%;
+      letter-spacing: -0.2px;
+    `,
+    Medium: css`
+      font-family: "Pretendard";
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 140%;
+      letter-spacing: -0.2px;
+    `,
+    Regular: css`
+      font-family: "Pretendard";
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 140%;
+      letter-spacing: -0.2px;
+    `,
+  },
+
+  Headline: {
+    Bold: css`
+      font-family: "Pretendard";
+      font-size: 18px;
+      font-weight: 700;
+    `,
+    Medium: css`
+      font-family: "Pretendard";
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 150%;
+    `,
+    Regular: css`
+      font-family: "Pretendard";
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 150%;
+    `,
+  },
+
   Body: {
-    Large: css`
-      font-family: "Suit-SemiBold";
-      font-size: 18px;
-      line-height: 26px;
+    Bold: css`
+      font-family: "Pretendard";
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 150%;
+      letter-spacing: -0.16px;
     `,
     Medium: css`
-      font-family: "Suit-SemiBold";
+      font-family: "Pretendard";
       font-size: 16px;
-      line-height: 24px;
+      font-weight: 500;
+      line-height: 150%;
+      letter-spacing: -0.16px;
     `,
-    Small: css`
-      font-family: "Suit-Medium";
-      font-size: 14px;
-      line-height: 20px;
+    Regular: css`
+      font-family: "Pretendard";
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 150%;
+      letter-spacing: -0.16px;
     `,
   },
+
   Label: {
-    Large: css`
-      font-family: "Suit-Medium";
+    Bold: css`
+      font-family: "Pretendard";
       font-size: 14px;
-      line-height: 20px;
+      font-weight: 600;
+      line-height: 140%;
+      letter-spacing: 0.28px;
     `,
     Medium: css`
-      font-family: "Suit-Medium";
-      font-size: 12px;
-      line-height: 16px;
+      font-family: "Pretendard";
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 140%;
+      letter-spacing: 0.28px;
     `,
-    Small: css`
-      font-family: "Suit-Normal";
-      font-size: 11px;
-      line-height: 16px;
+    Regular: css`
+      font-family: "Pretendard";
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 140%;
+      letter-spacing: 0.28px;
+    `,
+  },
+
+  Caption1: {
+    Bold: css`
+      font-family: "Pretendard";
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 130%;
+      letter-spacing: 0.39px;
+    `,
+    Medium: css`
+      font-family: "Pretendard";
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 130%;
+      letter-spacing: 0.39px;
+    `,
+    Regular: css`
+      font-family: "Pretendard";
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 130%;
+      letter-spacing: 0.39px;
+    `,
+  },
+
+  Caption2: {
+    Bold: css`
+      font-family: "Pretendard";
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 130%;
+      letter-spacing: 0.36px;
+    `,
+    Medium: css`
+      font-family: "Pretendard";
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 130%;
+      letter-spacing: 0.36px;
+    `,
+    Regular: css`
+      font-family: "Pretendard";
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 130%;
+      letter-spacing: 0.36px;
     `,
   },
 });
