@@ -10,8 +10,7 @@ type FilledColorsType = {
   disabledBackgroundColor?: CSSProperties["backgroundColor"];
 };
 
-export interface DodamFilledButtonProps
-  extends HTMLAttributes<HTMLButtonElement> {
+export interface DodamFilledButtonProps extends HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 
   colors?: FilledColorsType;
@@ -74,11 +73,9 @@ const StyledFilledButton = styled.button<{
   cursor: pointer;
 
   ${({ colors, isDisabled, theme }) => css`
-    background-color: ${(isDisabled
-      ? colors?.disabledBackgroundColor
-      : colors?.contentBackgroundColor) || theme.primary};
-    color: ${(isDisabled ? colors?.disabledColor : colors?.contentColor) ||
-    theme.onPrimary};
+    background-color: ${(isDisabled ? colors?.disabledBackgroundColor : colors?.contentBackgroundColor) ||
+    theme.primary};
+    color: ${(isDisabled ? colors?.disabledColor : colors?.contentColor) || theme.onPrimary};
   `}
 
   transition: all 0.15s ease-in-out;
@@ -91,7 +88,7 @@ const StyledFilledButton = styled.button<{
   }
 
   ${FlexLayout({ alignItems: "center", justifyContent: "center" })}
-  ${DodamTypography.Body.Large}
+  ${DodamTypography.Body.Bold}
   ${({ radius }) => DodamShape[radius]}
   
   ${({ customStyle }) => customStyle};
