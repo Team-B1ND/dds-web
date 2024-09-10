@@ -16,10 +16,10 @@ interface DodamFilledTextFieldProps {
 }
 
 export const DodamFilledTextField = ({
-  label = "Label",
+  label,
   value,
-  supportingText = "supportingText",
-  placeholder = "여기에 텍스트를 입력하세요.",
+  supportingText,
+  placeholder,
   status,
   onchange,
 }: DodamFilledTextFieldProps) => {
@@ -51,6 +51,8 @@ const StyleFilledTextField = styled.div`
 
   width: 380px;
   height: 80px;
+
+  position: relative;
 `;
 
 const StyledFilledTextFieldTitle = styled.span<{ status: StatusType }>`
@@ -156,7 +158,8 @@ const InputStyle: Status = {
     }
   `,
   focused: css`
-    background: rgba(0, 139, 255, 0.3);
+    background: linear-gradient(0deg, rgba(0, 139, 255, 0.03) 0%, rgba(0, 139, 255, 0.03) 100%),
+      ${DodamLightTheme.backgroundNormal};
     input {
       color: ${DodamLightTheme.labelStrong};
       &::placeholder {
