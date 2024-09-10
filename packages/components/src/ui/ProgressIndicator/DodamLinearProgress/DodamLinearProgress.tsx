@@ -46,8 +46,8 @@ const LinearWrap = styled.div<{
   height: ${({ height }) => height};
 
   border-radius: ${({ borderRadius }) => borderRadius};
-  background-color: ${({ trailColor, theme }) => trailColor || theme.secondary};
-
+  background-color: ${({ trailColor, theme }) => trailColor || theme.labelAlternative};
+ 
   position: relative;
   overflow: hidden;
 `;
@@ -60,7 +60,7 @@ const LinearGuage = styled.div<{
   width: ${({ gauge }) => gauge}%;
   height: 100%;
 
-  background-color: ${({ pathColor, theme }) => pathColor || theme.primary};
+  background-color: ${({ pathColor, theme }) => pathColor || theme.primaryNormal};
   transition: width 0.7s ease;
 
   border-top-right-radius: ${({ borderRadius }) => borderRadius};

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DodamLinearProgress } from "./DodamLinearProgress";
+import { DodamLightTheme } from "@dds-web/styles";
 
 const meta = {
   title: "ui/DodamProgressIndicator/DodamLinearProgress",
@@ -21,8 +22,8 @@ export const StyledLinearProgress: Story = {
     gauge: 50,
 
     color: {
-      trail: "red",
-      path: "blue",
+      trail: DodamLightTheme.lineAlternative,
+      path:  DodamLightTheme.primaryNormal,
     },
   },
 };
