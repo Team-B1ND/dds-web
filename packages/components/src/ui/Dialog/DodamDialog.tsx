@@ -1,9 +1,11 @@
-import { DodamShape, ShapeSizeType } from "@dds-web/styles";
+import { DodamShape, ShapeSizeType, DodamLightTheme } from "@dds-web/styles";
 import React from "react";
 import styled, { CSSProperties, RuleSet, css } from "styled-components";
 import { Column, FlexLayout, Row } from "../../layout";
-import { DodamBody, DodamTitle } from "../Typography";
+import { DodamBody1 , DodamHeading1 } from "../Typography";
 import { DodamFilledButton } from "../Button";
+import { DodamColor } from "../../../../foundations/src";
+
 
 type DialogHandlerType = {
   content: string;
@@ -48,12 +50,12 @@ export const DodamDialog = ({
       backgroundColor={color?.dialogBackgroundColor}
     >
       <Column rowGap={12} padding={type.dialog === "CONFIRM" ? "6px" : "12px"}>
-        <DodamTitle
-          fontScale="Large"
+        <DodamHeading1
+          fontScale="Bold"
           text={title}
           customStyle={StyledTitle(color?.titleColor)}
         />
-        <DodamBody text={text} customStyle={StyledText(color?.textColor)} />
+        <DodamBody1 text={text} customStyle={StyledText(color?.textColor)} />
       </Column>
 
       {type.dialog === "CONFIRM" ? (
@@ -75,8 +77,8 @@ export const DodamDialog = ({
         </Row>
       ) : (
         <Row justifyContent="flex-end">
-          <DodamBody
-            fontScale="Large"
+          <DodamBody1
+            fontScale="Bold"
             text={type.close.content}
             onClick={type.close.onClick}
             customStyle={type.close.style}
@@ -94,9 +96,9 @@ const StyledDialog = styled.div<{
 }>`
   min-width: 280px;
   max-width: 560px;
-
+  
   background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme.surfaceContainerHigh};
+    backgroundColor || DodamLightTheme.backgroundNormal};
   padding: ${({ dialogType }) => (dialogType === "ALERT" ? "12px" : "18px")};
 
   ${({ radius }) => DodamShape[radius]}
@@ -108,9 +110,9 @@ const StyledDialog = styled.div<{
 `;
 
 const StyledTitle = (titleColor: CSSProperties["color"]) => css`
-  color: ${({ theme }) => titleColor || theme.onSurface};
+  color: ${({ theme }) => titleColor || DodamLightTheme.labelStrong};
 `;
 
 const StyledText = (textColor: CSSProperties["color"]) => css`
-  color: ${({ theme }) => textColor || theme.tertiary};
+  color: ${({ theme }) => textColor || DodamLightTheme.labelAlternative};
 `;

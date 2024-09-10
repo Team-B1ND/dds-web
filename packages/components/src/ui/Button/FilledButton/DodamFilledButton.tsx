@@ -1,4 +1,4 @@
-import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
+import { DodamShape, DodamTypography, ShapeSizeType, DodamLightTheme } from "@dds-web/styles";
 import React, { HTMLAttributes, ReactNode } from "react";
 import styled, { CSSProperties, RuleSet, css } from "styled-components";
 import { FlexLayout } from "../../../layout";
@@ -73,9 +73,9 @@ const StyledFilledButton = styled.button<{
   cursor: pointer;
 
   ${({ colors, isDisabled, theme }) => css`
-    background-color: ${(isDisabled ? colors?.disabledBackgroundColor : colors?.contentBackgroundColor) ||
-    theme.primary};
-    color: ${(isDisabled ? colors?.disabledColor : colors?.contentColor) || theme.onPrimary};
+    background-color: ${(isDisabled ? DodamLightTheme.primaryNormal : DodamLightTheme.fillNormal) ||
+    DodamLightTheme.primaryNormal};
+    color: ${(isDisabled ? DodamLightTheme.staticWhite : DodamLightTheme.labelNetural) || DodamLightTheme.labelNetural};
   `}
 
   transition: all 0.15s ease-in-out;
@@ -88,7 +88,7 @@ const StyledFilledButton = styled.button<{
   }
 
   ${FlexLayout({ alignItems: "center", justifyContent: "center" })}
-  ${DodamTypography.Body.Bold}
+  ${DodamTypography.Body1.Bold}
   ${({ radius }) => DodamShape[radius]}
   
   ${({ customStyle }) => customStyle};
