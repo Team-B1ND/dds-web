@@ -13,7 +13,8 @@ export type TypographyStyles = {
   Heading1: TextSize;
   Heading2: TextSize;
   Headline: TextSize;
-  Body: TextSize;
+  Body1: TextSize;
+  Body2: TextSize;
   Label: TextSize;
   Caption1: TextSize;
   Caption2: TextSize;
@@ -142,7 +143,7 @@ export const DodamTypography: TypographyStyles = Object.freeze({
     `,
   },
 
-  Body: {
+  Body1: {
     Bold: css`
       font-family: "Pretendard-Bold";
       font-size: 16px;
@@ -158,6 +159,26 @@ export const DodamTypography: TypographyStyles = Object.freeze({
     Regular: css`
       font-family: "Pretendard-Regular";
       font-size: 16px;
+      line-height: 150%;
+      letter-spacing: -0.16px;
+    `,
+  },
+  Body2: {
+    Bold: css`
+      font-family: "Pretendard-Bold";
+      font-size: 15px;
+      line-height: 150%;
+      letter-spacing: -0.16px;
+    `,
+    Medium: css`
+      font-family: "Pretendard-Medium";
+      font-size: 15px;
+      line-height: 150%;
+      letter-spacing: -0.16px;
+    `,
+    Regular: css`
+      font-family: "Pretendard-Regular";
+      font-size: 15px;
       line-height: 150%;
       letter-spacing: -0.16px;
     `,

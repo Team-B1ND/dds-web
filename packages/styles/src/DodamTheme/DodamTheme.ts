@@ -1,7 +1,7 @@
 import { DodamTheme } from "styled-components";
 import { DodamColor } from "@dds-web/foundations";
 
-export const DodamLightTheme: DodamTheme = Object.freeze({
+export const DodamLightTheme = Object.freeze({
   primaryNormal: DodamColor.blue45,
   primaryAlternative: "rgba(0, 131, 240, 0.65)",
   primaryAssisitive: "rgba(0, 131, 240, 0.2)",
@@ -30,7 +30,7 @@ export const DodamLightTheme: DodamTheme = Object.freeze({
   statusCautionary: DodamColor.yellow50,
   statusPositive: DodamColor.green50,
 
-  staticWthie: DodamColor.common100,
+  staticWhite: DodamColor.common100,
   staticBlack: DodamColor.common0,
 });
 
