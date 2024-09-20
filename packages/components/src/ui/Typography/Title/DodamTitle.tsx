@@ -18,6 +18,6 @@ export const DodamTitle = ({
 
 const TitleText = styled.p<{ fontScale: FontScale; customStyle: RuleSet }>`
   margin: 0;
-  ${({ fontScale }) => DodamTypography.Title[fontScale]}
+  ${({ fontScale }) => DodamTypography.Title1[fontScale]}
   ${({ customStyle }) => customStyle}
 `;

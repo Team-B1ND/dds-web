@@ -2,39 +2,67 @@ import { DodamTheme } from "styled-components";
 import { DodamColor } from "@dds-web/foundations";
 
 export const DodamLightTheme: DodamTheme = Object.freeze({
-  primary: DodamColor.blue,
-  onPrimary: DodamColor.white,
-  secondary: DodamColor.gray200,
-  secondaryContainer: DodamColor.gray200,
-  onSecondaryContainer: DodamColor.gray750,
-  tertiary: DodamColor.gray650,
-  error: DodamColor.red,
-  onError: DodamColor.white,
-  surface: "#F2F5F8",
-  onSurface: DodamColor.gray900,
-  surfaceContainer: DodamColor.white,
-  surfaceContainerHigh: DodamColor.white,
-  surfaceContainerLow: DodamColor.white,
-  onSurfaceVariant: DodamColor.gray400,
-  outline: DodamColor.gray300,
-  outlineVariant: DodamColor.gray200,
+  primaryNormal: DodamColor.blue45,
+  primaryAlternative: "rgba(0, 131, 240, 0.65)",
+  primaryAssisitive: "rgba(0, 131, 240, 0.2)",
+
+  labelNormal: DodamColor.netural5,
+  labelStrong: DodamColor.common0,
+  labelNetural: DodamColor.netural25,
+  labelAlternative: DodamColor.netural40,
+  labelAssisitive: DodamColor.netural50,
+  labelDisabled: DodamColor.netural97,
+
+  lineNormal: DodamColor.netural90,
+  lineNetural: DodamColor.netural95,
+  lineAlternative: DodamColor.netural97,
+
+  fillNormal: DodamColor.netural99,
+  fillNetural: DodamColor.netural97,
+  fillAlternative: DodamColor.netural95,
+  fillAssistive: DodamColor.common100,
+
+  backgroundNormal: DodamColor.common100,
+  backgroundNetural: DodamColor.netural99,
+  backgroundAlternative: DodamColor.netural99,
+
+  statusNegative: DodamColor.red50,
+  statusCautionary: DodamColor.yellow50,
+  statusPositive: DodamColor.green50,
+
+  staticWthie: DodamColor.common100,
+  staticBlack: DodamColor.common0,
 });
 
 export const DodamDarkTheme: DodamTheme = Object.freeze({
-  primary: DodamColor.blue,
-  onPrimary: DodamColor.white,
-  secondary: DodamColor.gray750,
-  secondaryContainer: DodamColor.gray750,
-  onSecondaryContainer: DodamColor.gray350,
-  tertiary: DodamColor.gray700,
-  error: DodamColor.red,
-  onError: DodamColor.white,
-  surface: DodamColor.gray900,
-  onSurface: DodamColor.white,
-  surfaceContainer: DodamColor.gray850,
-  surfaceContainerLow: DodamColor.gray650,
-  surfaceContainerHigh: DodamColor.gray850,
-  onSurfaceVariant: DodamColor.gray600,
-  outline: DodamColor.gray700,
-  outlineVariant: DodamColor.gray600,
+  primaryNormal: DodamColor.blue45,
+  primaryAlternative: "rgba(0, 131, 240, 0.65)",
+  primaryAssisitive: "rgba(0, 131, 240, 0.2)",
+
+  labelNormal: DodamColor.netural99,
+  labelStrong: DodamColor.common100,
+  labelNetural: DodamColor.netural95,
+  labelAlternative: DodamColor.netural90,
+  labelAssisitive: DodamColor.netural70,
+  labelDisabled: DodamColor.netural30,
+
+  lineNormal: DodamColor.netural50,
+  lineNetural: DodamColor.netural30,
+  lineAlternative: DodamColor.netural25,
+
+  fillNormal: DodamColor.netural20,
+  fillNetural: DodamColor.netural25,
+  fillAlternative: DodamColor.netural30,
+  fillAssistive: DodamColor.netural60,
+
+  backgroundNormal: DodamColor.netural15,
+  backgroundNetural: DodamColor.netural10,
+  backgroundAlternative: DodamColor.netural7,
+
+  statusNegative: DodamColor.red50,
+  statusCautionary: DodamColor.yellow50,
+  statusPositive: DodamColor.green50,
+
+  staticWthie: DodamColor.common100,
+  staticBlack: DodamColor.common0,
 });

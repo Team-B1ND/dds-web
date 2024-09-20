@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const LabelLarge: Story = {
   args: {
-    fontScale: "Large",
+    fontScale: "Bold",
     text: "도담도담은 학교에 다니는 학생과 교사에게 편리한 학교 생활을 제공합니다.",
   },
 };
@@ -30,7 +30,7 @@ export const LabelMedium: Story = {
 
 export const LabelSmall: Story = {
   args: {
-    fontScale: "Small",
+    fontScale: "Regular",
     text: "도담도담은 학교에 다니는 학생과 교사에게 편리한 학교 생활을 제공합니다.",
   },
 };
