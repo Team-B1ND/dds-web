@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as S from "./style";
 import { PageIndicatorProps } from "./type";
 
-export const PageIndicator = ({
+export const DodamPageIndicator = ({
   num,
   buttonSize = "Large",
 }: PageIndicatorProps) => {

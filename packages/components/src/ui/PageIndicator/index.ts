@@ -1,1 +1,1 @@
-export * from "./PageIndicator";
+export * from "./DodamPageIndicator";

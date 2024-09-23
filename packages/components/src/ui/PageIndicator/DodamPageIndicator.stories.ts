@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PageIndicator } from "./PageIndicator";
+import { DodamPageIndicator } from "./DodamPageIndicator";
 
 const meta = {
   title: "ui/DodamPageIndicator",
-  component: PageIndicator,
+  component: DodamPageIndicator,
   tags: ["autodocs"],
-} satisfies Meta<typeof PageIndicator>;
+} satisfies Meta<typeof DodamPageIndicator>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const PageIndicatorButton: Story = {
+export const PageIndicator: Story = {
   args: {
     num: 3,
     buttonSize: "Large",
-  }
-}
+  },
+};
