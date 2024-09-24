@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>;
 export const PageIndicator: Story = {
   args: {
     num: 3,
-    buttonSize: "Large",
+    size: "Large",
+    onClick: (idx) => console.log(idx),
   },
 };

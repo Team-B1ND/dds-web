@@ -2,20 +2,20 @@ import styled, { css } from "styled-components";
 import { ButtonSize } from "./type";
 import { DodamLightTheme } from "@dds-web/styles/src/DodamTheme/DodamTheme";
 
-export const PageIndicatorWrap = styled.div<{ buttonSize: ButtonSize }>`
+export const PageIndicatorWrap = styled.div<{ size: ButtonSize }>`
   width: auto;
   height: auto;
-  gap: ${({ buttonSize }) => (buttonSize === "Small" ? "5px" : "10px")};
+  gap: ${({ size }) => (size === "Small" ? "5px" : "10px")};
   display: flex;
 `;
 
 export const IndicatorBtn = styled.div<{
   idx: number;
+  size: ButtonSize;
   activeIdx: number;
-  buttonSize: ButtonSize;
 }>`
-  ${({ buttonSize }) =>
-    buttonSize === "Small"
+  ${({ size }) =>
+    size === "Small"
       ? css`
           width: 5px;
           height: 5px;
