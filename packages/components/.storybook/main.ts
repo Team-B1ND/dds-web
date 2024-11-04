@@ -14,6 +14,28 @@ const config: StorybookConfig = {
     name: "@storybook/react-webpack5",
     options: {},
   },
+  webpackFinal: async (config) => {
+    config.module?.rules?.push({
+      test: /\.(js|jsx|ts|tsx)$/,
+      loader: "swc-loader",
+      options: {
+        jsc: {
+          parser: {
+            syntax: "typescript",
+            tsx: true,
+            decorators: true,
+          },
+          transform: {
+            react: {
+              runtime: "automatic",
+            },
+          },
+        },
+      },
+    });
+
+    return config;
+  },
   docs: {
     autodocs: "tag",
   },
