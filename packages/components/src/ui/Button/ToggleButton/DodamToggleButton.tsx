@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { DodamShape, DodamLightTheme } from "@dds-web/styles";
+import { DodamShape, DodamThemeProvider } from "@dds-web/styles";
 
 export interface ToggleBtnProps {
   isAtv: boolean;
@@ -23,8 +23,8 @@ const StyledToggleButtonWrap = styled.div<{ isAtv: boolean }>`
   align-items: center;
 
   ${DodamShape.Large};
-  background-color: ${({ isAtv }) =>
-    isAtv ? DodamLightTheme.primaryNormal : DodamLightTheme.labelDisabled};
+  background-color: ${({ isAtv, theme }) =>
+    isAtv ? theme.primaryNormal : theme.labelDisabled};
 
   position: relative;
   cursor: pointer;
@@ -35,7 +35,7 @@ const StyledToggleButton = styled.span<{ isAtv: boolean }>`
   height: 25px;
 
   ${DodamShape.ExtraLarge};
-  background-color: ${DodamLightTheme.staticWthie};
+  background-color: ${({ theme }) => theme.staticWthie};
 
   transition: 0.2s ease-out;
   left: ${({ isAtv }) => (isAtv ? "38%" : "0")};
