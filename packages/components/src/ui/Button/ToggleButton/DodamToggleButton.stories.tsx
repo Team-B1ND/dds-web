@@ -9,6 +9,9 @@ const meta = {
       control: "boolean",
     },
   },
+  parameters: {
+    layout: "centered",
+  },
   tags: ["autodocs"],
 } satisfies Meta<typeof DodamToggleButton>;
 
