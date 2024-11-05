@@ -15,6 +15,13 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    backgrounds: {
+      default: "LIGHT",
+      values: [
+        { name: "LIGHT", value: DodamLightTheme.backgroundNormal },
+        { name: "DARK", value: DodamDarkTheme.backgroundNormal },
+      ],
+    },
   },
 
   decorators: [
