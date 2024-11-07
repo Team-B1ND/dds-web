@@ -18,3 +18,4 @@ export * from "./Xmark";
 export * from "./checkmark";
 export * from "./chevron";
 export * from "./eye";
+export * from "./notfoundpage"
