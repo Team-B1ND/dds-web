@@ -6,7 +6,7 @@ interface DatePickerParams {
   onChange: (e: Date) => void;
 }
 
-const useDatePicker = ({
+export const useDatePicker = ({
   value,
   splitCharacter,
   onChange,
@@ -194,4 +194,3 @@ const useDatePicker = ({
   };
 };
 
-export default useDatePicker;
