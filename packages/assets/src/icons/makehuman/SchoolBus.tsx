@@ -1,5 +1,5 @@
 import React from "react";
-import { StaticIconProps } from "./type";
+import { StaticIconProps } from "../type";
 import { SCHOOL_BUS_PATH_ITEMS } from "./constant"
 
 export const SchoolBus = ({ size = 24 }: StaticIconProps) => {

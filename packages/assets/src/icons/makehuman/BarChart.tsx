@@ -1,8 +1,8 @@
 import React from "react";
-import { StaticIconProps } from "./type";
-import { LOUD_SPEAKER_PATH_ITEMS } from "./constant";
+import { StaticIconProps } from "../type";
+import { BAR_CHART_PATH_ITEMS } from "./constant";
 
-export const LoudSpeaker = ({ size = 24 }: StaticIconProps) => {
+export const BarChart = ({ size = 24 }: StaticIconProps) => {
   return (
     <svg
       width={size}
@@ -11,7 +11,7 @@ export const LoudSpeaker = ({ size = 24 }: StaticIconProps) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {LOUD_SPEAKER_PATH_ITEMS.map((item, idx) => (
+      {BAR_CHART_PATH_ITEMS.map((item, idx) => (
         <path
           key={idx}
           d={item.d}

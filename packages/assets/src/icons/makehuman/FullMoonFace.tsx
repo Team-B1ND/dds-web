@@ -1,5 +1,5 @@
 import React from "react";
-import { StaticIconProps } from "./type";
+import { StaticIconProps } from "../type";
 import { FULL_MOON_FACE_PATH_ITEMS } from "./constant";
 
 export const FullMoonFace = ({ size = 24 }: StaticIconProps) => {

@@ -1,8 +1,8 @@
 import React from "react";
-import { StaticIconProps } from "./type";
-import { CONVENIENCE_STORE_PATH_ITEMS } from "./constant";
+import { StaticIconProps } from "../type";
+import { TENT_PATH_ITEMS } from "./constant"
 
-export const ConvenienceStore = ({ size = 24 }: StaticIconProps) => {
+export const Tent = ({ size = 24 }: StaticIconProps) => {
   return (
     <svg
       width={size}
@@ -11,7 +11,7 @@ export const ConvenienceStore = ({ size = 24 }: StaticIconProps) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {CONVENIENCE_STORE_PATH_ITEMS.map((item, idx) => (
+      {TENT_PATH_ITEMS.map((item, idx) => (
         <path
           key={idx}
           d={item.d}

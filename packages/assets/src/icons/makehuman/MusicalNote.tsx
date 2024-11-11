@@ -1,5 +1,5 @@
 import React from "react";
-import { StaticIconProps } from "./type";
+import { StaticIconProps } from "../type";
 
 export const MusicalNote = ({ size = 24 }: StaticIconProps) => {
   return (
