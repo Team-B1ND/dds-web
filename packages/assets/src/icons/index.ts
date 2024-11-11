@@ -19,6 +19,7 @@ export * from "./Note";
 export * from "./Pen";
 export * from "./Person";
 export * from "./Plus";
+export * from "./SchoolBus"
 export * from "./Tent";
 export * from "./Trash";
 export * from "./arrow";
