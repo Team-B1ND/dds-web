@@ -14,6 +14,7 @@ export * from "./Menu";
 export * from "./Magnifyingglass";
 export * from "./MoonPlus";
 export * from "./Note";
+export * from "./Pen";
 export * from "./Person";
 export * from "./Plus";
 export * from "./Trash";
