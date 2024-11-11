@@ -1,4 +1,5 @@
 export * from "./BarChart";
+export * from "./Bullseye";
 export * from "./ConvenienceStore";
 export * from "./CookedRice";
 export * from "./CreditCard";
