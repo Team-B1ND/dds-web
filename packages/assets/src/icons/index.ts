@@ -6,6 +6,7 @@ export * from "./Chart";
 export * from "./Close";
 export * from "./ConvenienceStore";
 export * from "./CookedRice";
+export * from "./CreditCard";
 export * from "./Dev";
 export * from "./DoorOpen";
 export * from "./ForkAndKnife";
