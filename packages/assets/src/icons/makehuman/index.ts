@@ -8,6 +8,7 @@ export * from "./FullMoonFace";
 export * from "./LoudSpeaker";
 export * from "./MusicalNote";
 export * from "./Schedule";
+export * from "./School";
 export * from "./SchoolBus";
 export * from "./SmilingFace";
 export * from "./Tent";
