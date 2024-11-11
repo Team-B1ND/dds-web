@@ -1,3 +1,4 @@
+export * from "./BarChart"
 export * from "./Bell";
 export * from "./Bus";
 export * from "./Calender";
