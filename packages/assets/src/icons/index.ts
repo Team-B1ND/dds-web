@@ -2,6 +2,7 @@ export * from "./Bell";
 export * from "./Bus";
 export * from "./Calender";
 export * from "./Close";
+export * from "./Dev";
 export * from "./DoorOpen";
 export * from "./ExclamationmarkCircle";
 export * from "./ForkAndKnife";
