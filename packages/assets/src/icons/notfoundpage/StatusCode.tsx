@@ -1,9 +1,9 @@
 import React from "react";
 import { IconProps } from "../type";
 import { StyledSvg, StyledPath } from "../style";
-import { STATUS_CODE_PATH_ITEMS }from "./constant";
+import { STATUS_CODE_PATH_ITEMS } from "./constant";
 
-export const StatusCode = ({ size, color, customStyle }: IconProps) => {
+export const StatusCode = ({ size, color = "#000", $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
       width="452"
@@ -11,9 +11,15 @@ export const StatusCode = ({ size, color, customStyle }: IconProps) => {
       viewBox="0 0 452 152"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      customStyle={customStyle!}>
+      $svgStyle={$svgStyle!}
+    >
       {STATUS_CODE_PATH_ITEMS.map((item, idx) => (
-        <StyledPath key={idx} d={item} color={color!} /> 
+        <StyledPath
+          key={idx}
+          d={item}
+          color={color!}
+          $pathStyle={$pathStyle!}
+        />
       ))}
     </StyledSvg>
   );
