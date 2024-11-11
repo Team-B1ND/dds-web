@@ -8,3 +8,4 @@ export * from "./MusicalNote";
 export * from "./Schedule";
 export * from "./SchoolBus";
 export * from "./Tent";
+export * from "./Trophy";
