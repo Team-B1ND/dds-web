@@ -16,9 +16,10 @@ export * from "./Note";
 export * from "./Pen";
 export * from "./Person";
 export * from "./Plus";
+export * from "./Tent";
 export * from "./Trash";
 export * from "./arrow";
-export * from "./checkmark"
+export * from "./checkmark";
 export * from "./chevron";
 export * from "./eye";
 export * from "./mark";
