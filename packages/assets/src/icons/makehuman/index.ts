@@ -5,5 +5,6 @@ export * from "./CreditCard";
 export * from "./FullMoonFace";
 export * from "./LoudSpeaker";
 export * from "./MusicalNote";
+export * from "./Schedule";
 export * from "./SchoolBus";
 export * from "./Tent";
