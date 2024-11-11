@@ -3,10 +3,11 @@ export * from "./Bus";
 export * from "./Calender";
 export * from "./Chart";
 export * from "./Close";
-export * from "./ConvenienceStore"
+export * from "./ConvenienceStore";
 export * from "./Dev";
 export * from "./DoorOpen";
 export * from "./ForkAndKnife";
+export * from "./FullMoonFace";
 export * from "./Gear";
 export * from "./Home";
 export * from "./Megaphone";
