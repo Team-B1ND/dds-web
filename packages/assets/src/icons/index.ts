@@ -16,6 +16,7 @@ export * from "./Megaphone";
 export * from "./Menu";
 export * from "./Magnifyingglass";
 export * from "./MoonPlus";
+export * from "./MusicalNote";
 export * from "./Note";
 export * from "./Pen";
 export * from "./Person";
