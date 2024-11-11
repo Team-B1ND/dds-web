@@ -1,4 +1,4 @@
-export * from "./BarChart"
+export * from "./BarChart";
 export * from "./Bell";
 export * from "./Bus";
 export * from "./Calender";
@@ -11,6 +11,7 @@ export * from "./ForkAndKnife";
 export * from "./FullMoonFace";
 export * from "./Gear";
 export * from "./Home";
+export * from "./LoudSpeaker";
 export * from "./Megaphone";
 export * from "./Menu";
 export * from "./Magnifyingglass";
@@ -19,7 +20,7 @@ export * from "./Note";
 export * from "./Pen";
 export * from "./Person";
 export * from "./Plus";
-export * from "./SchoolBus"
+export * from "./SchoolBus";
 export * from "./Tent";
 export * from "./Trash";
 export * from "./arrow";
