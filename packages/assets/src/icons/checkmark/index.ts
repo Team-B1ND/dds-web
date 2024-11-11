@@ -1,3 +1,3 @@
 export * from "./Checkmark";
-export * from "./CheckmarkCircle";
 export * from "./CheckmarkCircleFilled";
+export * from "./CheckmarkCircleLine";
