@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { useTheme } from "styled-components";
-import { StatusCode, DodamSadEmoji, CheckmarkCircleFilled } from "@dds-web/assets";
+import { StatusCode, DodamSadEmoji } from "@dds-web/assets";
 import { DodamShape, DodamTypography } from "@dds-web/styles";
 
 export const DodamNotFoundPage = () => {
@@ -8,7 +8,6 @@ export const DodamNotFoundPage = () => {
 
   return (
     <StyledNotFoundPage>
-      <CheckmarkCircleFilled />
       <StyledInfoWrap>
         <StatusCode color={theme.primaryNormal} />
         <StyledTitleWrap>

@@ -1,4 +1,3 @@
-export * from "./ArrowLeft";
 export * from "./Bell";
 export * from "./Bus";
 export * from "./Calender";
@@ -15,7 +14,8 @@ export * from "./Note";
 export * from "./Plus";
 export * from "./Trash";
 export * from "./Xmark";
+export * from "./arrow";
 export * from "./checkmark";
 export * from "./chevron";
 export * from "./eye";
-export * from "./notfoundpage"
+export * from "./notfoundpage";

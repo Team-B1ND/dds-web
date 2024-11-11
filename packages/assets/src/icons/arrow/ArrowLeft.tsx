@@ -1,6 +1,6 @@
 import React from "react";
-import { IconProps } from "./type";
-import { StyledPath, StyledSvg } from "./style";
+import { IconProps } from "../type";
+import { StyledPath, StyledSvg } from "../style";
 
 export const ArrowLeft = ({ size = 24, color = "#000", $svgStyle, $pathStyle }: IconProps) => {
   return (
@@ -10,8 +10,7 @@ export const ArrowLeft = ({ size = 24, color = "#000", $svgStyle, $pathStyle }: 
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      $svgStyle={$svgStyle!}
-    >
+      $svgStyle={$svgStyle!}>
       <mask
         id="mask0_2_901"
         style={{ maskType: "luminance" }}
@@ -19,8 +18,7 @@ export const ArrowLeft = ({ size = 24, color = "#000", $svgStyle, $pathStyle }: 
         x="2"
         y="4"
         width="20"
-        height="16"
-      >
+        height="16">
         <path d="M22 4H2V20H22V4Z" fill="white" />
       </mask>
       <g mask="url(#mask0_2_901)">
