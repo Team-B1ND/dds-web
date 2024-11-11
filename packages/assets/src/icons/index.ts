@@ -1,6 +1,7 @@
 export * from "./Bell";
 export * from "./Bus";
 export * from "./Calender";
+export * from "./Chart";
 export * from "./Close";
 export * from "./Dev";
 export * from "./DoorOpen";
