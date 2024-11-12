@@ -1,10 +1,10 @@
-import styled, { RuleSet } from "styled-components";
+import styled, { type Interpolation } from "styled-components";
 
-export const StyledSvg = styled.svg<{ $svgStyle: RuleSet }>`
+export const StyledSvg = styled.svg<{ $svgStyle: Interpolation<object> }>`
   ${({ $svgStyle }) => $svgStyle}
 `;
 
-export const StyledPath = styled.path<{ color: string, $pathStyle: RuleSet }>`
+export const StyledPath = styled.path<{ color: string, $pathStyle: Interpolation<object> }>`
   fill: ${({ color }) => color};
   ${({ $pathStyle }) => $pathStyle}
 `;
