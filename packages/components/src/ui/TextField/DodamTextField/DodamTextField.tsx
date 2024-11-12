@@ -1,8 +1,8 @@
-import { DodamLightTheme, DodamTypography, LabelStyle } from "@dds-web/styles";
-import React from "react";
-import styled, { css } from "styled-components";
+import { DodamLightTheme, DodamTypography, LabelStyle } from '@dds-web/styles';
+import React from 'react';
+import styled, { css } from 'styled-components';
 
-type StatusType = "default" | "unfocused" | "focused" | "error" | "disabled";
+type StatusType = 'default' | 'unfocused' | 'focused' | 'error' | 'disabled';
 
 interface DodamTextFieldProps {
   id: string;
@@ -20,7 +20,7 @@ export const DodamTextField = ({
   id,
   name,
   value,
-  children = "여기에 텍스트를 입력하세요.",
+  children = '여기에 텍스트를 입력하세요.',
   onchange,
   functions,
   labelStyle,
@@ -28,7 +28,7 @@ export const DodamTextField = ({
   supportingText,
 }: DodamTextFieldProps) => {
   return (
-    <>
+    <div style={{ position: 'relative' }}>
       <StyledTextField status={status}>
         <StyledTextFieldTextFieldInput
           required
@@ -37,8 +37,8 @@ export const DodamTextField = ({
           onChange={onchange}
           value={value}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              if (typeof functions === "function") {
+            if (e.key === 'Enter') {
+              if (typeof functions === 'function') {
                 functions();
               } else {
                 const elemId = functions;
@@ -50,7 +50,7 @@ export const DodamTextField = ({
         <label style={labelStyle}>{children}</label>
       </StyledTextField>
       <StyledSupportingText status={status}>{supportingText}</StyledSupportingText>
-    </>
+    </div>
   );
 };
 
@@ -70,7 +70,7 @@ const StyledTextField = styled.div<{ status: StatusType }>`
     top: 80%;
 
     ${DodamTypography.Headline.Medium}
-    color: ${DodamLightTheme.labelStrong};
+    color: ${({ theme }) => theme.labelStrong};
 
     transform: translateY(-90%);
     transition: all 0.2s ease;
@@ -83,9 +83,9 @@ const StyledTextField = styled.div<{ status: StatusType }>`
 
   input {
     ${({ status }) => {
-      if (status === "default") {
+      if (status === 'default') {
         return css`
-          color: ${DodamLightTheme.labelAlternative};
+          color: ${({ theme }) => theme.labelAlternative};
         `;
       }
     }}
@@ -93,7 +93,7 @@ const StyledTextField = styled.div<{ status: StatusType }>`
 
   input:is(:focus, :valid) ~ label {
     ${DodamTypography.Label.Medium}
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
     transform: translateY(-300%);
   }
 `;
@@ -134,12 +134,14 @@ const StyledTextFieldTextFieldInput = styled.input`
 
 const StyledSupportingText = styled.span<{ status: StatusType }>`
   ${DodamTypography.Label.Medium}
-  color: ${DodamLightTheme.labelAlternative};
+  color: ${({ theme }) => theme.labelAlternative};
+  position: absolute;
+  top: 55px;
 
   ${({ status }) => {
-    if (status === "error") {
+    if (status === 'error') {
       return css`
-        color: ${DodamLightTheme.statusNegative};
+        color: ${({ theme }) => theme.statusNegative};
       `;
     }
   }}

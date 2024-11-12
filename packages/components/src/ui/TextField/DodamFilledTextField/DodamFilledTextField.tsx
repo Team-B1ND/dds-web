@@ -56,7 +56,7 @@ const StyleFilledTextField = styled.div`
 `;
 
 const StyledFilledTextFieldTitle = styled.span<{ status: StatusType }>`
-  color: ${DodamLightTheme.labelAlternative};
+  color: ${({ theme }) => theme.labelAlternative};
   font-feature-settings: 'ss10' on;
   ${DodamTypography.Label.Medium}
   ${({ status }) => {
@@ -74,11 +74,11 @@ const StyledFilledTextFieldInput = styled.div<{ status: StatusType }>`
   height: 56px;
   padding: 4px 12px 4px 16px;
 
-  border: 1px solid ${DodamLightTheme.labelAlternative};
+  border: 1px solid ${({ theme }) => theme.labelAlternative};
   ${DodamShape['Medium']}
 
   input {
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
     ${DodamTypography.Headline.Medium}
     background: transparent;
     width: 90%;
@@ -97,16 +97,16 @@ const StyledFilledTextFieldInput = styled.div<{ status: StatusType }>`
 
 const StyledFilledTextFieldSupportingText = styled.span<{ status: StatusType }>`
   position: absolute;
-  top: 94px;
+  top: 85px;
 
-  color: ${DodamLightTheme.labelAlternative};
+  color: ${({ theme }) => theme.labelAlternative};
   font-feature-settings: 'ss10' on;
   ${DodamTypography.Label.Medium}
 
   ${({ status }) => {
     if (status === 'error') {
       return css`
-        color: ${DodamLightTheme.statusNegative};
+        color: ${({ theme }) => theme.statusNegative};
       `;
     }
   }}
@@ -122,68 +122,68 @@ interface Status {
 
 const LabelStyle: Status = {
   default: css`
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
   `,
   unfocused: css`
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
   `,
   focused: css`
-    color: ${DodamLightTheme.primaryNormal};
+    color: ${({ theme }) => theme.primaryNormal};
   `,
   disabled: css`
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
   `,
   error: css`
-    color: ${DodamLightTheme.statusNegative};
+    color: ${({ theme }) => theme.statusNegative};
   `,
 };
 
 const InputStyle: Status = {
   default: css`
-    background: ${DodamLightTheme.backgroundNormal};
+    background: ${({ theme }) => theme.backgroundNormal};
     input {
-      color: ${DodamLightTheme.lableAlternative};
+      color: ${({ theme }) => theme.labelAlternative};
       &::placeholder {
-        color: ${DodamLightTheme.labelAlternative};
+        color: ${({ theme }) => theme.labelAlternative};
       }
     }
   `,
   unfocused: css`
-    background: ${DodamLightTheme.backgroundNormal};
+    background: ${({ theme }) => theme.backgroundNormal};
     input {
-      color: ${DodamLightTheme.labelStrong};
+      color: ${({ theme }) => theme.labelStrong};
       &::placeholder {
-        color: ${DodamLightTheme.labelStrong};
+        color: ${({ theme }) => theme.labelStrong};
       }
     }
   `,
   focused: css`
     background: linear-gradient(0deg, rgba(0, 139, 255, 0.03) 0%, rgba(0, 139, 255, 0.03) 100%),
-      ${DodamLightTheme.backgroundNormal};
+      ${({ theme }) => theme.primaryNormal};
     input {
-      color: ${DodamLightTheme.labelStrong};
+      color: ${({ theme }) => theme.labelStrong};
       &::placeholder {
-        color: ${DodamLightTheme.labelStrong};
+        color: ${({ theme }) => theme.labelStrong};
       }
     }
-    border: 1px solid ${DodamLightTheme.primaryNormal};
+    border: 1px solid ${({ theme }) => theme.primaryNormal};
   `,
   disabled: css`
-    background: ${DodamLightTheme.backgroundAlternative};
+    background: ${({ theme }) => theme.backgroundAlternative};
     input {
-      color: ${DodamLightTheme.labelAlternative};
+      color: ${({ theme }) => theme.labelAlternative};
       &::placeholder {
-        color: ${DodamLightTheme.labelAlternative};
+        color: ${({ theme }) => theme.labelAlternative};
       }
     }
   `,
   error: css`
     background: rgba(229, 30, 30, 0.03);
-    border: 1px solid ${DodamLightTheme.statusNegative};
+    border: 1px solid ${({ theme }) => theme.statusNegative};
     input {
-      color: ${DodamLightTheme.labelStrong};
+      color: ${({ theme }) => theme.labelStrong};
       &::placeholder {
-        color: ${DodamLightTheme.labelStrong};
+        color: ${({ theme }) => theme.labelStrong};
       }
     }
   `,

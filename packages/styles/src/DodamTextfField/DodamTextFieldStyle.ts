@@ -1,5 +1,5 @@
-import { RuleSet, css } from "styled-components";
-import { DodamLightTheme } from "../DodamTheme";
+import { RuleSet, css } from 'styled-components';
+import { DodamLightTheme } from '../DodamTheme';
 
 interface StatusType {
   default: RuleSet;
@@ -11,36 +11,36 @@ interface StatusType {
 
 export const LabelStyle: StatusType = {
   default: css`
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
   `,
   unfocused: css`
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
   `,
   focused: css`
-    color: ${DodamLightTheme.primaryNormal};
+    color: ${({ theme }) => theme.primaryNormal};
   `,
   disabled: css`
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
   `,
   error: css`
-    color: ${DodamLightTheme.statusNegative};
+    color: ${({ theme }) => theme.statusNegative};
   `,
 };
 
 export const InputStyle: StatusType = {
   default: css`
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
   `,
   unfocused: css`
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
   `,
   focused: css`
-    color: ${DodamLightTheme.primaryNormal};
+    color: ${({ theme }) => theme.primaryNormal};
   `,
   disabled: css`
-    color: ${DodamLightTheme.labelAlternative};
+    color: ${({ theme }) => theme.labelAlternative};
   `,
   error: css`
-    color: ${DodamLightTheme.statusNegative};
+    color: ${({ theme }) => theme.statusNegative};
   `,
 };
