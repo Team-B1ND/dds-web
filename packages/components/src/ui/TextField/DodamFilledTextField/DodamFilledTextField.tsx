@@ -24,7 +24,7 @@ export const DodamFilledTextField = ({
   onchange,
 }: DodamFilledTextFieldProps) => {
   return (
-    <>
+    <div style={{ position: 'relative' }}>
       <StyleFilledTextField>
         <StyledFilledTextFieldTitle status={status}>{label}</StyledFilledTextFieldTitle>
         <StyledFilledTextFieldInput status={status}>
@@ -39,7 +39,7 @@ export const DodamFilledTextField = ({
         </StyledFilledTextFieldInput>
       </StyleFilledTextField>
       <StyledFilledTextFieldSupportingText status={status}>{supportingText}</StyledFilledTextFieldSupportingText>
-    </>
+    </div>
   );
 };
 
