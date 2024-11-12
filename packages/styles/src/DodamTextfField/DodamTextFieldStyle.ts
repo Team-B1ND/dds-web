@@ -32,7 +32,7 @@ export const InputStyle: StatusType = {
     color: ${DodamLightTheme.labelAlternative};
   `,
   unfocused: css`
-    color: ${DodamLightTheme.};
+    color: ${DodamLightTheme.labelAlternative};
   `,
   focused: css`
     color: ${DodamLightTheme.primaryNormal};

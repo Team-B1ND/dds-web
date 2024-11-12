@@ -1,10 +1,10 @@
-import { DodamLightTheme, DodamShape, DodamTypography } from "@dds-web/styles";
-import React from "react";
-import styled, { RuleSet, css } from "styled-components";
-import { Xmark } from "../../../../../assets/src/icons/Xmark";
-import { ExclamationmarkCircle } from "../../../../../assets/src/icons/ExclamationmarkCircle";
+import { DodamLightTheme, DodamShape, DodamTypography } from '@dds-web/styles';
+import React from 'react';
+import styled, { RuleSet, css } from 'styled-components';
+import { XmarkCircle } from '@dds-web/assets';
+import { ExclamationmarkCircle } from '@dds-web/assets';
 
-type StatusType = "default" | "unfocused" | "focused" | "error" | "disabled";
+type StatusType = 'default' | 'unfocused' | 'focused' | 'error' | 'disabled';
 
 interface DodamFilledTextFieldProps {
   label: string;
@@ -29,12 +29,12 @@ export const DodamFilledTextField = ({
         <StyledFilledTextFieldTitle status={status}>{label}</StyledFilledTextFieldTitle>
         <StyledFilledTextFieldInput status={status}>
           <input placeholder={placeholder} value={value} onChange={onchange} />
-          {status === "error" ? (
+          {status === 'error' ? (
             <ExclamationmarkCircle color={DodamLightTheme.statusNegative} />
-          ) : status === "default" || status === "disabled" ? (
+          ) : status === 'default' || status === 'disabled' ? (
             <></>
           ) : (
-            <Xmark color={DodamLightTheme.labelAlternative} />
+            <XmarkCircle color={DodamLightTheme.labelAlternative} />
           )}
         </StyledFilledTextFieldInput>
       </StyleFilledTextField>
@@ -57,7 +57,7 @@ const StyleFilledTextField = styled.div`
 
 const StyledFilledTextFieldTitle = styled.span<{ status: StatusType }>`
   color: ${DodamLightTheme.labelAlternative};
-  font-feature-settings: "ss10" on;
+  font-feature-settings: 'ss10' on;
   ${DodamTypography.Label.Medium}
   ${({ status }) => {
     return LabelStyle[status];
@@ -75,7 +75,7 @@ const StyledFilledTextFieldInput = styled.div<{ status: StatusType }>`
   padding: 4px 12px 4px 16px;
 
   border: 1px solid ${DodamLightTheme.labelAlternative};
-  ${DodamShape["Medium"]}
+  ${DodamShape['Medium']}
 
   input {
     color: ${DodamLightTheme.labelAlternative};
@@ -100,11 +100,11 @@ const StyledFilledTextFieldSupportingText = styled.span<{ status: StatusType }>`
   top: 94px;
 
   color: ${DodamLightTheme.labelAlternative};
-  font-feature-settings: "ss10" on;
+  font-feature-settings: 'ss10' on;
   ${DodamTypography.Label.Medium}
 
   ${({ status }) => {
-    if (status === "error") {
+    if (status === 'error') {
       return css`
         color: ${DodamLightTheme.statusNegative};
       `;
