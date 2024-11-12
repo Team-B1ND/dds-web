@@ -1,14 +1,19 @@
 import React, { ReactNode } from "react";
-import { DodamTheme, ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
+import { DodamLightTheme, DodamDarkTheme } from "./DodamTheme";
 
 export interface DodamThemeProviderProps {
   children: ReactNode;
-  theme: DodamTheme;
+  theme: "LIGHT" | "DARK";
 }
 
 export const DodamThemeProvider = ({
   children,
   theme,
 }: DodamThemeProviderProps) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme === "LIGHT" ? DodamLightTheme : DodamDarkTheme}>
+      {children}
+    </ThemeProvider>
+  );
 };

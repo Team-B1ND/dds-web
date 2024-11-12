@@ -1,7 +1,11 @@
-import { RuleSet } from "styled-components";
+import { type Interpolation } from "styled-components";
 
-export interface IconProps {
+export interface StaticIconProps {
   size?: number;
+}
+
+export interface IconProps extends StaticIconProps {
   color?: string;
-  customStyle?: RuleSet;
+  $svgStyle?: Interpolation<object>;
+  $pathStyle?: Interpolation<object>;
 }
