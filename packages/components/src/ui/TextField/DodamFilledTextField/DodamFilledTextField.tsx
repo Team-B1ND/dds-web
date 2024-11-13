@@ -159,7 +159,7 @@ const InputStyle: Status = {
   `,
   focused: css`
     background: linear-gradient(0deg, rgba(0, 139, 255, 0.03) 0%, rgba(0, 139, 255, 0.03) 100%),
-      ${({ theme }) => theme.primaryNormal};
+      ${({ theme }) => theme.backgroundNormal};
     input {
       color: ${({ theme }) => theme.labelStrong};
       &::placeholder {
