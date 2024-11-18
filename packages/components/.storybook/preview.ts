@@ -6,7 +6,7 @@ import {
   DodamLightTheme,
   DodamDarkTheme,
 } from "@dds-web/styles";
-
+import { DodamColor } from "../../foundations/src";
 const preview: Preview = {
   parameters: {
     backgrounds:{
@@ -27,7 +27,7 @@ const preview: Preview = {
       default: "LIGHT",
       values: [
         { name: "LIGHT", value: DodamLightTheme.backgroundNormal },
-        { name: "DARK", value: DodamDarkTheme.backgroundNormal },
+        { name: "DARK", value: DodamDarkTheme.backgroundAlternative },
       ],
     },
   },

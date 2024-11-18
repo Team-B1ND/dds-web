@@ -4,7 +4,7 @@ import { HTMLAttributes,ButtonHTMLAttributes } from "react";
 import { DodamShape } from "@dds-web/styles";
 
 export const DatePickerContainer = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.contrast};
+  border-bottom: 1px solid ${({ theme }) => theme.labelStrong};
   position: relative;
 
   &:hover {
@@ -16,8 +16,7 @@ export const DatePickerWrap = styled.div`
   width: 100%;
   height: 100%;
   padding: 6px 0px;
-  min-width: 100px;
-  color: ${({ theme }) => theme.contrast};
+  min-width: 110px;
   cursor: pointer;
   display: flex;
   align-items: flex-end;
@@ -26,7 +25,7 @@ export const DatePickerWrap = styled.div`
 `;
 
 export const DatePickerDate = styled.span`
-  color: ${({ theme }) => theme.contrast};
+  color: ${({ theme }) => theme.labelStrong};
 `;
 
 export const DatePickerButton = styled.button`
@@ -36,7 +35,6 @@ export const DatePickerButton = styled.button`
   align-items: center;
   justify-content: center;
   background: none;
-  color: ${({ theme }) => theme.contrast};
   border: 0px;
   cursor: pointer;
   position: absolute;
@@ -58,11 +56,11 @@ export const DatePickerButtonIcon = styled.div`
 `;
 
 export const DatePickerCalendar = styled.div<{ x: number; y: number }>`
-  max-width: 310px;
-  max-height: 310px;
+  max-width: 320px;
+  max-height: 350px;
   padding: 24px;
   border-radius: 28px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.backgroundNormal};
   top: ${({ y }) => y + 1}px;
   left: ${({ x }) => x}px;
   position: fixed;
@@ -84,7 +82,7 @@ export const DatePickerCalendarHeader = styled.div`
   flex-direction: column;
   justify-content: space-between;
   font-size: 1rem;
-  color: black;
+  color: ${({ theme }) => theme.labelStrong};
 `;
 export const DatePickerHeaderTitle = styled.div`
   display: flex;
@@ -107,14 +105,13 @@ export const DatePickerCalendarHeaderArrow = styled.button`
   border-radius: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-
-
+  justify-content: space-around;
 `;
 
 export const DatePickerCalendarHeaderArrowIcon = styled.div`
   width: 20px;
   height: 20px;
+  border-radius: 100%;
   object-fit: scale-down;
   fill: #0000008a;
   .DatePickerArrowIconColor {
@@ -129,15 +126,15 @@ export const DatePickerCalendarHeaderDayWrap=styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  justify-content: space-between;
+  align-items: center;
 `;
 
 export const DatePickerCalendarHeaderDayItem=styled.span`
   width: 36px;
   margin: 0px 2px;
-  color: #00000061;
   font-size: 12px;
   text-align: center;
+  color: ${({ theme }) => theme.labelAlternative};
 `;
 
 export const DatePickerCalendarItemWrap =styled.div`
@@ -149,15 +146,16 @@ export const DatePickerCalendarItemWrap =styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   row-gap: 0px;
+  
 `;
 export const DatePickerCalendarItem = styled.button<{
   isDisabled: boolean;
   isSelected: boolean;
 }>`
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   margin: 0px 2px;
-  color: black;
+  color: ${({ theme }) => theme.labelAlternative};
   font-size: 14px;
   display: flex;
   align-items: center;
@@ -178,7 +176,7 @@ export const DatePickerCalendarItem = styled.button<{
           ${isSelected
             ? css`
                 color: white;
-                background-color: ${DodamLightTheme.primaryNormal};
+                background-color: ${({ theme }) => theme.primaryNormal};
               `
             : css`
                 &:hover {

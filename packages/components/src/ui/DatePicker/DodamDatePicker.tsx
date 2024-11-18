@@ -1,10 +1,12 @@
 import React, { CSSProperties } from "react";
 import * as S from "./DodamDatePicker.style";
 import { useDatePicker } from "@dds-web/hooks";
-import { ArrowLeft, Calender } from "@dds-web/assets";
+import { ChevronRight, ChevronLeft, Calender } from "@dds-web/assets";
 import {DAY} from "./constant";
-import { css } from "styled-components";
 import {DodamHeading2} from "../Typography"
+import { DodamLightTheme } from "@dds-web/styles";
+
+
 export interface DatePickerProps {
   itemKey: string;
   width: string | number;
@@ -41,7 +43,6 @@ export const DodamDatePicker = ({
         </S.DatePickerDate>
         {children}
         <S.DatePickerButton>
-        
           <S.DatePickerButtonIcon>
             <Calender color="black"/>
           </S.DatePickerButtonIcon>
@@ -65,17 +66,12 @@ export const DodamDatePicker = ({
             <S.DatePickerCalendarHeaderArrow>
               <S.DatePickerCalendarHeaderArrowIcon 
                 onClick={() => dataPicker.onChangeCalendarMonth("prev")}>
-              <ArrowLeft color="black"/>
+                <ChevronLeft color={`${DodamLightTheme.primaryNormal}`}/>
               </S.DatePickerCalendarHeaderArrowIcon>
               <S.DatePickerCalendarHeaderArrowIcon
                 onClick={() => dataPicker.onChangeCalendarMonth("next")}
               >
-              <ArrowLeft
-                color="black"
-                customStyle={css`
-                transform: rotate(180deg);
-                `}
-                />
+                <ChevronRight color={`${DodamLightTheme.primaryNormal}`}/>
               </S.DatePickerCalendarHeaderArrowIcon>
             </S.DatePickerCalendarHeaderArrow>
             </S.DatePickerHeaderContect>
@@ -93,11 +89,11 @@ export const DodamDatePicker = ({
             {dataPicker.dayList.map((day, idx) => {
               const isDisabled =
                 idx < dataPicker.lastDate || (dataPicker.firstDate > 0 && idx > dataPicker.firstDate - 1);
-              const isSelected =
+        
+                const isSelected =
                 dataPicker.calendarDate.year === dataPicker.selectDate.year &&
                 dataPicker.calendarDate.month === dataPicker.selectDate.month &&
                 day === dataPicker.selectDate.day;
-
               return (
                 <S.DatePickerCalendarItem
                   isDisabled={isDisabled}
@@ -106,7 +102,7 @@ export const DodamDatePicker = ({
                   onClick={() => dataPicker.onChangeSelectDate(day)}
                   key={`${itemKey} datePicker calendarItem ${idx}`}
                 >
-                  {day}
+                  {day!==0 ? day : ""}
                 </S.DatePickerCalendarItem>
               );
             })}

@@ -1,8 +1,8 @@
 import { DodamLightTheme, DodamShape, DodamTypography } from "@dds-web/styles";
 import React from "react";
 import styled, { RuleSet, css } from "styled-components";
-import { Xmark } from "../../../../../assets/src/icons/Xmark";
-import { ExclamationmarkCircle } from "../../../../../assets/src/icons/ExclamationmarkCircle";
+import { XmarkCircle } from "@dds-web/assets";
+import { ExclamationmarkCircle } from "@dds-web/assets";
 
 type StatusType = "default" | "unfocused" | "focused" | "error" | "disabled";
 
@@ -34,7 +34,7 @@ export const DodamFilledTextField = ({
           ) : status === "default" || status === "disabled" ? (
             <></>
           ) : (
-            <Xmark color={DodamLightTheme.labelAlternative} />
+            <XmarkCircle color={DodamLightTheme.labelAlternative} />
           )}
         </StyledFilledTextFieldInput>
       </StyleFilledTextField>
@@ -140,7 +140,7 @@ const InputStyle: Status = {
   default: css`
     background: ${DodamLightTheme.backgroundNormal};
     input {
-      color: ${DodamLightTheme.lableAlternative};
+      color: ${DodamLightTheme};
       &::placeholder {
         color: ${DodamLightTheme.labelAlternative};
       }

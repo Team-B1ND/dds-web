@@ -11,12 +11,20 @@ export const useDatePicker = ({
   splitCharacter,
   onChange,
 }: DatePickerParams) => {
+
+  //오늘 날짜
+  const today = new Date().getDate();
+  const todayDate = new Date().toLocaleDateString();
+  console.log(todayDate);
+  
+
   //날짜 초깃값
   const date = value.split(splitCharacter);
   const $year = Number(date[0]);
   const $month = Number(date[1]);
   const $day = Number(date[2]);
 
+  
   //캘린터 핸들 상태
   const [fold, setFold] = useState(true);
 
@@ -25,6 +33,9 @@ export const useDatePicker = ({
     year: $year,
     month: $month,
   });
+  
+
+  const mmd = calendarDate.month
 
   //사용자가 선택한 날짜
   const [selectDate, setSelectDate] = useState({
@@ -63,7 +74,6 @@ export const useDatePicker = ({
 
   //캘린터 달 변경시 날짜배열 만드는 함수
   const createDayList = (month: number): number[] => {
-    let beforeLastDate = new Date(calendarDate.year, month - 1, 0).getDate();
     let beforeLastDay = new Date(calendarDate.year, month - 1, 0).getDay();
     let afterLastDate = new Date(calendarDate.year, month, 0).getDate();
     let afterLastDay = new Date(calendarDate.year, month, 0).getDay();
@@ -73,12 +83,13 @@ export const useDatePicker = ({
 
     if (beforeLastDay !== 6) {
       for (let i = 0; i < beforeLastDay + 1; i++) {
-        beforeDayList.unshift(beforeLastDate - i);
+        beforeDayList.unshift(0);
       }
     }
 
+
     for (let i = 1; i < 7 - afterLastDay; i++) {
-      afterDayList.push(i);
+      afterDayList.push(0);
     }
 
     let today = [...Array(afterLastDate + 1).keys()].slice(1);
@@ -141,6 +152,8 @@ export const useDatePicker = ({
   //캘린더 날짜 배열을 다시 만들기 위해 캘린더 달 체크
   useEffect(() => {
     setDayList(createDayList(calendarDate.month));
+    console.log(calendarDate.month);
+    
   }, [calendarDate.month]);
 
   //캘린더 날짜 배열 다시 만들어지면 해당 달 첫째날 마지막날 계산을 위해 날짜 배열 체크
@@ -191,6 +204,7 @@ export const useDatePicker = ({
     calendarDate,
     dayList,
     onChangeCalendarMonth,
+    today,
   };
 };
 

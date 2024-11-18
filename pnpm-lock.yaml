@@ -45,22 +45,31 @@ importers:
 
   packages/components:
     dependencies:
+      '@testing-library/react':
+        specifier: ^16.0.1
+        version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.2.22)(@types/react@18.2.67)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-      styled-components:
-        specifier: ^6.1.8
-        version: 6.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      typescript:
+        specifier: ^5.4.2
+        version: 5.4.2
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^1.2.24
         version: 1.2.24(react@18.2.0)
       '@dds-web/assets':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../assets
+      '@dds-web/foundations':
+        specifier: workspace:*
+        version: link:../foundations
+      '@dds-web/hooks':
+        specifier: workspace:*
+        version: link:../hooks
       '@dds-web/styles':
         specifier: workspace:*
         version: link:../styles
@@ -103,6 +112,9 @@ importers:
       storybook:
         specifier: ^8.4.1
         version: 8.4.1(prettier@3.2.5)
+      styled-components:
+        specifier: ^6.1.8
+        version: 6.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       swc-loader:
         specifier: ^0.2.6
         version: 0.2.6(@swc/core@1.4.8)(webpack@5.90.3(@swc/core@1.4.8)(esbuild@0.20.2))
@@ -927,6 +939,21 @@ packages:
   '@testing-library/jest-dom@6.5.0':
     resolution: {integrity: sha512-xGGHpBXYSHUUr6XsKBfs85TWlYKpTc37cSBBVrXcib2MkHLboWlkClhWF37JKlDb9KEq3dHs+f2xR7XJEWGBxA==}
     engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
+
+  '@testing-library/react@16.0.1':
+    resolution: {integrity: sha512-dSmwJVtJXmku+iocRhWOUFbrERC76TX2Mnf0ATODz8brzAZrMBbzLwQixlBSanZxR6LddK3eiwpSFZgDET1URg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@testing-library/dom': ^10.0.0
+      '@types/react': ^18.0.0
+      '@types/react-dom': ^18.0.0
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
 
   '@testing-library/user-event@14.5.2':
     resolution: {integrity: sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==}
@@ -4515,6 +4542,16 @@ snapshots:
       dom-accessibility-api: 0.6.3
       lodash: 4.17.21
       redent: 3.0.0
+
+  '@testing-library/react@16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.2.22)(@types/react@18.2.67)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@babel/runtime': 7.24.1
+      '@testing-library/dom': 10.4.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.67
+      '@types/react-dom': 18.2.22
 
   '@testing-library/user-event@14.5.2(@testing-library/dom@10.4.0)':
     dependencies:

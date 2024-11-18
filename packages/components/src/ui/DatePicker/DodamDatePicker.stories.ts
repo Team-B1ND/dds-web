@@ -6,13 +6,6 @@ const meta: Meta<typeof DodamDatePicker> = {
   component: DodamDatePicker,
   parameters: {
     layout: "centered",
-    docs: {
-      story: {
-        inline: false,
-        iframeWidth:300,
-        iframeHeight: 300,
-      }
-    }
   },
   tags: ["autodocs"],
 };
@@ -26,7 +19,7 @@ export const StyledDatePicker: Story = {
     itemKey: "unique-key", 
     width: "100%",         
     height: "40px",        
-    value: "2024-11-07",   
+    value: "2024-11-12",   
     splitCharacter: "-",   
     onChange: (date: Date) => console.log(date), 
     title: "외출 일시"
