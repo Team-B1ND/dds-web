@@ -1,6 +1,4 @@
 import styled, { css } from "styled-components";
-import {DodamLightTheme} from "@dds-web/styles"
-import { HTMLAttributes,ButtonHTMLAttributes } from "react";
 import { DodamShape } from "@dds-web/styles";
 
 export const DatePickerContainer = styled.div`
@@ -167,7 +165,7 @@ export const DatePickerCalendarItem = styled.button<{
   ${({ isDisabled, isSelected }) =>
     isDisabled
       ? css`
-          color: #969696;
+          opacity: 0.5;
           cursor: default;
         `
       : css`

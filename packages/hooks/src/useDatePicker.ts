@@ -10,13 +10,7 @@ export const useDatePicker = ({
   value,
   splitCharacter,
   onChange,
-}: DatePickerParams) => {
-
-  //오늘 날짜
-  const today = new Date().getDate();
-  const todayDate = new Date().toLocaleDateString();
-  console.log(todayDate);
-  
+}: DatePickerParams) => {  
 
   //날짜 초깃값
   const date = value.split(splitCharacter);
@@ -35,7 +29,10 @@ export const useDatePicker = ({
   });
   
 
-  const mmd = calendarDate.month
+  //value전날 확인
+  const beforePeriod = $day + new Date(calendarDate.year, calendarDate.month - 1, 0).getDay();
+ 
+  
 
   //사용자가 선택한 날짜
   const [selectDate, setSelectDate] = useState({
@@ -77,6 +74,7 @@ export const useDatePicker = ({
     let beforeLastDay = new Date(calendarDate.year, month - 1, 0).getDay();
     let afterLastDate = new Date(calendarDate.year, month, 0).getDate();
     let afterLastDay = new Date(calendarDate.year, month, 0).getDay();
+    
 
     let beforeDayList: number[] = [];
     let afterDayList: number[] = [];
@@ -152,7 +150,6 @@ export const useDatePicker = ({
   //캘린더 날짜 배열을 다시 만들기 위해 캘린더 달 체크
   useEffect(() => {
     setDayList(createDayList(calendarDate.month));
-    console.log(calendarDate.month);
     
   }, [calendarDate.month]);
 
@@ -204,7 +201,8 @@ export const useDatePicker = ({
     calendarDate,
     dayList,
     onChangeCalendarMonth,
-    today,
+    $month,
+    beforePeriod
   };
 };
 

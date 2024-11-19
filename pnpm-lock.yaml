@@ -48,12 +48,15 @@ importers:
       '@testing-library/react':
         specifier: ^16.0.1
         version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.2.22)(@types/react@18.2.67)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@types/styled-components':
+        specifier: ^5.1.34
+        version: 5.1.34
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
+      styled-components:
+        specifier: ^6.1.8
+        version: 6.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       typescript:
         specifier: ^5.4.2
         version: 5.4.2
@@ -106,15 +109,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.22
         version: 18.2.22
-      '@types/styled-components':
-        specifier: ^5.1.34
-        version: 5.1.34
       storybook:
         specifier: ^8.4.1
         version: 8.4.1(prettier@3.2.5)
-      styled-components:
-        specifier: ^6.1.8
-        version: 6.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       swc-loader:
         specifier: ^0.2.6
         version: 0.2.6(@swc/core@1.4.8)(webpack@5.90.3(@swc/core@1.4.8)(esbuild@0.20.2))

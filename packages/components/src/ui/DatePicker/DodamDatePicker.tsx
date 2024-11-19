@@ -5,8 +5,6 @@ import { ChevronRight, ChevronLeft, Calender } from "@dds-web/assets";
 import {DAY} from "./constant";
 import {DodamHeading2} from "../Typography"
 import { DodamLightTheme } from "@dds-web/styles";
-
-
 export interface DatePickerProps {
   itemKey: string;
   width: string | number;
@@ -14,7 +12,6 @@ export interface DatePickerProps {
   customStyle?: CSSProperties;
   onChange: (e: Date) => void;
   value: string;
-  splitCharacter: string;
   children?: JSX.Element | string;
   title : string;
 }
@@ -26,10 +23,10 @@ export const DodamDatePicker = ({
   customStyle,
   onChange,
   value,
-  splitCharacter,
   children,
   title,
 }: DatePickerProps) => {
+  const splitCharacter = "-"
   const { ...dataPicker } = useDatePicker({ value, splitCharacter, onChange });
 
   return (
@@ -44,7 +41,7 @@ export const DodamDatePicker = ({
         {children}
         <S.DatePickerButton>
           <S.DatePickerButtonIcon>
-            <Calender color="black"/>
+            <Calender color={`${({ theme }:any) => theme.backgroundNormal}`}/>
           </S.DatePickerButtonIcon>
         </S.DatePickerButton>
       </S.DatePickerWrap>
@@ -88,7 +85,8 @@ export const DodamDatePicker = ({
           <S.DatePickerCalendarItemWrap>
             {dataPicker.dayList.map((day, idx) => {
               const isDisabled =
-                idx < dataPicker.lastDate || (dataPicker.firstDate > 0 && idx > dataPicker.firstDate - 1);
+                  idx < dataPicker.lastDate || (dataPicker.firstDate > 0 && idx > dataPicker.firstDate - 1 ) || (idx < dataPicker.beforePeriod && dataPicker.calendarDate.month === dataPicker.$month);
+
         
                 const isSelected =
                 dataPicker.calendarDate.year === dataPicker.selectDate.year &&

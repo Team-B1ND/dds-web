@@ -19,9 +19,8 @@ export const StyledDatePicker: Story = {
     itemKey: "unique-key", 
     width: "100%",         
     height: "40px",        
-    value: "2024-11-12",   
-    splitCharacter: "-",   
-    onChange: (date: Date) => console.log(date), 
+    value: "2024-11-12",     
+    onChange: (date: Date) => alert(date), 
     title: "외출 일시"
   } as DatePickerProps, 
 };
