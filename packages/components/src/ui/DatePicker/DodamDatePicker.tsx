@@ -14,6 +14,7 @@ export interface DatePickerProps {
   value: string;
   children?: JSX.Element | string;
   title : string;
+  color : string;
 }
 
 export const DodamDatePicker = ({
@@ -25,6 +26,7 @@ export const DodamDatePicker = ({
   value,
   children,
   title,
+  color,
 }: DatePickerProps) => {
   const splitCharacter = "-"
   const { ...dataPicker } = useDatePicker({ value, splitCharacter, onChange });
@@ -41,7 +43,7 @@ export const DodamDatePicker = ({
         {children}
         <S.DatePickerButton>
           <S.DatePickerButtonIcon>
-            <Calender color={`${({ theme }:any) => theme.backgroundNormal}`}/>
+            <Calender color={color}/>
           </S.DatePickerButtonIcon>
         </S.DatePickerButton>
       </S.DatePickerWrap>
