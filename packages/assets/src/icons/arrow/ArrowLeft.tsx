@@ -11,7 +11,6 @@ export const ArrowLeft = ({ size = 24, color = "#000", $svgStyle, $pathStyle }: 
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       $svgStyle={$svgStyle!}>
-      styl=
       <mask
         id="mask0_2_901"
         style={{ maskType: "luminance" }}
