@@ -6,12 +6,20 @@ import {
   DodamLightTheme,
   DodamDarkTheme,
 } from "@dds-web/styles";
-
+import { DodamColor } from "../../foundations/src";
 const preview: Preview = {
   parameters: {
+    backgrounds:{
+      default: "defalut",
+      values: [
+        {
+            name: "defalut",
+            value:  DodamColor.netural99,
+        }
+    ],
+    },
     controls: {
       matchers: {
-        color: /(background|color)$/i,
         date: /Date$/i,
       },
     },
@@ -19,7 +27,7 @@ const preview: Preview = {
       default: "LIGHT",
       values: [
         { name: "LIGHT", value: DodamLightTheme.backgroundNormal },
-        { name: "DARK", value: DodamDarkTheme.backgroundNormal },
+        { name: "DARK", value: DodamDarkTheme.backgroundAlternative },
       ],
     },
   },

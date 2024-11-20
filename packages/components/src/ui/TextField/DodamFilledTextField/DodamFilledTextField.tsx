@@ -51,7 +51,6 @@ const StyleFilledTextField = styled.div`
 
   width: 380px;
   height: 80px;
-
   position: relative;
 `;
 

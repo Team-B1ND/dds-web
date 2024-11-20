@@ -3,21 +3,21 @@ import { FontScale, TypographyProps } from "../type";
 import { DodamTypography } from "@dds-web/styles";
 import styled, { RuleSet } from "styled-components";
 
-export const DodamBody = ({
+export const DodamHeading1 = ({
   text,
   fontScale = "Medium",
   customStyle,
   ...props
 }: TypographyProps) => {
   return (
-    <BodyText fontScale={fontScale} customStyle={customStyle!} {...props}>
+    <Heading1Text fontScale={fontScale} customStyle={customStyle!} {...props}>
       {text}
-    </BodyText>
+    </Heading1Text>
   );
 };
 
-const BodyText = styled.p<{ fontScale: FontScale; customStyle: RuleSet }>`
+const Heading1Text = styled.p<{ fontScale: FontScale; customStyle: RuleSet }>`
   margin: 0;
-  ${({ fontScale }) => DodamTypography.Body[fontScale]}
+  ${({ fontScale }) => DodamTypography.Heading1[fontScale]}
   ${({ customStyle }) => customStyle}
 `;

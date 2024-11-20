@@ -3,7 +3,8 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "types": ["react","styled-components"],
   },
   "extends": "../../tsconfig.base.json",
   "include": ["./src"]
