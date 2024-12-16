@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 export const StyledContentButtonButton: Story = {
   args: {
     children: "svg 아이콘",
-    typography: ["Body", "Medium"],
+    typography: ["Body1", "Medium"],
     customStyle: css`
       min-height: 30px;
     `,

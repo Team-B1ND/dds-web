@@ -4,7 +4,7 @@ import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
 import { FlexLayout } from "../../../layout";
 
 type typographyType = [
-  "Title1" | "Title2" | "Title3" | "Heading1" | "Heading2" | "Headline" | "Body" | "Label" | "Caption1" | "Caption2",
+  "Title1" | "Title2" | "Title3" | "Heading1" | "Heading2" | "Headline" | "Body1" | "Body2" | "Label" | "Caption1" | "Caption2",
   "Bold" | "Medium" | "Regular",
 ];
 
@@ -22,15 +22,17 @@ export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
   colors?: ColorsType;
   radius?: ShapeSizeType;
   padding?: CSSProperties["padding"];
+  onclick?: () => void;
   customStyle?: RuleSet;
 }
 
 export const DodamContentButton = ({
   children,
-  typography = ["Body", "Bold"],
+  typography = ["Body1", "Bold"],
   colors,
   radius = "Medium",
   padding,
+  onclick,
   customStyle,
   ...props
 }: DodamContentButton) => {
@@ -42,6 +44,7 @@ export const DodamContentButton = ({
       padding={padding}
       customStyle={customStyle!}
       {...props}
+      onClick={onclick}
     >
       {children}
     </StyledContentButton>
