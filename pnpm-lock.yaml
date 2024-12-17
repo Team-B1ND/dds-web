@@ -76,6 +76,9 @@ importers:
       '@dds-web/styles':
         specifier: workspace:*
         version: link:../styles
+      '@dds-web/utils':
+        specifier: workspace:^
+        version: link:../utils
       '@storybook/addon-essentials':
         specifier: ^8.4.1
         version: 8.4.1(@types/react@18.2.67)(storybook@8.4.1(prettier@3.2.5))

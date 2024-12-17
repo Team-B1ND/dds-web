@@ -15,5 +15,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const StyledTextField: Story = {
-  args: {},
+  args: {
+    id: "text",
+    name: "textField",
+    isError: false,
+    value: "Input text",
+    children: "Label text",
+    onclick: () => console.log("값 삭제"),
+    onchange: () => console.log("값 변경"),
+    keydown: () => console.log("함수 호출"),
+  },
 };
