@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DodamDialog } from "./DodamDialog";
 import { css } from "styled-components";
-import {DodamLightTheme} from "@dds-web/styles"
+
 const meta = {
   title: "ui/DodamDialog",
   component: DodamDialog,
@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 const AlertText = css`
   cursor: pointer;
   padding: 8px 12px;
-  color: ${({ theme }) => DodamLightTheme.primaryNormal};
+  color: ${({ theme }) => theme.primaryNormal};
 `;
 
 export const AlertDialog: Story = {
@@ -41,14 +41,14 @@ const StyledButton = css`
   width: 50%;
   height: 50px;
   min-height: 50px;
-  color: ${DodamLightTheme.staticWhite};
-  background-color: ${ DodamLightTheme.primaryNormal};
+  color: ${({ theme }) => theme.staticWhite};
+  background-color: ${({ theme }) => theme.primaryNormal};
 
 `;
 
 const DismissButton = css`
-  color: ${DodamLightTheme.labelNetural};
-  background-color: ${ DodamLightTheme.fillNormal};
+  color: ${({ theme }) => theme.labelNetural};
+  background-color: ${({ theme }) => theme.fillNormal};
   width: 50%;
   height: 50px;
   min-height: 50px;

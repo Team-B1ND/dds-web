@@ -35,7 +35,7 @@ const StyledToggleButton = styled.span<{ isAtv: boolean }>`
   height: 25px;
 
   ${DodamShape.ExtraLarge};
-  background-color: ${({ theme }) => theme.staticWthie};
+  background-color: ${({ theme }) => theme.staticWhite};
 
   transition: 0.2s ease-out;
   left: ${({ isAtv }) => (isAtv ? "38%" : "0")};

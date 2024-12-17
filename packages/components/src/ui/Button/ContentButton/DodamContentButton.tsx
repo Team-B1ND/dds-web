@@ -69,13 +69,13 @@ const StyledContentButton = styled.button<{
 
   transition: all 0.15s ease-in-out;
   ${({ colors, theme }) => css`
-    color: ${colors?.textColor || theme.onSurface};
+    color: ${colors?.textColor || theme.labelStrong};
     background-color: ${colors?.backgroundColor || "transparent"};
 
     &:active {
       transform: scale(0.95);
-      color: ${colors?.textActiveColor || theme.onSurface};
-      background-color: ${colors?.activeBackgroundColor || theme.secondary};
+      color: ${colors?.textActiveColor || theme.labelStrong};
+      background-color: ${colors?.activeBackgroundColor || "transparent"};
     }
   `}
 
