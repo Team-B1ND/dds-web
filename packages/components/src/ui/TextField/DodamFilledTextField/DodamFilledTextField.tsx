@@ -1,44 +1,62 @@
-import { DodamLightTheme, DodamShape, DodamTypography } from '@dds-web/styles';
-import React from 'react';
-import styled, { RuleSet, css } from 'styled-components';
-import { XmarkCircle } from '@dds-web/assets';
-import { ExclamationmarkCircle } from '@dds-web/assets';
-
-type StatusType = 'default' | 'unfocused' | 'focused' | 'error' | 'disabled';
+import React, { useState } from "react";
+import styled, { useTheme } from "styled-components";
+import { XmarkCircle } from "@dds-web/assets";
+import { ExclamationmarkCircle } from "@dds-web/assets";
+import { DodamShape, DodamTypography } from "@dds-web/styles";
+import { hexToRgba } from "@dds-web/utils";
 
 interface DodamFilledTextFieldProps {
   label: string;
   value: string;
+  isError: boolean;
   supportingText?: string;
   placeholder: string;
   onchange: () => void;
-  status: StatusType;
+  onclick: () => void;
 }
 
 export const DodamFilledTextField = ({
   label,
   value,
+  isError,
   supportingText,
   placeholder,
-  status,
   onchange,
+  onclick,
 }: DodamFilledTextFieldProps) => {
+  const theme = useTheme();
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <StyleFilledTextField>
-        <StyledFilledTextFieldTitle status={status}>{label}</StyledFilledTextFieldTitle>
-        <StyledFilledTextFieldInput status={status}>
-          <input placeholder={placeholder} value={value} onChange={onchange} />
-          {status === 'error' ? (
-            <ExclamationmarkCircle color={DodamLightTheme.statusNegative} />
-          ) : status === 'default' || status === 'disabled' ? (
-            <></>
-          ) : (
-            <XmarkCircle color={DodamLightTheme.labelAlternative} />
-          )}
+        <StyledFilledTextFieldTitle isFocused={isFocused} isError={isError}>
+          {label}
+        </StyledFilledTextFieldTitle>
+        <StyledFilledTextFieldInput isFocused={isFocused} isError={isError}>
+          <input
+            placeholder={placeholder}
+            value={value}
+            onChange={onchange}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+          />
+          {value.trim().length > 0 &&
+            (isError ? (
+              <ExclamationmarkCircle color={theme.statusNegative} />
+            ) : (
+              <div onClick={onclick}>
+                <XmarkCircle
+                  color={hexToRgba(theme.labelAlternative, 0.5)}
+                  $svgStyle={{ cursor: "pointer" }}
+                />
+              </div>
+            ))}
         </StyledFilledTextFieldInput>
       </StyleFilledTextField>
-      <StyledFilledTextFieldSupportingText status={status}>{supportingText}</StyledFilledTextFieldSupportingText>
+      <StyledFilledTextFieldSupportingText isError={isError}>
+        {supportingText}
+      </StyledFilledTextFieldSupportingText>
     </div>
   );
 };
@@ -54,16 +72,25 @@ const StyleFilledTextField = styled.div`
   position: relative;
 `;
 
-const StyledFilledTextFieldTitle = styled.span<{ status: StatusType }>`
-  color: ${({ theme }) => theme.labelAlternative};
-  font-feature-settings: 'ss10' on;
+const StyledFilledTextFieldTitle = styled.span<{
+  isFocused: boolean;
+  isError: boolean;
+}>`
+  color: ${({ isFocused, isError, theme }) =>
+    isError
+      ? theme.statusNegative
+      : isFocused
+        ? theme.primaryNormal
+        : theme.labelAlternative};
+
+  font-feature-settings: "ss10" on;
   ${DodamTypography.Label.Medium}
-  ${({ status }) => {
-    return LabelStyle[status];
-  }}
 `;
 
-const StyledFilledTextFieldInput = styled.div<{ status: StatusType }>`
+const StyledFilledTextFieldInput = styled.div<{
+  isFocused: boolean;
+  isError: boolean;
+}>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,11 +100,25 @@ const StyledFilledTextFieldInput = styled.div<{ status: StatusType }>`
   height: 56px;
   padding: 4px 12px 4px 16px;
 
-  border: 1px solid ${({ theme }) => theme.labelAlternative};
-  ${DodamShape['Medium']}
+  border: 1px solid
+    ${({ isFocused, isError, theme }) =>
+      isError
+        ? theme.statusNegative
+        : isFocused
+          ? theme.primaryNormal
+          : theme.lineAlternative};
+
+  background-color: ${({ isFocused, isError }) =>
+    isError
+      ? hexToRgba("#E52222", 0.03)
+      : isFocused
+        ? hexToRgba("#008BFF", 0.03)
+        : "transparent"};
+
+  ${DodamShape["Medium"]}
 
   input {
-    color: ${({ theme }) => theme.labelAlternative};
+    color: ${({ theme }) => theme.labelStrong};
     ${DodamTypography.Headline.Medium}
     background: transparent;
     width: 90%;
@@ -87,103 +128,27 @@ const StyledFilledTextFieldInput = styled.div<{ status: StatusType }>`
     &:focus {
       outline: none;
     }
+
+    &::placeholder {
+      color: ${({ theme }) => theme.labelAlternative};
+    }
   }
 
-  ${({ status }) => {
-    return InputStyle[status];
-  }}
+  div {
+    width: auto;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+  }
 `;
 
-const StyledFilledTextFieldSupportingText = styled.span<{ status: StatusType }>`
+const StyledFilledTextFieldSupportingText = styled.span<{ isError: boolean }>`
   position: absolute;
   top: 85px;
 
-  color: ${({ theme }) => theme.labelAlternative};
-  font-feature-settings: 'ss10' on;
+  color: ${({ isError, theme }) =>
+    isError ? theme.statusNegative : theme.labelAlternative};
+  font-feature-settings: "ss10" on;
   ${DodamTypography.Label.Medium}
-
-  ${({ status }) => {
-    if (status === 'error') {
-      return css`
-        color: ${({ theme }) => theme.statusNegative};
-      `;
-    }
-  }}
 `;
-
-interface Status {
-  default: RuleSet;
-  unfocused: RuleSet;
-  focused: RuleSet;
-  disabled: RuleSet;
-  error: RuleSet;
-}
-
-const LabelStyle: Status = {
-  default: css`
-    color: ${({ theme }) => theme.labelAlternative};
-  `,
-  unfocused: css`
-    color: ${({ theme }) => theme.labelAlternative};
-  `,
-  focused: css`
-    color: ${({ theme }) => theme.primaryNormal};
-  `,
-  disabled: css`
-    color: ${({ theme }) => theme.labelAlternative};
-  `,
-  error: css`
-    color: ${({ theme }) => theme.statusNegative};
-  `,
-};
-
-const InputStyle: Status = {
-  default: css`
-    background: ${({ theme }) => theme.backgroundNormal};
-    input {
-      color: ${({ theme }) => theme.labelAlternative};
-      &::placeholder {
-        color: ${({ theme }) => theme.labelAlternative};
-      }
-    }
-  `,
-  unfocused: css`
-    background: ${({ theme }) => theme.backgroundNormal};
-    input {
-      color: ${({ theme }) => theme.labelStrong};
-      &::placeholder {
-        color: ${({ theme }) => theme.labelStrong};
-      }
-    }
-  `,
-  focused: css`
-    background: linear-gradient(0deg, rgba(0, 139, 255, 0.03) 0%, rgba(0, 139, 255, 0.03) 100%),
-      ${({ theme }) => theme.backgroundNormal};
-    input {
-      color: ${({ theme }) => theme.labelStrong};
-      &::placeholder {
-        color: ${({ theme }) => theme.labelStrong};
-      }
-    }
-    border: 1px solid ${({ theme }) => theme.primaryNormal};
-  `,
-  disabled: css`
-    background: ${({ theme }) => theme.backgroundAlternative};
-    input {
-      color: ${({ theme }) => theme.labelAlternative};
-      &::placeholder {
-        color: ${({ theme }) => theme.labelAlternative};
-      }
-    }
-  `,
-  error: css`
-    background: rgba(229, 30, 30, 0.03);
-    border: 1px solid ${({ theme }) => theme.statusNegative};
-    input {
-      color: ${({ theme }) => theme.labelStrong};
-      &::placeholder {
-        color: ${({ theme }) => theme.labelStrong};
-      }
-    }
-  `,
-};
