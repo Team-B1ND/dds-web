@@ -20,7 +20,7 @@ export const StyledFilledTextField: Story = {
     value: "Input Text",
     isError: false,
     placeholder: "여기에 텍스트를 입력하세요.",
-    onchange: () => console.log("함수 호출"),
-    onclick: () => console.log("값 삭제"),
+    onchange: () => alert("함수 호출"),
+    onclick: () => alert("값 삭제"),
   },
 };

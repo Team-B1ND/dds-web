@@ -21,8 +21,8 @@ export const StyledTextField: Story = {
     isError: false,
     value: "Input text",
     children: "Label text",
-    onclick: () => console.log("값 삭제"),
-    onchange: () => console.log("값 변경"),
-    keydown: () => console.log("함수 호출"),
+    onclick: () => alert("값 삭제"),
+    onchange: () => alert("값 변경"),
+    keydown: () => alert("함수 호출"),
   },
 };
