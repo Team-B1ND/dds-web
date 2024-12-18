@@ -1,5 +1,5 @@
 import { DodamShape, ShapeSizeType } from "@dds-web/styles";
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import styled, { CSSProperties, RuleSet, css } from "styled-components";
 import { Column, FlexLayout, Row } from "../../layout";
 import { DodamBody1 , DodamHeading1 } from "../Typography";
@@ -8,7 +8,7 @@ import { DodamFilledButton } from "../Button";
 
 type DialogHandlerType = {
   content: string;
-  onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onClick: MouseEventHandler<HTMLButtonElement | HTMLParagraphElement>;
   style?: RuleSet;
 };
 

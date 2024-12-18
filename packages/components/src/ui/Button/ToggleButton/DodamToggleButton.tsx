@@ -1,10 +1,10 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
 import { DodamShape, DodamThemeProvider } from "@dds-web/styles";
 
 export interface ToggleBtnProps {
   isAtv: boolean;
-  onclick?: React.MouseEventHandler<HTMLDivElement>;
+  onclick?: MouseEventHandler<HTMLDivElement>;
 }
 
 export const DodamToggleButton = ({ isAtv, onclick }: ToggleBtnProps) => {

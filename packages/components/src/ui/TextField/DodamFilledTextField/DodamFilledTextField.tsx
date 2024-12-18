@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import styled, { useTheme } from "styled-components";
 import { XmarkCircle, Eye, EyeSlash } from "@dds-web/assets";
 import { ExclamationmarkCircle } from "@dds-web/assets";
@@ -15,9 +15,9 @@ interface DodamFilledTextFieldProps {
   isShowValue?: boolean;
   supportingText?: string;
   placeholder: string;
-  onchange: () => void;
-  onclickEye: () => void;
-  onclickXmark: () => void;
+  onchange: ChangeEventHandler<HTMLInputElement>;
+  onclickEye: MouseEventHandler<HTMLDivElement>;
+  onclickXmark: MouseEventHandler<HTMLDivElement>;
 }
 
 export const DodamFilledTextField = ({

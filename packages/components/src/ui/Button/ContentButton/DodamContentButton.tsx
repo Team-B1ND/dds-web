@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, { HTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import styled, { CSSProperties, RuleSet, css } from "styled-components";
 import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
 import { FlexLayout } from "../../../layout";
@@ -22,7 +22,7 @@ export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
   colors?: ColorsType;
   radius?: ShapeSizeType;
   padding?: CSSProperties["padding"];
-  onclick?: () => void;
+  onclick?: MouseEventHandler<HTMLButtonElement>;
   customStyle?: RuleSet;
 }
 

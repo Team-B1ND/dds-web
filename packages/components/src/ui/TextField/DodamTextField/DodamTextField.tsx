@@ -1,5 +1,5 @@
 import { DodamTypography } from "@dds-web/styles";
-import React from "react";
+import React, { ChangeEventHandler, CSSProperties, KeyboardEventHandler, MouseEventHandler } from "react";
 import styled, { useTheme } from "styled-components";
 import {
   Eye,
@@ -20,12 +20,12 @@ interface DodamTextFieldProps {
   isError: boolean;
   disabled?: boolean;
   isShowValue?: boolean;
-  onclickEye: () => void;
-  onclickXmark: () => void;
-  onchange: React.ChangeEventHandler<HTMLInputElement>;
-  keydown: () => void | string;
+  onclickEye: MouseEventHandler<HTMLDivElement>;
+  onclickXmark: MouseEventHandler<HTMLDivElement>;
+  onchange: ChangeEventHandler<HTMLInputElement>;
+  keydown: KeyboardEventHandler<HTMLInputElement> | string;
   width?: number;
-  labelStyle?: React.CSSProperties;
+  labelStyle?: CSSProperties;
   supportingText?: string;
 }
 

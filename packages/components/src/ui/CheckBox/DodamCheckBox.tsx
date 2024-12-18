@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from "react";
+import React, { HTMLAttributes, MouseEventHandler } from "react";
 import styled from "styled-components";
 import { Checkmark } from "@dds-web/assets";
 
@@ -7,7 +7,7 @@ type ButtonColor = "red" | "blue";
 interface DodamCheckBoxProps extends HTMLAttributes<HTMLButtonElement> {
   color?: ButtonColor;
   isDisabled: boolean;
-  onclick: () => void;
+  onclick: MouseEventHandler<HTMLDivElement>;
 }
 
 export const DodamCheckBox = ({ isDisabled = false, color = "blue", onclick }: DodamCheckBoxProps) => {
