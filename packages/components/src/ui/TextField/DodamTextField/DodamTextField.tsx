@@ -1,19 +1,29 @@
 import { DodamTypography } from "@dds-web/styles";
 import React from "react";
 import styled, { useTheme } from "styled-components";
-import { XmarkCircle, ExclamationmarkCircle } from "@dds-web/assets";
+import {
+  Eye,
+  EyeSlash,
+  XmarkCircle,
+  ExclamationmarkCircle,
+} from "@dds-web/assets";
 import { hexToRgba } from "@dds-web/utils";
+
+type InputType = "text" | "password";
 
 interface DodamTextFieldProps {
   id: string;
   name: string;
+  type: InputType;
   value: string;
   children: string;
   isError: boolean;
   disabled?: boolean;
-  onclick: () => void;
+  isShowValue?: boolean;
+  onclickEye: () => void;
+  onclickXmark: () => void;
   onchange: React.ChangeEventHandler<HTMLInputElement>;
-  keydown: (() => void) | string;
+  keydown: () => void | string;
   width?: number;
   labelStyle?: React.CSSProperties;
   supportingText?: string;
@@ -22,15 +32,18 @@ interface DodamTextFieldProps {
 export const DodamTextField = ({
   id,
   name,
+  type,
   value,
   width = 380,
   children = "텍스트를 입력하세요.",
-  onclick,
+  onclickEye,
+  onclickXmark,
   onchange,
   keydown,
   disabled,
   labelStyle,
   isError,
+  isShowValue,
   supportingText,
 }: DodamTextFieldProps) => {
   const theme = useTheme();
@@ -43,6 +56,7 @@ export const DodamTextField = ({
           disabled={disabled}
           id={id}
           name={name}
+          type={type === "text" ? "text" : isShowValue ? "text" : "password"}
           isError={isError}
           onChange={onchange}
           value={value}
@@ -68,10 +82,34 @@ export const DodamTextField = ({
                 right: "4%",
               }}
             />
-          ) : (
-            <div onClick={onclick}>
+          ) : type === "text" ? (
+            <div onClick={onclickXmark}>
               <XmarkCircle
                 color={hexToRgba(theme.labelAlternative, 0.5)}
+                $svgStyle={{
+                  position: "absolute",
+                  top: "20%",
+                  right: "4%",
+                  cursor: "pointer",
+                }}
+              />
+            </div>
+          ) : isShowValue ? (
+            <div onClick={onclickEye}>
+              <Eye
+                color={theme.staticBlack}
+                $svgStyle={{
+                  position: "absolute",
+                  top: "20%",
+                  right: "4%",
+                  cursor: "pointer",
+                }}
+              />
+            </div>
+          ) : (
+            <div onClick={onclickEye}>
+              <EyeSlash
+                color={theme.staticBlack}
                 $svgStyle={{
                   position: "absolute",
                   top: "20%",
@@ -144,7 +182,8 @@ const StyledTextFieldTextFieldInput = styled.input<{ isError: boolean }>`
   outline: none;
 
   &:disabled {
-    border-bottom: 1.5px solid ${({ theme }) => hexToRgba(theme.lineNormal, 0.65)};
+    border-bottom: 1.5px solid
+      ${({ theme }) => hexToRgba(theme.lineNormal, 0.65)};
     background-color: transparent;
   }
 

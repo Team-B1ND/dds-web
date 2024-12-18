@@ -16,11 +16,13 @@ type Story = StoryObj<typeof meta>;
 
 export const StyledFilledTextField: Story = {
   args: {
+    type: "text",
     label: "Label",
     value: "Input Text",
     isError: false,
     placeholder: "여기에 텍스트를 입력하세요.",
-    onchange: () => alert("함수 호출"),
-    onclick: () => alert("값 삭제"),
+    onchange: () => alert("값 변경"),
+    onclickEye: () => alert("값 보기"),
+    onclickXmark: () => alert("값 삭제"),
   },
 };

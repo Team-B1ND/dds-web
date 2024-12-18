@@ -1,28 +1,36 @@
 import React, { useState } from "react";
 import styled, { useTheme } from "styled-components";
-import { XmarkCircle } from "@dds-web/assets";
+import { XmarkCircle, Eye, EyeSlash } from "@dds-web/assets";
 import { ExclamationmarkCircle } from "@dds-web/assets";
 import { DodamShape, DodamTypography } from "@dds-web/styles";
 import { hexToRgba } from "@dds-web/utils";
 
+type InputType = "text" | "password";
+
 interface DodamFilledTextFieldProps {
+  type: InputType;
   label: string;
   value: string;
   isError: boolean;
+  isShowValue?: boolean;
   supportingText?: string;
   placeholder: string;
   onchange: () => void;
-  onclick: () => void;
+  onclickEye: () => void;
+  onclickXmark: () => void;
 }
 
 export const DodamFilledTextField = ({
+  type,
   label,
   value,
   isError,
+  isShowValue,
   supportingText,
   placeholder,
   onchange,
-  onclick,
+  onclickEye,
+  onclickXmark,
 }: DodamFilledTextFieldProps) => {
   const theme = useTheme();
   const [isFocused, setIsFocused] = useState(false);
@@ -35,6 +43,7 @@ export const DodamFilledTextField = ({
         </StyledFilledTextFieldTitle>
         <StyledFilledTextFieldInput isFocused={isFocused} isError={isError}>
           <input
+            type={type === "text" ? "text" : isShowValue ? "text" : "password"}
             placeholder={placeholder}
             value={value}
             onChange={onchange}
@@ -44,10 +53,24 @@ export const DodamFilledTextField = ({
           {value.trim().length > 0 &&
             (isError ? (
               <ExclamationmarkCircle color={theme.statusNegative} />
-            ) : (
-              <div onClick={onclick}>
+            ) : type === "text" ? (
+              <div onClick={onclickXmark}>
                 <XmarkCircle
                   color={hexToRgba(theme.labelAlternative, 0.5)}
+                  $svgStyle={{ cursor: "pointer" }}
+                />
+              </div>
+            ) : isShowValue ? (
+              <div onClick={onclickEye}>
+                <Eye
+                  color={theme.staticBlack}
+                  $svgStyle={{ cursor: "pointer" }}
+                />
+              </div>
+            ) : (
+              <div onClick={onclickEye}>
+                <EyeSlash
+                  color={theme.staticBlack}
                   $svgStyle={{ cursor: "pointer" }}
                 />
               </div>
