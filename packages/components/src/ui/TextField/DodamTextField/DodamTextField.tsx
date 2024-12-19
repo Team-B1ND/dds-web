@@ -27,7 +27,7 @@ interface DodamTextFieldProps {
   onclickXmark: MouseEventHandler<HTMLDivElement>;
   onchange: ChangeEventHandler<HTMLInputElement>;
   keydown: KeyboardEventHandler<HTMLInputElement>;
-  disabled?: boolean;
+  isDisabled?: boolean;
   isShowValue?: boolean;
   width?: number;
   labelStyle?: CSSProperties;
@@ -45,7 +45,7 @@ export const DodamTextField = ({
   onclickXmark,
   onchange,
   keydown,
-  disabled,
+  isDisabled,
   labelStyle,
   isError,
   isShowValue,
@@ -58,7 +58,7 @@ export const DodamTextField = ({
       <StyledTextField width={width} isError={isError}>
         <StyledTextFieldTextFieldInput
           required
-          disabled={disabled}
+          disabled={isDisabled}
           id={id}
           name={name}
           type={type === "text" ? "text" : isShowValue ? "text" : "password"}
