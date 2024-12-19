@@ -12,6 +12,7 @@ interface DodamFilledTextFieldProps {
   label: string;
   value: string;
   isError: boolean;
+  isDisabled?: boolean;
   isShowValue?: boolean;
   supportingText?: string;
   placeholder: string;
@@ -25,6 +26,7 @@ export const DodamFilledTextField = ({
   label,
   value,
   isError,
+  isDisabled,
   isShowValue,
   supportingText,
   placeholder,
@@ -38,12 +40,19 @@ export const DodamFilledTextField = ({
   return (
     <div style={{ position: "relative" }}>
       <StyleFilledTextField>
-        <StyledFilledTextFieldTitle isFocused={isFocused} isError={isError}>
+        <StyledFilledTextFieldTitle
+          isFocused={isFocused}
+          isDisabled={isDisabled}
+          isError={isError}>
           {label}
         </StyledFilledTextFieldTitle>
-        <StyledFilledTextFieldInput isFocused={isFocused} isError={isError}>
+        <StyledFilledTextFieldInput
+          isFocused={isFocused}
+          isDisabled={isDisabled}
+          isError={isError}>
           <input
             type={type === "text" ? "text" : isShowValue ? "text" : "password"}
+            disabled={isDisabled}
             placeholder={placeholder}
             value={value}
             onChange={onchange}
@@ -77,7 +86,9 @@ export const DodamFilledTextField = ({
             ))}
         </StyledFilledTextFieldInput>
       </StyleFilledTextField>
-      <StyledFilledTextFieldSupportingText isError={isError}>
+      <StyledFilledTextFieldSupportingText
+        isDisabled={isDisabled}
+        isError={isError}>
         {supportingText}
       </StyledFilledTextFieldSupportingText>
     </div>
@@ -97,14 +108,17 @@ const StyleFilledTextField = styled.div`
 
 const StyledFilledTextFieldTitle = styled.span<{
   isFocused: boolean;
+  isDisabled?: boolean;
   isError: boolean;
 }>`
-  color: ${({ isFocused, isError, theme }) =>
-    isError
-      ? theme.statusNegative
-      : isFocused
-        ? theme.primaryNormal
-        : theme.labelAlternative};
+  color: ${({ isFocused, isDisabled, isError, theme }) =>
+    isDisabled
+      ? hexToRgba(theme.labelAlternative, 0.65)
+      : isError
+        ? theme.statusNegative
+        : isFocused
+          ? theme.primaryNormal
+          : theme.labelAlternative};
 
   font-feature-settings: "ss10" on;
   ${DodamTypography.Label.Medium}
@@ -112,6 +126,7 @@ const StyledFilledTextFieldTitle = styled.span<{
 
 const StyledFilledTextFieldInput = styled.div<{
   isFocused: boolean;
+  isDisabled?: boolean;
   isError: boolean;
 }>`
   display: flex;
@@ -124,12 +139,14 @@ const StyledFilledTextFieldInput = styled.div<{
   padding: 4px 12px 4px 16px;
 
   border: 1px solid
-    ${({ isFocused, isError, theme }) =>
-      isError
-        ? theme.statusNegative
-        : isFocused
-          ? theme.primaryNormal
-          : theme.lineAlternative};
+    ${({ isFocused, isDisabled, isError, theme }) =>
+      isDisabled
+        ? hexToRgba(theme.lineAlternative, 0.65)
+        : isError
+          ? theme.statusNegative
+          : isFocused
+            ? theme.primaryNormal
+            : theme.lineAlternative};
 
   background-color: ${({ isFocused, isError }) =>
     isError
@@ -153,7 +170,10 @@ const StyledFilledTextFieldInput = styled.div<{
     }
 
     &::placeholder {
-      color: ${({ theme }) => theme.labelAlternative};
+      color: ${({ isDisabled, theme }) =>
+        isDisabled
+          ? hexToRgba(theme.labelAlternative, 0.65)
+          : theme.labelAlternative};
     }
   }
 
@@ -166,12 +186,19 @@ const StyledFilledTextFieldInput = styled.div<{
   }
 `;
 
-const StyledFilledTextFieldSupportingText = styled.span<{ isError: boolean }>`
+const StyledFilledTextFieldSupportingText = styled.span<{
+  isDisabled?: boolean;
+  isError: boolean;
+}>`
   position: absolute;
   top: 85px;
 
-  color: ${({ isError, theme }) =>
-    isError ? theme.statusNegative : theme.labelAlternative};
+  color: ${({ isDisabled, isError, theme }) =>
+    isDisabled
+      ? hexToRgba(theme.labelAlternative, 0.65)
+      : isError
+        ? theme.statusNegative
+        : theme.labelAlternative};
   font-feature-settings: "ss10" on;
   ${DodamTypography.Label.Medium}
 `;

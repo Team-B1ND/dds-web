@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 import { DodamTextField } from "./DodamTextField";
 
 const meta = {
@@ -25,6 +26,6 @@ export const StyledTextField: Story = {
     onclickEye: () => alert("값 보기"),
     onclickXmark: () => alert("값 삭제"),
     onchange: () => alert("값 변경"),
-    keydown: () => alert("Enter 클릭시 함수 호출"),
+    keydown: (e) => alert(`${e.key}키 누름`),
   },
 };
