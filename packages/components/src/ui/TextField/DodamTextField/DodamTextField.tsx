@@ -23,12 +23,12 @@ interface DodamTextFieldProps {
   value: string;
   children: string;
   isError: boolean;
-  disabled?: boolean;
-  isShowValue?: boolean;
   onclickEye: MouseEventHandler<HTMLDivElement>;
   onclickXmark: MouseEventHandler<HTMLDivElement>;
   onchange: ChangeEventHandler<HTMLInputElement>;
   keydown: KeyboardEventHandler<HTMLInputElement>;
+  disabled?: boolean;
+  isShowValue?: boolean;
   width?: number;
   labelStyle?: CSSProperties;
   supportingText?: string;

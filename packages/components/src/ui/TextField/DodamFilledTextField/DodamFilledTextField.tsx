@@ -12,10 +12,10 @@ interface DodamFilledTextFieldProps {
   label: string;
   value: string;
   isError: boolean;
+  placeholder: string;
   isDisabled?: boolean;
   isShowValue?: boolean;
   supportingText?: string;
-  placeholder: string;
   onchange: ChangeEventHandler<HTMLInputElement>;
   onclickEye: MouseEventHandler<HTMLDivElement>;
   onclickXmark: MouseEventHandler<HTMLDivElement>;
