@@ -1,10 +1,10 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
 import { DodamShape, DodamThemeProvider } from "@dds-web/styles";
 
 export interface ToggleBtnProps {
   isAtv: boolean;
-  onclick?: React.MouseEventHandler<HTMLDivElement>;
+  onclick?: MouseEventHandler<HTMLDivElement>;
 }
 
 export const DodamToggleButton = ({ isAtv, onclick }: ToggleBtnProps) => {
@@ -35,7 +35,7 @@ const StyledToggleButton = styled.span<{ isAtv: boolean }>`
   height: 25px;
 
   ${DodamShape.ExtraLarge};
-  background-color: ${({ theme }) => theme.staticWthie};
+  background-color: ${({ theme }) => theme.staticWhite};
 
   transition: 0.2s ease-out;
   left: ${({ isAtv }) => (isAtv ? "38%" : "0")};

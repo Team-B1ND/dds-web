@@ -1,39 +1,45 @@
-import React, { HTMLAttributes } from "react";
+import React, { HTMLAttributes, MouseEventHandler } from "react";
 import styled from "styled-components";
-import { DodamLightTheme } from "@dds-web/styles";
-import {Checkmark} from "@dds-web/assets";
+import { Checkmark } from "@dds-web/assets";
+
+type ButtonColor = "red" | "blue";
 
 interface DodamCheckBoxProps extends HTMLAttributes<HTMLButtonElement> {
-    isDisabled: boolean;
+  color?: ButtonColor;
+  isDisabled: boolean;
+  onclick: MouseEventHandler<HTMLDivElement>;
 }
 
-export const DodamCheckBox = ({ isDisabled = false }: DodamCheckBoxProps) => {
-    return (
+export const DodamCheckBox = ({ isDisabled = false, color = "blue", onclick }: DodamCheckBoxProps) => {
+  return (
     <>
-    {isDisabled ? 
-           <DisabledCheckBox>
-            <Checkmark size={14} color="white" />
-           </DisabledCheckBox>
-           :<StyledCheckBox></StyledCheckBox>
-    }
+      {isDisabled ? (
+        <DisabledCheckBox color={color} onClick={onclick}>
+          <Checkmark size={12} color="white" />
+        </DisabledCheckBox>
+      ) : (
+        <StyledCheckBox onClick={onclick} />
+      )}
     </>
-    );
+  );
 };
 
 const StyledCheckBox = styled.div`
-    width: 18px;
-    height: 18px;
-    border: 2px solid ${({ theme }) => theme.labelNormal};
-    border-radius: 4px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid ${({ theme }) => theme.lineNormal};
+  border-radius: 4px;
+  cursor: pointer;
 `;
 
-const DisabledCheckBox = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    border: 2px solid ${DodamLightTheme.primaryNormal};
-    background-color: ${DodamLightTheme.primaryNormal};
-    border-radius: 4px;
-`
+const DisabledCheckBox = styled.div<{ color: ButtonColor}>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 2px solid ${({ color, theme }) => color === "blue" ? theme.primaryNormal : theme.statusNegative};
+  background-color: ${({ color, theme }) => color === "blue" ? theme.primaryNormal : theme.statusNegative};
+  border-radius: 4px;
+  cursor: pointer;
+`;

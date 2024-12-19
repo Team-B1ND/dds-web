@@ -23,5 +23,5 @@ export const StyledDatePicker: Story = {
     onChange: (date: Date) => alert(date), 
     title: "외출 일시",
     color: "black"
-  } as DatePickerProps, 
+  } as DatePickerProps,
 };

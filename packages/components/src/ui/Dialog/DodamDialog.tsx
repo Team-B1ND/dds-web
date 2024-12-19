@@ -1,15 +1,14 @@
-import { DodamShape, ShapeSizeType, DodamLightTheme } from "@dds-web/styles";
-import React from "react";
+import { DodamShape, ShapeSizeType } from "@dds-web/styles";
+import React, { MouseEventHandler } from "react";
 import styled, { CSSProperties, RuleSet, css } from "styled-components";
 import { Column, FlexLayout, Row } from "../../layout";
 import { DodamBody1 , DodamHeading1 } from "../Typography";
 import { DodamFilledButton } from "../Button";
-import { DodamColor } from "../../../../foundations/src";
 
 
 type DialogHandlerType = {
   content: string;
-  onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onClick: MouseEventHandler<HTMLButtonElement | HTMLParagraphElement>;
   style?: RuleSet;
 };
 
@@ -57,7 +56,7 @@ export const DodamDialog = ({
         />
         <DodamBody1 text={text} customStyle={StyledText(color?.textColor)} />
       </Column>
-
+    
       {type.dialog === "CONFIRM" ? (
         <Row columnGap={8}>
           <DodamFilledButton
@@ -98,7 +97,7 @@ const StyledDialog = styled.div<{
   max-width: 560px;
   
   background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || DodamLightTheme.backgroundNormal};
+    backgroundColor || theme.backgroundNormal};
   padding: ${({ dialogType }) => (dialogType === "ALERT" ? "12px" : "18px")};
 
   ${({ radius }) => DodamShape[radius]}
@@ -110,9 +109,9 @@ const StyledDialog = styled.div<{
 `;
 
 const StyledTitle = (titleColor: CSSProperties["color"]) => css`
-  color: ${({ theme }) => titleColor || DodamLightTheme.labelStrong};
+  color: ${({ theme }) => titleColor || theme.labelStrong};
 `;
 
 const StyledText = (textColor: CSSProperties["color"]) => css`
-  color: ${({ theme }) => textColor || DodamLightTheme.labelAlternative};
+  color: ${({ theme }) => textColor || theme.labelAlternative};
 `;

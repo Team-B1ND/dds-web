@@ -15,5 +15,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const StyledFilledTextField: Story = {
-  args: { status: "default", label: "Label", placeholder: "여기에 텍스트를 입력하세요." },
+  args: {
+    type: "text",
+    label: "Label",
+    value: "Input Text",
+    isError: false,
+    placeholder: "여기에 텍스트를 입력하세요.",
+    onchange: () => alert("값 변경"),
+    onclickXmark: () => alert("값 삭제"),
+  },
 };

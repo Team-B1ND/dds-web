@@ -30,7 +30,7 @@ declare module "styled-components" {
     statusCautionary: string;
     statusPositive: string;
 
-    staticWthie: string;
+    staticWhite: string;
     staticBlack: string;
   }
 }

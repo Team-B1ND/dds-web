@@ -1,10 +1,10 @@
-import React, { HTMLAttributes, ReactNode } from "react";
+import React, { HTMLAttributes, MouseEventHandler, ReactNode } from "react";
 import styled, { CSSProperties, RuleSet, css } from "styled-components";
 import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
 import { FlexLayout } from "../../../layout";
 
 type typographyType = [
-  "Title1" | "Title2" | "Title3" | "Heading1" | "Heading2" | "Headline" | "Body" | "Label" | "Caption1" | "Caption2",
+  "Title1" | "Title2" | "Title3" | "Heading1" | "Heading2" | "Headline" | "Body1" | "Body2" | "Label" | "Caption1" | "Caption2",
   "Bold" | "Medium" | "Regular",
 ];
 
@@ -22,15 +22,17 @@ export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
   colors?: ColorsType;
   radius?: ShapeSizeType;
   padding?: CSSProperties["padding"];
+  onclick?: MouseEventHandler<HTMLButtonElement>;
   customStyle?: RuleSet;
 }
 
 export const DodamContentButton = ({
   children,
-  typography = ["Body", "Bold"],
+  typography = ["Body1", "Bold"],
   colors,
   radius = "Medium",
   padding,
+  onclick,
   customStyle,
   ...props
 }: DodamContentButton) => {
@@ -42,6 +44,7 @@ export const DodamContentButton = ({
       padding={padding}
       customStyle={customStyle!}
       {...props}
+      onClick={onclick}
     >
       {children}
     </StyledContentButton>
@@ -66,13 +69,13 @@ const StyledContentButton = styled.button<{
 
   transition: all 0.15s ease-in-out;
   ${({ colors, theme }) => css`
-    color: ${colors?.textColor || theme.onSurface};
+    color: ${colors?.textColor || theme.labelStrong};
     background-color: ${colors?.backgroundColor || "transparent"};
 
     &:active {
       transform: scale(0.95);
-      color: ${colors?.textActiveColor || theme.onSurface};
-      background-color: ${colors?.activeBackgroundColor || theme.secondary};
+      color: ${colors?.textActiveColor || theme.labelStrong};
+      background-color: ${colors?.activeBackgroundColor || "transparent"};
     }
   `}
 

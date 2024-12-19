@@ -1,4 +1,4 @@
-import { DodamShape, DodamTypography, ShapeSizeType, DodamLightTheme } from "@dds-web/styles";
+import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
 import React, { HTMLAttributes, ReactNode } from "react";
 import styled, { CSSProperties, RuleSet, css } from "styled-components";
 import { FlexLayout } from "../../../layout";
@@ -72,10 +72,9 @@ const StyledFilledButton = styled.button<{
   border: none;
   cursor: pointer;
 
-  ${({ colors, isDisabled, theme }) => css`
-    background-color: ${(isDisabled ? DodamLightTheme.primaryNormal : DodamLightTheme.fillNormal) ||
-    DodamLightTheme.primaryNormal};
-    color: ${(isDisabled ? DodamLightTheme.staticWhite : DodamLightTheme.labelNetural) || DodamLightTheme.labelNetural};
+  ${({ isDisabled, theme }) => css`
+    background-color: ${isDisabled ? theme.primaryNormal : theme.fillNormal};
+    color: ${isDisabled ? theme.staticWhite : theme.labelNetural};
   `}
 
   transition: all 0.15s ease-in-out;
@@ -101,6 +100,6 @@ const LoadingEllipseWrap = styled.div`
 const LoadingEllipseItem = styled.div`
   width: 8px;
   height: 8px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.staticWhite};
   border-radius: 100%;
 `;
