@@ -25,3 +25,4 @@ export * from "./eye";
 export * from "./makehuman";
 export * from "./mark";
 export * from "./notfoundpage";
+export * from "./Logo";
