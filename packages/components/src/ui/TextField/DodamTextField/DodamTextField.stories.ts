@@ -23,7 +23,6 @@ export const StyledTextField: Story = {
     isError: false,
     value: "Input text",
     children: "Label text",
-    onclickEye: () => alert("값 보기"),
     onclickXmark: () => alert("값 삭제"),
     onchange: () => alert("값 변경"),
     keydown: (e) => alert(`${e.key}키 누름`),

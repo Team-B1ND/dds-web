@@ -4,6 +4,7 @@ import React, {
   CSSProperties,
   KeyboardEventHandler,
   MouseEventHandler,
+  useState,
 } from "react";
 import styled, { useTheme } from "styled-components";
 import {
@@ -23,12 +24,10 @@ interface DodamTextFieldProps {
   value: string;
   children: string;
   isError: boolean;
-  onclickEye: MouseEventHandler<HTMLDivElement>;
   onclickXmark: MouseEventHandler<HTMLDivElement>;
   onchange: ChangeEventHandler<HTMLInputElement>;
   keydown: KeyboardEventHandler<HTMLInputElement>;
   isDisabled?: boolean;
-  isShowValue?: boolean;
   width?: number;
   labelStyle?: CSSProperties;
   supportingText?: string;
@@ -41,17 +40,20 @@ export const DodamTextField = ({
   value,
   width = 380,
   children = "텍스트를 입력하세요.",
-  onclickEye,
   onclickXmark,
   onchange,
   keydown,
   isDisabled,
   labelStyle,
   isError,
-  isShowValue,
   supportingText,
 }: DodamTextFieldProps) => {
   const theme = useTheme();
+  const [isShowValue, setIsShowValue] = useState(false);
+
+  const handleClickEye = () => {
+    setIsShowValue((prev) => !prev);
+  };
 
   return (
     <div style={{ position: "relative" }}>
@@ -67,7 +69,7 @@ export const DodamTextField = ({
           value={value}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              keydown(e)
+              keydown(e);
             }
           }}
         />
@@ -95,7 +97,7 @@ export const DodamTextField = ({
               />
             </div>
           ) : isShowValue ? (
-            <div onClick={onclickEye}>
+            <div onClick={handleClickEye}>
               <Eye
                 color={theme.staticBlack}
                 $svgStyle={{
@@ -107,7 +109,7 @@ export const DodamTextField = ({
               />
             </div>
           ) : (
-            <div onClick={onclickEye}>
+            <div onClick={handleClickEye}>
               <EyeSlash
                 color={theme.staticBlack}
                 $svgStyle={{

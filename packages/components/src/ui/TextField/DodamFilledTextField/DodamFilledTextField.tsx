@@ -14,10 +14,8 @@ interface DodamFilledTextFieldProps {
   isError: boolean;
   placeholder: string;
   isDisabled?: boolean;
-  isShowValue?: boolean;
   supportingText?: string;
   onchange: ChangeEventHandler<HTMLInputElement>;
-  onclickEye: MouseEventHandler<HTMLDivElement>;
   onclickXmark: MouseEventHandler<HTMLDivElement>;
 }
 
@@ -27,15 +25,18 @@ export const DodamFilledTextField = ({
   value,
   isError,
   isDisabled,
-  isShowValue,
   supportingText,
   placeholder,
   onchange,
-  onclickEye,
   onclickXmark,
 }: DodamFilledTextFieldProps) => {
   const theme = useTheme();
   const [isFocused, setIsFocused] = useState(false);
+  const [isShowValue, setIsShowValue] = useState(false);
+
+  const handleClickEye = () => {
+    setIsShowValue((prev) => !prev);
+  };
 
   return (
     <div style={{ position: "relative" }}>
@@ -70,14 +71,14 @@ export const DodamFilledTextField = ({
                 />
               </div>
             ) : isShowValue ? (
-              <div onClick={onclickEye}>
+              <div onClick={handleClickEye}>
                 <Eye
                   color={theme.staticBlack}
                   $svgStyle={{ cursor: "pointer" }}
                 />
               </div>
             ) : (
-              <div onClick={onclickEye}>
+              <div onClick={handleClickEye}>
                 <EyeSlash
                   color={theme.staticBlack}
                   $svgStyle={{ cursor: "pointer" }}

@@ -22,7 +22,6 @@ export const StyledFilledTextField: Story = {
     isError: false,
     placeholder: "여기에 텍스트를 입력하세요.",
     onchange: () => alert("값 변경"),
-    onclickEye: () => alert("값 보기"),
     onclickXmark: () => alert("값 삭제"),
   },
 };
