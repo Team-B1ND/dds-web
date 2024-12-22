@@ -4,7 +4,7 @@
     "emitDeclarationOnly": true,
     "outDir": "dist",
     "rootDir": "src",
-    "types": ["react","styled-components"],
+    "types": ["react","styled-components","jest"],
   },
   "extends": "../../tsconfig.base.json",
   "include": ["./src"]

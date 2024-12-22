@@ -11,7 +11,8 @@ describe(`DatePicker`, () => {
         itemKey={"testDatePicker"}
         onChange={() => { } }
         value={"2024-11-12"} 
-        title={"외출 일시"}/>
+        title={"외출 일시"}
+        color="black"/>
     );
   });
 });
