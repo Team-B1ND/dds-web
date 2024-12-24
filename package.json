@@ -1,5 +1,9 @@
 {
   "name": "dds-web",
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "module": "dist/esm/index.esm.js",
+  "main": "dist/cjs/index.cjs.js", 
   "private": true,
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
@@ -14,7 +18,9 @@
     "typescript": "^5.4.2"
   },
   "scripts": {
-    "build": "rollup -c",
+    "bundle": "rollup -c",
+    "build:bundle": "tsc -p tsconfig.json && pnpm bundle",
+    "build": "pnpm build:bundle",
     "prepare": "husky",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
