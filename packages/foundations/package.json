@@ -13,9 +13,9 @@
     "typescript": "^5.4.2"
   },
   "devDependencies": {
-    "@dds-web/styles": "workspace:*",
     "@dds-web/assets": "workspace:*",
-    "@types/react": "^18.2.67",
+    "@dds-web/styles": "workspace:*",
+    "@types/react": "^19.0.2",
     "@types/styled-components": "^5.1.34"
   }
 }

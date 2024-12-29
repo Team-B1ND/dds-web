@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, JSX } from "react";
 import * as S from "./DodamDatePicker.style";
 import { useDatePicker } from "@dds-web/hooks";
 import { ChevronRight, ChevronLeft, Calender } from "@dds-web/assets";
