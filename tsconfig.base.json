@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "outDir": "dist",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
@@ -14,5 +15,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react"
-  }
+  },
+  "exclude": ["node_modules", "dist", "**/*.stories.tsx", "cypress"]
 }
