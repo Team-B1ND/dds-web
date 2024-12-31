@@ -5,6 +5,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "types": ["react","styled-components","jest"],
+    "jsx": "react"
   },
   "extends": "../../tsconfig.base.json",
   "include": ["./src"]
