@@ -15,13 +15,8 @@ export default [
     input: "packages/index.ts",
     output: [
       {
-        file: pkg.main,
+        file: pkg.main,  // CommonJS output
         format: "cjs",
-        sourcemap: true,
-      },
-      {
-        file: pkg.module,
-        format: "esm",
         sourcemap: true,
       },
     ],
@@ -32,6 +27,8 @@ export default [
       typescript({
         tsconfig: "./tsconfig.base.json",
         exclude: [/\.test.(js|jsx|ts|tsx)$/, /\.stories.(js|jsx|ts|tsx|mdx)$/],
+        declaration: true,
+        declarationDir: "dist/cjs/types",  // cjs 폴더 내 types 폴더로 설정
       }),
       image(),
       svgr(),
@@ -43,8 +40,36 @@ export default [
     ],
   },
   {
-    input: "dist/types/index.d.ts", 
-    output: [{ file: "dist/index.d.ts", format: "es" }], 
+    input: "packages/index.ts",
+    output: [
+      {
+        file: pkg.module,  // ESM output
+        format: "esm",
+        sourcemap: true,
+      },
+    ],
+    external,
+    plugins: [
+      resolve(),
+      commonjs(),
+      typescript({
+        tsconfig: "./tsconfig.base.json",
+        exclude: [/\.test.(js|jsx|ts|tsx)$/, /\.stories.(js|jsx|ts|tsx|mdx)$/],
+        declaration: true,
+        declarationDir: "dist/esm/types",  // esm 폴더 내 types 폴더로 설정
+      }),
+      image(),
+      svgr(),
+      postcss(),
+      url({
+        include: ["**/*.otf"],
+        limit: 0,
+      }),
+    ],
+  },
+  {
+    input: "dist/esm/types/index.d.ts",
+    output: [{ file: "dist/index.d.ts", format: "es" }],
     plugins: [dts()],
   },
 ];

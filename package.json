@@ -24,7 +24,7 @@
     "typescript": "^5.4.2"
   },
   "scripts": {
-    "bundle": "rollup -c",
+    "rollup": "rollup -c",
     "build:bundle": "tsc -p tsconfig.base.json && pnpm bundle",
     "build": "pnpm build:bundle",
     "prepare": "husky",
