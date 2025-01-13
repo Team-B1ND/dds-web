@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@dds-web/foundations": "workspace:*",
-    "@types/react": "^18.2.67",
+    "@types/react": "^18.2.0",
     "@types/styled-components": "^5.1.34"
   }
 }

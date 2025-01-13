@@ -1,0 +1,40 @@
+name: Deploy to NPM
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20' 
+
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install dependencies
+      run: pnpm install  
+
+    - name: Build the project
+      run: pnpm run build  
+
+    - name: Publish to NPM
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc 
+        npm publish dist --access public 
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  
