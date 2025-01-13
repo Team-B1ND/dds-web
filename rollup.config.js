@@ -6,6 +6,7 @@ import image from "@rollup/plugin-image";
 import svgr from "@svgr/rollup";
 import url from "@rollup/plugin-url";
 import dts from "rollup-plugin-dts";
+import replace from "@rollup/plugin-replace";
 import pkg from "./package.json" assert { type: "json" };
 
 const external = ["react", "react-dom", "styled-components"];
@@ -79,6 +80,13 @@ export default [
       url({
         include: ["**/*.otf"],
         limit: 0,
+      }),
+      replace({
+        delimiters: ["", ""],
+        preventAssignment: true,
+        values: {
+          "var ": "declare const ",
+        },
       }),
     ],
   },
