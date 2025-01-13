@@ -16,16 +16,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react",
-    "emitDeclarationOnly": true,
-    "baseUrl": "./packages",
-    "paths": {
-      "@assets/*": ["assets/*"],
-      "@components/*": ["components/*"],
-      "@foundations/*": ["foundations/*"],
-      "@hooks/*": ["hooks/*"],
-      "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"]
-    }
   },
   "exclude": ["node_modules", "dist", "**/*.stories.tsx", "cypress"]
 }

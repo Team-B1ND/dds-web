@@ -15,7 +15,7 @@ export default [
     input: "packages/index.ts",
     output: [
       {
-        file: pkg.main,  // CommonJS output
+        file: pkg.main,
         format: "cjs",
         sourcemap: true,
       },
@@ -28,7 +28,8 @@ export default [
         tsconfig: "./tsconfig.base.json",
         exclude: [/\.test.(js|jsx|ts|tsx)$/, /\.stories.(js|jsx|ts|tsx|mdx)$/],
         declaration: true,
-        declarationDir: "dist/cjs/types",  // cjs 폴더 내 types 폴더로 설정
+        emitDeclarationOnly: true,
+        declarationDir: "dist/cjs/types",
       }),
       image(),
       svgr(),
@@ -36,6 +37,7 @@ export default [
       url({
         include: ["**/*.otf"],
         limit: 0,
+        fileName: "types/assets/src/fonts/[name][extname]",
       }),
     ],
   },
@@ -43,7 +45,7 @@ export default [
     input: "packages/index.ts",
     output: [
       {
-        file: pkg.module,  // ESM output
+        file: pkg.module,
         format: "esm",
         sourcemap: true,
       },
@@ -56,7 +58,8 @@ export default [
         tsconfig: "./tsconfig.base.json",
         exclude: [/\.test.(js|jsx|ts|tsx)$/, /\.stories.(js|jsx|ts|tsx|mdx)$/],
         declaration: true,
-        declarationDir: "dist/esm/types",  // esm 폴더 내 types 폴더로 설정
+        emitDeclarationOnly: true,
+        declarationDir: "dist/esm/types",
       }),
       image(),
       svgr(),
@@ -64,12 +67,19 @@ export default [
       url({
         include: ["**/*.otf"],
         limit: 0,
+        fileName: "types/assets/src/fonts/[name][extname]",
       }),
     ],
   },
   {
     input: "dist/esm/types/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "es" }],
-    plugins: [dts()],
+    plugins: [
+      dts(),
+      url({
+        include: ["**/*.otf"],
+        limit: 0,
+      }),
+    ],
   },
 ];
