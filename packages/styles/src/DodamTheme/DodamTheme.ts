@@ -1,7 +1,7 @@
-import { DodamTheme } from "styled-components";
+import { DefaultTheme } from "styled-components";
 import { DodamColor } from "@dds-web/foundations";
 
-export const DodamLightTheme: DodamTheme = Object.freeze({
+export const DodamLightTheme: DefaultTheme = Object.freeze({
   primaryNormal: DodamColor.blue45,
   primaryAlternative: "rgba(0, 131, 240, 0.65)",
   primaryAssisitive: "rgba(0, 131, 240, 0.2)",
@@ -34,7 +34,7 @@ export const DodamLightTheme: DodamTheme = Object.freeze({
   staticBlack: DodamColor.common0,
 });
 
-export const DodamDarkTheme: DodamTheme = Object.freeze({
+export const DodamDarkTheme: DefaultTheme = Object.freeze({
   primaryNormal: DodamColor.blue45,
   primaryAlternative: "rgba(0, 131, 240, 0.65)",
   primaryAssisitive: "rgba(0, 131, 240, 0.2)",
