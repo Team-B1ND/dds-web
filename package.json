@@ -1,5 +1,5 @@
 {
-  "name": "dds-web",
+  "name": "@b1nd/dds-web",
   "type": "module",
   "types": "dist/index.d.ts",
   "main": "dist/cjs/index.cjs.js",

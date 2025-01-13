@@ -16,7 +16,10 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '20' 
+        node-version: '20'
+
+    - name: Install pnpm
+      run: npm install -g pnpm  
 
     - name: Cache Node.js modules
       uses: actions/cache@v2
@@ -35,6 +38,6 @@ jobs:
     - name: Publish to NPM
       run: |
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc 
-        npm publish dist --access public 
+        pnpm publish dist --access public  # pnpm 명령어로 변경
       env:
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

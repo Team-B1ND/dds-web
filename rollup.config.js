@@ -79,7 +79,7 @@ export default [
       dts(),
       url({
         include: ["**/*.otf"],
-        limit: 0,
+        limit: Infinity,
       }),
       replace({
         delimiters: ["", ""],
