@@ -19,18 +19,18 @@ jobs:
         node-version: '20'
 
     - name: Install pnpm
-      run: npm install -g pnpm  
+      run: npm install -g pnpm@latest  
 
-    - name: Cache Node.js modules
+    - name: Cache pnpm store
       uses: actions/cache@v2
       with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
-          ${{ runner.os }}-node-
+          ${{ runner.os }}-pnpm-store-
 
     - name: Install dependencies
-      run: pnpm install  
+      run: pnpm install --frozen-lockfile --prefer-offline  
 
     - name: Build the project
       run: pnpm run build  
@@ -38,6 +38,6 @@ jobs:
     - name: Publish to NPM
       run: |
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc 
-        pnpm publish dist --access public  # pnpm 명령어로 변경
+        pnpm publish dist --access public
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
