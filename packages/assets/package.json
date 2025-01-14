@@ -8,13 +8,15 @@
   },
   "license": "ISC",
   "dependencies": {
-    "react": "^18.2.0",
     "styled-components": "^6.1.8",
     "typescript": "^5.4.2"
   },
   "devDependencies": {
     "@dds-web/styles": "workspace: *",
-    "@types/react": "18.2.0",
     "@types/styled-components": "^5.1.34"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "@types/react": "18.2.0"
   }
 }
