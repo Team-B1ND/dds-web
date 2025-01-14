@@ -33,7 +33,7 @@ jobs:
       run: pnpm install  
 
     - name: Build the project
-      run: pnpm run build  
+      run: pnpm run rollup 
 
     - name: Publish to NPM
       run: |
