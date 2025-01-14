@@ -44,9 +44,9 @@
     "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-replace": "^6.0.2",
     "@svgr/rollup": "^8.1.0",
-    "@types/react": "^19.0.2",
-    "@types/styled-components": "^5.1.34",
     "react": "^18.2.0",
-    "styled-components": "^6.1.8"
+    "@types/react": "^18.2.0",
+    "styled-components": "^6.1.8",
+    "@types/styled-components": "^5.1.34"
   }
 }
