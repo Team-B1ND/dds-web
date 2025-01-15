@@ -6,6 +6,7 @@ import image from "@rollup/plugin-image";
 import svgr from "@svgr/rollup";
 import url from "@rollup/plugin-url";
 import dts from "rollup-plugin-dts";
+import copy from "rollup-plugin-copy";
 import replace from "@rollup/plugin-replace";
 import pkg from "./package.json" assert { type: "json" };
 
@@ -88,6 +89,7 @@ export default [
           "var ": "declare const ",
         },
       }),
+      copy({ targets: [{ src: "package.json", dest: "dist" }] }),
     ],
   },
 ];
