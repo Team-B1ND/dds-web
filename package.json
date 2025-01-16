@@ -5,7 +5,7 @@
   "types": "dist/index.d.ts",
   "main": "dist/cjs/index.cjs.js",
   "module": "dist/esm/index.esm.js",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.26.3",
