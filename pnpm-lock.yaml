@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@dds-web/styles':
-        specifier: workspace:*
-        version: link:packages/styles
       '@rollup/plugin-image':
         specifier: ^3.0.3
         version: 3.0.3(rollup@4.28.1)
