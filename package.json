@@ -16,8 +16,6 @@
     "@rollup/plugin-typescript": "^12.1.2",
     "@rollup/plugin-url": "^8.0.2",
     "@types/typescript": "^2.0.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "rollup": "^4.28.1",
     "rollup-plugin-copy": "^3.5.0",
@@ -29,7 +27,6 @@
     "rollup": "rollup -c",
     "build:bundle": "tsc -p tsconfig.base.json && pnpm bundle",
     "build": "pnpm build:bundle",
-    "prepare": "husky",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "lint-staged": {
