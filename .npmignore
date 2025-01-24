@@ -1,0 +1,9 @@
+*.log
+./babel.config.js
+./pnpm-lock.yaml
+./pnpm-workspace.yaml
+./rollup.config.js
+README.md
+.github
+.changeset
+.gitignore

@@ -35,9 +35,12 @@ jobs:
     - name: Build the project
       run: pnpm run rollup 
 
+    - name: Verify package contents
+      run: npm pack --dry-run
+
     - name: Publish to NPM
       run: |
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc 
-        pnpm publish dist --access public  
+        pnpm publish --access public  
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
