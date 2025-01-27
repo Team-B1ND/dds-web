@@ -1,117 +1,153 @@
-import { DodamShape, ShapeSizeType } from "@dds-web/styles";
-import React, { MouseEventHandler } from "react";
-import styled, { CSSProperties, RuleSet, css } from "styled-components";
-import { Column, FlexLayout, Row } from "../../layout";
-import { DodamBody1 , DodamHeading1 } from "../Typography";
-import { DodamFilledButton } from "../Button";
+import React, { createContext, useContext, useState } from "react";
+import ReactDOM from "react-dom";
+import styled, { css } from "styled-components";
+import { Dialog } from "./Dialog";
 
-
-type DialogHandlerType = {
-  content: string;
-  onClick: MouseEventHandler<HTMLButtonElement | HTMLParagraphElement>;
-  style?: RuleSet;
-};
-
-type DialogType =
-  | {
-      dialog: "ALERT";
-      close: DialogHandlerType;
-    }
-  | {
-      dialog: "CONFIRM";
-      confirm: DialogHandlerType;
-      dismiss: DialogHandlerType;
-    };
-
-export interface DodamDialogProps {
-  title: string;
-  text: string;
-  type: DialogType;
-  color?: {
-    dialogBackgroundColor?: CSSProperties["backgroundColor"];
-    titleColor?: CSSProperties["color"];
-    textColor?: CSSProperties["color"];
-  };
-  radius?: ShapeSizeType;
+interface DodamAlertProps {
+  message: string;
+  content?: string;
+  onClose: () => void;
 }
 
-export const DodamDialog = ({
-  title,
-  text,
-  type,
-  color,
-  radius = "ExtraLarge",
-}: DodamDialogProps) => {
+interface DodamConfirmProps {
+    message: string;
+    content?: string;
+}
+/**
+ * 
+ * Alert
+ * title = message
+ * text = content?
+ */
+const DodamAlertComponent = ({ message, onClose, content }: DodamAlertProps) => {
   return (
-    <StyledDialog
-      dialogType={type.dialog}
-      radius={radius}
-      backgroundColor={color?.dialogBackgroundColor}
-    >
-      <Column rowGap={12} padding={type.dialog === "CONFIRM" ? "6px" : "12px"}>
-        <DodamHeading1
-          fontScale="Bold"
-          text={title}
-          customStyle={StyledTitle(color?.titleColor)}
-        />
-        <DodamBody1 text={text} customStyle={StyledText(color?.textColor)} />
-      </Column>
-    
-      {type.dialog === "CONFIRM" ? (
-        <Row columnGap={8}>
-          <DodamFilledButton
-            customStyle={type.dismiss.style}
-            onClick={type.dismiss.onClick}
-            radius="Medium"
-          >
-            {type.dismiss.content}
-          </DodamFilledButton>
-          <DodamFilledButton
-            customStyle={type.confirm.style}
-            onClick={type.confirm.onClick}
-            radius="Medium"
-          >
-            {type.confirm.content}
-          </DodamFilledButton>
-        </Row>
-      ) : (
-        <Row justifyContent="flex-end">
-          <DodamBody1
-            fontScale="Bold"
-            text={type.close.content}
-            onClick={type.close.onClick}
-            customStyle={type.close.style}
-          />
-        </Row>
-      )}
-    </StyledDialog>
+    <Container>
+      <Dialog
+        title={message}
+        text={content!}
+        type={{
+          dialog: "ALERT",
+          close: {
+            content: "닫기",
+            onClick: onClose,
+          },
+        }}
+        radius="Large"
+      />
+    </Container>
   );
 };
 
-const StyledDialog = styled.div<{
-  radius: ShapeSizeType;
-  dialogType: "ALERT" | "CONFIRM";
-  backgroundColor: CSSProperties["backgroundColor"];
-}>`
-  min-width: 280px;
-  max-width: 560px;
+
+/**
+ * 
+ * Confirm
+ * title = message
+ * text = content?
+ * return true ? false
+ */
+const DodamConfirmComponent = ({
+    message,
+    content,
+    onClose,
+  }: DodamConfirmProps & { onClose: (result: boolean) => void }) => {
+    return (
+      <Container>
+        <Dialog
+          title={message}
+          text={content!}
+          type={{
+            dialog: "CONFIRM",
+            confirm: {
+              content: "확인",
+              onClick: () => onClose(true), 
+              style: StyledButton,
+            },
+            dismiss: {
+              content: "취소",
+              onClick: () => onClose(false), 
+              style: DismissButton,
+            },
+          }}
+          radius="Large"
+        />
+      </Container>
+    );
+  };
   
-  background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme.backgroundNormal};
-  padding: ${({ dialogType }) => (dialogType === "ALERT" ? "12px" : "18px")};
 
-  ${({ radius }) => DodamShape[radius]}
-  ${({ dialogType }) =>
-    FlexLayout({
-      flexDirection: "column",
-      rowGap: dialogType === "CONFIRM" ? "18px" : "24px",
-    })}
+export class DodamDialog {
+    public alert(message: string, content?: string) {
+      // DOM에 컨테이너 생성
+      const container = document.createElement("div");
+      document.body.appendChild(container);
+  
+      // 닫기 핸들러
+      const close = () => {
+        ReactDOM.unmountComponentAtNode(container);
+        document.body.removeChild(container);
+      };
+  
+      // ReactDOM으로 렌더링
+      ReactDOM.render(
+        <DodamAlertComponent message={message} content={content} onClose={close} />,
+        container
+      );
+    }
+  
+    public confirm(message: string, content?: string): Promise<boolean> {
+      return new Promise((resolve) => {
+        // DOM에 컨테이너 생성
+        const container = document.createElement("div");
+        document.body.appendChild(container);
+  
+        const handleClose = (result: boolean) => {
+          ReactDOM.unmountComponentAtNode(container);
+          document.body.removeChild(container);
+          resolve(result); // 확인(true) 또는 취소(false) 반환
+        };
+  
+        // ReactDOM으로 렌더링
+        ReactDOM.render(
+          <DodamConfirmComponent
+            message={message}
+            content={content}
+            onClose={handleClose}
+          />,
+          container
+        );
+      });
+    }
+  }
+  
+
+
+const Container = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 `;
 
-const StyledTitle = (titleColor: CSSProperties["color"]) => css`
-  color: ${({ theme }) => titleColor || theme.labelStrong};
+const DismissButton = css`
+  color: ${({ theme }) => theme.labelNetural};
+  background-color: ${({ theme }) => theme.fillNormal};
+  width: 50%;
+  height: 50px;
+  min-height: 50px;
 `;
 
-const StyledText = (textColor: CSSProperties["color"]) => css`
-  color: ${({ theme }) => textColor || theme.labelAlternative};
+const StyledButton = css`
+  width: 50%;
+  height: 50px;
+  min-height: 50px;
+  color: ${({ theme }) => theme.staticWhite};
+  background-color: ${({ theme }) => theme.primaryNormal};
+
 `;

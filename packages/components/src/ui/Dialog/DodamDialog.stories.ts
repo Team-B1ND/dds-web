@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DodamDialog } from "./DodamDialog";
+import { Dialog } from "./Dialog";
 import { css } from "styled-components";
 
 const meta = {
   title: "ui/DodamDialog",
-  component: DodamDialog,
+  component: Dialog,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof DodamDialog>;
+} satisfies Meta<typeof Dialog>;
 
 export default meta;
 
