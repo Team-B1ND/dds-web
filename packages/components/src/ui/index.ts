@@ -6,3 +6,5 @@ export * from "./NotFoundPage";
 export * from "./TextField";
 export * from "./Typography";
 export * from "./PageIndicator";
+export * from "./Modal";
+export * from "./CheckBox";
