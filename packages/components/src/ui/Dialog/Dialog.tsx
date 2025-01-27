@@ -1,4 +1,5 @@
 import { DodamShape, ShapeSizeType } from "@dds-web/styles";
+import { DodamColor } from "@dds-web/foundations";
 import React, { MouseEventHandler } from "react";
 import styled, { CSSProperties, RuleSet, css } from "styled-components";
 import { Column, FlexLayout, Row } from "../../layout";
@@ -75,7 +76,7 @@ export const Dialog = ({
           </DodamFilledButton>
         </Row>
       ) : (
-        <Row justifyContent="flex-end">
+        <Row justifyContent="flex-end" style={{cursor:"pointer"}}>
           <DodamBody1
             fontScale="Bold"
             text={type.close.content}
@@ -96,8 +97,13 @@ const StyledDialog = styled.div<{
   min-width: 280px;
   max-width: 560px;
   
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+
   background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme.backgroundNormal};
+    backgroundColor || theme === null ? theme.backgroundNormal : DodamColor.common100};
   padding: ${({ dialogType }) => (dialogType === "ALERT" ? "12px" : "18px")};
 
   ${({ radius }) => DodamShape[radius]}

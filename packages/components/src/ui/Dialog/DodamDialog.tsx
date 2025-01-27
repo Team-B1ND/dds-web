@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import styled, { css } from "styled-components";
 import { Dialog } from "./Dialog";
+import { DodamColor } from "@dds-web/foundations";
 
 interface DodamAlertProps {
   message: string;
@@ -132,7 +133,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+  z-index: 3;
 `;
 
 const DismissButton = css`
@@ -147,7 +148,7 @@ const StyledButton = css`
   width: 50%;
   height: 50px;
   min-height: 50px;
-  color: ${({ theme }) => theme.staticWhite};
-  background-color: ${({ theme }) => theme.primaryNormal};
+  color: ${({ theme }:any) => theme === null ? theme.staticWhite : DodamColor.common100};
+  background-color: ${({ theme }:any) => theme === null ? theme.primaryNormal : DodamColor.blue45};
 
 `;
