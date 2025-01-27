@@ -77,7 +77,19 @@ const DodamConfirmComponent = ({
   };
   
 
-  export class DodamDialog {
+  export class DodamDialogCalss {
+    private static instance: DodamDialogCalss;
+
+    private constructor() {} // 생성자를 private으로 제한
+  
+    // 싱글톤 인스턴스 반환
+    public static getInstance(): DodamDialogCalss {
+      if (!DodamDialogCalss.instance) {
+        DodamDialogCalss.instance = new DodamDialogCalss();
+      }
+      return DodamDialogCalss.instance;
+    }
+
     public alert(message: string, content?: string) {
       /**
        * Create container in DOM
@@ -157,6 +169,10 @@ const DodamConfirmComponent = ({
     }
   }
   
+  export const DodamDialog = {
+    alert: (message: string, content?: string) => DodamDialogCalss.getInstance().alert(message, content),
+    confirm: (message: string, content?: string) => DodamDialogCalss.getInstance().confirm(message, content),
+  };
   
 
 

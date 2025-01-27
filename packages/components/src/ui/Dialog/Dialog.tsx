@@ -13,16 +13,18 @@ type DialogHandlerType = {
   style?: RuleSet;
 };
 
-type DialogType =
-  | {
-      dialog: "ALERT";
-      close: DialogHandlerType;
-    }
-  | {
-      dialog: "CONFIRM";
-      confirm: DialogHandlerType;
-      dismiss: DialogHandlerType;
-    };
+type DialogType = AlertTProps | ConfirmProps;
+
+interface AlertTProps{
+  dialog: "ALERT";
+  close: DialogHandlerType;
+}
+
+interface ConfirmProps{
+  dialog: "CONFIRM";
+  confirm: DialogHandlerType;
+  dismiss: DialogHandlerType;
+}
 
 export interface DodamDialogProps {
   title: string;
