@@ -11,7 +11,7 @@ interface ModalProps {
   customStyle?: CSSObject;
 }
 
-const Modal = ({ isOpen, close, children,customStyle }: ModalProps) => {
+export const DodamModal = ({ isOpen, close, children,customStyle }: ModalProps) => {
   useEffect(() => {
     let modalRoot: HTMLDivElement | null = null;
 
@@ -58,4 +58,3 @@ const Modal = ({ isOpen, close, children,customStyle }: ModalProps) => {
   );
 };
 
-export default Modal;

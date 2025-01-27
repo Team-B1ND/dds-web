@@ -77,7 +77,7 @@ const DodamConfirmComponent = ({
   };
   
 
-  export class DodamDialogCalss {
+  class DodamDialogCalss {
     private static instance: DodamDialogCalss;
 
     private constructor() {} // 생성자를 private으로 제한
