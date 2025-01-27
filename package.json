@@ -1,6 +1,6 @@
 {
   "name": "@b1nd/dds-web",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "types": "dist/index.d.ts",
   "main": "dist/cjs/index.cjs.js",
@@ -36,6 +36,10 @@
     "hooks": {
       "pre-commit": "pnpm lint-staged"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-B1ND/dds-web.git"
   },
   "dependencies": {
     "@rollup/plugin-image": "^3.0.3",
