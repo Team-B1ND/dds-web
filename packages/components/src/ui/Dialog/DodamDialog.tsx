@@ -77,19 +77,31 @@ const DodamConfirmComponent = ({
   };
   
 
-export class DodamDialog {
+  export class DodamDialog {
     public alert(message: string, content?: string) {
-      // DOM에 컨테이너 생성
+      /**
+       * Create container in DOM
+       *  */ 
       const container = document.createElement("div");
       document.body.appendChild(container);
   
-      // 닫기 핸들러
+      /** 
+       * Scroll limit
+       * */ 
+      this.disableScroll();
+  
+      /**
+       * Close function
+       */
       const close = () => {
+        this.enableScroll();
         ReactDOM.unmountComponentAtNode(container);
         document.body.removeChild(container);
       };
   
-      // ReactDOM으로 렌더링
+      /**
+       * Transfer to ReactDOM
+       */
       ReactDOM.render(
         <DodamAlertComponent message={message} content={content} onClose={close} />,
         container
@@ -98,17 +110,27 @@ export class DodamDialog {
   
     public confirm(message: string, content?: string): Promise<boolean> {
       return new Promise((resolve) => {
-        // DOM에 컨테이너 생성
+      /**
+       * Create container in DOM
+       *  */ 
         const container = document.createElement("div");
         document.body.appendChild(container);
   
+      /** 
+       * Scroll limit
+       * */ 
+        this.disableScroll();
+        
         const handleClose = (result: boolean) => {
+          this.enableScroll();
           ReactDOM.unmountComponentAtNode(container);
           document.body.removeChild(container);
-          resolve(result); // 확인(true) 또는 취소(false) 반환
+          resolve(result); 
         };
   
-        // ReactDOM으로 렌더링
+      /**
+       * Transfer to ReactDOM
+       */
         ReactDOM.render(
           <DodamConfirmComponent
             message={message}
@@ -119,7 +141,22 @@ export class DodamDialog {
         );
       });
     }
+  
+    /**
+     * Scroll limit
+     *  */ 
+    private disableScroll() {
+      document.body.style.overflow = "hidden";
+    }
+  
+    /**
+     * Scroll Restore
+     *  */ 
+    private enableScroll() {
+      document.body.style.overflow = "";
+    }
   }
+  
   
 
 
