@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { DodamToggleButton } from "./DodamToggleButton";
+import type { Meta, StoryObj } from '@storybook/react';
+import { DodamToggleButton } from './DodamToggleButton';
 
 const meta = {
-  title: "ui/DodamButton/DodamToggleButton",
+  title: 'ui/DodamButton/DodamToggleButton',
   component: DodamToggleButton,
   argTypes: {
     isAtv: {
-      control: "boolean",
+      control: 'boolean',
     },
   },
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 } satisfies Meta<typeof DodamToggleButton>;
 
 export default meta;
