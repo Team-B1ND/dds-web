@@ -1,36 +1,45 @@
-import React, { HTMLAttributes, MouseEventHandler, ReactNode } from "react";
-import styled, { CSSProperties, RuleSet, css } from "styled-components";
-import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
-import { FlexLayout } from "../../../layout";
+import React, { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import styled, { CSSProperties, css } from 'styled-components';
+import { DodamBackgroundColor, DodamShape, DodamTypography, ShapeSizeType } from '@dds-web/styles';
+import { FlexLayout } from '../../../layout';
+import { CSSObject } from 'styled-components';
 
 type typographyType = [
-  "Title1" | "Title2" | "Title3" | "Heading1" | "Heading2" | "Headline" | "Body1" | "Body2" | "Label" | "Caption1" | "Caption2",
-  "Bold" | "Medium" | "Regular",
+  (
+    | 'Title1'
+    | 'Title2'
+    | 'Title3'
+    | 'Heading1'
+    | 'Heading2'
+    | 'Headline'
+    | 'Body1'
+    | 'Body2'
+    | 'Label'
+    | 'Caption1'
+    | 'Caption2'
+  ),
+  'Bold' | 'Medium' | 'Regular',
 ];
 
-type ColorsType = {
-  textColor?: string;
-  textActiveColor?: string;
-  backgroundColor?: CSSProperties["backgroundColor"];
-  activeBackgroundColor?: CSSProperties["backgroundColor"];
-};
+type BackgroundColorType = 'Primary' | 'Secondary' | 'Assisitive' | 'Negative';
 
 export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-
+  enabled?: boolean;
   typography?: typographyType;
-  colors?: ColorsType;
-  radius?: ShapeSizeType;
-  padding?: CSSProperties["padding"];
+  backgroundColorType?: BackgroundColorType;
+  size: ShapeSizeType;
+  padding?: CSSProperties['padding'];
   onclick?: MouseEventHandler<HTMLButtonElement>;
-  customStyle?: RuleSet;
+  customStyle?: CSSObject;
 }
 
 export const DodamContentButton = ({
   children,
-  typography = ["Body1", "Bold"],
-  colors,
-  radius = "Medium",
+  enabled,
+  typography = ['Body1', 'Bold'],
+  backgroundColorType = 'Primary',
+  size = 'Large',
   padding,
   onclick,
   customStyle,
@@ -39,9 +48,10 @@ export const DodamContentButton = ({
   return (
     <StyledContentButton
       typography={typography!}
-      colors={colors!}
-      radius={radius}
+      backgroundColorType={backgroundColorType!}
       padding={padding}
+      enabled={enabled}
+      size={size}
       customStyle={customStyle!}
       {...props}
       onClick={onclick}
@@ -53,10 +63,11 @@ export const DodamContentButton = ({
 
 const StyledContentButton = styled.button<{
   typography: typographyType;
-  colors: ColorsType;
-  radius: ShapeSizeType;
-  padding: CSSProperties["padding"];
-  customStyle: RuleSet;
+  backgroundColorType: BackgroundColorType;
+  padding: CSSProperties['padding'];
+  size: ShapeSizeType;
+  enabled?: boolean;
+  customStyle: CSSObject;
 }>`
   min-width: 40px;
   min-height: 40px;
@@ -68,20 +79,29 @@ const StyledContentButton = styled.button<{
   padding: ${({ padding }) => padding};
 
   transition: all 0.15s ease-in-out;
-  ${({ colors, theme }) => css`
-    color: ${colors?.textColor || theme.labelStrong};
-    background-color: ${colors?.backgroundColor || "transparent"};
+  ${({ backgroundColorType, theme }) => css`
+    color: ${theme.labelStrong};
+    background-color: ${backgroundColorType || 'transparent'};
 
     &:active {
       transform: scale(0.95);
-      color: ${colors?.textActiveColor || theme.labelStrong};
-      background-color: ${colors?.activeBackgroundColor || "transparent"};
+      color: ${theme.labelStrong};
+      background-color: ${backgroundColorType || 'transparent'};
     }
   `}
 
-  ${FlexLayout({ alignItems: "center", justifyContent: "center" })};
-  ${({ radius }) => DodamShape[radius]};
+  ${FlexLayout({ alignItems: 'center', justifyContent: 'center' })};
+  ${({ size }) => DodamShape[size]};
   ${({ typography }) => DodamTypography[typography[0]][typography[1]]}
-
+  ${({ enabled }) =>
+    !enabled
+      ? css`
+          opacity: 0.5;
+        `
+      : css`
+          opacity: 1;
+        `}
+  ${({ backgroundColorType }) => DodamBackgroundColor[backgroundColorType]}
+  
   ${({ customStyle }) => customStyle}
 `;
