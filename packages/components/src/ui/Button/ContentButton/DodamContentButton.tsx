@@ -24,7 +24,7 @@ type typographyType = [
 type BackgroundColorType = 'Primary' | 'Secondary' | 'Assisitive' | 'Negative';
 
 export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
+  text: ReactNode;
   enabled?: boolean;
   typography?: typographyType;
   backgroundColorType?: BackgroundColorType;
@@ -35,7 +35,7 @@ export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
 }
 
 export const DodamContentButton = ({
-  children,
+  text,
   enabled,
   typography = ['Body1', 'Bold'],
   backgroundColorType = 'Primary',
@@ -56,7 +56,7 @@ export const DodamContentButton = ({
       {...props}
       onClick={onclick}
     >
-      {children}
+      {text}
     </StyledContentButton>
   );
 };
