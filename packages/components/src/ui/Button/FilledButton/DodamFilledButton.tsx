@@ -28,7 +28,7 @@ export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
   enabled?: boolean;
   typography?: typographyType;
   backgroundColorType?: BackgroundColorType;
-  size: ShapeSizeType;
+  size: Extract<ShapeSizeType, 'Large' | 'Medium' | 'Small'>;
   padding?: CSSProperties['padding'];
   onclick?: MouseEventHandler<HTMLButtonElement>;
   customStyle?: CSSObject;
