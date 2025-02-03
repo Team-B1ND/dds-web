@@ -1,105 +1,107 @@
-import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
-import React, { HTMLAttributes, ReactNode } from "react";
-import styled, { CSSProperties, RuleSet, css } from "styled-components";
-import { FlexLayout } from "../../../layout";
+import React, { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import styled, { CSSProperties, css } from 'styled-components';
+import { DodamBackgroundColor, DodamShape, DodamTypography, ShapeSizeType } from '@dds-web/styles';
+import { FlexLayout } from '../../../layout';
+import { CSSObject } from 'styled-components';
 
-type FilledColorsType = {
-  contentColor?: CSSProperties["color"];
-  contentBackgroundColor?: CSSProperties["backgroundColor"];
-  disabledColor?: CSSProperties["color"];
-  disabledBackgroundColor?: CSSProperties["backgroundColor"];
-};
+type typographyType = [
+  (
+    | 'Title1'
+    | 'Title2'
+    | 'Title3'
+    | 'Heading1'
+    | 'Heading2'
+    | 'Headline'
+    | 'Body1'
+    | 'Body2'
+    | 'Label'
+    | 'Caption1'
+    | 'Caption2'
+  ),
+  'Bold' | 'Medium' | 'Regular',
+];
 
-export interface DodamFilledButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
+type BackgroundColorType = 'Primary' | 'Secondary' | 'Assisitive' | 'Negative';
 
-  colors?: FilledColorsType;
-  radius?: ShapeSizeType;
-  padding?: CSSProperties["padding"];
-  isLoading?: boolean;
-  isDisabled?: boolean;
-  customStyle?: RuleSet;
+export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
+  text: ReactNode;
+  enabled?: boolean;
+  typography?: typographyType;
+  backgroundColorType?: BackgroundColorType;
+  size: ShapeSizeType;
+  padding?: CSSProperties['padding'];
+  onclick?: MouseEventHandler<HTMLButtonElement>;
+  customStyle?: CSSObject;
 }
 
 export const DodamFilledButton = ({
-  children,
-  colors,
-  isLoading = false,
-  radius = "Large",
-  padding = "16px 24px",
-  isDisabled = false,
+  text,
+  enabled,
+  typography = ['Body1', 'Bold'],
+  backgroundColorType = 'Primary',
+  size = 'Large',
+  padding,
+  onclick,
   customStyle,
   ...props
-}: DodamFilledButtonProps) => {
+}: DodamFilledButton) => {
   return (
-    <StyledFilledButton
-      colors={colors!}
-      radius={radius}
-      isDisabled={isDisabled}
-      isLoading={isLoading}
+    <StyledContentButton
+      typography={typography!}
+      backgroundColorType={backgroundColorType!}
       padding={padding}
+      enabled={enabled}
+      size={size}
       customStyle={customStyle!}
-      {...(!isDisabled && props)}
+      {...props}
+      onClick={onclick}
     >
-      {isLoading ? (
-        <LoadingEllipseWrap>
-          {Array.from({ length: 3 }).map((_, idx) => (
-            <LoadingEllipseItem key={idx} />
-          ))}
-        </LoadingEllipseWrap>
-      ) : (
-        <>{children}</>
-      )}
-    </StyledFilledButton>
+      {text}
+    </StyledContentButton>
   );
 };
 
-const StyledFilledButton = styled.button<{
-  colors: FilledColorsType;
-  radius: ShapeSizeType;
-  isDisabled: boolean;
-  padding: CSSProperties["padding"];
-  isLoading: boolean;
-  customStyle: RuleSet;
+const StyledContentButton = styled.button<{
+  typography: typographyType;
+  backgroundColorType: BackgroundColorType;
+  padding: CSSProperties['padding'];
+  size: ShapeSizeType;
+  enabled?: boolean;
+  customStyle: CSSObject;
 }>`
-  width: 380px;
-  min-height: 58px;
-  padding: ${({ padding }) => padding};
-
-  opacity: ${({ isLoading }) => isLoading && "0.5"};
+  min-width: 40px;
+  min-height: 40px;
 
   outline: none;
   border: none;
   cursor: pointer;
 
-  ${({ isDisabled, theme }) => css`
-    background-color: ${isDisabled ? theme.primaryNormal : theme.fillNormal};
-    color: ${isDisabled ? theme.staticWhite : theme.labelNetural};
-  `}
+  padding: ${({ padding }) => padding};
 
   transition: all 0.15s ease-in-out;
-  &:active {
-    ${({ disabled }) =>
-      !disabled &&
-      css`
-        transform: scale(0.97);
-      `};
-  }
+  ${({ backgroundColorType, theme }) => css`
+    color: ${theme.labelStrong};
+    background-color: ${backgroundColorType || 'transparent'};
 
-  ${FlexLayout({ alignItems: "center", justifyContent: "center" })}
-  ${DodamTypography.Body1.Bold}
-  ${({ radius }) => DodamShape[radius]}
+    &:active {
+      transform: scale(0.95);
+      color: ${theme.labelStrong};
+      background-color: ${backgroundColorType || 'transparent'};
+    }
+  `}
+
+  ${FlexLayout({ alignItems: 'center', justifyContent: 'center' })};
+  ${({ size }) => DodamShape[size]};
+  ${({ typography }) => DodamTypography[typography[0]][typography[1]]}
+  ${({ enabled }) =>
+    !enabled
+      ? css`
+          opacity: 0.5;
+        `
+      : css`
+          opacity: 1;
+        `}
+  ${({ backgroundColorType }) => DodamBackgroundColor[backgroundColorType]}
   
-  ${({ customStyle }) => customStyle};
-`;
-
-const LoadingEllipseWrap = styled.div`
-  ${FlexLayout({ columnGap: "8px" })}
-`;
-
-const LoadingEllipseItem = styled.div`
-  width: 8px;
-  height: 8px;
-  background-color: ${({ theme }) => theme.staticWhite};
-  border-radius: 100%;
+  ${({ customStyle }) => customStyle}
 `;
