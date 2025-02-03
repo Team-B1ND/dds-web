@@ -1,13 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { DodamFilledButton } from "./DodamFilledButton";
+import type { Meta, StoryObj } from '@storybook/react';
+import { css } from 'styled-components';
+import { DodamFilledButton } from './DodamFilledButton';
 
 const meta = {
-  title: "ui/DodamButton/DodamFilledButton",
+  title: 'ui/DodamButton/DodamFilledButton',
   component: DodamFilledButton,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 } satisfies Meta<typeof DodamFilledButton>;
 
 export default meta;
@@ -16,6 +17,10 @@ type Story = StoryObj<typeof meta>;
 
 export const StyledFilledButton: Story = {
   args: {
-    children: "Filled button",
+    text: 'svg 아이콘',
+    typography: ['Body1', 'Medium'],
+    size: 'Large',
+    enabled: false,
+    backgroundColorType: 'Negative',
   },
 };
