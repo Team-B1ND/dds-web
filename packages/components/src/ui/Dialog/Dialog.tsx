@@ -61,22 +61,30 @@ export const Dialog = ({
       </Column>
     
       {type.dialog === "CONFIRM" ? (
-        <Row columnGap={8}>
-          <DodamFilledButton
-            customStyle={type.dismiss.style}
-            onClick={type.dismiss.onClick}
-            radius="Medium"
+        <ButtonStyle>
+          <DodamFilledButton 
+          text="닫기"
+          enabled={true}
+          size="Large"
+          backgroundColorType="Assisitive"
+          onClick={type.dismiss.onClick}
           >
             {type.dismiss.content}
           </DodamFilledButton>
           <DodamFilledButton
-            customStyle={type.confirm.style}
+           text="확인"
+           backgroundColorType="Primary"
+           enabled={true}
+           size="Large"
+           customStyle={{
+            color:"white"
+          }}
             onClick={type.confirm.onClick}
-            radius="Medium"
+           
           >
             {type.confirm.content}
           </DodamFilledButton>
-        </Row>
+        </ButtonStyle>
       ) : (
         <Row justifyContent="flex-end" style={{cursor:"pointer"}}>
           <DodamBody1
@@ -105,7 +113,7 @@ const StyledDialog = styled.div<{
   user-select:none;
 
   background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme === null ? theme.backgroundNormal : DodamColor.common100};
+    backgroundColor || theme === null ? DodamColor.common100 : theme.backgroundNormal };
   padding: ${({ dialogType }) => (dialogType === "ALERT" ? "12px" : "18px")};
 
   ${({ radius }) => DodamShape[radius]}
@@ -116,6 +124,11 @@ const StyledDialog = styled.div<{
     })}
 `;
 
+const ButtonStyle = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+`
 const StyledTitle = (titleColor: CSSProperties["color"]) => css`
   color: ${({ theme }) => titleColor || theme.labelStrong};
 `;

@@ -19,7 +19,7 @@ export const StyledFilledButton: Story = {
   args: {
     text: 'svg 아이콘',
     typography: ['Body1', 'Medium'],
-    size: 'Large',
+    size: 'Small',
     enabled: false,
     backgroundColorType: 'Negative',
   },
