@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import styled, { CSSProperties, css } from 'styled-components';
-import { DodamBackgroundColor, DodamShape, DodamTypography, ShapeSizeType } from '@dds-web/styles';
+import { ButtonSizeType, DodamBackgroundColor, DodamButtonStyle, DodamTypography } from '@dds-web/styles';
 import { FlexLayout } from '../../../layout';
 import { CSSObject } from 'styled-components';
 
@@ -28,7 +28,7 @@ export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
   enabled?: boolean;
   typography?: typographyType;
   backgroundColorType?: BackgroundColorType;
-  size: Extract<ShapeSizeType, 'Large' | 'Medium' | 'Small'>;
+  size: ButtonSizeType;
   padding?: CSSProperties['padding'];
   onclick?: MouseEventHandler<HTMLButtonElement>;
   customStyle?: CSSObject;
@@ -65,7 +65,7 @@ const StyledContentButton = styled.button<{
   typography: typographyType;
   backgroundColorType: BackgroundColorType;
   padding: CSSProperties['padding'];
-  size: ShapeSizeType;
+  size: ButtonSizeType;
   enabled?: boolean;
   customStyle: CSSObject;
 }>`
@@ -91,7 +91,7 @@ const StyledContentButton = styled.button<{
   `}
 
   ${FlexLayout({ alignItems: 'center', justifyContent: 'center' })};
-  ${({ size }) => DodamShape[size]};
+  ${({ size }) => DodamButtonStyle[size]};
   ${({ typography }) => DodamTypography[typography[0]][typography[1]]}
   ${({ enabled }) =>
     !enabled
