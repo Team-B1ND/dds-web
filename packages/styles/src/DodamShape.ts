@@ -1,27 +1,29 @@
 import { css, RuleSet } from 'styled-components';
 
-export type ShapeSizeType = 'Small' | 'Medium' | 'Large';
+export type ShapeSizeType = 'ExtraSmall' | 'Small' | 'Medium' | 'Large' | 'ExtraLarge';
 
 export type ShapeStyles = {
+  ExtraSmall: RuleSet;
   Small: RuleSet;
   Medium: RuleSet;
   Large: RuleSet;
+  ExtraLarge: RuleSet;
 };
 
 export const DodamShape: ShapeStyles = Object.freeze({
-  Small: css`
-    height: 32px;
-    padding: 7px 12px;
+  ExtraSmall: css`
     border-radius: 8px;
   `,
-  Medium: css`
-    height: 38px;
-    padding: 13px 20px;
+  Small: css`
     border-radius: 10px;
   `,
-  Large: css`
-    height: 48px;
-    padding: 13px 28px;
+  Medium: css`
     border-radius: 12px;
+  `,
+  Large: css` 
+    border-radius: 18px;
+  `,
+  ExtraLarge: css`
+    border-radius: 28px;
   `,
 });

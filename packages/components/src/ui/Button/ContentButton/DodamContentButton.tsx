@@ -1,8 +1,7 @@
 import React, { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
-import styled, { CSSProperties, css } from 'styled-components';
-import { DodamBackgroundColor, DodamShape, DodamTypography, ShapeSizeType } from '@dds-web/styles';
+import styled, { CSSProperties, RuleSet, css } from 'styled-components';
+import { DodamShape, DodamTypography, ShapeSizeType } from '@dds-web/styles';
 import { FlexLayout } from '../../../layout';
-import { CSSObject } from 'styled-components';
 
 type typographyType = [
   (
@@ -21,25 +20,30 @@ type typographyType = [
   'Bold' | 'Medium' | 'Regular',
 ];
 
-type BackgroundColorType = 'Primary' | 'Secondary' | 'Assisitive' | 'Negative';
+type ColorsType = {
+  textColor?: string;
+  textActiveColor?: string;
+  backgroundColor?: CSSProperties['backgroundColor'];
+  activeBackgroundColor?: CSSProperties['backgroundColor'];
+};
 
 export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
-  text: ReactNode;
-  enabled?: boolean;
+  children: ReactNode;
+  width?:number;
   typography?: typographyType;
-  backgroundColorType?: BackgroundColorType;
-  size: ShapeSizeType;
+  colors?: ColorsType;
+  radius?: ShapeSizeType;
   padding?: CSSProperties['padding'];
   onclick?: MouseEventHandler<HTMLButtonElement>;
-  customStyle?: CSSObject;
+  customStyle?: RuleSet;
 }
 
 export const DodamContentButton = ({
-  text,
-  enabled,
+  children,
+  width,
   typography = ['Body1', 'Bold'],
-  backgroundColorType = 'Primary',
-  size = 'Large',
+  colors,
+  radius = 'Medium',
   padding,
   onclick,
   customStyle,
@@ -47,30 +51,31 @@ export const DodamContentButton = ({
 }: DodamContentButton) => {
   return (
     <StyledContentButton
+      width={width}
       typography={typography!}
-      backgroundColorType={backgroundColorType!}
+      colors={colors!}
+      radius={radius}
       padding={padding}
-      enabled={enabled}
-      size={size}
       customStyle={customStyle!}
       {...props}
       onClick={onclick}
     >
-      {text}
+      {children}
     </StyledContentButton>
   );
 };
 
 const StyledContentButton = styled.button<{
+  width?:number;
   typography: typographyType;
-  backgroundColorType: BackgroundColorType;
+  colors: ColorsType;
+  radius: ShapeSizeType;
   padding: CSSProperties['padding'];
-  size: ShapeSizeType;
-  enabled?: boolean;
-  customStyle: CSSObject;
+  customStyle: RuleSet;
 }>`
   min-width: 40px;
   min-height: 40px;
+  width: ${({width})=> width ? `${width}px` : ''};
 
   outline: none;
   border: none;
@@ -79,29 +84,20 @@ const StyledContentButton = styled.button<{
   padding: ${({ padding }) => padding};
 
   transition: all 0.15s ease-in-out;
-  ${({ backgroundColorType, theme }) => css`
-    color: ${theme.labelStrong};
-    background-color: ${backgroundColorType || 'transparent'};
+  ${({ colors, theme }) => css`
+    color: ${colors?.textColor || theme.labelStrong};
+    background-color: ${colors?.backgroundColor || 'transparent'};
 
     &:active {
       transform: scale(0.95);
-      color: ${theme.labelStrong};
-      background-color: ${backgroundColorType || 'transparent'};
+      color: ${colors?.textActiveColor || theme.labelStrong};
+      background-color: ${colors?.activeBackgroundColor || 'transparent'};
     }
   `}
 
   ${FlexLayout({ alignItems: 'center', justifyContent: 'center' })};
-  ${({ size }) => DodamShape[size]};
+  ${({ radius }) => DodamShape[radius]};
   ${({ typography }) => DodamTypography[typography[0]][typography[1]]}
-  ${({ enabled }) =>
-    !enabled
-      ? css`
-          opacity: 0.5;
-        `
-      : css`
-          opacity: 1;
-        `}
-  ${({ backgroundColorType }) => DodamBackgroundColor[backgroundColorType]}
-  
+
   ${({ customStyle }) => customStyle}
 `;

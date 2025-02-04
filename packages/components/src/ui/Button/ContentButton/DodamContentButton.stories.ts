@@ -9,6 +9,12 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    radius: {
+      control: { type: 'radio' }, 
+      options: [ 'Small', 'Medium', 'Large'], 
+    }
+  }
 } satisfies Meta<typeof DodamContentButton>;
 
 export default meta;
@@ -17,10 +23,11 @@ type Story = StoryObj<typeof meta>;
 
 export const StyledContentButtonButton: Story = {
   args: {
-    text: 'svg 아이콘',
+    children: 'svg 아이콘',
+    width:0,
     typography: ['Body1', 'Medium'],
-    size: 'Large',
-    enabled: false,
-    backgroundColorType: 'Negative',
+    customStyle: css`
+      min-height: 30px;
+    `,
   },
 };

@@ -45,6 +45,7 @@ export const Dialog = ({
   color,
   radius = "ExtraLarge",
 }: DodamDialogProps) => {
+  
   return (
     <StyledDialog
       dialogType={type.dialog}
@@ -61,22 +62,32 @@ export const Dialog = ({
       </Column>
     
       {type.dialog === "CONFIRM" ? (
-        <Row columnGap={8}>
-          <DodamFilledButton
-            customStyle={type.dismiss.style}
-            onClick={type.dismiss.onClick}
-            radius="Medium"
+        <ButtonStyle>
+          <DodamFilledButton 
+          text="닫기"
+          width={130}
+          enabled={true}
+          size="Large"
+          backgroundColorType="Assisitive"
+          onClick={type.dismiss.onClick}
           >
             {type.dismiss.content}
           </DodamFilledButton>
           <DodamFilledButton
-            customStyle={type.confirm.style}
+           text="확인"
+           width={130}
+           backgroundColorType="Primary"
+           enabled={true}
+           size="Large"
+           customStyle={{
+            color:"white"
+          }}
             onClick={type.confirm.onClick}
-            radius="Medium"
+           
           >
             {type.confirm.content}
           </DodamFilledButton>
-        </Row>
+        </ButtonStyle>
       ) : (
         <Row justifyContent="flex-end" style={{cursor:"pointer"}}>
           <DodamBody1
@@ -96,16 +107,18 @@ const StyledDialog = styled.div<{
   dialogType: "ALERT" | "CONFIRM";
   backgroundColor: CSSProperties["backgroundColor"];
 }>`
-  min-width: 280px;
-  max-width: 560px;
+  min-width: 300px;
+  max-width: 620px;
   
   -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
   user-select:none;
 
-  background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme === null ? theme.backgroundNormal : DodamColor.common100};
+  /* background-color: white; */
+  background-color: ${({  theme }:any) =>
+    theme === null ? theme.staticWhite : theme.backgroundNormal };
+    
   padding: ${({ dialogType }) => (dialogType === "ALERT" ? "12px" : "18px")};
 
   ${({ radius }) => DodamShape[radius]}
@@ -116,6 +129,11 @@ const StyledDialog = styled.div<{
     })}
 `;
 
+const ButtonStyle = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`
 const StyledTitle = (titleColor: CSSProperties["color"]) => css`
   color: ${({ theme }) => titleColor || theme.labelStrong};
 `;

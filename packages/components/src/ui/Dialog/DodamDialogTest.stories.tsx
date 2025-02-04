@@ -13,7 +13,7 @@ export const DodamAlert = () => {
   };
 
   return (
-    <DodamFilledButton onClick={handleShowAlert}>Alert 테스트</DodamFilledButton>
+    <DodamFilledButton onClick={handleShowAlert} text="Alert 테스트" size="Large"></DodamFilledButton>
   );
 };
 
@@ -29,6 +29,6 @@ export const DodamConfirm = () => {
   };
 
   return (
-    <DodamFilledButton onClick={handleShowConfirm}>Confirm 테스트</DodamFilledButton>
+    <DodamFilledButton onClick={handleShowConfirm} text="Confirm 테스트" size="Large"></DodamFilledButton>
   );
 };

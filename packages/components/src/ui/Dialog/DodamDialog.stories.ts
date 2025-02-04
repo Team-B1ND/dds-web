@@ -25,7 +25,7 @@ export const AlertDialog: Story = {
   args: {
     title: "제목을 입력해주세요",
     text: "본문을 입력해주세요",
-
+    
     type: {
       dialog: "ALERT",
       close: {

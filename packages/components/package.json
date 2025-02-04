@@ -12,7 +12,8 @@
     "@testing-library/react": "^16.0.1",
     "@types/styled-components": "^5.1.34",
     "styled-components": "^6.1.8",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.2.24",
@@ -34,9 +35,5 @@
     "@types/react-dom": "^18.2.0",
     "storybook": "^8.4.1",
     "swc-loader": "^0.2.6"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "@types/react": "18.2.0"
   }
 }
