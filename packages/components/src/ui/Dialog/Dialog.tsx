@@ -45,7 +45,6 @@ export const Dialog = ({
   color,
   radius = "ExtraLarge",
 }: DodamDialogProps) => {
-  console.log(color?.dialogBackgroundColor);
   
   return (
     <StyledDialog
@@ -66,6 +65,7 @@ export const Dialog = ({
         <ButtonStyle>
           <DodamFilledButton 
           text="닫기"
+          width={130}
           enabled={true}
           size="Large"
           backgroundColorType="Assisitive"
@@ -75,6 +75,7 @@ export const Dialog = ({
           </DodamFilledButton>
           <DodamFilledButton
            text="확인"
+           width={130}
            backgroundColorType="Primary"
            enabled={true}
            size="Large"
@@ -131,7 +132,7 @@ const StyledDialog = styled.div<{
 const ButtonStyle = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
 `
 const StyledTitle = (titleColor: CSSProperties["color"]) => css`
   color: ${({ theme }) => titleColor || theme.labelStrong};
