@@ -25,16 +25,11 @@ export const DodamNotFoundPage = () => {
         </StyledContentWrap>
       </StyledInfoWrap>
       <DodamFilledButton
-        radius="Medium"
+        size="Medium"
         padding="12px 30px"
-        customStyle={css`
-          width: auto;
-          height: auto;
-          min-height: 0;
-          color: ${({ theme }) => theme.staticWhite};
-          background-color: ${({ theme }) => theme.primaryNormal};
-          ${DodamTypography.Headline.Bold}
-        `}
+        backgroundColorType="Primary"
+        typography={['Headline','Bold']}
+        customStyle={ {color:"#fff"}}
         onClick={() => (window.location.href = "https://dodam.b1nd.com/")}>
         도담도담 홈으로
       </DodamFilledButton>
