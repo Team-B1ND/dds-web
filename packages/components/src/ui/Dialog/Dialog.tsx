@@ -45,6 +45,8 @@ export const Dialog = ({
   color,
   radius = "ExtraLarge",
 }: DodamDialogProps) => {
+  console.log(color?.dialogBackgroundColor);
+  
   return (
     <StyledDialog
       dialogType={type.dialog}
@@ -104,16 +106,18 @@ const StyledDialog = styled.div<{
   dialogType: "ALERT" | "CONFIRM";
   backgroundColor: CSSProperties["backgroundColor"];
 }>`
-  min-width: 280px;
-  max-width: 560px;
+  min-width: 300px;
+  max-width: 620px;
   
   -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
   user-select:none;
 
-  background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme === null ? DodamColor.common100 : theme.backgroundNormal };
+  /* background-color: white; */
+  background-color: ${({  theme }:any) =>
+    theme === null ? theme.staticWhite : theme.backgroundNormal };
+    
   padding: ${({ dialogType }) => (dialogType === "ALERT" ? "12px" : "18px")};
 
   ${({ radius }) => DodamShape[radius]}
