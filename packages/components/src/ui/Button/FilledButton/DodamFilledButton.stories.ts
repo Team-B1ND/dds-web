@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { css } from 'styled-components';
 import { DodamFilledButton } from './DodamFilledButton';
 
 const meta = {
@@ -9,6 +8,16 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    size: {
+      control: { type: 'radio' }, 
+      options: [ 'Small', 'Medium', 'Large'], 
+    },
+    backgroundColorType:{
+      control: { type: 'radio' }, 
+      options: [ 'Primary', 'Secondary', 'Assisitive','Negative'], 
+    }
+  },
 } satisfies Meta<typeof DodamFilledButton>;
 
 export default meta;
@@ -18,9 +27,10 @@ type Story = StoryObj<typeof meta>;
 export const StyledFilledButton: Story = {
   args: {
     text: 'svg 아이콘',
+    width: 0,
     typography: ['Body1', 'Medium'],
-    size: 'Small',
+    size: 'Medium',
     enabled: false,
-    backgroundColorType: 'Negative',
+    backgroundColorType: 'Primary',
   },
 };

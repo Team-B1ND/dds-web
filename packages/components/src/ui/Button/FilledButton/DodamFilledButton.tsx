@@ -25,28 +25,31 @@ type BackgroundColorType = 'Primary' | 'Secondary' | 'Assisitive' | 'Negative';
 
 export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
   text: ReactNode;
+  width?:number;
   enabled?: boolean;
   typography?: typographyType;
   backgroundColorType?: BackgroundColorType;
   size: ButtonSizeType;
   padding?: CSSProperties['padding'];
-  onclick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   customStyle?: CSSObject;
 }
 
 export const DodamFilledButton = ({
   text,
+  width,
   enabled,
   typography = ['Body1', 'Bold'],
   backgroundColorType = 'Primary',
   size = 'Large',
   padding,
-  onclick,
+  onClick,
   customStyle,
   ...props
 }: DodamFilledButton) => {
   return (
     <StyledContentButton
+      width={width}
       typography={typography!}
       backgroundColorType={backgroundColorType!}
       padding={padding}
@@ -54,7 +57,7 @@ export const DodamFilledButton = ({
       size={size}
       customStyle={customStyle!}
       {...props}
-      onClick={onclick}
+      onClick={onClick}
     >
       {text}
     </StyledContentButton>
@@ -62,6 +65,7 @@ export const DodamFilledButton = ({
 };
 
 const StyledContentButton = styled.button<{
+  width?:number;
   typography: typographyType;
   backgroundColorType: BackgroundColorType;
   padding: CSSProperties['padding'];
@@ -71,7 +75,8 @@ const StyledContentButton = styled.button<{
 }>`
   min-width: 40px;
   min-height: 40px;
-
+  width: ${({width})=> width ? `${width}px` : ''};
+  
   outline: none;
   border: none;
   cursor: pointer;

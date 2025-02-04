@@ -29,7 +29,7 @@ type ColorsType = {
 
 export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-
+  width?:number;
   typography?: typographyType;
   colors?: ColorsType;
   radius?: ShapeSizeType;
@@ -40,6 +40,7 @@ export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
 
 export const DodamContentButton = ({
   children,
+  width,
   typography = ['Body1', 'Bold'],
   colors,
   radius = 'Medium',
@@ -50,6 +51,7 @@ export const DodamContentButton = ({
 }: DodamContentButton) => {
   return (
     <StyledContentButton
+      width={width}
       typography={typography!}
       colors={colors!}
       radius={radius}
@@ -64,6 +66,7 @@ export const DodamContentButton = ({
 };
 
 const StyledContentButton = styled.button<{
+  width?:number;
   typography: typographyType;
   colors: ColorsType;
   radius: ShapeSizeType;
@@ -72,6 +75,7 @@ const StyledContentButton = styled.button<{
 }>`
   min-width: 40px;
   min-height: 40px;
+  width: ${({width})=> width ? `${width}px` : ''};
 
   outline: none;
   border: none;
