@@ -1,60 +1,52 @@
-import React,{useEffect} from "react";
+import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Background } from "./style";
 import { CSSObject } from "styled-components";
 
-
 interface ModalProps {
   isOpen: boolean;
-  close: () => void;
+  close?: () => void;
   children: React.ReactNode;
   customStyle?: CSSObject;
+  background?: boolean;
 }
 
-export const DodamModal = ({ isOpen, close, children,customStyle }: ModalProps) => {
-  useEffect(() => {
-    let modalRoot: HTMLDivElement | null = null;
+export const DodamModal = ({ isOpen, close, children, customStyle, background }: ModalProps) => {
+  const modalRootRef = useRef<HTMLDivElement | null>(null);
 
-    if (isOpen) {
-      /**
-       * 모달을 열 때 <div id="modal"> 동적 생성
-       *  */ 
-      modalRoot = document.createElement("div");
-      modalRoot.id = "modal";
-      document.body.appendChild(modalRoot);
+  /**
+   * Create the modal root when the component mounts
+   */
+  useEffect(() => {
+    if (!modalRootRef.current) {
+      modalRootRef.current = document.createElement("div");
+      modalRootRef.current.id = "modal";
+      document.body.appendChild(modalRootRef.current);
     }
 
     return () => {
-      /**
-       * 모달 닫힐 때 <div id="modal"> 제거
-       *  */ 
-      if (modalRoot) {
-        document.body.removeChild(modalRoot);
+      /** 
+       * Cleanup when the modal is unmounted.
+      */
+      if (modalRootRef.current) {
+        document.body.removeChild(modalRootRef.current);
+        modalRootRef.current = null;
       }
     };
-  }, [isOpen]);
+  }, []);
+
+
+  if (!isOpen || !modalRootRef.current) return null;
+
+
 
   /**
-   * 모달이 열려있지 않으면 아무것도 렌더링하지 않음
-   *  */ 
-  if (!isOpen) return null;
-
-  /**
-   * modal id 없을떄 아무것도 렌더링 하지 않음
-   *  */ 
-  const modalRoot = document.getElementById("modal");
-  if (!modalRoot) return null;
-
-  /** 
-   * 
-   * 동적으로 생성된 modalRoot에 React Portal로 렌더링
-   * 
-   * */ 
+   * Render into modalRoot using React Portal
+   */
   return ReactDOM.createPortal(
-    <Background onClick={close} customStyle={customStyle}>
-        {children}
+    <Background onClick={close} customStyle={customStyle} background={background}>
+      {children}
     </Background>,
-    modalRoot
+    modalRootRef.current!
   );
 };
-
