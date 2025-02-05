@@ -53,9 +53,9 @@ export const DodamFilledButton = ({
     <StyledContentButton
       width={width}
       typography={typography!}
-      backgroundColorType={backgroundColorType!}
+      backgroundColorType={backgroundColorType}
       padding={padding}
-      enabled={enabled}
+      enabled={enabled!}
       size={size}
       customStyle={customStyle!}
       {...props}
@@ -86,16 +86,6 @@ const StyledContentButton = styled.button<{
   padding: ${({ padding }) => padding};
 
   transition: all 0.15s ease-in-out;
-  ${({ backgroundColorType, theme }) => css`
-    color: ${theme.labelStrong};
-    background-color: ${backgroundColorType || 'transparent'};
-
-    &:active {
-      transform: scale(0.95);
-      color: ${theme.labelStrong};
-      background-color: ${backgroundColorType || 'transparent'};
-    }
-  `}
 
   ${FlexLayout({ alignItems: 'center', justifyContent: 'center' })};
   ${({ size }) => DodamButtonStyle[size]};
