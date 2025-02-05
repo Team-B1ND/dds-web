@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { DodamTextField } from "./DodamTextField";
+import { DodamTextField, DodamTextFieldProps } from "./DodamTextField";
 
-const meta = {
+const meta: Meta<DodamTextFieldProps> = {
   title: "ui/DodamTextField/DodamTextField",
   component: DodamTextField,
   parameters: {

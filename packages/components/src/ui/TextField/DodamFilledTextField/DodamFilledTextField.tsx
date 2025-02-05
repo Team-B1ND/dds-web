@@ -7,7 +7,7 @@ import { hexToRgba } from "@dds-web/utils";
 
 type InputType = "text" | "password";
 
-interface DodamFilledTextFieldProps {
+export interface DodamFilledTextFieldProps {
   type: InputType;
   label: string;
   value: string;
