@@ -7,7 +7,7 @@ import { hexToRgba } from "@dds-web/utils";
 
 type InputType = "text" | "password";
 
-interface DodamFilledTextFieldProps {
+export interface DodamFilledTextFieldProps {
   type: InputType;
   label: string;
   value: string;
@@ -15,8 +15,8 @@ interface DodamFilledTextFieldProps {
   placeholder: string;
   isDisabled?: boolean;
   supportingText?: string;
-  onchange: ChangeEventHandler<HTMLInputElement>;
-  onclickXmark: MouseEventHandler<HTMLDivElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onClickXmark: MouseEventHandler<HTMLDivElement>;
 }
 
 export const DodamFilledTextField = ({
@@ -27,8 +27,8 @@ export const DodamFilledTextField = ({
   isDisabled,
   supportingText,
   placeholder,
-  onchange,
-  onclickXmark,
+  onChange,
+  onClickXmark,
 }: DodamFilledTextFieldProps) => {
   const theme = useTheme();
   const [isFocused, setIsFocused] = useState(false);
@@ -56,7 +56,7 @@ export const DodamFilledTextField = ({
             disabled={isDisabled}
             placeholder={placeholder}
             value={value}
-            onChange={onchange}
+            onChange={onChange}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
@@ -64,7 +64,7 @@ export const DodamFilledTextField = ({
             (isError ? (
               <ExclamationmarkCircle color={theme.statusNegative} />
             ) : type === "text" ? (
-              <div onClick={onclickXmark}>
+              <div onClick={onClickXmark}>
                 <XmarkCircle
                   color={hexToRgba(theme.labelAlternative, 0.5)}
                   $svgStyle={{ cursor: "pointer" }}

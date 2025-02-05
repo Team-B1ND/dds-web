@@ -5,3 +5,4 @@ export * from './DodamTheme';
 export * from './DodamTypography';
 export * from './DodamBackgroundColor';
 export * from './DodamButtonStyle';
+export * from "./DodamShadow";

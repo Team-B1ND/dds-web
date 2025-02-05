@@ -7,18 +7,18 @@ type TagColor = "red" | "blue" | "default";
 export interface DodamTagProps {
   text: string;
   color: TagColor;
-  onclick?: MouseEventHandler<HTMLDivElement>;
+  onClick?: MouseEventHandler<HTMLDivElement>;
   customStyle?: RuleSet;
 }
 
 export const DodamTag = ({
   text,
   color,
-  onclick,
+  onClick,
   customStyle,
 }: DodamTagProps) => {
   return (
-    <StyledTagWrap color={color} customStyle={customStyle!} onClick={onclick}>
+    <StyledTagWrap color={color} customStyle={customStyle!} onClick={onClick}>
       <StyledTag color={color}>{text}</StyledTag>
     </StyledTagWrap>
   );

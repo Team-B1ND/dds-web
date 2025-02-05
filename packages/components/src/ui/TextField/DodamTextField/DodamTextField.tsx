@@ -17,16 +17,16 @@ import { hexToRgba } from "@dds-web/utils";
 
 type InputType = "text" | "password";
 
-interface DodamTextFieldProps {
+export interface DodamTextFieldProps {
   id: string;
   name: string;
   type: InputType;
   value: string;
   children: string;
   isError: boolean;
-  onclickXmark: MouseEventHandler<HTMLDivElement>;
-  onchange: ChangeEventHandler<HTMLInputElement>;
-  keydown: KeyboardEventHandler<HTMLInputElement>;
+  onClickXmark: MouseEventHandler<HTMLDivElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onKeyDown: KeyboardEventHandler<HTMLInputElement>;
   isDisabled?: boolean;
   width?: number;
   labelStyle?: CSSProperties;
@@ -40,9 +40,9 @@ export const DodamTextField = ({
   value,
   width = 380,
   children = "텍스트를 입력하세요.",
-  onclickXmark,
-  onchange,
-  keydown,
+  onClickXmark,
+  onChange,
+  onKeyDown,
   isDisabled,
   labelStyle,
   isError,
@@ -65,11 +65,11 @@ export const DodamTextField = ({
           name={name}
           type={type === "text" ? "text" : isShowValue ? "text" : "password"}
           isError={isError}
-          onChange={onchange}
+          onChange={onChange}
           value={value}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              keydown(e);
+              onKeyDown(e);
             }
           }}
         />
@@ -85,7 +85,7 @@ export const DodamTextField = ({
               }}
             />
           ) : type === "text" ? (
-            <div onClick={onclickXmark}>
+            <div onClick={onClickXmark}>
               <XmarkCircle
                 color={hexToRgba(theme.labelAlternative, 0.5)}
                 $svgStyle={{

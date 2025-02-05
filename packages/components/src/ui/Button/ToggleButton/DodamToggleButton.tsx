@@ -4,12 +4,12 @@ import { DodamShape, DodamThemeProvider } from '@dds-web/styles';
 
 export interface ToggleBtnProps {
   isAtv: boolean;
-  onclick?: MouseEventHandler<HTMLDivElement>;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-export const DodamToggleButton = ({ isAtv, onclick }: ToggleBtnProps) => {
+export const DodamToggleButton = ({ isAtv, onClick }: ToggleBtnProps) => {
   return (
-    <StyledToggleButtonWrap isAtv={isAtv} onClick={onclick}>
+    <StyledToggleButtonWrap isAtv={isAtv} onClick={onClick}>
       <StyledToggleButton isAtv={isAtv}></StyledToggleButton>
     </StyledToggleButtonWrap>
   );
