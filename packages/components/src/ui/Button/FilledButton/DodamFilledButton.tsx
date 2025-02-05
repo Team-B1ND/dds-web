@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import styled, { CSSProperties, css } from 'styled-components';
-import { ButtonSizeType, DodamBackgroundColor, DodamButtonStyle, DodamTypography } from '@dds-web/styles';
+import { BackgroundColorType, ButtonSizeType, DodamBackgroundColor, DodamButtonStyle, DodamTypography } from '@dds-web/styles';
 import { FlexLayout } from '../../../layout';
 import { CSSObject } from 'styled-components';
 
@@ -21,8 +21,6 @@ type typographyType = [
   'Bold' | 'Medium' | 'Regular',
 ];
 
-type BackgroundColorType = 'Primary' | 'Secondary' | 'Assisitive' | 'Negative';
-
 export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
   text?: React.ReactNode; 
   children?: React.ReactNode; 
@@ -40,7 +38,7 @@ export const DodamFilledButton = ({
   text,
   children,
   width,
-  enabled,
+  enabled = true,
   typography = ['Body1', 'Bold'],
   backgroundColorType = 'Primary',
   size = 'Large',
