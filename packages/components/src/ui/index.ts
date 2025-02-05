@@ -8,3 +8,6 @@ export * from "./Typography";
 export * from "./PageIndicator";
 export * from "./Modal";
 export * from "./CheckBox";
+export * from "./Divider";
+export * from "./Tag";
+export * from "./CheckBox";
