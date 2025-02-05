@@ -21,7 +21,7 @@ export const StyledFilledTextField: Story = {
     value: "Input Text",
     isError: false,
     placeholder: "여기에 텍스트를 입력하세요.",
-    onchange: () => alert("값 변경"),
-    onclickXmark: () => alert("값 삭제"),
+    onChange: () => alert("값 변경"),
+    onClickXmark: () => alert("값 삭제"),
   },
 };

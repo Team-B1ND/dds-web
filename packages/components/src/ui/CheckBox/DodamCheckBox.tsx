@@ -4,21 +4,21 @@ import { Checkmark } from "@dds-web/assets";
 
 type ButtonColor = "red" | "blue";
 
-interface DodamCheckBoxProps extends HTMLAttributes<HTMLButtonElement> {
+interface DodamCheckBoxProps {
   color?: ButtonColor;
   isDisabled: boolean;
-  onclick: MouseEventHandler<HTMLDivElement>;
+  onClick: MouseEventHandler<HTMLDivElement>;
 }
 
-export const DodamCheckBox = ({ isDisabled = false, color = "blue", onclick }: DodamCheckBoxProps) => {
+export const DodamCheckBox = ({ isDisabled = false, color = "blue", onClick }: DodamCheckBoxProps) => {
   return (
     <>
       {isDisabled ? (
-        <DisabledCheckBox color={color} onClick={onclick}>
+        <DisabledCheckBox color={color} onClick={onClick}>
           <Checkmark size={12} color="white" />
         </DisabledCheckBox>
       ) : (
-        <StyledCheckBox onClick={onclick} />
+        <StyledCheckBox onClick={onClick} />
       )}
     </>
   );

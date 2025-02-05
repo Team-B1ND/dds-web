@@ -15,7 +15,7 @@ export interface SegmentedBtnProps {
   type: ButtonType;
   data: SegmentedBtnDataProps[];
   width?: number;
-  onclick?: () => void;
+  onClick?: () => void;
 }
 
 export const DodamSegmentedButton = ({
@@ -23,7 +23,7 @@ export const DodamSegmentedButton = ({
   type,
   data,
   width,
-  onclick,
+  onClick,
 }: SegmentedBtnProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [segmentedBtndata, setSegmentedBtnData] = useState<SegmentedBtnDataProps[]>([]);
@@ -37,8 +37,8 @@ export const DodamSegmentedButton = ({
         id === idx ? { ...item, isAtv: true } : { ...item, isAtv: false }
       )
     );
-    if (onclick) {
-      onclick();
+    if (onClick) {
+      onClick();
     }
   };
 

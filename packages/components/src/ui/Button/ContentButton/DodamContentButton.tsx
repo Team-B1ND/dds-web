@@ -34,7 +34,7 @@ export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
   colors?: ColorsType;
   radius?: ShapeSizeType;
   padding?: CSSProperties['padding'];
-  onclick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   customStyle?: RuleSet;
 }
 
@@ -45,7 +45,7 @@ export const DodamContentButton = ({
   colors,
   radius = 'Medium',
   padding,
-  onclick,
+  onClick,
   customStyle,
   ...props
 }: DodamContentButton) => {
@@ -58,7 +58,7 @@ export const DodamContentButton = ({
       padding={padding}
       customStyle={customStyle!}
       {...props}
-      onClick={onclick}
+      onClick={onClick}
     >
       {children}
     </StyledContentButton>

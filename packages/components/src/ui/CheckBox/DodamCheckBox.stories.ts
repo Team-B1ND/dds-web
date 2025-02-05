@@ -17,6 +17,6 @@ type Story = StoryObj<typeof meta>;
 export const CheckBox: Story = {
   args: {
     isDisabled: true,
-    onclick: () => alert("버튼 클릭"),
+    onClick: () => alert("버튼 클릭"),
   },
 };
