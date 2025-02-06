@@ -23,5 +23,6 @@ export const StyledTextField: Story = {
     isError: false,
     label: "Label text",
     value: "Input text",
+    showIcon: true,
   },
 };

@@ -15,6 +15,7 @@ export interface DodamFilledTextFieldProps {
   placeholder: string;
   isDisabled?: boolean;
   supportingText?: string;
+  showIcon?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -30,6 +31,7 @@ export const DodamFilledTextField = ({
   isDisabled,
   supportingText,
   placeholder,
+  showIcon = true,
   onChange,
 }: DodamFilledTextFieldProps) => {
   const theme = useTheme();
@@ -60,7 +62,8 @@ export const DodamFilledTextField = ({
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
-          {value.trim().length > 0 &&
+          {showIcon &&
+            value.trim().length > 0 &&
             (isError ? (
               <ExclamationmarkCircle color={theme.statusNegative} />
             ) : type === 'text' ? (

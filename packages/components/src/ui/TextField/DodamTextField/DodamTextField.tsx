@@ -13,6 +13,7 @@ export interface DodamTextFieldProps {
   value: string;
   label: string;
   isError: boolean;
+  showIcon?: boolean;
   onClickXmark: MouseEventHandler<HTMLDivElement>;
   onChange: ChangeEventHandler<HTMLInputElement>;
   onKeyDown: KeyboardEventHandler<HTMLInputElement>;
@@ -29,6 +30,7 @@ export const DodamTextField = ({
   value,
   width,
   label = '텍스트를 입력하세요.',
+  showIcon = true,
   onClickXmark,
   onChange,
   onKeyDown,
@@ -63,7 +65,8 @@ export const DodamTextField = ({
           }}
         />
         <label style={labelStyle}>{label}</label>
-        {value.trim().length > 0 &&
+        {showIcon &&
+          value.trim().length > 0 &&
           (isError ? (
             <ExclamationmarkCircle
               color={theme.statusNegative}
