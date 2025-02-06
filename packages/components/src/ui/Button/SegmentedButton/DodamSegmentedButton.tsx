@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
-import styled from "styled-components";
-import { DodamTypography } from "@dds-web/styles";
-import { DodamShape } from "@dds-web/styles";
+import React, { useEffect, useState, useRef } from 'react';
+import styled from 'styled-components';
+import { DodamTypography } from '@dds-web/styles';
+import { DodamShape } from '@dds-web/styles';
 
-type ButtonType = "block" | "inline";
+type ButtonType = 'block' | 'inline';
 
 interface SegmentedBtnDataProps {
   text: string;
@@ -18,13 +18,7 @@ export interface SegmentedBtnProps {
   onClick?: () => void;
 }
 
-export const DodamSegmentedButton = ({
-  num,
-  type,
-  data,
-  width,
-  onClick,
-}: SegmentedBtnProps) => {
+export const DodamSegmentedButton = ({ num, type, data, width, onClick }: SegmentedBtnProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [segmentedBtndata, setSegmentedBtnData] = useState<SegmentedBtnDataProps[]>([]);
   const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0 });
@@ -33,9 +27,7 @@ export const DodamSegmentedButton = ({
   const handleClick = (id: number) => {
     setSelectedIdx(id);
     setSegmentedBtnData((prevData) =>
-      prevData.map((item, idx) =>
-        id === idx ? { ...item, isAtv: true } : { ...item, isAtv: false }
-      )
+      prevData.map((item, idx) => (id === idx ? { ...item, isAtv: true } : { ...item, isAtv: false }))
     );
     if (onClick) {
       onClick();
@@ -48,7 +40,7 @@ export const DodamSegmentedButton = ({
 
   useEffect(() => {
     setTimeout(() => {
-      if (type === "inline" && buttonRefs.current[selectedIdx]) {
+      if (type === 'inline' && buttonRefs.current[selectedIdx]) {
         const button = buttonRefs.current[selectedIdx];
 
         if (button) {
@@ -78,7 +70,8 @@ export const DodamSegmentedButton = ({
             num={num}
             type={type}
             isAtv={item.isAtv}
-            onClick={() => handleClick(idx)}>
+            onClick={() => handleClick(idx)}
+          >
             {item.text}
           </StyledSegmentedButton>
         ))}
@@ -91,8 +84,7 @@ const StyledSegmentedButtonWrap = styled.div<{
   width?: number;
   type: ButtonType;
 }>`
-  width: ${({ width, type }) =>
-    type === "block" ? (width ? `${width}px` : "380px") : "auto"};
+  width: ${({ width, type }) => (type === 'block' ? (width ? `${width}px` : '380px') : 'auto')};
   height: 47px;
 
   display: flex;
@@ -104,11 +96,11 @@ const StyledSegmentedButtonWrap = styled.div<{
 `;
 
 const StyledSegmentedButtonBox = styled.div<{ type: ButtonType }>`
-  width: ${({ type }) => (type === "block" ? "calc(100% - 8px)" : "auto")};
+  width: ${({ type }) => (type === 'block' ? 'calc(100% - 8px)' : 'auto')};
   height: calc(100% - 8px);
   position: relative;
 
-  padding: ${({ type }) => (type === "inline" ? "0 4px" : "")};
+  padding: ${({ type }) => (type === 'inline' ? '0 4px' : '')};
 `;
 
 const StyledSegmentedButton = styled.button<{
@@ -116,18 +108,17 @@ const StyledSegmentedButton = styled.button<{
   type: ButtonType;
   isAtv: boolean;
 }>`
-  color: ${({ isAtv, theme }) =>
-    isAtv ? theme.labelNormal : theme.labelAssisitive};
+  color: ${({ isAtv, theme }) => (isAtv ? theme.labelNormal : theme.labelAssisitive)};
   ${DodamTypography.Headline.Medium}
 
-  width: ${({ num, type }) => (type === "block" ? `${100 / num}%` : "auto")};
+  width: ${({ num, type }) => (type === 'block' ? `${100 / num}%` : 'auto')};
   height: 100%;
 
   border: none;
   ${DodamShape.Small};
   background-color: transparent;
 
-  padding: ${({ type }) => (type === "inline" ? "6px 12px;" : "")};
+  padding: ${({ type }) => (type === 'inline' ? '6px 12px;' : '')};
   cursor: pointer;
   position: relative;
   z-index: 10;
@@ -140,12 +131,10 @@ const BackgroundIndicator = styled.div<{
   width: number;
   left: number;
 }>`
-  width: ${({ num, type, width }) =>
-    type === "block" ? `${100 / num}%` : `${width}px`};
+  width: ${({ num, type, width }) => (type === 'block' ? `${100 / num}%` : `${width}px`)};
   height: 100%;
   top: 0;
-  left: ${({ index, num, type, left }) =>
-    type === "block" ? `${(index / num) * 100}%` : `${left}px`};
+  left: ${({ index, num, type, left }) => (type === 'block' ? `${(index / num) * 100}%` : `${left}px`)};
 
   ${DodamShape.Small};
   background-color: ${({ theme }) => theme.fillAssistive};

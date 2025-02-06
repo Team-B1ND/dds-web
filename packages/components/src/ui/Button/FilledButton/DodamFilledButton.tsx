@@ -1,6 +1,13 @@
-import React, { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import React, { HTMLAttributes, MouseEventHandler } from 'react';
 import styled, { CSSProperties, css } from 'styled-components';
-import { BackgroundColorType, ButtonSizeType, DodamBackgroundColor, DodamButtonStyle, DodamTypography } from '@dds-web/styles';
+import {
+  BackgroundColorType,
+  ButtonSizeType,
+  DodamBackgroundColor,
+  DodamButtonStyle,
+  DodamTheme,
+  DodamTypography,
+} from '@dds-web/styles';
 import { FlexLayout } from '../../../layout';
 import { CSSObject } from 'styled-components';
 
@@ -22,9 +29,10 @@ type typographyType = [
 ];
 
 export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
-  text?: React.ReactNode; 
-  children?: React.ReactNode; 
-  width?:number;
+  text?: React.ReactNode;
+  children?: React.ReactNode;
+  textTheme?: keyof DodamTheme;
+  width?: number;
   enabled?: boolean;
   typography?: typographyType;
   backgroundColorType?: BackgroundColorType;
@@ -36,12 +44,13 @@ export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
 
 export const DodamFilledButton = ({
   text,
+  textTheme,
   children,
   width,
   enabled = true,
   typography = ['Body1', 'Bold'],
   backgroundColorType = 'Primary',
-  size = 'Large',
+  size,
   padding,
   onClick,
   customStyle,
@@ -49,6 +58,7 @@ export const DodamFilledButton = ({
 }: DodamFilledButton) => {
   return (
     <StyledContentButton
+      textTheme={textTheme}
       width={width}
       typography={typography!}
       backgroundColorType={backgroundColorType}
@@ -65,9 +75,10 @@ export const DodamFilledButton = ({
 };
 
 const StyledContentButton = styled.button<{
-  width?:number;
+  width?: number;
   typography: typographyType;
   backgroundColorType: BackgroundColorType;
+  textTheme?: keyof DodamTheme;
   padding: CSSProperties['padding'];
   size: ButtonSizeType;
   enabled?: boolean;
@@ -75,8 +86,8 @@ const StyledContentButton = styled.button<{
 }>`
   min-width: 40px;
   min-height: 40px;
-  width: ${({width})=> width ? `${width}px` : ''};
-  
+  width: ${({ width }) => (width ? `${width}px` : '')};
+
   outline: none;
   border: none;
   cursor: pointer;
@@ -99,4 +110,6 @@ const StyledContentButton = styled.button<{
   ${({ backgroundColorType }) => DodamBackgroundColor[backgroundColorType]}
   
   ${({ customStyle }) => customStyle}
+
+  color: ${({ theme, textTheme }) => (textTheme ? theme[textTheme] : '')};
 `;
