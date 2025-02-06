@@ -10,13 +10,17 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     size: {
-      control: { type: 'radio' }, 
-      options: [ 'Small', 'Medium', 'Large'], 
+      control: { type: 'radio' },
+      options: ['Small', 'Medium', 'Large'],
     },
-    backgroundColorType:{
-      control: { type: 'radio' }, 
-      options: [ 'Primary', 'Secondary', 'Assisitive','Negative'], 
-    }
+    backgroundColorType: {
+      control: { type: 'radio' },
+      options: ['Primary', 'Secondary', 'Assisitive', 'Negative'],
+    },
+    textTheme: {
+      control: { type: 'radio' },
+      options: ['staticWhite', 'staticBlack', 'labelAlternative'],
+    },
   },
 } satisfies Meta<typeof DodamFilledButton>;
 
@@ -29,8 +33,9 @@ export const StyledFilledButton: Story = {
     text: 'svg 아이콘',
     width: 0,
     typography: ['Body1', 'Medium'],
-    size: 'Medium',
+    size: 'Large',
     enabled: false,
     backgroundColorType: 'Primary',
+    textTheme: 'staticWhite',
   },
 };

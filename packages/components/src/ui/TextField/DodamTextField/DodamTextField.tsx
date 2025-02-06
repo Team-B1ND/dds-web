@@ -1,29 +1,19 @@
-import { DodamTypography } from "@dds-web/styles";
-import React, {
-  ChangeEventHandler,
-  CSSProperties,
-  KeyboardEventHandler,
-  MouseEventHandler,
-  useState,
-} from "react";
-import styled, { useTheme } from "styled-components";
-import {
-  Eye,
-  EyeSlash,
-  XmarkCircle,
-  ExclamationmarkCircle,
-} from "@dds-web/assets";
-import { hexToRgba } from "@dds-web/utils";
+import { DodamTypography } from '@dds-web/styles';
+import React, { ChangeEventHandler, CSSProperties, KeyboardEventHandler, MouseEventHandler, useState } from 'react';
+import styled, { useTheme } from 'styled-components';
+import { Eye, EyeSlash, XmarkCircle, ExclamationmarkCircle } from '@dds-web/assets';
+import { hexToRgba } from '@dds-web/utils';
 
-type InputType = "text" | "password";
+type InputType = 'text' | 'password';
 
 export interface DodamTextFieldProps {
   id: string;
   name: string;
   type: InputType;
   value: string;
-  children: string;
+  label: string;
   isError: boolean;
+  showIcon?: boolean;
   onClickXmark: MouseEventHandler<HTMLDivElement>;
   onChange: ChangeEventHandler<HTMLInputElement>;
   onKeyDown: KeyboardEventHandler<HTMLInputElement>;
@@ -38,8 +28,9 @@ export const DodamTextField = ({
   name,
   type,
   value,
-  width = 380,
-  children = "텍스트를 입력하세요.",
+  width,
+  label = '텍스트를 입력하세요.',
+  showIcon = true,
   onClickXmark,
   onChange,
   onKeyDown,
@@ -56,43 +47,44 @@ export const DodamTextField = ({
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: 'relative' }}>
       <StyledTextField width={width} isError={isError}>
         <StyledTextFieldTextFieldInput
           required
           disabled={isDisabled}
           id={id}
           name={name}
-          type={type === "text" ? "text" : isShowValue ? "text" : "password"}
+          type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
           isError={isError}
           onChange={onChange}
           value={value}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === 'Enter') {
               onKeyDown(e);
             }
           }}
         />
-        <label style={labelStyle}>{children}</label>
-        {value.trim().length > 0 &&
+        <label style={labelStyle}>{label}</label>
+        {showIcon &&
+          value.trim().length > 0 &&
           (isError ? (
             <ExclamationmarkCircle
               color={theme.statusNegative}
               $svgStyle={{
-                position: "absolute",
-                top: "20%",
-                right: "4%",
+                position: 'absolute',
+                top: '20%',
+                right: '4%',
               }}
             />
-          ) : type === "text" ? (
+          ) : type === 'text' ? (
             <div onClick={onClickXmark}>
               <XmarkCircle
                 color={hexToRgba(theme.labelAlternative, 0.5)}
                 $svgStyle={{
-                  position: "absolute",
-                  top: "20%",
-                  right: "4%",
-                  cursor: "pointer",
+                  position: 'absolute',
+                  top: '20%',
+                  right: '4%',
+                  cursor: 'pointer',
                 }}
               />
             </div>
@@ -101,10 +93,10 @@ export const DodamTextField = ({
               <Eye
                 color={theme.staticBlack}
                 $svgStyle={{
-                  position: "absolute",
-                  top: "20%",
-                  right: "4%",
-                  cursor: "pointer",
+                  position: 'absolute',
+                  top: '20%',
+                  right: '4%',
+                  cursor: 'pointer',
                 }}
               />
             </div>
@@ -113,24 +105,22 @@ export const DodamTextField = ({
               <EyeSlash
                 color={theme.staticBlack}
                 $svgStyle={{
-                  position: "absolute",
-                  top: "20%",
-                  right: "4%",
-                  cursor: "pointer",
+                  position: 'absolute',
+                  top: '20%',
+                  right: '4%',
+                  cursor: 'pointer',
                 }}
               />
             </div>
           ))}
       </StyledTextField>
-      <StyledSupportingText isError={isError}>
-        {supportingText}
-      </StyledSupportingText>
+      <StyledSupportingText isError={isError}>{supportingText}</StyledSupportingText>
     </div>
   );
 };
 
 const StyledTextField = styled.div<{ width?: number; isError: boolean }>`
-  width: ${({ width }) => `${width}px`};
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
   height: 47px;
   padding: 4px 0px;
 
@@ -177,22 +167,17 @@ const StyledTextFieldTextFieldInput = styled.input<{ isError: boolean }>`
   ${DodamTypography.Headline.Medium}
 
   border: none;
-  border-bottom: 1.5px solid
-    ${({ isError, theme }) =>
-      isError ? theme.statusNegative : theme.lineNormal};
+  border-bottom: 1.5px solid ${({ isError, theme }) => (isError ? theme.statusNegative : theme.lineNormal)};
   background-color: transparent;
   outline: none;
 
   &:disabled {
-    border-bottom: 1.5px solid
-      ${({ theme }) => hexToRgba(theme.lineNormal, 0.65)};
+    border-bottom: 1.5px solid ${({ theme }) => hexToRgba(theme.lineNormal, 0.65)};
     background-color: transparent;
   }
 
   &:focus {
-    border-bottom: 1.5px solid
-      ${({ isError, theme }) =>
-        isError ? theme.statusNegative : theme.primaryNormal};
+    border-bottom: 1.5px solid ${({ isError, theme }) => (isError ? theme.statusNegative : theme.primaryNormal)};
   }
 
   &:-webkit-autofill {
@@ -210,8 +195,7 @@ const StyledTextFieldTextFieldInput = styled.input<{ isError: boolean }>`
 
 const StyledSupportingText = styled.span<{ isError: boolean }>`
   ${DodamTypography.Label.Medium}
-  color: ${({ isError, theme }) =>
-    isError ? theme.statusNegative : theme.labelAlternative};
+  color: ${({ isError, theme }) => (isError ? theme.statusNegative : theme.labelAlternative)};
   position: absolute;
   top: 55px;
 `;

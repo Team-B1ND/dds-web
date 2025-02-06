@@ -18,10 +18,8 @@ export const StyledFilledTextField: Story = {
   args: {
     type: 'text',
     label: 'Label',
-    value: 'Input Text',
     isError: false,
     placeholder: '여기에 텍스트를 입력하세요.',
-    onChange: () => alert('값 변경'),
-    onClickXmark: () => alert('값 삭제'),
+    value: 'Input text',
   },
 };
