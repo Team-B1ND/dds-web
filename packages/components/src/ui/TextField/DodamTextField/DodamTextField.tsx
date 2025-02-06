@@ -1,5 +1,12 @@
 import { DodamTypography } from '@dds-web/styles';
-import React, { ChangeEvent, ChangeEventHandler, CSSProperties, KeyboardEventHandler, MouseEventHandler, useState } from 'react';
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  CSSProperties,
+  KeyboardEventHandler,
+  MouseEventHandler,
+  useState,
+} from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Eye, EyeSlash, XmarkCircle, ExclamationmarkCircle } from '@dds-web/assets';
 import { hexToRgba } from '@dds-web/utils';
@@ -15,7 +22,7 @@ export interface DodamTextFieldProps {
   isError: boolean;
   showIcon?: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
-  onKeyDown: KeyboardEventHandler<HTMLInputElement>;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   isDisabled?: boolean;
   width?: number;
   labelStyle?: CSSProperties;
@@ -62,7 +69,7 @@ export const DodamTextField = ({
           value={value}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              onKeyDown(e);
+              onKeyDown?.(e);
             }
           }}
         />
