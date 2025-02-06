@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, MouseEventHandler, useState } from 'react';
+import React, { ChangeEvent, ChangeEventHandler, MouseEventHandler, useCallback, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { XmarkCircle, Eye, EyeSlash } from '@dds-web/assets';
 import { ExclamationmarkCircle } from '@dds-web/assets';
@@ -43,10 +43,15 @@ export const DodamFilledTextField = ({
     setIsShowValue((prev) => !prev);
   };
 
-  const handleClickXmark = () => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setInternalValue(e.target.value);
+    onChange(e);
+  }, [onChange]);
+
+  const handleClickXmark = useCallback(() => {
     setInternalValue('');
     onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
-  };
+  }, [onChange]);
 
   return (
     <div style={{ position: 'relative' }}>
@@ -60,7 +65,7 @@ export const DodamFilledTextField = ({
             disabled={isDisabled}
             placeholder={placeholder}
             value={internalValue}
-            onChange={onChange}
+            onChange={handleChange}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
