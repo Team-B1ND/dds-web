@@ -133,8 +133,8 @@ const StyledTextField = styled.div<{ width?: number; isError: boolean }>`
   height: 47px;
   padding: 4px 0px;
 
-  border: none;
-
+  border: none !important;
+  border-radius: 0px !important;
   position: relative;
 
   label {
