@@ -69,7 +69,7 @@ export const DodamFilledTextField = ({
               </div>
             ) : isShowValue ? (
               <div onClick={handleClickEye}>
-                <Eye color={theme.staticBlack} $svgStyle={{ cursor: 'pointer' }} />
+                <Eye color={hexToRgba(theme.labelAlternative, 0.5)} $svgStyle={{ cursor: 'pointer' }} />
               </div>
             ) : (
               <div onClick={handleClickEye}>
