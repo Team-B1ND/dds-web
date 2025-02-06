@@ -37,12 +37,14 @@ export const DodamFilledTextField = ({
   const theme = useTheme();
   const [isFocused, setIsFocused] = useState(false);
   const [isShowValue, setIsShowValue] = useState(false);
+  const [internalValue, setInternalValue] = useState(value);
 
   const handleClickEye = () => {
     setIsShowValue((prev) => !prev);
   };
 
   const handleClickXmark = () => {
+    setInternalValue('');
     onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
   };
 
@@ -57,13 +59,13 @@ export const DodamFilledTextField = ({
             type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
             disabled={isDisabled}
             placeholder={placeholder}
-            value={value}
+            value={internalValue}
             onChange={onChange}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
           {showIcon &&
-            value.trim().length > 0 &&
+            internalValue.trim().length > 0 &&
             (isError ? (
               <ExclamationmarkCircle color={theme.statusNegative} />
             ) : type === 'text' ? (

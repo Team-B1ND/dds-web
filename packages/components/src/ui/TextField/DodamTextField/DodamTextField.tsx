@@ -5,6 +5,7 @@ import React, {
   CSSProperties,
   KeyboardEventHandler,
   MouseEventHandler,
+  useCallback,
   useState,
 } from 'react';
 import styled, { useTheme } from 'styled-components';
@@ -46,14 +47,16 @@ export const DodamTextField = ({
 }: DodamTextFieldProps) => {
   const theme = useTheme();
   const [isShowValue, setIsShowValue] = useState(false);
+  const [internalValue, setInternalValue] = useState(value);
 
   const handleClickEye = () => {
     setIsShowValue((prev) => !prev);
   };
 
-  const handleClickXmark = () => {
+  const handleClickXmark = useCallback(() => {
+    setInternalValue('');
     onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
-  };
+  }, [onChange]);
 
   return (
     <div style={{ position: 'relative' }}>
@@ -66,7 +69,7 @@ export const DodamTextField = ({
           type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
           isError={isError!}
           onChange={onChange}
-          value={value}
+          value={internalValue}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               onKeyDown?.(e);
@@ -75,7 +78,7 @@ export const DodamTextField = ({
         />
         <label style={labelStyle}>{label}</label>
         {showIcon &&
-          value.trim().length > 0 &&
+          internalValue.trim().length > 0 &&
           (isError ? (
             <ExclamationmarkCircle
               color={theme.statusNegative}
