@@ -21,10 +21,7 @@ export const StyledTextField: Story = {
     type: "text",
     name: "textField",
     isError: false,
+    label: "Label text",
     value: "Input text",
-    children: "Label text",
-    onClickXmark: () => alert("값 삭제"),
-    onChange: () => alert("값 변경"),
-    onKeyDown: (e) => alert(`${e.key}키 누름`),
   },
 };
