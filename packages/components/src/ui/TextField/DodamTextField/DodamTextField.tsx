@@ -19,7 +19,7 @@ export interface DodamTextFieldProps {
   type: InputType;
   value: string;
   label: string;
-  isError: boolean;
+  isError?: boolean;
   showIcon?: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
@@ -57,14 +57,14 @@ export const DodamTextField = ({
 
   return (
     <div style={{ position: 'relative' }}>
-      <StyledTextField width={width} isError={isError}>
+      <StyledTextField width={width} isError={isError!}>
         <StyledTextFieldTextFieldInput
           required
           disabled={isDisabled}
           id={id}
           name={name}
           type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
-          isError={isError}
+          isError={isError!}
           onChange={onChange}
           value={value}
           onKeyDown={(e) => {
@@ -123,7 +123,7 @@ export const DodamTextField = ({
             </div>
           ))}
       </StyledTextField>
-      <StyledSupportingText isError={isError}>{supportingText}</StyledSupportingText>
+      <StyledSupportingText isError={isError!}>{supportingText}</StyledSupportingText>
     </div>
   );
 };

@@ -10,7 +10,7 @@ type InputType = 'text' | 'password';
 export interface DodamFilledTextFieldProps {
   type: InputType;
   label: string;
-  isError: boolean;
+  isError?: boolean;
   value: string;
   placeholder: string;
   isDisabled?: boolean;
@@ -49,10 +49,10 @@ export const DodamFilledTextField = ({
   return (
     <div style={{ position: 'relative' }}>
       <StyleFilledTextField>
-        <StyledFilledTextFieldTitle isFocused={isFocused} isDisabled={isDisabled} isError={isError}>
+        <StyledFilledTextFieldTitle isFocused={isFocused} isDisabled={isDisabled} isError={isError!}>
           {label}
         </StyledFilledTextFieldTitle>
-        <StyledFilledTextFieldInput isFocused={isFocused} isDisabled={isDisabled} isError={isError}>
+        <StyledFilledTextFieldInput isFocused={isFocused} isDisabled={isDisabled} isError={isError!}>
           <input
             type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
             disabled={isDisabled}
@@ -81,7 +81,7 @@ export const DodamFilledTextField = ({
             ))}
         </StyledFilledTextFieldInput>
       </StyleFilledTextField>
-      <StyledFilledTextFieldSupportingText isDisabled={isDisabled} isError={isError}>
+      <StyledFilledTextFieldSupportingText isDisabled={isDisabled} isError={isError!}>
         {supportingText}
       </StyledFilledTextFieldSupportingText>
     </div>
