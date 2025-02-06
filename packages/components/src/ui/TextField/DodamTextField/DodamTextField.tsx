@@ -53,6 +53,11 @@ export const DodamTextField = ({
     setIsShowValue((prev) => !prev);
   };
 
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setInternalValue(e.target.value);
+    onChange(e);
+  }, [onChange]);
+
   const handleClickXmark = useCallback(() => {
     setInternalValue('');
     onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
@@ -68,7 +73,7 @@ export const DodamTextField = ({
           name={name}
           type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
           isError={isError!}
-          onChange={onChange}
+          onChange={handleChange}
           value={internalValue}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
