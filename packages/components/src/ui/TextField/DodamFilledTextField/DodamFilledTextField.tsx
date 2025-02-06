@@ -16,7 +16,7 @@ export interface DodamFilledTextFieldProps {
   isDisabled?: boolean;
   supportingText?: string;
   showIcon?: boolean;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 /**
@@ -43,7 +43,7 @@ export const DodamFilledTextField = ({
   };
 
   const handleClickXmark = () => {
-    onChange?.({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
+    onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
   };
 
   return (

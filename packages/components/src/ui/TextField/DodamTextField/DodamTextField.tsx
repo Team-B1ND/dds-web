@@ -1,5 +1,5 @@
 import { DodamTypography } from '@dds-web/styles';
-import React, { ChangeEventHandler, CSSProperties, KeyboardEventHandler, MouseEventHandler, useState } from 'react';
+import React, { ChangeEvent, ChangeEventHandler, CSSProperties, KeyboardEventHandler, MouseEventHandler, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Eye, EyeSlash, XmarkCircle, ExclamationmarkCircle } from '@dds-web/assets';
 import { hexToRgba } from '@dds-web/utils';
@@ -14,7 +14,6 @@ export interface DodamTextFieldProps {
   label: string;
   isError: boolean;
   showIcon?: boolean;
-  onClickXmark: MouseEventHandler<HTMLDivElement>;
   onChange: ChangeEventHandler<HTMLInputElement>;
   onKeyDown: KeyboardEventHandler<HTMLInputElement>;
   isDisabled?: boolean;
@@ -31,7 +30,6 @@ export const DodamTextField = ({
   width,
   label = '텍스트를 입력하세요.',
   showIcon = true,
-  onClickXmark,
   onChange,
   onKeyDown,
   isDisabled,
@@ -44,6 +42,10 @@ export const DodamTextField = ({
 
   const handleClickEye = () => {
     setIsShowValue((prev) => !prev);
+  };
+
+  const handleClickXmark = () => {
+    onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
   };
 
   return (
@@ -77,7 +79,7 @@ export const DodamTextField = ({
               }}
             />
           ) : type === 'text' ? (
-            <div onClick={onClickXmark}>
+            <div onClick={handleClickXmark}>
               <XmarkCircle
                 color={hexToRgba(theme.labelAlternative, 0.5)}
                 $svgStyle={{
