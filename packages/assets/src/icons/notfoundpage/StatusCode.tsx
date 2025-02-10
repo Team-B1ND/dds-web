@@ -3,7 +3,7 @@ import { IconProps } from "../type";
 import { StyledSvg, StyledPath } from "../style";
 import { STATUS_CODE_PATH_ITEMS } from "./constant";
 
-export const StatusCode = ({ size, color = "#000", $svgStyle, $pathStyle }: IconProps) => {
+export const StatusCode = ({ size, color="staticBlack", $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
       width="452"

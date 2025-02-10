@@ -3,7 +3,7 @@ import { IconProps } from "./type";
 import { StyledPath, StyledSvg } from "./style";
 import { MENU_PATH_ITEMS } from "./constant";
 
-export const Menu = ({ size = 24, color = "#000", $svgStyle, $pathStyle }: IconProps) => {
+export const Menu = ({ size = 24, color = "staticBlack", $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
       width={size}

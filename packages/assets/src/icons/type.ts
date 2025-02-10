@@ -1,3 +1,4 @@
+import {DodamTheme} from "@dds-web/styles";
 import { type Interpolation } from "styled-components";
 
 export interface StaticIconProps {
@@ -5,7 +6,9 @@ export interface StaticIconProps {
 }
 
 export interface IconProps extends StaticIconProps {
-  color?: string;
+  color?: keyof DodamTheme | string;
   $svgStyle?: Interpolation<object>;
   $pathStyle?: Interpolation<object>;
 }
+
+
