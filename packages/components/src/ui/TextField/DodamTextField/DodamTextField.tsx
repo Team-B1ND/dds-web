@@ -108,7 +108,7 @@ export const DodamTextField = ({
           ) : isShowValue ? (
             <div onClick={handleClickEye}>
               <Eye
-                color={theme.staticBlack}
+                color={hexToRgba(theme.labelAlternative, 0.5)}
                 $svgStyle={{
                   position: 'absolute',
                   top: '20%',
@@ -120,7 +120,7 @@ export const DodamTextField = ({
           ) : (
             <div onClick={handleClickEye}>
               <EyeSlash
-                color={theme.staticBlack}
+                color={hexToRgba(theme.labelAlternative, 0.5)}
                 $svgStyle={{
                   position: 'absolute',
                   top: '20%',
@@ -130,8 +130,8 @@ export const DodamTextField = ({
               />
             </div>
           ))}
+          <StyledSupportingText isError={isError!}>{supportingText}</StyledSupportingText>
       </StyledTextField>
-      <StyledSupportingText isError={isError!}>{supportingText}</StyledSupportingText>
     </div>
   );
 };

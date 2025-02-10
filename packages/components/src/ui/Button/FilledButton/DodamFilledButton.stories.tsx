@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { DodamFilledButton } from './DodamFilledButton';
+import { ChevronLeft } from '@dds-web/assets';
+import React from 'react';
 
 const meta = {
   title: 'ui/DodamButton/DodamFilledButton',
@@ -21,6 +23,10 @@ const meta = {
       control: { type: 'radio' },
       options: ['staticWhite', 'staticBlack', 'labelAlternative'],
     },
+    attendants:{
+      control: { type: 'radio' },
+      options: ['left','right']
+    }
   },
 } satisfies Meta<typeof DodamFilledButton>;
 
@@ -37,5 +43,7 @@ export const StyledFilledButton: Story = {
     enabled: false,
     backgroundColorType: 'Primary',
     textTheme: 'staticWhite',
+    icon : <ChevronLeft size={16} color="#fff"/>,
+    attendants: 'left',
   },
 };
