@@ -2,7 +2,7 @@ import React from "react";
 import { IconProps } from "../type";
 import { StyledSvg, StyledPath } from "../style";
 
-export const ChevronUp = ({ size = 24, color = "#000", $svgStyle, $pathStyle }: IconProps) => {
+export const ChevronUp = ({ size = 24, color = "staticBlack" , $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
       width={size}

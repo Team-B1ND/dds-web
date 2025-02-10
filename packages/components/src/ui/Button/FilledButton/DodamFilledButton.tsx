@@ -28,6 +28,8 @@ type typographyType = [
   'Bold' | 'Medium' | 'Regular',
 ];
 
+type attendantsType = 'right' | 'left';
+
 export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
   text?: React.ReactNode;
   children?: React.ReactNode;
@@ -40,6 +42,8 @@ export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
   padding?: CSSProperties['padding'];
   onClick?: MouseEventHandler<HTMLButtonElement>;
   customStyle?: CSSObject;
+  icon?: React.ReactNode;
+  attendants?: attendantsType;
 }
 
 export const DodamFilledButton = ({
@@ -54,6 +58,8 @@ export const DodamFilledButton = ({
   padding,
   onClick,
   customStyle,
+  icon,
+  attendants='left',
   ...props
 }: DodamFilledButton) => {
   return (
@@ -69,7 +75,9 @@ export const DodamFilledButton = ({
       {...props}
       onClick={onClick}
     >
+        {icon && <IconWrapper attendants={attendants}>{icon}</IconWrapper>}
       {text || children}
+      
     </StyledContentButton>
   );
 };
@@ -112,4 +120,17 @@ const StyledContentButton = styled.button<{
   ${({ customStyle }) => customStyle}
 
   color: ${({ theme, textTheme }) => (textTheme ? theme[textTheme] : '')};
+`;
+
+const IconWrapper = styled.span<{ attendants: attendantsType }>`
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  order: ${({ attendants }) => (attendants === 'right' ? 1 : -1)};
 `;

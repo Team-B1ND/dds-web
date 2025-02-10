@@ -2,7 +2,7 @@ import React from "react";
 import { IconProps } from "./type";
 import { StyledPath, StyledSvg } from "./style";
 
-export const Bus = ({ size = 24, color = "#000", $svgStyle, $pathStyle }: IconProps) => {
+export const Bus = ({ size = 24, color = "staticBlack", $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
       width={size}

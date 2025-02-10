@@ -3,7 +3,7 @@ import { IconProps } from "./type";
 import { StyledPath, StyledSvg } from "./style";
 import { DOOR_OPEN_PATH_ITEMS } from "./constant";
 
-export const DoorOpen = ({ size = 24, color = "#000", $svgStyle, $pathStyle }: IconProps) => {
+export const DoorOpen = ({ size = 24, color = "staticBlack", $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
       width={size}

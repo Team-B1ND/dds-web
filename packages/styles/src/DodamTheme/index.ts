@@ -1,3 +1,3 @@
 export * from "./DodamTheme";
 export * from "./DodamThemeProvider";
-export * from "./styled";
+export * from "./type";

@@ -3,7 +3,7 @@ import { IconProps } from "../type";
 import { StyledPath, StyledSvg } from "../style";
 import { CHECKMARK_CIRCLE_LINE_PATH_ITEMS } from "./constant";
 
-export const CheckmarkCircleLine = ({ size = 24, color = "#000", $svgStyle, $pathStyle }: IconProps) => {
+export const CheckmarkCircleLine = ({ size = 24, color = "staticBlack", $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
       width={size}

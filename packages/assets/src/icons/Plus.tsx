@@ -2,7 +2,7 @@ import React from "react";
 import { IconProps } from "./type";
 import { StyledPath, StyledSvg } from "./style";
 
-export const Plus = ({ size = 20, color = "#000", $svgStyle, $pathStyle }: IconProps) => {
+export const Plus = ({ size = 20, color = "staticBlack", $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
       width={size}
