@@ -43,7 +43,7 @@ export const StyledFilledButton: Story = {
     enabled: false,
     backgroundColorType: 'Primary',
     textTheme: 'staticWhite',
-    icon : <ChevronLeft size={16} color="#fff"/>,
+    icon : <ChevronLeft size={16} color="staticWhite"/>,
     attendants: 'left',
   },
 };

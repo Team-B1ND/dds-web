@@ -15,7 +15,7 @@ export const DodamCheckBox = ({ isDisabled = false, color = "blue", onClick }: D
     <>
       {isDisabled ? (
         <DisabledCheckBox color={color} onClick={onClick}>
-          <Checkmark size={12} color="white" />
+          <Checkmark size={12} color='staticWhite' />
         </DisabledCheckBox>
       ) : (
         <StyledCheckBox onClick={onClick} />
