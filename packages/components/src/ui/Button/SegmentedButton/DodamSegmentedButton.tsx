@@ -17,10 +17,10 @@ export interface SegmentedBtnProps {
   width?: number;
   onClick?: () => void;
   customBackbgroundColor?: keyof DodamTheme;
-  textTheme?: keyof DodamTheme;
+  textColor?: keyof DodamTheme;
 }
 
-export const DodamSegmentedButton = ({ num, type, data, width, onClick, customBackbgroundColor, textTheme }: SegmentedBtnProps) => {
+export const DodamSegmentedButton = ({ num, type, data, width, onClick, customBackbgroundColor, textColor }: SegmentedBtnProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [segmentedBtndata, setSegmentedBtnData] = useState<SegmentedBtnDataProps[]>([]);
   const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0 });
@@ -73,7 +73,7 @@ export const DodamSegmentedButton = ({ num, type, data, width, onClick, customBa
             num={num}
             type={type}
             isAtv={item.isAtv}
-            textTheme={textTheme}
+            textColor={textColor}
             onClick={() => handleClick(idx)}
           >
             {item.text}
@@ -111,9 +111,9 @@ const StyledSegmentedButton = styled.button<{
   num: number;
   type: ButtonType;
   isAtv: boolean;
-  textTheme?: keyof DodamTheme;
+  textColor?: keyof DodamTheme;
 }>` 
-  color: ${({ isAtv, theme, textTheme }) => (isAtv ? theme[textTheme || 'labelNormal'] : theme.labelAssisitive)};
+  color: ${({ isAtv, theme, textColor }) => (isAtv ? theme[textColor || 'labelNormal'] : theme.labelAssisitive)};
   ${DodamTypography.Headline.Medium}
 
   width: ${({ num, type }) => (type === 'block' ? `${100 / num}%` : 'auto')};

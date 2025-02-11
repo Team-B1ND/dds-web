@@ -55,10 +55,13 @@ export const DodamTextField = ({
     setIsShowValue((prev) => !prev);
   };
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setInternalValue(e.target.value);
-    onChange(e);
-  }, [onChange]);
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setInternalValue(e.target.value);
+      onChange(e);
+    },
+    [onChange]
+  );
 
   const handleClickXmark = useCallback(() => {
     setInternalValue('');
@@ -132,13 +135,13 @@ export const DodamTextField = ({
               />
             </div>
           ))}
-          <StyledSupportingText isError={isError!}>{supportingText}</StyledSupportingText>
+        <StyledSupportingText isError={isError!}>{supportingText}</StyledSupportingText>
       </StyledTextField>
     </div>
   );
 };
 
-const StyledTextField = styled.div<{ width?: number; isError: boolean; customStyle?: CSSObject }>`
+const StyledTextField = styled.div<{ isError: boolean; customStyle?: CSSObject; width?: number }>`
   width: ${({ width }) => (width ? `${width}px` : '100%')};
   height: 47px;
   padding: 4px 0px;

@@ -24,7 +24,7 @@ export const StyledToggleButtonTwo: Story = {
     ],
     width: 380,
     customBackbgroundColor: 'primaryNormal',
-    textTheme: 'staticWhite',
+    textColor: 'staticWhite',
   },
 };
 
