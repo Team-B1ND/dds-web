@@ -88,7 +88,7 @@ export const DodamFilledTextField = ({
               </div>
             ) : (
               <div onClick={handleClickEye}>
-                <EyeSlash color={theme.staticBlack} $svgStyle={{ cursor: 'pointer' }} />
+                <EyeSlash color="staticBlack" $svgStyle={{ cursor: 'pointer' }} />
               </div>
             ))}
         </StyledFilledTextFieldInput>
