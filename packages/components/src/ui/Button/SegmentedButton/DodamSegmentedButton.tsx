@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
-import { DodamTypography } from '@dds-web/styles';
+import { BackgroundColorType, DodamTheme, DodamTypography } from '@dds-web/styles';
 import { DodamShape } from '@dds-web/styles';
 
 type ButtonType = 'block' | 'inline';
@@ -16,9 +16,11 @@ export interface SegmentedBtnProps {
   data: SegmentedBtnDataProps[];
   width?: number;
   onClick?: () => void;
+  customBackbgroundColor?: keyof DodamTheme;
+  textColor?: keyof DodamTheme;
 }
 
-export const DodamSegmentedButton = ({ num, type, data, width, onClick }: SegmentedBtnProps) => {
+export const DodamSegmentedButton = ({ num, type, data, width, onClick, customBackbgroundColor, textColor }: SegmentedBtnProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [segmentedBtndata, setSegmentedBtnData] = useState<SegmentedBtnDataProps[]>([]);
   const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0 });
@@ -62,6 +64,7 @@ export const DodamSegmentedButton = ({ num, type, data, width, onClick }: Segmen
           type={type}
           width={indicatorStyle.width}
           left={indicatorStyle.left}
+          customBackbgroundColor={customBackbgroundColor}
         />
         {segmentedBtndata.map((item, idx) => (
           <StyledSegmentedButton
@@ -70,6 +73,7 @@ export const DodamSegmentedButton = ({ num, type, data, width, onClick }: Segmen
             num={num}
             type={type}
             isAtv={item.isAtv}
+            textColor={textColor}
             onClick={() => handleClick(idx)}
           >
             {item.text}
@@ -107,8 +111,9 @@ const StyledSegmentedButton = styled.button<{
   num: number;
   type: ButtonType;
   isAtv: boolean;
-}>`
-  color: ${({ isAtv, theme }) => (isAtv ? theme.labelNormal : theme.labelAssisitive)};
+  textColor?: keyof DodamTheme;
+}>` 
+  color: ${({ isAtv, theme, textColor }) => (isAtv ? theme[textColor || 'labelNormal'] : theme.labelAssisitive)};
   ${DodamTypography.Headline.Medium}
 
   width: ${({ num, type }) => (type === 'block' ? `${100 / num}%` : 'auto')};
@@ -130,6 +135,7 @@ const BackgroundIndicator = styled.div<{
   type: ButtonType;
   width: number;
   left: number;
+  customBackbgroundColor?: keyof DodamTheme;
 }>`
   width: ${({ num, type, width }) => (type === 'block' ? `${100 / num}%` : `${width}px`)};
   height: 100%;
@@ -137,7 +143,8 @@ const BackgroundIndicator = styled.div<{
   left: ${({ index, num, type, left }) => (type === 'block' ? `${(index / num) * 100}%` : `${left}px`)};
 
   ${DodamShape.Small};
-  background-color: ${({ theme }) => theme.fillAssistive};
+  background-color: ${({ theme, customBackbgroundColor }) =>
+    customBackbgroundColor ? theme[customBackbgroundColor] : theme.fillAssistive};
 
   position: absolute;
   transition: left 0.3s ease; // 배경색이 이동할 때 부드러운 애니메이션 효과

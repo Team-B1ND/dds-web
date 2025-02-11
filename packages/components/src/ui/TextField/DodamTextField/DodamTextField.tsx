@@ -8,7 +8,7 @@ import React, {
   useCallback,
   useState,
 } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled, { CSSObject, useTheme } from 'styled-components';
 import { Eye, EyeSlash, XmarkCircle, ExclamationmarkCircle } from '@dds-web/assets';
 import { hexToRgba } from '@dds-web/utils';
 
@@ -28,6 +28,7 @@ export interface DodamTextFieldProps {
   width?: number;
   labelStyle?: CSSProperties;
   supportingText?: string;
+  customStyle?: CSSObject;
 }
 
 export const DodamTextField = ({
@@ -44,6 +45,7 @@ export const DodamTextField = ({
   labelStyle,
   isError,
   supportingText,
+  customStyle,
 }: DodamTextFieldProps) => {
   const theme = useTheme();
   const [isShowValue, setIsShowValue] = useState(false);
@@ -53,10 +55,13 @@ export const DodamTextField = ({
     setIsShowValue((prev) => !prev);
   };
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setInternalValue(e.target.value);
-    onChange(e);
-  }, [onChange]);
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setInternalValue(e.target.value);
+      onChange(e);
+    },
+    [onChange]
+  );
 
   const handleClickXmark = useCallback(() => {
     setInternalValue('');
@@ -65,7 +70,7 @@ export const DodamTextField = ({
 
   return (
     <div style={{ position: 'relative' }}>
-      <StyledTextField width={width} isError={isError!}>
+      <StyledTextField width={width} isError={isError!} customStyle={customStyle}>
         <StyledTextFieldTextFieldInput
           required
           disabled={isDisabled}
@@ -130,13 +135,13 @@ export const DodamTextField = ({
               />
             </div>
           ))}
-          <StyledSupportingText isError={isError!}>{supportingText}</StyledSupportingText>
+        <StyledSupportingText isError={isError!}>{supportingText}</StyledSupportingText>
       </StyledTextField>
     </div>
   );
 };
 
-const StyledTextField = styled.div<{ width?: number; isError: boolean }>`
+const StyledTextField = styled.div<{ isError: boolean; customStyle?: CSSObject; width?: number }>`
   width: ${({ width }) => (width ? `${width}px` : '100%')};
   height: 47px;
   padding: 4px 0px;
@@ -144,6 +149,8 @@ const StyledTextField = styled.div<{ width?: number; isError: boolean }>`
   border: none !important;
   border-radius: 0px !important;
   position: relative;
+
+  ${({ customStyle }) => customStyle};
 
   label {
     position: absolute;
@@ -213,6 +220,4 @@ const StyledTextFieldTextFieldInput = styled.input<{ isError: boolean }>`
 const StyledSupportingText = styled.span<{ isError: boolean }>`
   ${DodamTypography.Label.Medium}
   color: ${({ isError, theme }) => (isError ? theme.statusNegative : theme.labelAlternative)};
-  position: absolute;
-  top: 55px;
 `;

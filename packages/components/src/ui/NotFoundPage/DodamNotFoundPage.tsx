@@ -1,19 +1,18 @@
 import React from "react";
-import styled, { css, useTheme } from "styled-components";
+import styled from "styled-components";
 import { StatusCode, DodamSadEmoji } from "@dds-web/assets";
 import { DodamTypography } from "@dds-web/styles";
 import { DodamFilledButton } from "../Button";
 
 export const DodamNotFoundPage = () => {
-  const theme = useTheme();
 
   return (
     <StyledNotFoundPage>
       <StyledInfoWrap>
-        <StatusCode color={theme.primaryNormal} />
+        <StatusCode color="primaryNormal" />
         <StyledTitleWrap>
           <StyledTitle>Page Not Found</StyledTitle>
-          <DodamSadEmoji color={theme.primaryNormal} />
+          <DodamSadEmoji color="primaryNormal" />
         </StyledTitleWrap>
         <StyledContentWrap>
           <StyledContent>

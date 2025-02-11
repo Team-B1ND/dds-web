@@ -1,5 +1,5 @@
-import React, { ChangeEvent, ChangeEventHandler, MouseEventHandler, useCallback, useState } from 'react';
-import styled, { useTheme } from 'styled-components';
+import React, { ChangeEvent, ChangeEventHandler, useCallback, useState } from 'react';
+import styled, { CSSObject, useTheme } from 'styled-components';
 import { XmarkCircle, Eye, EyeSlash } from '@dds-web/assets';
 import { ExclamationmarkCircle } from '@dds-web/assets';
 import { DodamShape, DodamTypography } from '@dds-web/styles';
@@ -16,6 +16,7 @@ export interface DodamFilledTextFieldProps {
   isDisabled?: boolean;
   supportingText?: string;
   showIcon?: boolean;
+  customStyle?: CSSObject;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -32,6 +33,7 @@ export const DodamFilledTextField = ({
   supportingText,
   placeholder,
   showIcon = true,
+  customStyle,
   onChange,
 }: DodamFilledTextFieldProps) => {
   const theme = useTheme();
@@ -43,10 +45,13 @@ export const DodamFilledTextField = ({
     setIsShowValue((prev) => !prev);
   };
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setInternalValue(e.target.value);
-    onChange(e);
-  }, [onChange]);
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setInternalValue(e.target.value);
+      onChange(e);
+    },
+    [onChange]
+  );
 
   const handleClickXmark = useCallback(() => {
     setInternalValue('');
@@ -55,7 +60,7 @@ export const DodamFilledTextField = ({
 
   return (
     <div style={{ position: 'relative' }}>
-      <StyleFilledTextField>
+      <StyleFilledTextField customStyle={customStyle}>
         <StyledFilledTextFieldTitle isFocused={isFocused} isDisabled={isDisabled} isError={isError!}>
           {label}
         </StyledFilledTextFieldTitle>
@@ -83,7 +88,7 @@ export const DodamFilledTextField = ({
               </div>
             ) : (
               <div onClick={handleClickEye}>
-                <EyeSlash color={theme.staticBlack} $svgStyle={{ cursor: 'pointer' }} />
+                <EyeSlash color="staticBlack" $svgStyle={{ cursor: 'pointer' }} />
               </div>
             ))}
         </StyledFilledTextFieldInput>
@@ -95,7 +100,7 @@ export const DodamFilledTextField = ({
   );
 };
 
-const StyleFilledTextField = styled.div`
+const StyleFilledTextField = styled.div<{ customStyle?: CSSObject }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -104,6 +109,8 @@ const StyleFilledTextField = styled.div`
   width: 380px;
   height: 80px;
   position: relative;
+
+  ${({ customStyle }) => customStyle};
 `;
 
 const StyledFilledTextFieldTitle = styled.span<{
@@ -184,9 +191,6 @@ const StyledFilledTextFieldSupportingText = styled.span<{
   isDisabled?: boolean;
   isError: boolean;
 }>`
-  position: absolute;
-  top: 85px;
-
   color: ${({ isDisabled, isError, theme }) =>
     isDisabled ? hexToRgba(theme.labelAlternative, 0.65) : isError ? theme.statusNegative : theme.labelAlternative};
   font-feature-settings: 'ss10' on;
