@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { DodamFilledButton } from './DodamFilledButton';
-import { ChevronLeft } from '@dds-web/assets';
+import { ChevronLeft, File, Photo } from '@dds-web/assets';
 import React from 'react';
 
 const meta = {
@@ -23,10 +23,10 @@ const meta = {
       control: { type: 'radio' },
       options: ['staticWhite', 'staticBlack', 'labelAlternative'],
     },
-    attendants:{
+    attendants: {
       control: { type: 'radio' },
-      options: ['left','right']
-    }
+      options: ['left', 'right'],
+    },
   },
 } satisfies Meta<typeof DodamFilledButton>;
 
@@ -43,7 +43,7 @@ export const StyledFilledButton: Story = {
     enabled: false,
     backgroundColorType: 'Primary',
     textTheme: 'staticWhite',
-    icon : <ChevronLeft size={16} color="staticWhite"/>,
+    icon: <Photo size={24} color="staticWhite" />,
     attendants: 'left',
   },
 };
