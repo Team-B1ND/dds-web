@@ -146,6 +146,7 @@ const StyledSegmentedButton = styled.button<{
   cursor: pointer;
   position: relative;
   z-index: 10;
+  outline: none;
 `;
 
 const BackgroundIndicator = styled.div<{
