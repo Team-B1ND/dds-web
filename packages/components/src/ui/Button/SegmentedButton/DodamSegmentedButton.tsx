@@ -114,7 +114,7 @@ const StyledSegmentedButtonWrap = styled.div<{
   align-items: center;
 
   ${DodamShape.Medium};
-  background-color: ${({ customBackbgroundWrapColor, theme }) => theme[customBackbgroundWrapColor || "fillNetural"]};
+  background-color: ${({ customBackbgroundWrapColor, theme }) => theme[customBackbgroundWrapColor || "fillNeutral"]};
 `;
 
 const StyledSegmentedButtonBox = styled.div<{ type: ButtonType }>`

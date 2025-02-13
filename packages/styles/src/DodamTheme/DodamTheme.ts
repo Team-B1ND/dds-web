@@ -18,7 +18,7 @@ export const DodamLightTheme: DefaultTheme = Object.freeze({
   lineAlternative: DodamColor.netural97,
 
   fillNormal: DodamColor.netural99,
-  fillNetural: DodamColor.netural97,
+  fillNeutral: DodamColor.netural97,
   fillAlternative: DodamColor.netural95,
   fillAssistive: DodamColor.common100,
 
@@ -51,7 +51,7 @@ export const DodamDarkTheme: DefaultTheme = Object.freeze({
   lineAlternative: DodamColor.netural25,
 
   fillNormal: DodamColor.netural20,
-  fillNetural: DodamColor.netural25,
+  fillNeutral: DodamColor.netural25,
   fillAlternative: DodamColor.netural30,
   fillAssistive: DodamColor.netural60,
 
