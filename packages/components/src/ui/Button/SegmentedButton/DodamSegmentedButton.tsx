@@ -53,6 +53,9 @@ export const DodamSegmentedButton = ({
   };
 
   useEffect(() => {
+    const activeIdx = data.findIndex(item => item.isAtv);
+    setSelectedIdx(activeIdx)
+
     setSegmentedBtnData(data);
   }, [data]);
 
