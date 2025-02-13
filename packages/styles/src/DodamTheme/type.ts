@@ -12,7 +12,7 @@ export type DodamTheme = Record<
   | "lineNetural"
   | "lineAlternative"
   | "fillNormal"
-  | "fillNetural"
+  | "fillNeutral"
   | "fillAlternative"
   | "fillAssistive"
   | "backgroundNormal"
