@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
-import styled from 'styled-components';
-import { BackgroundColorType, DodamTheme, DodamTypography } from '@dds-web/styles';
-import { DodamShape } from '@dds-web/styles';
+import React, { useEffect, useState, useRef } from "react";
+import styled from "styled-components";
+import { DodamTheme, DodamTypography } from "@dds-web/styles";
+import { DodamShape } from "@dds-web/styles";
 
-type ButtonType = 'block' | 'inline';
+type ButtonType = "block" | "inline";
 
 interface SegmentedBtnDataProps {
   text: string;
@@ -15,21 +15,37 @@ export interface SegmentedBtnProps {
   type: ButtonType;
   data: SegmentedBtnDataProps[];
   width?: number;
+  height?: number;
   onClick?: () => void;
-  customBackbgroundColor?: keyof DodamTheme;
   textColor?: keyof DodamTheme;
+  customBackbgroundColor?: keyof DodamTheme;
+  customBackbgroundWrapColor?: keyof DodamTheme;
 }
 
-export const DodamSegmentedButton = ({ num, type, data, width, onClick, customBackbgroundColor, textColor }: SegmentedBtnProps) => {
+export const DodamSegmentedButton = ({
+  num,
+  type,
+  data,
+  width,
+  height,
+  onClick,
+  textColor,
+  customBackbgroundColor,
+  customBackbgroundWrapColor,
+}: SegmentedBtnProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
-  const [segmentedBtndata, setSegmentedBtnData] = useState<SegmentedBtnDataProps[]>([]);
+  const [segmentedBtndata, setSegmentedBtnData] = useState<
+    SegmentedBtnDataProps[]
+  >([]);
   const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0 });
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const handleClick = (id: number) => {
     setSelectedIdx(id);
     setSegmentedBtnData((prevData) =>
-      prevData.map((item, idx) => (id === idx ? { ...item, isAtv: true } : { ...item, isAtv: false }))
+      prevData.map((item, idx) =>
+        id === idx ? { ...item, isAtv: true } : { ...item, isAtv: false }
+      )
     );
     if (onClick) {
       onClick();
@@ -42,7 +58,7 @@ export const DodamSegmentedButton = ({ num, type, data, width, onClick, customBa
 
   useEffect(() => {
     setTimeout(() => {
-      if (type === 'inline' && buttonRefs.current[selectedIdx]) {
+      if (type === "inline" && buttonRefs.current[selectedIdx]) {
         const button = buttonRefs.current[selectedIdx];
 
         if (button) {
@@ -56,7 +72,7 @@ export const DodamSegmentedButton = ({ num, type, data, width, onClick, customBa
   }, [selectedIdx, type]);
 
   return (
-    <StyledSegmentedButtonWrap width={width} type={type}>
+    <StyledSegmentedButtonWrap width={width} height={height} type={type} customBackbgroundWrapColor={customBackbgroundWrapColor}>
       <StyledSegmentedButtonBox type={type}>
         <BackgroundIndicator
           index={selectedIdx}
@@ -74,8 +90,7 @@ export const DodamSegmentedButton = ({ num, type, data, width, onClick, customBa
             type={type}
             isAtv={item.isAtv}
             textColor={textColor}
-            onClick={() => handleClick(idx)}
-          >
+            onClick={() => handleClick(idx)}>
             {item.text}
           </StyledSegmentedButton>
         ))}
@@ -86,25 +101,28 @@ export const DodamSegmentedButton = ({ num, type, data, width, onClick, customBa
 
 const StyledSegmentedButtonWrap = styled.div<{
   width?: number;
+  height?: number;
   type: ButtonType;
+  customBackbgroundWrapColor?: keyof DodamTheme;
 }>`
-  width: ${({ width, type }) => (type === 'block' ? (width ? `${width}px` : '380px') : 'auto')};
-  height: 47px;
+  width: ${({ width, type }) =>
+    type === "block" ? (width ? `${width}px` : "380px") : "auto"};
+  height: ${({ height }) => (height ? `${height}px` : "47px")};
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   ${DodamShape.Medium};
-  background-color: ${({ theme }) => theme.fillNetural};
+  background-color: ${({ customBackbgroundWrapColor, theme }) => theme[customBackbgroundWrapColor || "fillNetural"]};
 `;
 
 const StyledSegmentedButtonBox = styled.div<{ type: ButtonType }>`
-  width: ${({ type }) => (type === 'block' ? 'calc(100% - 8px)' : 'auto')};
+  width: ${({ type }) => (type === "block" ? "calc(100% - 8px)" : "auto")};
   height: calc(100% - 8px);
   position: relative;
 
-  padding: ${({ type }) => (type === 'inline' ? '0 4px' : '')};
+  padding: ${({ type }) => (type === "inline" ? "0 4px" : "")};
 `;
 
 const StyledSegmentedButton = styled.button<{
@@ -112,18 +130,19 @@ const StyledSegmentedButton = styled.button<{
   type: ButtonType;
   isAtv: boolean;
   textColor?: keyof DodamTheme;
-}>` 
-  color: ${({ isAtv, theme, textColor }) => (isAtv ? theme[textColor || 'labelNormal'] : theme.labelAssisitive)};
+}>`
+  color: ${({ isAtv, theme, textColor }) =>
+    isAtv ? theme[textColor || "labelNormal"] : theme.labelAssisitive};
   ${DodamTypography.Headline.Medium}
 
-  width: ${({ num, type }) => (type === 'block' ? `${100 / num}%` : 'auto')};
+  width: ${({ num, type }) => (type === "block" ? `${100 / num}%` : "auto")};
   height: 100%;
 
   border: none;
   ${DodamShape.Small};
   background-color: transparent;
 
-  padding: ${({ type }) => (type === 'inline' ? '6px 12px;' : '')};
+  padding: ${({ type }) => (type === "inline" ? "6px 12px;" : "")};
   cursor: pointer;
   position: relative;
   z-index: 10;
@@ -137,14 +156,18 @@ const BackgroundIndicator = styled.div<{
   left: number;
   customBackbgroundColor?: keyof DodamTheme;
 }>`
-  width: ${({ num, type, width }) => (type === 'block' ? `${100 / num}%` : `${width}px`)};
+  width: ${({ num, type, width }) =>
+    type === "block" ? `${100 / num}%` : `${width}px`};
   height: 100%;
   top: 0;
-  left: ${({ index, num, type, left }) => (type === 'block' ? `${(index / num) * 100}%` : `${left}px`)};
+  left: ${({ index, num, type, left }) =>
+    type === "block" ? `${(index / num) * 100}%` : `${left}px`};
 
   ${DodamShape.Small};
   background-color: ${({ theme, customBackbgroundColor }) =>
-    customBackbgroundColor ? theme[customBackbgroundColor] : theme.fillAssistive};
+    customBackbgroundColor
+      ? theme[customBackbgroundColor]
+      : theme.fillAssistive};
 
   position: absolute;
   transition: left 0.3s ease; // 배경색이 이동할 때 부드러운 애니메이션 효과

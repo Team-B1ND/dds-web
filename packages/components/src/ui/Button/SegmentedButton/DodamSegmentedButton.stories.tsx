@@ -23,8 +23,9 @@ export const StyledToggleButtonTwo: Story = {
       { text: 'Label', isAtv: false },
     ],
     width: 380,
-    customBackbgroundColor: 'primaryNormal',
     textColor: 'staticWhite',
+    customBackbgroundColor: 'primaryNormal',
+    customBackbgroundWrapColor: 'staticWhite',
   },
 };
 
