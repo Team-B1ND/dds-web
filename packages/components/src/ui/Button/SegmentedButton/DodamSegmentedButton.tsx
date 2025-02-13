@@ -16,7 +16,7 @@ export interface SegmentedBtnProps {
   data: SegmentedBtnDataProps[];
   width?: number;
   height?: number;
-  onClick?: () => void;
+  onClick?: (text?: string) => void;
   textColor?: keyof DodamTheme;
   customBackbgroundColor?: keyof DodamTheme;
   customBackbgroundWrapColor?: keyof DodamTheme;
@@ -40,7 +40,7 @@ export const DodamSegmentedButton = ({
   const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0 });
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const handleClick = (id: number) => {
+  const handleClick = (id: number, text: string) => {
     setSelectedIdx(id);
     setSegmentedBtnData((prevData) =>
       prevData.map((item, idx) =>
@@ -48,7 +48,7 @@ export const DodamSegmentedButton = ({
       )
     );
     if (onClick) {
-      onClick();
+      onClick(text);
     }
   };
 
@@ -90,7 +90,7 @@ export const DodamSegmentedButton = ({
             type={type}
             isAtv={item.isAtv}
             textColor={textColor}
-            onClick={() => handleClick(idx)}>
+            onClick={() => handleClick(idx, item.text)}>
             {item.text}
           </StyledSegmentedButton>
         ))}
