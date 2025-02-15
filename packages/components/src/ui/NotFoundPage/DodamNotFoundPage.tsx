@@ -45,7 +45,7 @@ const StyledNotFoundPage = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.backgroundNetural};
+  background-color: ${({ theme }) => theme.backgroundNeutral};
 `;
 
 const StyledInfoWrap = styled.div`
@@ -90,7 +90,7 @@ const StyledContentWrap = styled.div`
 `;
 
 const StyledContent = styled.p`
-  color: ${({ theme }) => theme.labelNetural};
+  color: ${({ theme }) => theme.labelNeutral};
   ${DodamTypography.Heading2.Medium}
 
   span {

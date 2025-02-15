@@ -199,7 +199,7 @@ const Container = styled.div`
 `;
 
 const DismissButton = css`
-  color: ${({ theme }) => theme.labelNetural};
+  color: ${({ theme }) => theme.labelNeutral};
   background-color: ${({ theme }) => theme.fillNormal};
   width: 50%;
   height: 50px;

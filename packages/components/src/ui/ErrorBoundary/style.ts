@@ -9,7 +9,7 @@ export const ErrorBox = styled.div`
     align-items: center;
     p{
         ${DodamTypography.Body2.Medium};
-        color: ${({theme})=>theme.labelAssisitive};
+        color: ${({theme})=>theme.labelAssistive};
     }
 `
 export const ReloadButton = styled.button`

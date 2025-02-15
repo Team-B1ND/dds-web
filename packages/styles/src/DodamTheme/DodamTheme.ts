@@ -4,7 +4,7 @@ import { DodamColor } from "@dds-web/foundations";
 export const DodamLightTheme: DefaultTheme = Object.freeze({
   primaryNormal: DodamColor.blue45,
   primaryAlternative: "rgba(0, 131, 240, 0.65)",
-  primaryAssisitive: "rgba(0, 131, 240, 0.2)",
+  primaryAssistive: "rgba(0, 131, 240, 0.2)",
 
   labelNormal: DodamColor.netural5,
   labelStrong: DodamColor.common0,
@@ -14,7 +14,7 @@ export const DodamLightTheme: DefaultTheme = Object.freeze({
   labelDisabled: DodamColor.netural97,
 
   lineNormal: DodamColor.netural90,
-  lineNetural: DodamColor.netural95,
+  lineNeutral: DodamColor.netural95,
   lineAlternative: DodamColor.netural97,
 
   fillNormal: DodamColor.netural99,
@@ -37,13 +37,13 @@ export const DodamLightTheme: DefaultTheme = Object.freeze({
 export const DodamDarkTheme: DefaultTheme = Object.freeze({
   primaryNormal: DodamColor.blue45,
   primaryAlternative: "rgba(0, 131, 240, 0.65)",
-  primaryAssisitive: "rgba(0, 131, 240, 0.2)",
+  primaryAssistive: "rgba(0, 131, 240, 0.2)",
 
   labelNormal: DodamColor.netural99,
   labelStrong: DodamColor.common100,
   labelNeutral: DodamColor.netural95,
   labelAlternative: DodamColor.netural90,
-  labelAssisitive: DodamColor.netural70,
+  labelAssistive: DodamColor.netural70,
   labelDisabled: DodamColor.netural30,
 
   lineNormal: DodamColor.netural50,

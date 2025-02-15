@@ -16,7 +16,7 @@ const meta = {
     },
     textTheme: {
       control: { type: 'radio' },
-      options: ['labelNormal', 'labelAssisitive'],
+      options: ['labelNormal', 'labelAssistive'],
     },
   },
 } satisfies Meta<typeof DodamContentButton>;
