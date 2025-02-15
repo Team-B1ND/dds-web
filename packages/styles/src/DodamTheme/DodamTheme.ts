@@ -8,9 +8,9 @@ export const DodamLightTheme: DefaultTheme = Object.freeze({
 
   labelNormal: DodamColor.netural5,
   labelStrong: DodamColor.common0,
-  labelNetural: DodamColor.netural25,
+  labelNeutral: DodamColor.netural25,
   labelAlternative: DodamColor.netural40,
-  labelAssisitive: DodamColor.netural50,
+  labelAssistive: DodamColor.netural50,
   labelDisabled: DodamColor.netural97,
 
   lineNormal: DodamColor.netural90,
@@ -23,7 +23,7 @@ export const DodamLightTheme: DefaultTheme = Object.freeze({
   fillAssistive: DodamColor.common100,
 
   backgroundNormal: DodamColor.common100,
-  backgroundNetural: DodamColor.netural99,
+  backgroundNeutral: DodamColor.netural99,
   backgroundAlternative: DodamColor.netural99,
 
   statusNegative: DodamColor.red50,
@@ -41,13 +41,13 @@ export const DodamDarkTheme: DefaultTheme = Object.freeze({
 
   labelNormal: DodamColor.netural99,
   labelStrong: DodamColor.common100,
-  labelNetural: DodamColor.netural95,
+  labelNeutral: DodamColor.netural95,
   labelAlternative: DodamColor.netural90,
   labelAssisitive: DodamColor.netural70,
   labelDisabled: DodamColor.netural30,
 
   lineNormal: DodamColor.netural50,
-  lineNetural: DodamColor.netural30,
+  lineNeutral: DodamColor.netural30,
   lineAlternative: DodamColor.netural25,
 
   fillNormal: DodamColor.netural20,
@@ -56,7 +56,7 @@ export const DodamDarkTheme: DefaultTheme = Object.freeze({
   fillAssistive: DodamColor.netural60,
 
   backgroundNormal: DodamColor.netural15,
-  backgroundNetural: DodamColor.netural10,
+  backgroundNeutral: DodamColor.netural10,
   backgroundAlternative: DodamColor.netural7,
 
   statusNegative: DodamColor.red50,
