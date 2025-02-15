@@ -20,7 +20,7 @@ export const DodamBackgroundColor: BackgroundColorStyles = Object.freeze({
     }
   `,
   Secondary: css`
-    background-color: ${({ theme }) => theme.primaryAssisitive};
+    background-color: ${({ theme }) => theme.primaryAssistive};
     color: ${({ theme }) => theme.primaryNormal};
 
     &:disabled {

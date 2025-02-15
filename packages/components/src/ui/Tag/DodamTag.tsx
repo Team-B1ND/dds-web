@@ -54,7 +54,7 @@ const StyledTagWrap = styled.div<{ color: TagColor; customStyle: RuleSet }>`
 
 const StyledTag = styled.span<{ color: TagColor }>`
   color: ${({ color, theme }) =>
-    color === "default" ? theme.labelNetural : theme.staticWhite};
+    color === "default" ? theme.labelNeutral : theme.staticWhite};
   ${DodamTypography.Caption1.Bold};
 
   padding: 7.5px 12px;

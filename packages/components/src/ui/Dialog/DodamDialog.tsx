@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import styled, { css } from "styled-components";
 import { Dialog } from "./Dialog";
 import { DodamColor } from "@dds-web/foundations";
+import { DodamThemeProvider } from "@dds-web/styles";
 
 interface DodamAlertProps {
   message: string;
@@ -21,21 +22,25 @@ interface DodamConfirmProps {
  * text = content?
  */
 const DodamAlertComponent = ({ message, onClose, content }: DodamAlertProps) => {
+  const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
   return (
-    <Container>
-      <Dialog
-        title={message}
-        text={content!}
-        type={{
-          dialog: "ALERT",
-          close: {
-            content: "닫기",
-            onClick: onClose,
-          },
-        }}
-        radius="Large"
-      />
-    </Container>
+    <DodamThemeProvider theme={isDarkMode ? "DARK" : "LIGHT"}>
+      <Container>
+        <Dialog
+          title={message}
+          text={content!}
+          type={{
+            dialog: "ALERT",
+            close: {
+              content: "닫기",
+              onClick: onClose,
+            },
+          }}
+          radius="Large"
+        />
+      </Container>
+    </DodamThemeProvider>
   );
 };
 
@@ -52,7 +57,10 @@ const DodamConfirmComponent = ({
     content,
     onClose,
   }: DodamConfirmProps & { onClose: (result: boolean) => void }) => {
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     return (
+      <DodamThemeProvider theme={isDarkMode ? "DARK" : "LIGHT"}>
       <Container>
         <Dialog
           title={message}
@@ -73,6 +81,7 @@ const DodamConfirmComponent = ({
           radius="Large"
         />
       </Container>
+      </DodamThemeProvider>
     );
   };
   
@@ -186,11 +195,11 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 3;
+  z-index: 11;
 `;
 
 const DismissButton = css`
-  color: ${({ theme }) => theme.labelNetural};
+  color: ${({ theme }) => theme.labelNeutral};
   background-color: ${({ theme }) => theme.fillNormal};
   width: 50%;
   height: 50px;

@@ -135,7 +135,7 @@ const StyledSegmentedButton = styled.button<{
   textColor?: keyof DodamTheme;
 }>`
   color: ${({ isAtv, theme, textColor }) =>
-    isAtv ? theme[textColor || "labelNormal"] : theme.labelAssisitive};
+    isAtv ? theme[textColor || "labelNormal"] : theme.labelAssistive};
   ${DodamTypography.Headline.Medium}
 
   width: ${({ num, type }) => (type === "block" ? `${100 / num}%` : "auto")};
