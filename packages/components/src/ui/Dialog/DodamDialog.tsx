@@ -7,13 +7,13 @@ import { DodamThemeProvider } from "@dds-web/styles";
 
 interface DodamAlertProps {
   message: string;
-  content?: string;
+  title?: string;
   onClose: () => void;
 }
 
 interface DodamConfirmProps {
     message: string;
-    content?: string;
+    title?: string;
 }
 /**
  * 
@@ -21,20 +21,21 @@ interface DodamConfirmProps {
  * title = message
  * text = content?
  */
-const DodamAlertComponent = ({ message, onClose, content }: DodamAlertProps) => {
+const DodamAlertComponent = ({ message, onClose, title }: DodamAlertProps) => {
   const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   return (
     <DodamThemeProvider theme={isDarkMode ? "DARK" : "LIGHT"}>
       <Container>
         <Dialog
-          title={message}
-          text={content!}
+          title={title!}
+          text={message}
           type={{
             dialog: "ALERT",
             close: {
-              content: "닫기",
+              content: "확인",
               onClick: onClose,
+              cloeButton:true,
             },
           }}
           radius="Large"
@@ -54,7 +55,7 @@ const DodamAlertComponent = ({ message, onClose, content }: DodamAlertProps) => 
  */
 const DodamConfirmComponent = ({
     message,
-    content,
+    title,
     onClose,
   }: DodamConfirmProps & { onClose: (result: boolean) => void }) => {
     const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -63,8 +64,8 @@ const DodamConfirmComponent = ({
       <DodamThemeProvider theme={isDarkMode ? "DARK" : "LIGHT"}>
       <Container>
         <Dialog
-          title={message}
-          text={content!}
+          title={title!}
+          text={message}
           type={{
             dialog: "CONFIRM",
             confirm: {
@@ -99,7 +100,7 @@ const DodamConfirmComponent = ({
       return DodamDialogCalss.instance;
     }
 
-    public alert(message: string, content?: string) {
+    public alert(message: string, title?: string) {
       /**
        * Create container in DOM
        *  */ 
@@ -124,12 +125,12 @@ const DodamConfirmComponent = ({
        * Transfer to ReactDOM
        */
       ReactDOM.render(
-        <DodamAlertComponent message={message} content={content} onClose={close} />,
+        <DodamAlertComponent message={message} title={title} onClose={close} />,
         container
       );
     }
   
-    public confirm(message: string, content?: string): Promise<boolean> {
+    public confirm(message: string, title?: string): Promise<boolean> {
       return new Promise((resolve) => {
       /**
        * Create container in DOM
@@ -155,7 +156,7 @@ const DodamConfirmComponent = ({
         ReactDOM.render(
           <DodamConfirmComponent
             message={message}
-            content={content}
+            title={title}
             onClose={handleClose}
           />,
           container
@@ -177,11 +178,18 @@ const DodamConfirmComponent = ({
       document.body.style.overflow = "";
     }
   }
-  
+  /**
+   * title이 undefined일 경우 해당 사이트의 origin만 들어갑니다.
+   */
   export const DodamDialog = {
-    alert: (message: string, content?: string) => DodamDialogCalss.getInstance().alert(message, content),
-    confirm: (message: string, content?: string) => DodamDialogCalss.getInstance().confirm(message, content),
+    alert: (message: string, title: string = window.location.origin) =>
+      DodamDialogCalss.getInstance().alert(message, title),
+  
+    confirm: (message: string, title: string = window.location.origin) =>
+      DodamDialogCalss.getInstance().confirm(message, title),
   };
+  
+  
   
 
 

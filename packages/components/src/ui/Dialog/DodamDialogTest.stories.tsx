@@ -9,7 +9,7 @@ export default {
 
 export const DodamAlert = () => {
   const handleShowAlert = () => {
-    DodamDialog.alert("알림 메시지", "알림 테스트입니다.");
+    DodamDialog.alert("알림 메시지");
   };
 
   return (
@@ -20,7 +20,7 @@ export const DodamAlert = () => {
 export const DodamConfirm = () => {
   const handleShowConfirm = async () => {
     
-    const result = await DodamDialog.confirm("확인 메시지", "확인 테스트입니다.");
+    const result = await DodamDialog.confirm("확인 메시지");
     if (result) {
       alert("확인 버튼을 눌렀습니다.");
     } else {
