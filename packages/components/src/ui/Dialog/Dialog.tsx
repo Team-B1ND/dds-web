@@ -1,4 +1,4 @@
-import { DodamShape, ShapeSizeType } from "@dds-web/styles";
+import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
 import { DodamColor } from "@dds-web/foundations";
 import React, { MouseEventHandler } from "react";
 import styled, { CSSProperties, RuleSet, css } from "styled-components";
@@ -11,6 +11,7 @@ type DialogHandlerType = {
   content: string;
   onClick: MouseEventHandler<HTMLButtonElement | HTMLParagraphElement>;
   style?: RuleSet;
+  cloeButton?: boolean; //중요 *** close버튼에서만 적용 됌 
 };
 
 type DialogType = AlertTProps | ConfirmProps;
@@ -89,14 +90,24 @@ export const Dialog = ({
           </DodamFilledButton>
         </ButtonStyle>
       ) : (
-        <Row justifyContent="flex-end" style={{cursor:"pointer"}}>
-          <DodamBody1
-            fontScale="Bold"
-            text={type.close.content}
-            onClick={type.close.onClick}
-            customStyle={type.close.style}
-          />
-        </Row>
+        <CloseButton>
+          
+          {type.close.cloeButton ? (
+             <DodamFilledButton
+             width={70}
+             backgroundColorType="Primary"
+             enabled={true}
+             size="Large"
+             customStyle={{
+              color:"white",
+              padding: "10px 10px",
+            }}
+              onClick={type.close.onClick}
+            >
+              {type.close.content}
+            </DodamFilledButton>
+          ): <span onClick={type.close.onClick}>{type.close.content}</span>}
+        </CloseButton>
       )}
     </StyledDialog>
   );
@@ -134,6 +145,17 @@ const ButtonStyle = styled.div`
   width: 100%;
   justify-content: space-between;
 `
+const CloseButton = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  span{
+    cursor: pointer;
+    ${DodamTypography.Body1.Bold}
+    color: ${({theme})=>theme.labelNormal};
+  }
+`
+
 const StyledTitle = (titleColor: CSSProperties["color"]) => css`
   color: ${({ theme }) => titleColor || theme.labelStrong};
 `;
