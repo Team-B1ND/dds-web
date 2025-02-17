@@ -94,7 +94,7 @@ const StyledContentButton = styled.button<{
 }>`
   min-width: 40px;
   min-height: 40px;
-  width: ${({ width }) => (width ? `${width}px` : '')};
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
 
   outline: none;
   border: none;
