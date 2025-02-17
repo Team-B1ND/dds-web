@@ -87,43 +87,32 @@ const DodamConfirmComponent = ({
   };
   
 
-  class DodamDialogCalss {
-    private static instance: DodamDialogCalss;
-
-    private constructor() {} // 생성자를 private으로 제한
+  class DodamDialogClass {
+    private static instance: DodamDialogClass;
+    private blockedEvents: EventListener[] = [];
   
-    // 싱글톤 인스턴스 반환
-    public static getInstance(): DodamDialogCalss {
-      if (!DodamDialogCalss.instance) {
-        DodamDialogCalss.instance = new DodamDialogCalss();
+    private constructor() {}
+  
+    public static getInstance(): DodamDialogClass {
+      if (!DodamDialogClass.instance) {
+        DodamDialogClass.instance = new DodamDialogClass();
       }
-      return DodamDialogCalss.instance;
+      return DodamDialogClass.instance;
     }
-
+  
     public alert(message: string, title?: string) {
-      /**
-       * Create container in DOM
-       *  */ 
       const container = document.createElement("div");
       document.body.appendChild(container);
-  
-      /** 
-       * Scroll limit
-       * */ 
       this.disableScroll();
+      this.blockAllEvents();
   
-      /**
-       * Close function
-       */
       const close = () => {
         this.enableScroll();
+        this.unblockAllEvents();
         ReactDOM.unmountComponentAtNode(container);
         document.body.removeChild(container);
       };
   
-      /**
-       * Transfer to ReactDOM
-       */
       ReactDOM.render(
         <DodamAlertComponent message={message} title={title} onClose={close} />,
         container
@@ -132,27 +121,19 @@ const DodamConfirmComponent = ({
   
     public confirm(message: string, title?: string): Promise<boolean> {
       return new Promise((resolve) => {
-      /**
-       * Create container in DOM
-       *  */ 
         const container = document.createElement("div");
         document.body.appendChild(container);
-  
-      /** 
-       * Scroll limit
-       * */ 
         this.disableScroll();
-        
+        this.blockAllEvents();
+  
         const handleClose = (result: boolean) => {
           this.enableScroll();
+          this.unblockAllEvents();
           ReactDOM.unmountComponentAtNode(container);
           document.body.removeChild(container);
-          resolve(result); 
+          resolve(result);
         };
   
-      /**
-       * Transfer to ReactDOM
-       */
         ReactDOM.render(
           <DodamConfirmComponent
             message={message}
@@ -165,29 +146,60 @@ const DodamConfirmComponent = ({
     }
   
     /**
-     * Scroll limit
-     *  */ 
+     * Stop all events
+     */
+    private blockAllEvents() {
+      const preventEvent = (e: Event) => {
+        if (
+          e.type === "beforeunload" || // refresh event
+          (e.type === "click" && !(e.target as HTMLElement).closest(".dialog-button"))
+        ) {
+          return;
+        }
+    
+        e.stopPropagation();
+        e.preventDefault();
+      };
+  
+      // List of events to block
+      const events = ["click", "touchstart", "wheel"];
+  
+      events.forEach((event) => {
+        document.addEventListener(event, preventEvent, true);
+        this.blockedEvents.push(preventEvent);
+      });
+    }
+  
+    /**
+     *Recover all events
+     */
+    private unblockAllEvents() {
+      const events = ["click", "keydown", "touchstart", "wheel"];
+  
+      events.forEach((event, index) => {
+        document.removeEventListener(event, this.blockedEvents[index], true);
+      });
+  
+      this.blockedEvents = [];
+    }
+  
     private disableScroll() {
       document.body.style.overflow = "hidden";
     }
   
-    /**
-     * Scroll Restore
-     *  */ 
     private enableScroll() {
       document.body.style.overflow = "";
     }
   }
-  /**
-   * title이 undefined일 경우 해당 사이트의 origin만 들어갑니다.
-   */
+  
   export const DodamDialog = {
     alert: (message: string, title: string = window.location.origin) =>
-      DodamDialogCalss.getInstance().alert(message, title),
+      DodamDialogClass.getInstance().alert(message, title),
   
     confirm: (message: string, title: string = window.location.origin) =>
-      DodamDialogCalss.getInstance().confirm(message, title),
+      DodamDialogClass.getInstance().confirm(message, title),
   };
+  
   
   
   
