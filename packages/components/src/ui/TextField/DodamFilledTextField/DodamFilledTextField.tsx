@@ -11,6 +11,7 @@ export interface DodamFilledTextFieldProps {
   type: InputType;
   label: string;
   isError?: boolean;
+  width?:number;
   value: string;
   placeholder: string;
   isDisabled?: boolean;
@@ -28,6 +29,7 @@ export const DodamFilledTextField = ({
   type,
   label,
   isError,
+  width,
   value,
   isDisabled,
   supportingText,
@@ -60,7 +62,10 @@ export const DodamFilledTextField = ({
 
   return (
     <div style={{ position: 'relative' }}>
-      <StyleFilledTextField customStyle={customStyle}>
+      <StyleFilledTextField 
+        width={width} 
+        customStyle={customStyle}
+        >
         <StyledFilledTextFieldTitle isFocused={isFocused} isDisabled={isDisabled} isError={isError!}>
           {label}
         </StyledFilledTextFieldTitle>
@@ -100,13 +105,15 @@ export const DodamFilledTextField = ({
   );
 };
 
-const StyleFilledTextField = styled.div<{ customStyle?: CSSObject }>`
+const StyleFilledTextField = styled.div<{ 
+  customStyle?: CSSObject
+  width?:number
+  }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-
-  width: 380px;
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
   height: 80px;
   position: relative;
 
