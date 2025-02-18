@@ -1,15 +1,18 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import * as S from "./DodamDatePicker.style";
 import { useDatePicker } from "@dds-web/hooks";
 import { ChevronRight, ChevronLeft, Calender } from "@dds-web/assets";
 import {DAY} from "./constant";
 import {DodamHeading2} from "../Typography"
 import { DodamLightTheme } from "@dds-web/styles";
+import { CSSObject } from "styled-components";
+
+
 export interface DatePickerProps {
   itemKey: string;
   width: string | number;
   height: string | number;
-  customStyle?: CSSProperties;
+  customStyle?: CSSObject;
   onChange: (e: Date) => void;
   value: string;
   children?: JSX.Element | string;

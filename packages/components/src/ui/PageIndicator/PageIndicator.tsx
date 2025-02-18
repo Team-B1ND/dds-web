@@ -6,6 +6,7 @@ export const PageIndicator = ({
   caseBy,
   buttonSize = "Large",
   defaultComponent = null,
+  customStyle
 }: PageIndicatorProps) => {
   const [activeIdx, setActiveIdx] = useState<number>(0);
 
@@ -21,7 +22,7 @@ export const PageIndicator = ({
 
   return (
     <div>
-      <S.PageIndicatorWrap buttonSize={buttonSize}>
+      <S.PageIndicatorWrap buttonSize={buttonSize} customStyle={customStyle}>
         {keys.map((_, idx) => (
           <S.IndicatorBtn
             key={idx}

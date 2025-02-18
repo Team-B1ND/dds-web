@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
-import styled, { CSSProperties, RuleSet, css } from 'styled-components';
+import styled, { CSSObject, CSSProperties, RuleSet, css } from 'styled-components';
 import { DodamShape, DodamTheme, DodamTypography, ShapeSizeType } from '@dds-web/styles';
 import { FlexLayout } from '../../../layout';
 
@@ -28,7 +28,7 @@ export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
   radius?: ShapeSizeType;
   padding?: CSSProperties['padding'];
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  customStyle?: RuleSet;
+  customStyle?: CSSObject;
 }
 
 export const DodamContentButton = ({
@@ -64,7 +64,7 @@ const StyledContentButton = styled.button<{
   textTheme?: keyof DodamTheme;
   radius: ShapeSizeType;
   padding: CSSProperties['padding'];
-  customStyle: RuleSet;
+  customStyle: CSSObject;
 }>`
   min-width: 40px;
   min-height: 40px;
