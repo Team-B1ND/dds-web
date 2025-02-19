@@ -1,8 +1,11 @@
-import styled, { css } from "styled-components";
+import styled, { css, CSSObject } from "styled-components";
 import { ButtonSize } from "./type";
 import { DodamLightTheme } from "@dds-web/styles/src/DodamTheme/DodamTheme";
 
-export const PageIndicatorWrap = styled.div<{ buttonSize: ButtonSize }>`
+export const PageIndicatorWrap = styled.div<{ 
+  buttonSize: ButtonSize 
+  customStyle?:CSSObject
+  }>`
   width: auto;
   height: auto;
   gap: ${({ buttonSize }) => (buttonSize === "Small" ? "5px" : "10px")};

@@ -12,10 +12,14 @@ export interface DodamNoticeFileProps {
 export const DodamNoticeFile = ({ filename, onClick, customStyle }:DodamNoticeFileProps) => {
     return (
         <NoticeFileBox style={customStyle}>
-            <Icon>
-                <File $svgStyle={{position:"absolute", left:"5px",bottom:"0px"}} color="staticWhite" /> {/*어쩔수 없는 코드였습니다... */}
-            </Icon>
-                <FileName>{filename}</FileName>
+           <FileBox>
+                <Icon>
+                    <File $svgStyle={{position:"absolute", left:"5px",bottom:"0px"}} color="staticWhite" /> {/*어쩔수 없는 코드였습니다... */}
+                </Icon>
+                <span>
+                    {filename}
+                </span>
+            </FileBox>
                 <DownloadButton onClick={onClick}>
                     <DownLoadArrow color="labelNormal"/>
                 </DownloadButton>
@@ -33,6 +37,7 @@ const NoticeFileBox = styled.div`
     justify-content: space-between;
     padding: 10px;
     background-color: ${({theme})=>theme.backgroundNormal};
+    border: 1px solid ${({theme})=>theme.primaryNormal};
     ${DodamShape.ExtraSmall}
 `;
 
@@ -44,9 +49,15 @@ const Icon = styled.div`
     background-color: ${({ theme }) => theme.primaryNormal};
 `;
 
-const FileName = styled.span`
-    ${DodamTypography.Label.Medium};
-    color: ${({ theme }) => theme.labelNormal};
+const FileBox = styled.span`
+    display: flex;
+    align-items: center;
+    gap:5px;
+    span{
+        ${DodamTypography.Label.Medium};
+        color: ${({ theme }) => theme.labelNormal};
+    }
+    
 `;
 
 const DownloadButton = styled.a`
@@ -55,5 +66,5 @@ const DownloadButton = styled.a`
     justify-content: center;
     align-items: center;
     width: 45px;
-    height: 45px;    
+    height: 45px; 
 `;

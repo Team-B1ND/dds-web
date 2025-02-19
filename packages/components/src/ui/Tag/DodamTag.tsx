@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import styled, { RuleSet } from "styled-components";
+import styled, { CSSObject, RuleSet } from "styled-components";
 import { DodamTypography } from "@dds-web/styles";
 
 type TagColor = "red" | "blue" | "default";
@@ -8,7 +8,7 @@ export interface DodamTagProps {
   text: string;
   color: TagColor;
   onClick?: MouseEventHandler<HTMLDivElement>;
-  customStyle?: RuleSet;
+  customStyle?: CSSObject;
 }
 
 export const DodamTag = ({
@@ -24,7 +24,7 @@ export const DodamTag = ({
   );
 };
 
-const StyledTagWrap = styled.div<{ color: TagColor; customStyle: RuleSet }>`
+const StyledTagWrap = styled.div<{ color: TagColor; customStyle: CSSObject }>`
   width: auto;
   min-width: 45px;
   height: auto;

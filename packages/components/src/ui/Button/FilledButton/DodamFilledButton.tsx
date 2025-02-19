@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, MouseEventHandler } from 'react';
-import styled, { CSSProperties, css } from 'styled-components';
+import styled, { CSSProperties, css, CSSObject } from 'styled-components';
 import {
   BackgroundColorType,
   ButtonSizeType,
@@ -9,7 +9,6 @@ import {
   DodamTypography,
 } from '@dds-web/styles';
 import { FlexLayout } from '../../../layout';
-import { CSSObject } from 'styled-components';
 
 type typographyType = [
   (
