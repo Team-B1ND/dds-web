@@ -212,10 +212,9 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 11;
+  z-index: 13;
 `;
 
 const DismissButton = css`
