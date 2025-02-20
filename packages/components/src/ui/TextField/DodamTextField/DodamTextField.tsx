@@ -204,16 +204,14 @@ const StyledTextFieldTextFieldInput = styled.input<{ isError: boolean }>`
     border-bottom: 1.5px solid ${({ isError, theme }) => (isError ? theme.statusNegative : theme.primaryNormal)};
   }
 
-  &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #fff inset;
-    -webkit-text-fill-color: #000;
-  }
 
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
+    -webkit-box-shadow: 0 0 0 500px transparent inset !important;
+      -webkit-text-fill-color: ${({ theme }) => theme.labelNormal} !important;
+      background-color: transparent !important;
   }
 `;
 
