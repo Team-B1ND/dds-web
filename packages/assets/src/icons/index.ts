@@ -1,3 +1,4 @@
+export * from "./Logo";
 export * from './Bell';
 export * from './Bus';
 export * from './Calender';
@@ -27,3 +28,4 @@ export * from './mark';
 export * from './notfoundpage';
 export * from './File';
 export * from './Photo';
+

@@ -175,6 +175,14 @@ const StyledFilledTextFieldInput = styled.div<{
     height: 100%;
     border: none;
 
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 500px transparent inset !important;
+      -webkit-text-fill-color: ${({ theme }) => theme.labelNormal} !important;
+      background-color: transparent !important;
+    }
     &:focus {
       outline: none;
     }
