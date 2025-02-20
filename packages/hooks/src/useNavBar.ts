@@ -1,10 +1,8 @@
 import {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export const useNavBar = () => {
-    const navigate = useNavigate();
     const handleMenuItemClick = (path: string) => {
-        navigate(path);
+        window.location.href = path;
     };
     
     const [modalOpen, setModalOpen] = useState(false);
