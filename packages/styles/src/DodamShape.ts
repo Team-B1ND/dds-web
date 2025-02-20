@@ -1,11 +1,6 @@
-import { css, RuleSet } from "styled-components";
+import { css, RuleSet } from 'styled-components';
 
-export type ShapeSizeType =
-  | "ExtraSmall"
-  | "Small"
-  | "Medium"
-  | "Large"
-  | "ExtraLarge";
+export type ShapeSizeType = 'ExtraSmall' | 'Small' | 'Medium' | 'Large' | 'ExtraLarge';
 
 export type ShapeStyles = {
   ExtraSmall: RuleSet;
@@ -25,7 +20,7 @@ export const DodamShape: ShapeStyles = Object.freeze({
   Medium: css`
     border-radius: 12px;
   `,
-  Large: css`
+  Large: css` 
     border-radius: 18px;
   `,
   ExtraLarge: css`

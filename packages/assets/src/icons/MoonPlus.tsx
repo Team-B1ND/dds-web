@@ -3,7 +3,7 @@ import { IconProps } from "./type";
 import { StyledPath, StyledSvg } from "./style";
 import { MOON_PLUS_PATH_ITEMS } from "./constant";
 
-export const MoonPlus = ({ size = 24, color = "#000", $svgStyle, $pathStyle }: IconProps) => {
+export const MoonPlus = ({ size = 24, color = "staticBlack", $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
       width={size}

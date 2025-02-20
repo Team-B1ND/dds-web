@@ -1,47 +1,57 @@
-import React, { HTMLAttributes, ReactNode } from "react";
-import styled, { CSSProperties, RuleSet, css } from "styled-components";
-import { DodamShape, DodamTypography, ShapeSizeType } from "@dds-web/styles";
-import { FlexLayout } from "../../../layout";
+import React, { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import styled, { CSSObject, CSSProperties, RuleSet, css } from 'styled-components';
+import { DodamShape, DodamTheme, DodamTypography, ShapeSizeType } from '@dds-web/styles';
+import { FlexLayout } from '../../../layout';
 
 type typographyType = [
-  "Title1" | "Title2" | "Title3" | "Heading1" | "Heading2" | "Headline" | "Body" | "Label" | "Caption1" | "Caption2",
-  "Bold" | "Medium" | "Regular",
+  (
+    | 'Title1'
+    | 'Title2'
+    | 'Title3'
+    | 'Heading1'
+    | 'Heading2'
+    | 'Headline'
+    | 'Body1'
+    | 'Body2'
+    | 'Label'
+    | 'Caption1'
+    | 'Caption2'
+  ),
+  'Bold' | 'Medium' | 'Regular',
 ];
-
-type ColorsType = {
-  textColor?: string;
-  textActiveColor?: string;
-  backgroundColor?: CSSProperties["backgroundColor"];
-  activeBackgroundColor?: CSSProperties["backgroundColor"];
-};
 
 export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-
+  width?: number;
   typography?: typographyType;
-  colors?: ColorsType;
+  textTheme?: keyof DodamTheme;
   radius?: ShapeSizeType;
-  padding?: CSSProperties["padding"];
-  customStyle?: RuleSet;
+  padding?: CSSProperties['padding'];
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  customStyle?: CSSObject;
 }
 
 export const DodamContentButton = ({
   children,
-  typography = ["Body", "Bold"],
-  colors,
-  radius = "Medium",
+  width,
+  typography = ['Body1', 'Bold'],
+  textTheme,
+  radius = 'Medium',
   padding,
+  onClick,
   customStyle,
   ...props
 }: DodamContentButton) => {
   return (
     <StyledContentButton
+      width={width}
       typography={typography!}
-      colors={colors!}
+      textTheme={textTheme}
       radius={radius}
       padding={padding}
       customStyle={customStyle!}
       {...props}
+      onClick={onClick}
     >
       {children}
     </StyledContentButton>
@@ -49,14 +59,16 @@ export const DodamContentButton = ({
 };
 
 const StyledContentButton = styled.button<{
+  width?: number;
   typography: typographyType;
-  colors: ColorsType;
+  textTheme?: keyof DodamTheme;
   radius: ShapeSizeType;
-  padding: CSSProperties["padding"];
-  customStyle: RuleSet;
+  padding: CSSProperties['padding'];
+  customStyle: CSSObject;
 }>`
   min-width: 40px;
   min-height: 40px;
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
 
   outline: none;
   border: none;
@@ -65,18 +77,11 @@ const StyledContentButton = styled.button<{
   padding: ${({ padding }) => padding};
 
   transition: all 0.15s ease-in-out;
-  ${({ colors, theme }) => css`
-    color: ${colors?.textColor || theme.onSurface};
-    background-color: ${colors?.backgroundColor || "transparent"};
 
-    &:active {
-      transform: scale(0.95);
-      color: ${colors?.textActiveColor || theme.onSurface};
-      background-color: ${colors?.activeBackgroundColor || theme.secondary};
-    }
-  `}
+  color: ${({ theme, textTheme }) => (textTheme ? theme[textTheme] : '')};
+  background-color: transparent;
 
-  ${FlexLayout({ alignItems: "center", justifyContent: "center" })};
+  ${FlexLayout({ alignItems: 'center', justifyContent: 'center' })};
   ${({ radius }) => DodamShape[radius]};
   ${({ typography }) => DodamTypography[typography[0]][typography[1]]}
 

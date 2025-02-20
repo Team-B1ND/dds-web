@@ -51,7 +51,7 @@ export const useDatePicker = ({
   const [lastDate, setLastDate] = useState<number>(dayList.indexOf(1));
 
   //데이트 피커 ref
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [calendarCoord, setCalendarCoold] = useState({ x: 0, y: 0 });
 
   //데이트피커 아웃사이드 클릭 체크

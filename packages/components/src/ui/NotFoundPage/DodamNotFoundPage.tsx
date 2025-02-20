@@ -1,18 +1,18 @@
 import React from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
 import { StatusCode, DodamSadEmoji } from "@dds-web/assets";
-import { DodamShape, DodamTypography } from "@dds-web/styles";
+import { DodamTypography } from "@dds-web/styles";
+import { DodamFilledButton } from "../Button";
 
 export const DodamNotFoundPage = () => {
-  const theme = useTheme();
 
   return (
     <StyledNotFoundPage>
       <StyledInfoWrap>
-        <StatusCode color={theme.primaryNormal} />
+        <StatusCode color="primaryNormal" />
         <StyledTitleWrap>
           <StyledTitle>Page Not Found</StyledTitle>
-          <DodamSadEmoji color={theme.primaryNormal} />
+          <DodamSadEmoji color="primaryNormal" />
         </StyledTitleWrap>
         <StyledContentWrap>
           <StyledContent>
@@ -23,10 +23,15 @@ export const DodamNotFoundPage = () => {
           </StyledContent>
         </StyledContentWrap>
       </StyledInfoWrap>
-      <StyledButton
-        onClick={() => window.location.href = "https://dodam.b1nd.com/"}>
+      <DodamFilledButton
+        size="Medium"
+        padding="12px 30px"
+        backgroundColorType="Primary"
+        typography={['Headline','Bold']}
+        customStyle={ {color:"#fff"}}
+        onClick={() => (window.location.href = "https://dodam.b1nd.com/")}>
         도담도담 홈으로
-      </StyledButton>
+      </DodamFilledButton>
     </StyledNotFoundPage>
   );
 };
@@ -40,7 +45,7 @@ const StyledNotFoundPage = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.backgroundNetural};
+  background-color: ${({ theme }) => theme.backgroundNeutral};
 `;
 
 const StyledInfoWrap = styled.div`
@@ -85,31 +90,11 @@ const StyledContentWrap = styled.div`
 `;
 
 const StyledContent = styled.p`
-  color: ${({ theme }) => theme.labelNetural};
+  color: ${({ theme }) => theme.labelNeutral};
   ${DodamTypography.Heading2.Medium}
 
   span {
     color: ${({ theme }) => theme.primaryNormal};
     ${DodamTypography.Heading2.Bold}
-  }
-`;
-
-const StyledButton = styled.button`
-  width: auto;
-  height: auto;
-
-  color: ${({ theme }) => theme.staticWthie};
-  ${DodamTypography.Headline.Bold}
-
-  border: none;
-  ${DodamShape.Medium};
-  background-color: ${({ theme }) => theme.primaryNormal};
-  
-  padding: 12px 30px;
-  cursor: pointer;
-
-  transition: all 0.15s ease-in-out;
-  &:active {
-    transform: scale(0.97);
   }
 `;

@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DodamDialog } from "./DodamDialog";
+import { Dialog } from "./Dialog";
 import { css } from "styled-components";
-import {DodamLightTheme} from "@dds-web/styles"
+
 const meta = {
   title: "ui/DodamDialog",
-  component: DodamDialog,
+  component: Dialog,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof DodamDialog>;
+} satisfies Meta<typeof Dialog>;
 
 export default meta;
 
@@ -18,14 +18,14 @@ type Story = StoryObj<typeof meta>;
 const AlertText = css`
   cursor: pointer;
   padding: 8px 12px;
-  color: ${({ theme }) => DodamLightTheme.primaryNormal};
+  color: ${({ theme }) => theme.primaryNormal};
 `;
 
 export const AlertDialog: Story = {
   args: {
     title: "제목을 입력해주세요",
     text: "본문을 입력해주세요",
-
+    
     type: {
       dialog: "ALERT",
       close: {
@@ -41,14 +41,14 @@ const StyledButton = css`
   width: 50%;
   height: 50px;
   min-height: 50px;
-  color: ${DodamLightTheme.staticWhite};
-  background-color: ${ DodamLightTheme.primaryNormal};
+  color: ${({ theme }) => theme.staticWhite};
+  background-color: ${({ theme }) => theme.primaryNormal};
 
 `;
 
 const DismissButton = css`
-  color: ${DodamLightTheme.labelNetural};
-  background-color: ${ DodamLightTheme.fillNormal};
+  color: ${({ theme }) => theme.labelNeutral};
+  background-color: ${({ theme }) => theme.fillNormal};
   width: 50%;
   height: 50px;
   min-height: 50px;

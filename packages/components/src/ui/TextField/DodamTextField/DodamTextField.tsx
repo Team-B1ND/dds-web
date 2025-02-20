@@ -1,119 +1,208 @@
-import { DodamLightTheme, DodamTypography, LabelStyle } from '@dds-web/styles';
-import React from 'react';
-import styled, { css } from 'styled-components';
+import { DodamTypography } from '@dds-web/styles';
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  CSSProperties,
+  KeyboardEventHandler,
+  MouseEventHandler,
+  useCallback,
+  useState,
+} from 'react';
+import styled, { CSSObject, useTheme } from 'styled-components';
+import { Eye, EyeSlash, XmarkCircle, ExclamationmarkCircle } from '@dds-web/assets';
+import { hexToRgba } from '@dds-web/utils';
 
-type StatusType = 'default' | 'unfocused' | 'focused' | 'error' | 'disabled';
+type InputType = 'text' | 'password';
 
-interface DodamTextFieldProps {
+export interface DodamTextFieldProps {
   id: string;
   name: string;
-  status: StatusType;
+  type: InputType;
   value: string;
-  children: string;
-  onchange: React.ChangeEventHandler<HTMLInputElement>;
-  functions: (() => void) | string;
-  labelStyle?: React.CSSProperties;
+  label: string;
+  isError?: boolean;
+  showIcon?: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
+  isDisabled?: boolean;
+  width?: number;
+  labelStyle?: CSSProperties;
   supportingText?: string;
+  customStyle?: CSSObject;
 }
 
 export const DodamTextField = ({
   id,
   name,
+  type,
   value,
-  children = '여기에 텍스트를 입력하세요.',
-  onchange,
-  functions,
+  width,
+  label = '텍스트를 입력하세요.',
+  showIcon = true,
+  onChange,
+  onKeyDown,
+  isDisabled,
   labelStyle,
-  status,
+  isError,
   supportingText,
+  customStyle,
 }: DodamTextFieldProps) => {
+  const theme = useTheme();
+  const [isShowValue, setIsShowValue] = useState(false);
+  const [internalValue, setInternalValue] = useState(value);
+
+  const handleClickEye = () => {
+    setIsShowValue((prev) => !prev);
+  };
+
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setInternalValue(e.target.value);
+      onChange(e);
+    },
+    [onChange]
+  );
+
+  const handleClickXmark = useCallback(() => {
+    setInternalValue('');
+    onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
+  }, [onChange]);
+
   return (
     <div style={{ position: 'relative' }}>
-      <StyledTextField status={status}>
+      <StyledTextField width={width} isError={isError!} customStyle={customStyle}>
         <StyledTextFieldTextFieldInput
           required
+          disabled={isDisabled}
           id={id}
           name={name}
-          onChange={onchange}
-          value={value}
+          type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
+          isError={isError!}
+          onChange={handleChange}
+          value={internalValue}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              if (typeof functions === 'function') {
-                functions();
-              } else {
-                const elemId = functions;
-                document.getElementById(elemId)?.focus();
-              }
+              onKeyDown?.(e);
             }
           }}
         />
-        <label style={labelStyle}>{children}</label>
+        <label style={labelStyle}>{label}</label>
+        {showIcon &&
+          internalValue.trim().length > 0 &&
+          (isError ? (
+            <ExclamationmarkCircle
+              color={theme.statusNegative}
+              $svgStyle={{
+                position: 'absolute',
+                top: '20%',
+                right: '4%',
+              }}
+            />
+          ) : type === 'text' ? (
+            <div onClick={handleClickXmark}>
+              <XmarkCircle
+                color={hexToRgba(theme.labelAlternative, 0.5)}
+                $svgStyle={{
+                  position: 'absolute',
+                  top: '20%',
+                  right: '4%',
+                  cursor: 'pointer',
+                }}
+              />
+            </div>
+          ) : isShowValue ? (
+            <div onClick={handleClickEye}>
+              <Eye
+                color={hexToRgba(theme.labelAlternative, 0.5)}
+                $svgStyle={{
+                  position: 'absolute',
+                  top: '20%',
+                  right: '4%',
+                  cursor: 'pointer',
+                }}
+              />
+            </div>
+          ) : (
+            <div onClick={handleClickEye}>
+              <EyeSlash
+                color={hexToRgba(theme.labelAlternative, 0.5)}
+                $svgStyle={{
+                  position: 'absolute',
+                  top: '20%',
+                  right: '4%',
+                  cursor: 'pointer',
+                }}
+              />
+            </div>
+          ))}
+        <StyledSupportingText isError={isError!}>{supportingText}</StyledSupportingText>
       </StyledTextField>
-      <StyledSupportingText status={status}>{supportingText}</StyledSupportingText>
     </div>
   );
 };
 
-const StyledTextField = styled.div<{ status: StatusType }>`
-  width: 380px;
+const StyledTextField = styled.div<{ isError: boolean; customStyle?: CSSObject; width?: number }>`
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
   height: 47px;
   padding: 4px 0px;
 
-  border: none;
-  border-bottom: 1px solid #d1d1d1;
-
+  border: none !important;
+  border-radius: 0px !important;
   position: relative;
+
+  ${({ customStyle }) => customStyle};
 
   label {
     position: absolute;
-    left: 5%;
+    left: 0;
     top: 80%;
 
     ${DodamTypography.Headline.Medium}
-    color: ${({ theme }) => theme.labelStrong};
+    color: ${({ theme }) => theme.labelAlternative};
 
     transform: translateY(-90%);
     transition: all 0.2s ease;
     pointer-events: none;
-
-    ${({ status }) => {
-      return LabelStyle[status];
-    }}
   }
 
-  input {
-    ${({ status }) => {
-      if (status === 'default') {
-        return css`
-          color: ${({ theme }) => theme.labelAlternative};
-        `;
-      }
-    }}
+  input:focus ~ label {
+    color: ${({ theme }) => theme.primaryNormal};
+  }
+
+  input:valid ~ label {
+    color: ${({ isError, theme }) => isError && theme.statusNegative};
+  }
+
+  input:disabled ~ label {
+    color: ${({ theme }) => hexToRgba(theme.labelAlternative, 0.65)};
   }
 
   input:is(:focus, :valid) ~ label {
     ${DodamTypography.Label.Medium}
-    color: ${({ theme }) => theme.labelAlternative};
-    transform: translateY(-300%);
+    transform: translateY(-250%);
   }
 `;
 
-const StyledTextFieldTextFieldInput = styled.input`
+const StyledTextFieldTextFieldInput = styled.input<{ isError: boolean }>`
   width: 97%;
   height: 45px;
 
-  color: var(--Gray600, #787878);
-  font-family: Assistant;
-  font-size: 1.3rem;
-  font-style: normal;
-  font-weight: 200;
-  border: none;
-  border-bottom: 1px solid #d1d1d1;
-  outline: none;
-  padding-left: 3%;
+  color: ${({ theme }) => theme.labelStrong};
+  ${DodamTypography.Headline.Medium}
 
-  font-size: 18px;
-  font-family: Assistant;
+  border: none;
+  border-bottom: 1.5px solid ${({ isError, theme }) => (isError ? theme.statusNegative : theme.lineNormal)};
+  background-color: transparent;
+  outline: none;
+
+  &:disabled {
+    border-bottom: 1.5px solid ${({ theme }) => hexToRgba(theme.lineNormal, 0.65)};
+    background-color: transparent;
+  }
+
+  &:focus {
+    border-bottom: 1.5px solid ${({ isError, theme }) => (isError ? theme.statusNegative : theme.primaryNormal)};
+  }
 
   &:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #fff inset;
@@ -126,23 +215,9 @@ const StyledTextFieldTextFieldInput = styled.input`
   &:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
   }
-
-  &:focus {
-    border: none;
-  }
 `;
 
-const StyledSupportingText = styled.span<{ status: StatusType }>`
+const StyledSupportingText = styled.span<{ isError: boolean }>`
   ${DodamTypography.Label.Medium}
-  color: ${({ theme }) => theme.labelAlternative};
-  position: absolute;
-  top: 55px;
-
-  ${({ status }) => {
-    if (status === 'error') {
-      return css`
-        color: ${({ theme }) => theme.statusNegative};
-      `;
-    }
-  }}
+  color: ${({ isError, theme }) => (isError ? theme.statusNegative : theme.labelAlternative)};
 `;

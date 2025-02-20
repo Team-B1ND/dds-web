@@ -1,4 +1,4 @@
-import styled, { CSSProperties, RuleSet } from "styled-components";
+import styled, { CSSObject, CSSProperties, RuleSet } from "styled-components";
 
 export type Align = "center" | "flex-start" | "flex-end";
 
@@ -13,7 +13,7 @@ export interface BaseFlexProps {
   wrap?: boolean;
   backgroundColor?: CSSProperties["backgroundColor"];
 
-  customStyle?: RuleSet;
+  customStyle?: CSSObject;
 }
 
 const BaseFlex = styled.div<BaseFlexProps>`
