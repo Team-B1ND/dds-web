@@ -38,10 +38,10 @@ export interface DodamNavProps {
               <S.DodamButtonBox>
                 {NAV_LINKS.map((item, idx) => {
                   const Icon = item.img;
-                  const activ = location === item.values
+                  const isActive = location === item.values
                   return (
                     <S.DodamButton
-                      $active={activ} 
+                      $active={isActive} 
                       key={idx}
                       as="a"
                       onClick={() => nav.handleMenuItemClick(item.link)}
@@ -49,7 +49,7 @@ export interface DodamNavProps {
                       {Icon && (
                         <Icon
                           size={24}
-                          color={activ ? "staticWhite" : "labelNormal"}
+                          color={isActive ? "staticWhite" : "labelNormal"}
                         />
                       )}
                       <span>{item.name}</span>

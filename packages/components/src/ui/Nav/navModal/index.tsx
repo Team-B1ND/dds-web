@@ -3,7 +3,6 @@ import { ChevronRight } from "@dds-web/assets";
 import { DodamModal, DodamToggleButton } from "../..";
 import { NAV_BAR_MODAL_DAUTH, NAV_BAR_MODAL_ITEM} from "../constant";
 import * as S from "./style";
-import {useTheme} from "styled-components";
 import { ETheme } from "../navBar";
 
 
@@ -22,7 +21,6 @@ const NavModal = ({
     handleTheme,
     logout,
 }:modalProps) => {
-    const theme = useTheme();
 
     const linkMovement = (link:string)=>{
         window.open(link)
