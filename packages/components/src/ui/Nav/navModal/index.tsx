@@ -35,7 +35,7 @@ const NavModal = ({
                     <ChevronRight size={16} color="labelAssistive"/>
                 </S.ModalBox>
                 <S.ModalBox style={{borderBottom:`1px`}}>
-                    <p>{currentTheme === DARK ? "라이트" : "다크"}</p>
+                    <p>{currentTheme === DARK ? "라이트 모드" : "다크 모드"}</p>
                     <DodamToggleButton isAtv={currentTheme==DARK} onClick={handleTheme}/>
                 </S.ModalBox>
                 {NAV_BAR_MODAL_ITEM.map((item)=>(
