@@ -6,9 +6,10 @@ export const DodamNavBox = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 58px;
+  padding-bottom: 59px;
   width: 250px;
   min-width: 150px;
-  height: 800px;
+  height: 100%;
 
   @media (max-width: 1068px) {
     position: fixed;
