@@ -1,24 +1,9 @@
 import React, { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
-import styled, { CSSObject, CSSProperties, RuleSet, css } from 'styled-components';
-import { DodamShape, DodamTheme, DodamTypography, ShapeSizeType } from '@dds-web/styles';
+import styled, { CSSObject, CSSProperties } from 'styled-components';
+import { DodamShape, DodamTheme, DodamTypography, ShapeSizeType, typographyType } from '@dds-web/styles';
 import { FlexLayout } from '../../../layout';
 
-type typographyType = [
-  (
-    | 'Title1'
-    | 'Title2'
-    | 'Title3'
-    | 'Heading1'
-    | 'Heading2'
-    | 'Headline'
-    | 'Body1'
-    | 'Body2'
-    | 'Label'
-    | 'Caption1'
-    | 'Caption2'
-  ),
-  'Bold' | 'Medium' | 'Regular',
-];
+
 
 export interface DodamContentButton extends HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
