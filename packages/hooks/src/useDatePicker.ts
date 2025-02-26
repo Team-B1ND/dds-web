@@ -1,19 +1,25 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+type DatePickerMode = 'entire' | 'future';
+
 interface DatePickerParams {
   value: string;
   splitCharacter: string;
   onChange: (e: Date) => void;
+  type:DatePickerMode;
 }
 
 export const useDatePicker = ({
   value,
   splitCharacter,
   onChange,
+  type,
 }: DatePickerParams) => {  
 
   //날짜 초깃값
   const date = value.split(splitCharacter);
+  console.log(date);
+  
   const $year = Number(date[0]);
   const $month = Number(date[1]);
   const $day = Number(date[2]);
@@ -190,6 +196,7 @@ export const useDatePicker = ({
   }, [fold]);
 
   return {
+    date,
     fold,
     setFold,
     containerRef,

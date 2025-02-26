@@ -4,19 +4,23 @@ import { useDatePicker } from "@dds-web/hooks";
 import { ChevronRight, ChevronLeft, Calender } from "@dds-web/assets";
 import {DAY} from "./constant";
 import {DodamHeading2} from "../Typography"
-import { DodamLightTheme } from "@dds-web/styles";
+import { DodamLightTheme,typographyType } from "@dds-web/styles";
 import { CSSObject } from "styled-components";
+
+type DatePickerMode = 'entire' | 'future';
 
 
 export interface DatePickerProps {
   itemKey: string;
-  width: string | number;
-  height: string | number;
+  width?:  number;
+  height?: number;
   customStyle?: CSSObject;
   onChange: (e: Date) => void;
   value: string;
   children?: JSX.Element | string;
   title : string;
+  typography?: typographyType;
+  type?:DatePickerMode;
 }
 
 export const DodamDatePicker = ({
@@ -28,30 +32,33 @@ export const DodamDatePicker = ({
   value,
   children,
   title,
+  typography = ['Body1', 'Medium'],
+  type = 'future',
 }: DatePickerProps) => {
   const splitCharacter = "-"
-  const { ...dataPicker } = useDatePicker({ value, splitCharacter, onChange });
+  const { ...datePicker } = useDatePicker({ value, splitCharacter, onChange, type });
 
   return (
     <S.DatePickerContainer
-      style={{ width, height, ...customStyle }}
-      ref={dataPicker.containerRef}
+      style={{...customStyle }}
+      ref={datePicker.containerRef}
     >
-      <S.DatePickerWrap id={itemKey} onClick={() => dataPicker.setFold((prev) => !prev)}>
+      <S.DatePickerWrap 
+      id={itemKey} 
+      width={width}
+      height={height}
+      typography={typography!}
+      onClick={() => datePicker.setFold((prev) => !prev)}>
         <S.DatePickerDate>
-          {dataPicker.selectDate.year}/{dataPicker.selectDate.month}/{dataPicker.selectDate.day}
+          {datePicker.selectDate.year}/{datePicker.selectDate.month}/{datePicker.selectDate.day}
         </S.DatePickerDate>
         {children}
-        <S.DatePickerButton>
-          <S.DatePickerButtonIcon>
             <Calender color="labelStrong" />
-          </S.DatePickerButtonIcon>
-        </S.DatePickerButton>
       </S.DatePickerWrap>
-      {!dataPicker.fold && (
+      {!datePicker.fold && (
         <S.DatePickerCalendar
-          y={dataPicker.calendarCoord.y + Number(height)}
-          x={dataPicker.calendarCoord.x + Number(width) / 2}
+          y={datePicker.calendarCoord.y + Number(height)}
+          x={datePicker.calendarCoord.x + Number(width) / 2}
         >
           <S.DatePickerCalendarHeader>
             <S.DatePickerHeaderTitle>
@@ -61,15 +68,15 @@ export const DodamDatePicker = ({
               />
             </S.DatePickerHeaderTitle>
             <S.DatePickerHeaderContect>
-            {dataPicker.calendarDate.year}년 {dataPicker.calendarDate.month}월
+            {datePicker.calendarDate.year}년 {datePicker.calendarDate.month}월
 
             <S.DatePickerCalendarHeaderArrow>
               <S.DatePickerCalendarHeaderArrowIcon 
-                onClick={() => dataPicker.onChangeCalendarMonth("prev")}>
+                onClick={() => datePicker.onChangeCalendarMonth("prev")}>
                 <ChevronLeft color={`${DodamLightTheme.primaryNormal}`}/>
               </S.DatePickerCalendarHeaderArrowIcon>
               <S.DatePickerCalendarHeaderArrowIcon
-                onClick={() => dataPicker.onChangeCalendarMonth("next")}
+                onClick={() => datePicker.onChangeCalendarMonth("next")}
               >
                 <ChevronRight color={`${DodamLightTheme.primaryNormal}`}/>
               </S.DatePickerCalendarHeaderArrowIcon>
@@ -86,21 +93,31 @@ export const DodamDatePicker = ({
             ))}
           </S.DatePickerCalendarHeaderDayWrap>
           <S.DatePickerCalendarItemWrap>
-            {dataPicker.dayList.map((day, idx) => {
-              const isDisabled =
-                  idx < dataPicker.lastDate || (dataPicker.firstDate > 0 && idx > dataPicker.firstDate - 1 ) || (idx < dataPicker.beforePeriod && dataPicker.calendarDate.month === dataPicker.$month);
-
-        
+            {datePicker.dayList.map((day, idx) => {
+              let isDisabled = false;
+              if(type=="future"){
+                 isDisabled =
+                  idx < datePicker.lastDate || 
+                  (datePicker.firstDate > 0 && idx > datePicker.firstDate - 1 ) || 
+                  idx < datePicker.beforePeriod ||
+                  (datePicker.calendarDate.year < datePicker.selectDate.year) ||  // 이전 연도는 모두 비활성화
+                  (datePicker.calendarDate.year === datePicker.selectDate.year && datePicker.calendarDate.month < datePicker.selectDate.month) || // 이전 달도 모두 비활성화
+                  (idx < datePicker.beforePeriod && datePicker.calendarDate.month === datePicker.$month);  
+              }              
+      
                 const isSelected =
-                dataPicker.calendarDate.year === dataPicker.selectDate.year &&
-                dataPicker.calendarDate.month === dataPicker.selectDate.month &&
-                day === dataPicker.selectDate.day;
+                datePicker.calendarDate.year === datePicker.selectDate.year &&
+                datePicker.calendarDate.month === datePicker.selectDate.month &&
+                day === datePicker.selectDate.day;
               return (
                 <S.DatePickerCalendarItem
                   isDisabled={isDisabled}
                   isSelected={isSelected}
                   disabled={isDisabled}
-                  onClick={() => dataPicker.onChangeSelectDate(day)}
+                  onClick={() => {
+                    datePicker.onChangeSelectDate(day)
+                    datePicker.setFold(true)
+                  }}
                   key={`${itemKey} datePicker calendarItem ${idx}`}
                 >
                   {day!==0 ? day : ""}
