@@ -21,6 +21,7 @@ export interface DatePickerProps {
   title : string;
   typography?: typographyType;
   type?:DatePickerMode;
+  iconSize?:number;
 }
 
 export const DodamDatePicker = ({
@@ -34,6 +35,7 @@ export const DodamDatePicker = ({
   title,
   typography = ['Body1', 'Medium'],
   type = 'future',
+  iconSize = 24,
 }: DatePickerProps) => {
   const splitCharacter = "-"
   const { ...datePicker } = useDatePicker({ value, splitCharacter, onChange, type });
@@ -53,7 +55,7 @@ export const DodamDatePicker = ({
           {datePicker.selectDate.year}/{datePicker.selectDate.month}/{datePicker.selectDate.day}
         </S.DatePickerDate>
         {children}
-            <Calender color="labelStrong" />
+            <Calender size={iconSize} color="labelStrong" />
       </S.DatePickerWrap>
       {!datePicker.fold && (
         <S.DatePickerCalendar
