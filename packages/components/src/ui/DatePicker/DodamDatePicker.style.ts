@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
-import { DodamShape, typographyType, DodamTypography } from "@dds-web/styles";
+import { DodamShape, typographyType, DodamTypography,DodamTheme } from "@dds-web/styles";
 
-export const DatePickerContainer = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.labelStrong};
+export const DatePickerContainer = styled.div<{color:string}>`
+  border-bottom: 1px solid ${({ theme,color }) => color ?  theme[color as unknown as keyof typeof theme] : theme.labelStrong};
   position: relative;
 
   &:hover {
@@ -28,38 +28,10 @@ export const DatePickerWrap = styled.div<{
     ${({ typography }) => DodamTypography[typography[0]][typography[1]]}
 `;
 
-export const DatePickerDate = styled.span`
-  color: ${({ theme }) => theme.labelStrong};
+export const DatePickerDate = styled.span<{color:string}>`
+  color: ${({ theme,color }) => color ? theme[color as unknown as keyof typeof theme] : theme.labelStrong};
 `;
 
-// export const DatePickerButton = styled.button`
-//   width: 48px;
-//   height: 48px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background: none;
-//   border: 0px;
-//   cursor: pointer;
-//   position: absolute;
-//   z-index: 1;
-//   right: 0px;
-//   top: 50%;
-//   transform: translate(-0%, -50%);
-//   border-radius: 100%;
-
-//   &:hover {
-//     background-color: rgba(0, 0, 0, 0.04);
-//   }
-// `;
-
-// export const DatePickerButtonIcon = styled.div`
-//   display: flex;
-//   align-items: center;
-//   width: 18px;
-//   height: 18px;
-//   object-fit: scale-down;
-// `;
 
 export const DatePickerCalendar = styled.div<{ x: number; y: number }>`
   max-width: 320px;

@@ -21,9 +21,13 @@ export const PageIndicator = ({
   const keys = Object.keys(caseBy);
 
   return (
-    <div>
-      <S.PageIndicatorWrap buttonSize={buttonSize} customStyle={customStyle}>
+    <>
+      <S.PageIndicatorWrap >
       <div>{caseBy[keys[activeIdx]]}</div>
+      <S.IndicatorBox  
+      buttonSize={buttonSize}
+      customStyle={customStyle}
+       >
         {keys.map((_, idx) => (
           <S.IndicatorBtn
             key={idx}
@@ -32,7 +36,8 @@ export const PageIndicator = ({
             buttonSize={buttonSize}
             onClick={() => handleButtonClick(idx)}></S.IndicatorBtn>
         ))}
+        </S.IndicatorBox>
       </S.PageIndicatorWrap>
-    </div>
+    </>
   );
 };
