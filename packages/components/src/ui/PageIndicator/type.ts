@@ -1,5 +1,5 @@
 import { CSSObject } from "styled-components";
-export type ButtonSize = "Small" | "Large"
+export type ButtonSize = "Small" | "Large" | "ExtraLarge";
 
 export interface PageIndicatorProps {
   buttonSize: ButtonSize;

@@ -6,6 +6,12 @@ const meta = {
   title: "ui/DodamPageIndicator",
   component: PageIndicator,
   tags: ["autodocs"],
+  argTypes:{
+    buttonSize: {
+      control:{type: 'radio'},
+      options: ['Small','Large','ExtraLarge']
+    }
+  }
 } satisfies Meta<typeof PageIndicator>;
 
 export default meta;
