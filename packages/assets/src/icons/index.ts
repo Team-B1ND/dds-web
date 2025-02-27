@@ -28,4 +28,5 @@ export * from './mark';
 export * from './notfoundpage';
 export * from './File';
 export * from './Photo';
+export * from './avatar';
 

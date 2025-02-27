@@ -8,3 +8,6 @@ export const StyledPath = styled.path<{ color: string; $pathStyle: Interpolation
   ${({ $pathStyle }) => $pathStyle}
 `;
 
+export const StyledCicle = styled.circle<{ color: string;}>`
+fill: ${({ color, theme }) => theme[color as keyof typeof theme] || color};
+`
