@@ -18,7 +18,6 @@ export const useDatePicker = ({
 
   //날짜 초깃값
   const date = value.split(splitCharacter);
-  console.log(date);
   
   const $year = Number(date[0]);
   const $month = Number(date[1]);
