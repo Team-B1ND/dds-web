@@ -1,5 +1,23 @@
 import { css, RuleSet } from "styled-components";
 
+export type typographyType = [
+  (
+    | 'Title1'
+    | 'Title2'
+    | 'Title3'
+    | 'Heading1'
+    | 'Heading2'
+    | 'Headline'
+    | 'Body1'
+    | 'Body2'
+    | 'Label'
+    | 'Caption1'
+    | 'Caption2'
+  ),
+  'Bold' | 'Medium' | 'Regular',
+];
+
+
 export type TextSize = {
   Bold: RuleSet;
   Medium: RuleSet;

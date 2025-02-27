@@ -30,9 +30,6 @@ export const StyledContentButtonButton: Story = {
     children: 'svg 아이콘',
     width: 0,
     typography: ['Body1', 'Medium'],
-    customStyle: css`
-      min-height: 30px;
-    `,
     textTheme: 'labelNormal',
   },
 };
