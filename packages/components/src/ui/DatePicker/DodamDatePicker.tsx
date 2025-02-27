@@ -6,6 +6,7 @@ import {DAY} from "./constant";
 import {DodamHeading2} from "../Typography"
 import { DodamLightTheme,typographyType } from "@dds-web/styles";
 import { CSSObject } from "styled-components";
+import { DodamTheme } from "@dds-web/styles";
 
 type DatePickerMode = 'entire' | 'future';
 
@@ -22,6 +23,7 @@ export interface DatePickerProps {
   typography?: typographyType;
   type?:DatePickerMode;
   iconSize?:number;
+  color?:keyof DodamTheme | string;
 }
 
 export const DodamDatePicker = ({
@@ -36,12 +38,14 @@ export const DodamDatePicker = ({
   typography = ['Body1', 'Medium'],
   type = 'future',
   iconSize = 24,
+  color,
 }: DatePickerProps) => {
   const splitCharacter = "-"
   const { ...datePicker } = useDatePicker({ value, splitCharacter, onChange, type });
 
   return (
     <S.DatePickerContainer
+    color={color!}
       style={{...customStyle }}
       ref={datePicker.containerRef}
     >
@@ -51,11 +55,11 @@ export const DodamDatePicker = ({
       height={height}
       typography={typography!}
       onClick={() => datePicker.setFold((prev) => !prev)}>
-        <S.DatePickerDate>
+        <S.DatePickerDate color={color!}>
           {datePicker.selectDate.year}/{datePicker.selectDate.month}/{datePicker.selectDate.day}
         </S.DatePickerDate>
         {children}
-            <Calender size={iconSize} color="labelStrong" />
+            <Calender size={iconSize} color={color ? color : "labelStrong"} />
       </S.DatePickerWrap>
       {!datePicker.fold && (
         <S.DatePickerCalendar

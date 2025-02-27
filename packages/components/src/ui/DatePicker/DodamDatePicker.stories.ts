@@ -28,7 +28,7 @@ export const StyledDatePicker: Story = {
     value: "2024-11-12",
     onChange: (date: Date) => alert(date),
     title: "외출 일시",
-    color: "black",
     type: "future",
-  } as DatePickerProps,
+    color: "",
+  } as unknown as DatePickerProps,
 };
