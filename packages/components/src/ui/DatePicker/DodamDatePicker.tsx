@@ -103,12 +103,11 @@ export const DodamDatePicker = ({
               let isDisabled = false;
               if(type=="future"){
                  isDisabled =
-                  idx < datePicker.lastDate || 
+                  
                   (datePicker.firstDate > 0 && idx > datePicker.firstDate - 1 ) || 
-                  idx < datePicker.beforePeriod ||
                   (datePicker.calendarDate.year < datePicker.selectDate.year) ||  // 이전 연도는 모두 비활성화
                   (datePicker.calendarDate.year === datePicker.selectDate.year && datePicker.calendarDate.month < datePicker.selectDate.month) || // 이전 달도 모두 비활성화
-                  (idx < datePicker.beforePeriod && datePicker.calendarDate.month === datePicker.$month);  
+                  (idx < datePicker.beforePeriod && datePicker.calendarDate.month === datePicker.$month);
               }              
       
                 const isSelected =

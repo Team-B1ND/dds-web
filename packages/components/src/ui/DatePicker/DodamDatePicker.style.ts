@@ -39,7 +39,7 @@ export const DatePickerCalendar = styled.div<{ x: number; y: number }>`
   padding: 24px;
   border-radius: 28px;
   background-color: ${({ theme }) => theme.backgroundNormal};
-  top: ${({ y }) => y + 1}px;
+  top: ${({ y }) => y - 100}px;
   left: ${({ x }) => x}px;
   position: fixed;
   z-index: 10;
