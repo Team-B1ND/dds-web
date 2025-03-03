@@ -1,4 +1,4 @@
-import { Home, Calender , Note, MoonPlus , Dev ,Magnifyingglass, Chart} from "@dds-web/assets";
+import { Home, Calender , Note, MoonPlus , Dev ,Magnifyingglass, Chart, People} from "@dds-web/assets";
 
 import { type Interpolation } from "styled-components";
 
@@ -16,7 +16,7 @@ export interface IconProps extends StaticIconProps {
 export type Eigenvalues = 
 "home" | "schedule" 
 | "wakesong" | "nightstudy" 
-| "dgit" | "ask" | "recruit"
+| "dgit" | "ask" | "recruit" | "club"
 
 type NavLink = {
   name: string;
@@ -33,6 +33,7 @@ export const NAV_LINKS: readonly NavLink[] = [
   { name: "DGIT", link: "http://dgit.b1nd.com/", img: Chart ,  values:"dgit"},
   { name: "WIKI", link: "https://sh031224.github.io/ask-for-information/", img: Dev,  values:"ask" },
   { name: "리크루트", link: "http://dodam.b1nd.com/recruit", img: Magnifyingglass,  values:"recruit" },
+  { name: "동아리", link: "http://dodam.b1nd.com/club", img: People, values:"club" },
 ];
 
 
