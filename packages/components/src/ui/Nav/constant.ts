@@ -48,11 +48,11 @@ export const NAV_BAR_MODAL_DAUTH = {
 export const NAV_BAR_MODAL_ITEM = [
   {
     name: "서비스 운영 정책",
-    link: "https://dodam.b1nd.com/detailed-information/service-policy",
+    link: "https://b1nd.com/detailed-information/service-policy",
   },
   {
     name: "개인정보 처리 방침",
-    link: "https://dodam.b1nd.com/detailed-information/personal-information",
+    link: "https://b1nd.com/detailed-information/personal-information",
   },
   {
     name: "로그아웃",
