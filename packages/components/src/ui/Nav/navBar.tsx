@@ -5,22 +5,13 @@ import SideBarModal from "./navModal";
 import * as S from "./style";
 import { NAV_LINKS, Eigenvalues } from "./constant";
 
-export enum ETheme {
-  LIGHT = "LIGHT",
-  DARK = "DARK",
-}
-
 export interface DodamNavProps {
   location: Eigenvalues;
-  currentTheme: ETheme;
-  handleTheme: () => void;
   logout: () => void;
 }
 
 export const DodamNavBar = ({
   location,
-  currentTheme,
-  handleTheme,
   logout,
 }: DodamNavProps) => {
   const { ...nav } = useNavBar();
@@ -62,8 +53,6 @@ export const DodamNavBar = ({
         </S.DodamNav>
       </S.DodamNavBox>
       <SideBarModal
-        handleTheme={handleTheme}
-        currentTheme={currentTheme}
         hahdleOpen={nav.hahdleOpenNavBar}
         modalOpen={nav.modalOpen}
         logout={logout}
