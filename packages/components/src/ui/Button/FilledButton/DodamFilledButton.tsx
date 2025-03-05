@@ -1,5 +1,5 @@
-import React, { HTMLAttributes, MouseEventHandler } from 'react';
-import styled, { CSSProperties, css, CSSObject } from 'styled-components';
+import React, { HTMLAttributes, MouseEventHandler } from "react";
+import styled, { CSSProperties, css, CSSObject } from "styled-components";
 import {
   BackgroundColorType,
   ButtonSizeType,
@@ -7,11 +7,11 @@ import {
   DodamButtonStyle,
   DodamTheme,
   DodamTypography,
-  typographyType
-} from '@dds-web/styles';
-import { FlexLayout } from '../../../layout';
+  typographyType,
+} from "@dds-web/styles";
+import { FlexLayout } from "../../../layout";
 
-type attendantsType = 'right' | 'left';
+type attendantsType = "right" | "left";
 
 export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
   text?: React.ReactNode;
@@ -22,7 +22,7 @@ export interface DodamFilledButton extends HTMLAttributes<HTMLButtonElement> {
   typography?: typographyType;
   backgroundColorType?: BackgroundColorType;
   size: ButtonSizeType;
-  padding?: CSSProperties['padding'];
+  padding?: CSSProperties["padding"];
   onClick?: MouseEventHandler<HTMLButtonElement>;
   customStyle?: CSSObject;
   icon?: React.ReactNode;
@@ -35,14 +35,14 @@ export const DodamFilledButton = ({
   children,
   width,
   enabled = true,
-  typography = ['Body1', 'Bold'],
-  backgroundColorType = 'Primary',
+  typography = ["Body1", "Bold"],
+  backgroundColorType = "Primary",
   size,
   padding,
   onClick,
   customStyle,
   icon,
-  attendants='left',
+  attendants = "left",
   ...props
 }: DodamFilledButton) => {
   return (
@@ -53,15 +53,13 @@ export const DodamFilledButton = ({
       backgroundColorType={backgroundColorType}
       padding={padding}
       enabled={enabled!}
-      disabled={enabled!}
+      disabled={!enabled!}
       size={size}
       customStyle={customStyle!}
       {...props}
-      onClick={onClick}
-    >
-        {icon && <IconWrapper attendants={attendants}>{icon}</IconWrapper>}
+      onClick={onClick}>
+      {icon && <IconWrapper attendants={attendants}>{icon}</IconWrapper>}
       {text || children}
-      
     </StyledContentButton>
   );
 };
@@ -71,24 +69,24 @@ const StyledContentButton = styled.button<{
   typography: typographyType;
   backgroundColorType: BackgroundColorType;
   textTheme?: keyof DodamTheme;
-  padding: CSSProperties['padding'];
+  padding: CSSProperties["padding"];
   size: ButtonSizeType;
   enabled?: boolean;
   customStyle: CSSObject;
 }>`
   min-width: 40px;
   min-height: 40px;
-  width: ${({ width }) => (width ? `${width}px` : '100%')};
+  width: ${({ width }) => (width ? `${width}px` : "100%")};
 
   outline: none;
   border: none;
-  cursor: pointer;
+  cursor: ${({ enabled }) => (enabled ? "pointer" : "default")};
 
   padding: ${({ padding }) => padding};
 
   transition: all 0.15s ease-in-out;
 
-  ${FlexLayout({ alignItems: 'center', justifyContent: 'center' })};
+  ${FlexLayout({ alignItems: "center", justifyContent: "center" })};
   ${({ size }) => DodamButtonStyle[size]};
   ${({ typography }) => DodamTypography[typography[0]][typography[1]]}
   ${({ enabled }) =>
@@ -103,18 +101,18 @@ const StyledContentButton = styled.button<{
   
   ${({ customStyle }) => customStyle}
 
-  color: ${({ theme, textTheme }) => (textTheme ? theme[textTheme] : '')};
+  color: ${({ theme, textTheme }) => (textTheme ? theme[textTheme] : "")};
 `;
 
 const IconWrapper = styled.span<{ attendants: attendantsType }>`
   display: inline-flex;
   align-items: center;
   margin-right: 8px;
-  
+
   svg {
     width: 16px;
     height: 16px;
   }
 
-  order: ${({ attendants }) => (attendants === 'right' ? 1 : -1)};
+  order: ${({ attendants }) => (attendants === "right" ? 1 : -1)};
 `;
