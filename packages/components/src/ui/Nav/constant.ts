@@ -59,5 +59,3 @@ export const NAV_BAR_MODAL_ITEM = [
     link: "logout",
   },
 ];
-
-export const DODAM_THEME_KEY = "Dodam_theme" as const;

@@ -10,10 +10,7 @@ export interface DodamNavProps {
   logout: () => void;
 }
 
-export const DodamNavBar = ({
-  location,
-  logout,
-}: DodamNavProps) => {
+export const DodamNavBar = ({ location, logout }: DodamNavProps) => {
   const { ...nav } = useNavBar();
 
   return (
