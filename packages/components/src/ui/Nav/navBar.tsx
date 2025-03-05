@@ -20,7 +20,7 @@ export const DodamNavBar = ({
     <>
       <S.DodamNavBox>
         <S.DodamNav>
-          <S.DodamLogo onClick={() => window.open("https://dodam.b1nd.com")}>
+          <S.DodamLogo onClick={() => window.open("https://b1nd.com")}>
             <DodamLogo color="primaryNormal" />
           </S.DodamLogo>
           <S.DodamContent>
