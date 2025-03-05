@@ -53,6 +53,7 @@ export const DodamFilledButton = ({
       backgroundColorType={backgroundColorType}
       padding={padding}
       enabled={enabled!}
+      disabled={enabled!}
       size={size}
       customStyle={customStyle!}
       {...props}
