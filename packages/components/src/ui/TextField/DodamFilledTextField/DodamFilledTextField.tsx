@@ -1,24 +1,29 @@
-import React, { ChangeEvent, ChangeEventHandler, useCallback, useState } from 'react';
-import styled, { CSSObject, useTheme } from 'styled-components';
-import { XmarkCircle, Eye, EyeSlash } from '@dds-web/assets';
-import { ExclamationmarkCircle } from '@dds-web/assets';
-import { DodamShape, DodamTypography } from '@dds-web/styles';
-import { hexToRgba } from '@dds-web/utils';
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  useCallback,
+  useState,
+} from 'react'
+import styled, { CSSObject, useTheme } from 'styled-components'
+import { XmarkCircle, Eye, EyeSlash } from '@dds-web/assets'
+import { ExclamationmarkCircle } from '@dds-web/assets'
+import { DodamShape, DodamTypography } from '@dds-web/styles'
+import { hexToRgba } from '@dds-web/utils'
 
-type InputType = 'text' | 'password';
+type InputType = 'text' | 'password'
 
 export interface DodamFilledTextFieldProps {
-  type: InputType;
-  label: string;
-  isError?: boolean;
-  width?:number;
-  value: string;
-  placeholder: string;
-  isDisabled?: boolean;
-  supportingText?: string;
-  showIcon?: boolean;
-  customStyle?: CSSObject;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  type: InputType
+  label: string
+  isError?: boolean
+  width?: number
+  value: string
+  placeholder: string
+  isDisabled?: boolean
+  supportingText?: string
+  showIcon?: boolean
+  customStyle?: CSSObject
+  onChange: ChangeEventHandler<HTMLInputElement>
 }
 
 /**
@@ -38,38 +43,43 @@ export const DodamFilledTextField = ({
   customStyle,
   onChange,
 }: DodamFilledTextFieldProps) => {
-  const theme = useTheme();
-  const [isFocused, setIsFocused] = useState(false);
-  const [isShowValue, setIsShowValue] = useState(false);
-  const [internalValue, setInternalValue] = useState(value);
+  const theme = useTheme()
+  const [isFocused, setIsFocused] = useState(false)
+  const [isShowValue, setIsShowValue] = useState(false)
+  const [internalValue, setInternalValue] = useState(value)
 
   const handleClickEye = () => {
-    setIsShowValue((prev) => !prev);
-  };
+    setIsShowValue((prev) => !prev)
+  }
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      setInternalValue(e.target.value);
-      onChange(e);
+      setInternalValue(e.target.value || value)
+      onChange(e)
     },
     [onChange]
-  );
+  )
 
   const handleClickXmark = useCallback(() => {
-    setInternalValue('');
-    onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
-  }, [onChange]);
+    setInternalValue('')
+    onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>)
+  }, [onChange])
 
   return (
     <div style={{ position: 'relative' }}>
-      <StyleFilledTextField 
-        width={width} 
-        customStyle={customStyle}
+      <StyleFilledTextField width={width} customStyle={customStyle}>
+        <StyledFilledTextFieldTitle
+          isFocused={isFocused}
+          isDisabled={isDisabled}
+          isError={isError!}
         >
-        <StyledFilledTextFieldTitle isFocused={isFocused} isDisabled={isDisabled} isError={isError!}>
           {label}
         </StyledFilledTextFieldTitle>
-        <StyledFilledTextFieldInput isFocused={isFocused} isDisabled={isDisabled} isError={isError!}>
+        <StyledFilledTextFieldInput
+          isFocused={isFocused}
+          isDisabled={isDisabled}
+          isError={isError!}
+        >
           <input
             type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
             disabled={isDisabled}
@@ -85,30 +95,42 @@ export const DodamFilledTextField = ({
               <ExclamationmarkCircle color={theme.statusNegative} />
             ) : type === 'text' ? (
               <div onClick={handleClickXmark}>
-                <XmarkCircle color={hexToRgba(theme.labelAlternative, 0.5)} $svgStyle={{ cursor: 'pointer' }} />
+                <XmarkCircle
+                  color={hexToRgba(theme.labelAlternative, 0.5)}
+                  $svgStyle={{ cursor: 'pointer' }}
+                />
               </div>
             ) : isShowValue ? (
               <div onClick={handleClickEye}>
-                <Eye color={hexToRgba(theme.labelAlternative, 0.5)} $svgStyle={{ cursor: 'pointer' }} />
+                <Eye
+                  color={hexToRgba(theme.labelAlternative, 0.5)}
+                  $svgStyle={{ cursor: 'pointer' }}
+                />
               </div>
             ) : (
               <div onClick={handleClickEye}>
-                <EyeSlash color="staticBlack" $svgStyle={{ cursor: 'pointer' }} />
+                <EyeSlash
+                  color='staticBlack'
+                  $svgStyle={{ cursor: 'pointer' }}
+                />
               </div>
             ))}
         </StyledFilledTextFieldInput>
       </StyleFilledTextField>
-      <StyledFilledTextFieldSupportingText isDisabled={isDisabled} isError={isError!}>
+      <StyledFilledTextFieldSupportingText
+        isDisabled={isDisabled}
+        isError={isError!}
+      >
         {supportingText}
       </StyledFilledTextFieldSupportingText>
     </div>
-  );
-};
+  )
+}
 
-const StyleFilledTextField = styled.div<{ 
+const StyleFilledTextField = styled.div<{
   customStyle?: CSSObject
-  width?:number
-  }>`
+  width?: number
+}>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -118,12 +140,12 @@ const StyleFilledTextField = styled.div<{
   position: relative;
 
   ${({ customStyle }) => customStyle};
-`;
+`
 
 const StyledFilledTextFieldTitle = styled.span<{
-  isFocused: boolean;
-  isDisabled?: boolean;
-  isError: boolean;
+  isFocused: boolean
+  isDisabled?: boolean
+  isError: boolean
 }>`
   color: ${({ isFocused, isDisabled, isError, theme }) =>
     isDisabled
@@ -136,12 +158,12 @@ const StyledFilledTextFieldTitle = styled.span<{
 
   font-feature-settings: 'ss10' on;
   ${DodamTypography.Label.Medium}
-`;
+`
 
 const StyledFilledTextFieldInput = styled.div<{
-  isFocused: boolean;
-  isDisabled?: boolean;
-  isError: boolean;
+  isFocused: boolean
+  isDisabled?: boolean
+  isError: boolean
 }>`
   display: flex;
   justify-content: space-between;
@@ -163,7 +185,11 @@ const StyledFilledTextFieldInput = styled.div<{
             : theme.lineAlternative};
 
   background-color: ${({ isFocused, isError }) =>
-    isError ? hexToRgba('#E52222', 0.03) : isFocused ? hexToRgba('#008BFF', 0.03) : 'transparent'};
+    isError
+      ? hexToRgba('#E52222', 0.03)
+      : isFocused
+        ? hexToRgba('#008BFF', 0.03)
+        : 'transparent'};
 
   ${DodamShape['Medium']}
 
@@ -176,22 +202,24 @@ const StyledFilledTextFieldInput = styled.div<{
     border: none;
 
     &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 500px transparent inset !important;
-    -webkit-text-fill-color: ${({ theme }) => theme.labelNormal} !important;
-    background-color: transparent !important;
-    background-clip: text !important;
-  }
-  
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 500px transparent inset !important;
+      -webkit-text-fill-color: ${({ theme }) => theme.labelNormal} !important;
+      background-color: transparent !important;
+      background-clip: text !important;
+    }
+
     &:focus {
       outline: none;
     }
 
     &::placeholder {
       color: ${({ isDisabled, theme }) =>
-        isDisabled ? hexToRgba(theme.labelAlternative, 0.65) : theme.labelAlternative};
+        isDisabled
+          ? hexToRgba(theme.labelAlternative, 0.65)
+          : theme.labelAlternative};
     }
   }
 
@@ -202,14 +230,18 @@ const StyledFilledTextFieldInput = styled.div<{
     display: flex;
     align-items: center;
   }
-`;
+`
 
 const StyledFilledTextFieldSupportingText = styled.span<{
-  isDisabled?: boolean;
-  isError: boolean;
+  isDisabled?: boolean
+  isError: boolean
 }>`
   color: ${({ isDisabled, isError, theme }) =>
-    isDisabled ? hexToRgba(theme.labelAlternative, 0.65) : isError ? theme.statusNegative : theme.labelAlternative};
+    isDisabled
+      ? hexToRgba(theme.labelAlternative, 0.65)
+      : isError
+        ? theme.statusNegative
+        : theme.labelAlternative};
   font-feature-settings: 'ss10' on;
   ${DodamTypography.Label.Medium}
-`;
+`

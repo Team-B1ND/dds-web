@@ -12,7 +12,7 @@ interface DodamCheckBoxProps {
 }
 
 export const DodamCheckBox = ({ 
-  isDisabled = false, 
+  isDisabled = false,
   color = "blue", 
   onClick,
   customStyle
@@ -26,7 +26,7 @@ export const DodamCheckBox = ({
           onClick={onClick}
           >
           <Checkmark size={12} color='staticWhite' />
-        </DisabledCheckBox>
+        </DisabledCheckBox> 
       ) : (
         <StyledCheckBox 
         customStyle={customStyle} 
