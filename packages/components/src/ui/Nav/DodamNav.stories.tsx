@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DodamNavBar, ETheme } from "./navBar"; 
+import { DodamNavBar } from "./navBar";
 import React from "react";
 
 const meta: Meta<typeof DodamNavBar> = {
@@ -15,11 +15,7 @@ type Story = StoryObj<typeof DodamNavBar>;
 export const StyledDodamNavBar: Story = {
   args: {
     location: "home",
-    currentTheme: ETheme.LIGHT,
-    handleTheme: () => console.log("Theme toggled"),
-    logout:()=>alert("로그아웃 버튼"),
+    logout: () => alert("로그아웃 버튼"),
   },
-  render: (args) => (
-      <DodamNavBar {...args} />
-  ),
+  render: (args) => <DodamNavBar {...args} />,
 };
