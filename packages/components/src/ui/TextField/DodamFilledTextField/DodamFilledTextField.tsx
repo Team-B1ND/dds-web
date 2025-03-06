@@ -24,6 +24,7 @@ export interface DodamFilledTextFieldProps {
   showIcon?: boolean
   customStyle?: CSSObject
   onChange: ChangeEventHandler<HTMLInputElement>
+  onRemoveClick?:()=>void;
 }
 
 /**
@@ -42,28 +43,18 @@ export const DodamFilledTextField = ({
   showIcon = true,
   customStyle,
   onChange,
+  onRemoveClick,
 }: DodamFilledTextFieldProps) => {
   const theme = useTheme()
   const [isFocused, setIsFocused] = useState(false)
   const [isShowValue, setIsShowValue] = useState(false)
-  const [internalValue, setInternalValue] = useState(value)
+
 
   const handleClickEye = () => {
     setIsShowValue((prev) => !prev)
   }
 
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setInternalValue(e.target.value || value)
-      onChange(e)
-    },
-    [onChange]
-  )
-
-  const handleClickXmark = useCallback(() => {
-    setInternalValue('')
-    onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>)
-  }, [onChange])
+ 
 
   return (
     <div style={{ position: 'relative' }}>
@@ -84,17 +75,17 @@ export const DodamFilledTextField = ({
             type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
             disabled={isDisabled}
             placeholder={placeholder}
-            value={internalValue}
-            onChange={handleChange}
+            value={value}
+            onChange={onChange}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
           {showIcon &&
-            internalValue.trim().length > 0 &&
+            value.trim().length > 0 &&
             (isError ? (
               <ExclamationmarkCircle color={theme.statusNegative} />
             ) : type === 'text' ? (
-              <div onClick={handleClickXmark}>
+              <div onClick={onRemoveClick}>
                 <XmarkCircle
                   color={hexToRgba(theme.labelAlternative, 0.5)}
                   $svgStyle={{ cursor: 'pointer' }}

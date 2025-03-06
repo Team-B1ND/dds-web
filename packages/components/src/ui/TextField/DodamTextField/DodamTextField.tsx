@@ -1,11 +1,8 @@
 import { DodamTypography } from '@dds-web/styles';
 import React, {
-  ChangeEvent,
   ChangeEventHandler,
   CSSProperties,
   KeyboardEventHandler,
-  MouseEventHandler,
-  useCallback,
   useState,
 } from 'react';
 import styled, { CSSObject, useTheme } from 'styled-components';
@@ -29,6 +26,7 @@ export interface DodamTextFieldProps {
   labelStyle?: CSSProperties;
   supportingText?: string;
   customStyle?: CSSObject;
+  onRemoveClick?:()=>void;
 }
 
 export const DodamTextField = ({
@@ -46,27 +44,15 @@ export const DodamTextField = ({
   isError,
   supportingText,
   customStyle,
+  onRemoveClick,
 }: DodamTextFieldProps) => {
   const theme = useTheme();
   const [isShowValue, setIsShowValue] = useState(false);
-  const [internalValue, setInternalValue] = useState(value);
 
   const handleClickEye = () => {
     setIsShowValue((prev) => !prev);
   };
-
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setInternalValue(e.target.value);
-      onChange(e);
-    },
-    [onChange]
-  );
-
-  const handleClickXmark = useCallback(() => {
-    setInternalValue('');
-    onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
-  }, [onChange]);
+  
 
   return (
     <div style={{ position: 'relative' }}>
@@ -78,8 +64,8 @@ export const DodamTextField = ({
           name={name}
           type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
           isError={isError!}
-          onChange={handleChange}
-          value={internalValue}
+          onChange={onChange}
+          value={value}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               onKeyDown?.(e);
@@ -88,7 +74,8 @@ export const DodamTextField = ({
         />
         <label style={labelStyle}>{label}</label>
         {showIcon &&
-          internalValue.trim().length > 0 &&
+          value.trim().length > 0  &&
+          onRemoveClick &&
           (isError ? (
             <ExclamationmarkCircle
               color={theme.statusNegative}
@@ -99,7 +86,7 @@ export const DodamTextField = ({
               }}
             />
           ) : type === 'text' ? (
-            <div onClick={handleClickXmark}>
+            <div onClick={onRemoveClick}>
               <XmarkCircle
                 color={hexToRgba(theme.labelAlternative, 0.5)}
                 $svgStyle={{
