@@ -5,14 +5,13 @@ import { DodamTypography } from "@dds-web/styles";
 import { DodamFilledButton } from "../Button";
 
 export const DodamNotFoundPage = () => {
-
   return (
     <StyledNotFoundPage>
       <StyledInfoWrap>
-        <StatusCode color="primaryNormal" />
+        <StatusCode size={432} color="primaryNormal" />
         <StyledTitleWrap>
           <StyledTitle>Page Not Found</StyledTitle>
-          <DodamSadEmoji color="primaryNormal" />
+          <DodamSadEmoji size={30} color="primaryNormal" />
         </StyledTitleWrap>
         <StyledContentWrap>
           <StyledContent>
@@ -24,11 +23,12 @@ export const DodamNotFoundPage = () => {
         </StyledContentWrap>
       </StyledInfoWrap>
       <DodamFilledButton
-        size="Medium"
+        size="Large"
+        width={200}
         padding="12px 30px"
+        textTheme="staticWhite"
         backgroundColorType="Primary"
-        typography={['Headline','Bold']}
-        customStyle={ {color:"#fff"}}
+        typography={["Headline", "Bold"]}
         onClick={() => (window.location.href = "https://dodam.b1nd.com/")}>
         도담도담 홈으로
       </DodamFilledButton>
@@ -73,7 +73,7 @@ const StyledTitleWrap = styled.div`
 
 const StyledTitle = styled.span`
   color: ${({ theme }) => theme.labelNormal};
-  ${DodamTypography.Title1.Bold}
+  ${DodamTypography.Title2.Bold}
 
   margin-right: 16px;
 `;
@@ -91,10 +91,10 @@ const StyledContentWrap = styled.div`
 
 const StyledContent = styled.p`
   color: ${({ theme }) => theme.labelNeutral};
-  ${DodamTypography.Heading2.Medium}
+  ${DodamTypography.Headline.Medium}
 
   span {
     color: ${({ theme }) => theme.primaryNormal};
-    ${DodamTypography.Heading2.Bold}
+    ${DodamTypography.Headline.Bold}
   }
 `;
