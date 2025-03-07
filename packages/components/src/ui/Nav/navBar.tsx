@@ -1,16 +1,23 @@
 import React from "react";
 import { DodamLogo, Menu } from "@dds-web/assets";
-import { useNavBar } from "@dds-web/hooks";
+import { Dodam_ETheme, useNavBar } from "@dds-web/hooks";
 import SideBarModal from "./navModal";
 import * as S from "./style";
 import { NAV_LINKS, Eigenvalues } from "./constant";
 
 export interface DodamNavProps {
   location: Eigenvalues;
+  currentTheme: Dodam_ETheme;
+  handleTheme: () => void;
   logout: () => void;
 }
 
-export const DodamNavBar = ({ location, logout }: DodamNavProps) => {
+export const DodamNavBar = ({
+  location,
+  currentTheme,
+  handleTheme,
+  logout,
+}: DodamNavProps) => {
   const { ...nav } = useNavBar();
 
   return (
@@ -50,6 +57,8 @@ export const DodamNavBar = ({ location, logout }: DodamNavProps) => {
         </S.DodamNav>
       </S.DodamNavBox>
       <SideBarModal
+        handleTheme={handleTheme}
+        currentTheme={currentTheme}
         hahdleOpen={nav.hahdleOpenNavBar}
         modalOpen={nav.modalOpen}
         logout={logout}
