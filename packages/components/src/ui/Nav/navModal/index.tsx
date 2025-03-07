@@ -3,22 +3,24 @@ import * as S from "./style";
 import { ChevronRight } from "@dds-web/assets";
 import { DodamModal, DodamToggleButton } from "../..";
 import { NAV_BAR_MODAL_DAUTH, NAV_BAR_MODAL_ITEM } from "../constant";
-import { useTheme } from "@dds-web/hooks";
-
-enum Dodam_ETheme {
-  LIGHT = "LIGHT",
-  DARK = "DARK",
-}
+import { Dodam_ETheme } from "@dds-web/hooks";
 
 interface modalProps {
   hahdleOpen: () => void;
   modalOpen: boolean;
+  currentTheme: Dodam_ETheme;
+  handleTheme: () => void;
   logout: () => void;
 }
 
-const NavModal = ({ hahdleOpen, modalOpen, logout }: modalProps) => {
+const NavModal = ({
+  hahdleOpen,
+  modalOpen,
+  currentTheme,
+  handleTheme,
+  logout,
+}: modalProps) => {
   const { DARK } = Dodam_ETheme;
-  const { ...dodamTheme } = useTheme();
 
   return (
     <DodamModal
@@ -32,10 +34,10 @@ const NavModal = ({ hahdleOpen, modalOpen, logout }: modalProps) => {
           <ChevronRight size={16} color="labelAssistive" />
         </S.ModalBox>
         <S.ModalBox style={{ borderBottom: `1px` }}>
-          <p>{dodamTheme.themeColor === DARK ? "라이트 모드" : "다크 모드"}</p>
+          <p>{currentTheme === DARK ? "라이트 모드" : "다크 모드"}</p>
           <DodamToggleButton
-            isAtv={dodamTheme.themeColor == DARK}
-            onClick={dodamTheme.handleTheme}
+            isAtv={currentTheme == DARK}
+            onClick={handleTheme}
           />
         </S.ModalBox>
         {NAV_BAR_MODAL_ITEM.map((item) => (
