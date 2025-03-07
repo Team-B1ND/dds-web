@@ -15,6 +15,8 @@ export interface DatePickerProps {
   itemKey: string;
   width?:  number;
   height?: number;
+  coordX?: number;
+  coordY?: number;
   customStyle?: CSSObject;
   onChange: (e: Date) => void;
   value: string;
@@ -30,6 +32,8 @@ export const DodamDatePicker = ({
   itemKey,
   width,
   height,
+  coordX,
+  coordY,
   customStyle,
   onChange,
   value,
@@ -50,7 +54,7 @@ export const DodamDatePicker = ({
       ref={datePicker.containerRef}
     >
       <S.DatePickerWrap 
-      id={itemKey} 
+      id={itemKey}
       width={width}
       height={height}
       typography={typography!}
@@ -63,8 +67,8 @@ export const DodamDatePicker = ({
       </S.DatePickerWrap>
       {!datePicker.fold && (
         <S.DatePickerCalendar
-          y={datePicker.calendarCoord.y + Number(height)}
-          x={datePicker.calendarCoord.x + Number(width) / 2}
+          y={coordX ? coordX : datePicker.calendarCoord.y + Number(height)}
+          x={coordY ? coordY : datePicker.calendarCoord.x + Number(width) / 2}
         >
           <S.DatePickerCalendarHeader>
             <S.DatePickerHeaderTitle>
@@ -77,7 +81,7 @@ export const DodamDatePicker = ({
             {datePicker.calendarDate.year}년 {datePicker.calendarDate.month}월
 
             <S.DatePickerCalendarHeaderArrow>
-              <S.DatePickerCalendarHeaderArrowIcon 
+              <S.DatePickerCalendarHeaderArrowIcon
                 onClick={() => datePicker.onChangeCalendarMonth("prev")}>
                 <ChevronLeft color={`${DodamLightTheme.primaryNormal}`}/>
               </S.DatePickerCalendarHeaderArrowIcon>

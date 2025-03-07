@@ -18,8 +18,4 @@ export const DodamGlobalStyles: React.NamedExoticComponent<
 
       ${({ customStyle }) => customStyle}
     }
-
-  body {
-    overflow-y: hidden;
-  }
 `;
