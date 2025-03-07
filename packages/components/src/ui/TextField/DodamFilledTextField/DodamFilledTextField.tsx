@@ -1,17 +1,21 @@
-import React, { ChangeEvent, ChangeEventHandler, useCallback, useState } from 'react';
-import styled, { CSSObject, useTheme } from 'styled-components';
-import { XmarkCircle, Eye, EyeSlash } from '@dds-web/assets';
-import { ExclamationmarkCircle } from '@dds-web/assets';
-import { DodamShape, DodamTypography } from '@dds-web/styles';
-import { hexToRgba } from '@dds-web/utils';
+import React, {
+  useState,
+  ChangeEventHandler,
+  KeyboardEventHandler,
+} from "react";
+import styled, { CSSObject, useTheme } from "styled-components";
+import { XmarkCircle, Eye, EyeSlash } from "@dds-web/assets";
+import { ExclamationmarkCircle } from "@dds-web/assets";
+import { DodamShape, DodamTypography } from "@dds-web/styles";
+import { hexToRgba } from "@dds-web/utils";
 
-type InputType = 'text' | 'password';
+type InputType = "text" | "password";
 
 export interface DodamFilledTextFieldProps {
   type: InputType;
   label: string;
   isError?: boolean;
-  width?:number;
+  width?: number;
   value: string;
   placeholder: string;
   isDisabled?: boolean;
@@ -19,6 +23,8 @@ export interface DodamFilledTextFieldProps {
   showIcon?: boolean;
   customStyle?: CSSObject;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
+  onRemoveClick?: () => void;
 }
 
 /**
@@ -37,83 +43,86 @@ export const DodamFilledTextField = ({
   showIcon = true,
   customStyle,
   onChange,
+  onKeyDown,
+  onRemoveClick,
 }: DodamFilledTextFieldProps) => {
   const theme = useTheme();
   const [isFocused, setIsFocused] = useState(false);
   const [isShowValue, setIsShowValue] = useState(false);
-  const [internalValue, setInternalValue] = useState(value);
 
   const handleClickEye = () => {
     setIsShowValue((prev) => !prev);
   };
 
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setInternalValue(e.target.value);
-      onChange(e);
-    },
-    [onChange]
-  );
-
-  const handleClickXmark = useCallback(() => {
-    setInternalValue('');
-    onChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
-  }, [onChange]);
-
   return (
-    <div style={{ position: 'relative' }}>
-      <StyleFilledTextField 
-        width={width} 
-        customStyle={customStyle}
-        >
-        <StyledFilledTextFieldTitle isFocused={isFocused} isDisabled={isDisabled} isError={isError!}>
+    <div style={{ position: "relative" }}>
+      <StyleFilledTextField width={width} customStyle={customStyle}>
+        <StyledFilledTextFieldTitle
+          isFocused={isFocused}
+          isDisabled={isDisabled}
+          isError={isError!}>
           {label}
         </StyledFilledTextFieldTitle>
-        <StyledFilledTextFieldInput isFocused={isFocused} isDisabled={isDisabled} isError={isError!}>
+        <StyledFilledTextFieldInput
+          isFocused={isFocused}
+          isDisabled={isDisabled}
+          isError={isError!}>
           <input
-            type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
+            type={type === "text" ? "text" : isShowValue ? "text" : "password"}
             disabled={isDisabled}
             placeholder={placeholder}
-            value={internalValue}
-            onChange={handleChange}
+            value={value}
+            onChange={onChange}
+            onKeyDown={onKeyDown}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
           {showIcon &&
-            internalValue.trim().length > 0 &&
+            value.trim().length > 0 &&
             (isError ? (
               <ExclamationmarkCircle color={theme.statusNegative} />
-            ) : type === 'text' ? (
-              <div onClick={handleClickXmark}>
-                <XmarkCircle color={hexToRgba(theme.labelAlternative, 0.5)} $svgStyle={{ cursor: 'pointer' }} />
+            ) : type === "text" ? (
+              <div onClick={onRemoveClick}>
+                <XmarkCircle
+                  color={hexToRgba(theme.labelAlternative, 0.5)}
+                  $svgStyle={{ cursor: "pointer" }}
+                />
               </div>
             ) : isShowValue ? (
               <div onClick={handleClickEye}>
-                <Eye color={hexToRgba(theme.labelAlternative, 0.5)} $svgStyle={{ cursor: 'pointer' }} />
+                <Eye
+                  color={hexToRgba(theme.labelAlternative, 0.5)}
+                  $svgStyle={{ cursor: "pointer" }}
+                />
               </div>
             ) : (
               <div onClick={handleClickEye}>
-                <EyeSlash color="staticBlack" $svgStyle={{ cursor: 'pointer' }} />
+                <EyeSlash
+                  color="staticBlack"
+                  $svgStyle={{ cursor: "pointer" }}
+                />
               </div>
             ))}
         </StyledFilledTextFieldInput>
       </StyleFilledTextField>
-      <StyledFilledTextFieldSupportingText isDisabled={isDisabled} isError={isError!}>
+      <StyledFilledTextFieldSupportingText
+        isDisabled={isDisabled}
+        isError={isError!}>
         {supportingText}
       </StyledFilledTextFieldSupportingText>
     </div>
   );
 };
 
-const StyleFilledTextField = styled.div<{ 
-  customStyle?: CSSObject
-  width?:number
-  }>`
+const StyleFilledTextField = styled.div<{
+  customStyle?: CSSObject;
+  width?: number;
+}>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  width: ${({ width }) => (width ? `${width}px` : '100%')};
+  width: ${({ width }) => (width ? `${width}px` : "100%")};
   height: 80px;
   position: relative;
 
@@ -134,7 +143,7 @@ const StyledFilledTextFieldTitle = styled.span<{
           ? theme.primaryNormal
           : theme.labelAlternative};
 
-  font-feature-settings: 'ss10' on;
+  font-feature-settings: "ss10" on;
   ${DodamTypography.Label.Medium}
 `;
 
@@ -163,9 +172,13 @@ const StyledFilledTextFieldInput = styled.div<{
             : theme.lineAlternative};
 
   background-color: ${({ isFocused, isError }) =>
-    isError ? hexToRgba('#E52222', 0.03) : isFocused ? hexToRgba('#008BFF', 0.03) : 'transparent'};
+    isError
+      ? hexToRgba("#E52222", 0.03)
+      : isFocused
+        ? hexToRgba("#008BFF", 0.03)
+        : "transparent"};
 
-  ${DodamShape['Medium']}
+  ${DodamShape["Medium"]}
 
   input {
     color: ${({ theme }) => theme.labelStrong};
@@ -176,22 +189,24 @@ const StyledFilledTextFieldInput = styled.div<{
     border: none;
 
     &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 500px transparent inset !important;
-    -webkit-text-fill-color: ${({ theme }) => theme.labelNormal} !important;
-    background-color: transparent !important;
-    background-clip: text !important;
-  }
-  
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 500px transparent inset !important;
+      -webkit-text-fill-color: ${({ theme }) => theme.labelNormal} !important;
+      background-color: transparent !important;
+      background-clip: text !important;
+    }
+
     &:focus {
       outline: none;
     }
 
     &::placeholder {
       color: ${({ isDisabled, theme }) =>
-        isDisabled ? hexToRgba(theme.labelAlternative, 0.65) : theme.labelAlternative};
+        isDisabled
+          ? hexToRgba(theme.labelAlternative, 0.65)
+          : theme.labelAlternative};
     }
   }
 
@@ -209,7 +224,11 @@ const StyledFilledTextFieldSupportingText = styled.span<{
   isError: boolean;
 }>`
   color: ${({ isDisabled, isError, theme }) =>
-    isDisabled ? hexToRgba(theme.labelAlternative, 0.65) : isError ? theme.statusNegative : theme.labelAlternative};
-  font-feature-settings: 'ss10' on;
+    isDisabled
+      ? hexToRgba(theme.labelAlternative, 0.65)
+      : isError
+        ? theme.statusNegative
+        : theme.labelAlternative};
+  font-feature-settings: "ss10" on;
   ${DodamTypography.Label.Medium}
 `;

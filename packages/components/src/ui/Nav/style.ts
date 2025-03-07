@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DodamShape, DodamTypography, } from "@dds-web/styles";
+import { DodamShape, DodamTypography } from "@dds-web/styles";
 
 export const DodamNavBox = styled.div`
   display: flex;
@@ -20,7 +20,6 @@ export const DodamNavBox = styled.div`
     width: 100%;
     height: 60px;
     padding: 0 10px 0 10px;
-    
   }
 `;
 
@@ -50,6 +49,7 @@ export const DodamLogo = styled.div`
   height: 20px;
   margin-bottom: 8px;
   padding-left: 5px;
+  cursor: pointer;
   @media (max-width: 1068px) {
     flex-direction: row;
     width: 30%;
@@ -58,8 +58,7 @@ export const DodamLogo = styled.div`
     padding: 0;
     display: none;
   }
-`
-
+`;
 
 export const DodamContent = styled.div`
   display: flex;
@@ -82,58 +81,59 @@ export const DodamButtonBox = styled.div`
   }
 `;
 
-
-export const DodamButton = styled.div<{$active: boolean}>`
+export const DodamButton = styled.div<{ $active: boolean }>`
   display: flex;
   align-items: center;
   padding-left: 10px;
   gap: 10px;
   width: 100%;
   height: 48px;
-  background-color: ${({ theme, $active }) => ($active ? theme.primaryNormal : "transparent")};
+  background-color: ${({ theme, $active }) =>
+    $active ? theme.primaryNormal : "transparent"};
   cursor: pointer;
   @media (max-width: 1068px) {
     width: 50px;
     justify-content: center;
     padding: 0;
-    span{
-      display: none; 
+    span {
+      display: none;
     }
-    }
-    @media (max-width: 568px) {
+  }
+  @media (max-width: 568px) {
     width: 44px;
-    }
+  }
   span {
     ${DodamTypography.Body1.Medium};
-    color: ${({ theme, $active }) => ($active ? theme.staticWhite : theme.labelNormal)};
+    color: ${({ theme, $active }) =>
+      $active ? theme.staticWhite : theme.labelNormal};
   }
 
   ${DodamShape.Medium};
 
   &:active {
-    box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.12), 
-                0px 0px 1px 0px rgba(0, 0, 0, 0.08), 
-                0px 0px 1px 0px rgba(0, 0, 0, 0.08);
+    box-shadow:
+      0px 2px 3px 2px rgba(0, 0, 0, 0.12),
+      0px 0px 1px 0px rgba(0, 0, 0, 0.08),
+      0px 0px 1px 0px rgba(0, 0, 0, 0.08);
   }
 `;
 
-
 export const AddButton = styled.div`
-display: flex;
-width: 100%;
-height: 48px;
-align-items: center;
-padding-left: 10px;
-gap: 8px;
-cursor: pointer;
-span{
-  ${DodamTypography.Body1.Medium}
-  color:  ${({theme})=> theme.labelNormal };
-}
-@media (max-width: 1068px) {
+  display: flex;
+  width: 100%;
+  height: 48px;
+  align-items: center;
+  padding-left: 10px;
+  gap: 8px;
+  cursor: pointer;
+  span {
+    ${DodamTypography.Body1.Medium}
+    color:  ${({ theme }) => theme.labelNormal};
+  }
+  @media (max-width: 1068px) {
     width: 100px;
-    span{
-      display: none; 
+    span {
+      display: none;
     }
-    }
-`
+  }
+`;
