@@ -1,13 +1,18 @@
 import React from "react";
 import { DodamLogo, Menu } from "@dds-web/assets";
-import { Dodam_ETheme, useNavBar } from "@dds-web/hooks";
+import { useNavBar } from "@dds-web/hooks";
 import SideBarModal from "./navModal";
 import * as S from "./style";
 import { NAV_LINKS, Eigenvalues } from "./constant";
 
+export enum ETheme {
+  LIGHT = "LIGHT",
+  DARK = "DARK",
+}
+
 export interface DodamNavProps {
   location: Eigenvalues;
-  currentTheme: Dodam_ETheme;
+  currentTheme: ETheme;
   handleTheme: () => void;
   logout: () => void;
 }

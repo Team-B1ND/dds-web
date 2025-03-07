@@ -3,12 +3,12 @@ import * as S from "./style";
 import { ChevronRight } from "@dds-web/assets";
 import { DodamModal, DodamToggleButton } from "../..";
 import { NAV_BAR_MODAL_DAUTH, NAV_BAR_MODAL_ITEM } from "../constant";
-import { Dodam_ETheme } from "@dds-web/hooks";
+import { ETheme } from "../navBar";
 
 interface modalProps {
   hahdleOpen: () => void;
   modalOpen: boolean;
-  currentTheme: Dodam_ETheme;
+  currentTheme: ETheme;
   handleTheme: () => void;
   logout: () => void;
 }
@@ -20,7 +20,7 @@ const NavModal = ({
   handleTheme,
   logout,
 }: modalProps) => {
-  const { DARK } = Dodam_ETheme;
+  const { DARK } = ETheme;
 
   return (
     <DodamModal
