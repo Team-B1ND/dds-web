@@ -8,10 +8,10 @@ export const DodamNotFoundPage = () => {
   return (
     <StyledNotFoundPage>
       <StyledInfoWrap>
-        <StatusCode color="primaryNormal" />
+        <StatusCode size={432} color="primaryNormal" />
         <StyledTitleWrap>
           <StyledTitle>Page Not Found</StyledTitle>
-          <DodamSadEmoji color="primaryNormal" />
+          <DodamSadEmoji size={30} color="primaryNormal" />
         </StyledTitleWrap>
         <StyledContentWrap>
           <StyledContent>
