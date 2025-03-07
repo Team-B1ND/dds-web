@@ -6,8 +6,8 @@ import { DODAM_SAD_EMOJI_PATH_ITEMS } from "./constant";
 export const DodamSadEmoji = ({ size, color = "staticBlack", $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
-      width="38"
-      height="30"
+      width="30"
+      height="22"
       viewBox="0 0 38 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

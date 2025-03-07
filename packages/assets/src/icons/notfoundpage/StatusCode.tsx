@@ -6,8 +6,8 @@ import { STATUS_CODE_PATH_ITEMS } from "./constant";
 export const StatusCode = ({ size, color="staticBlack", $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
-      width="452"
-      height="152"
+      width="432"
+      height="132"
       viewBox="0 0 452 152"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
