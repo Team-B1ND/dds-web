@@ -26,7 +26,7 @@ const preview: Preview = {
     backgrounds: {
       default: "LIGHT",
       values: [
-        { name: "LIGHT", value: DodamLightTheme.backgroundNormal },
+        { name: "LIGHT", value: DodamLightTheme.backgroundNeutral },
         { name: "DARK", value: DodamDarkTheme.backgroundAlternative },
       ],
     },

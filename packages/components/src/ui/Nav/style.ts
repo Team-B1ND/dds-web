@@ -46,9 +46,9 @@ export const DodamLogo = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 20px;
+  height: auto;
   margin-bottom: 8px;
-  padding-left: 5px;
+  padding: 8px 0 8px 5px;
   cursor: pointer;
   @media (max-width: 1068px) {
     flex-direction: row;
