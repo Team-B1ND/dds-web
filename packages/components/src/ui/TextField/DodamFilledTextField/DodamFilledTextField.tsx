@@ -1,30 +1,30 @@
 import React, {
-  ChangeEvent,
-  ChangeEventHandler,
-  useCallback,
   useState,
-} from 'react'
-import styled, { CSSObject, useTheme } from 'styled-components'
-import { XmarkCircle, Eye, EyeSlash } from '@dds-web/assets'
-import { ExclamationmarkCircle } from '@dds-web/assets'
-import { DodamShape, DodamTypography } from '@dds-web/styles'
-import { hexToRgba } from '@dds-web/utils'
+  ChangeEventHandler,
+  KeyboardEventHandler,
+} from "react";
+import styled, { CSSObject, useTheme } from "styled-components";
+import { XmarkCircle, Eye, EyeSlash } from "@dds-web/assets";
+import { ExclamationmarkCircle } from "@dds-web/assets";
+import { DodamShape, DodamTypography } from "@dds-web/styles";
+import { hexToRgba } from "@dds-web/utils";
 
-type InputType = 'text' | 'password'
+type InputType = "text" | "password";
 
 export interface DodamFilledTextFieldProps {
-  type: InputType
-  label: string
-  isError?: boolean
-  width?: number
-  value: string
-  placeholder: string
-  isDisabled?: boolean
-  supportingText?: string
-  showIcon?: boolean
-  customStyle?: CSSObject
-  onChange: ChangeEventHandler<HTMLInputElement>
-  onRemoveClick?:()=>void;
+  type: InputType;
+  label: string;
+  isError?: boolean;
+  width?: number;
+  value: string;
+  placeholder: string;
+  isDisabled?: boolean;
+  supportingText?: string;
+  showIcon?: boolean;
+  customStyle?: CSSObject;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
+  onRemoveClick?: () => void;
 }
 
 /**
@@ -43,40 +43,37 @@ export const DodamFilledTextField = ({
   showIcon = true,
   customStyle,
   onChange,
+  onKeyDown,
   onRemoveClick,
 }: DodamFilledTextFieldProps) => {
-  const theme = useTheme()
-  const [isFocused, setIsFocused] = useState(false)
-  const [isShowValue, setIsShowValue] = useState(false)
-
+  const theme = useTheme();
+  const [isFocused, setIsFocused] = useState(false);
+  const [isShowValue, setIsShowValue] = useState(false);
 
   const handleClickEye = () => {
-    setIsShowValue((prev) => !prev)
-  }
-
- 
+    setIsShowValue((prev) => !prev);
+  };
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <StyleFilledTextField width={width} customStyle={customStyle}>
         <StyledFilledTextFieldTitle
           isFocused={isFocused}
           isDisabled={isDisabled}
-          isError={isError!}
-        >
+          isError={isError!}>
           {label}
         </StyledFilledTextFieldTitle>
         <StyledFilledTextFieldInput
           isFocused={isFocused}
           isDisabled={isDisabled}
-          isError={isError!}
-        >
+          isError={isError!}>
           <input
-            type={type === 'text' ? 'text' : isShowValue ? 'text' : 'password'}
+            type={type === "text" ? "text" : isShowValue ? "text" : "password"}
             disabled={isDisabled}
             placeholder={placeholder}
             value={value}
             onChange={onChange}
+            onKeyDown={onKeyDown}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
@@ -84,25 +81,25 @@ export const DodamFilledTextField = ({
             value.trim().length > 0 &&
             (isError ? (
               <ExclamationmarkCircle color={theme.statusNegative} />
-            ) : type === 'text' ? (
+            ) : type === "text" ? (
               <div onClick={onRemoveClick}>
                 <XmarkCircle
                   color={hexToRgba(theme.labelAlternative, 0.5)}
-                  $svgStyle={{ cursor: 'pointer' }}
+                  $svgStyle={{ cursor: "pointer" }}
                 />
               </div>
             ) : isShowValue ? (
               <div onClick={handleClickEye}>
                 <Eye
                   color={hexToRgba(theme.labelAlternative, 0.5)}
-                  $svgStyle={{ cursor: 'pointer' }}
+                  $svgStyle={{ cursor: "pointer" }}
                 />
               </div>
             ) : (
               <div onClick={handleClickEye}>
                 <EyeSlash
-                  color='staticBlack'
-                  $svgStyle={{ cursor: 'pointer' }}
+                  color="staticBlack"
+                  $svgStyle={{ cursor: "pointer" }}
                 />
               </div>
             ))}
@@ -110,33 +107,32 @@ export const DodamFilledTextField = ({
       </StyleFilledTextField>
       <StyledFilledTextFieldSupportingText
         isDisabled={isDisabled}
-        isError={isError!}
-      >
+        isError={isError!}>
         {supportingText}
       </StyledFilledTextFieldSupportingText>
     </div>
-  )
-}
+  );
+};
 
 const StyleFilledTextField = styled.div<{
-  customStyle?: CSSObject
-  width?: number
+  customStyle?: CSSObject;
+  width?: number;
 }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  width: ${({ width }) => (width ? `${width}px` : '100%')};
+  width: ${({ width }) => (width ? `${width}px` : "100%")};
   height: 80px;
   position: relative;
 
   ${({ customStyle }) => customStyle};
-`
+`;
 
 const StyledFilledTextFieldTitle = styled.span<{
-  isFocused: boolean
-  isDisabled?: boolean
-  isError: boolean
+  isFocused: boolean;
+  isDisabled?: boolean;
+  isError: boolean;
 }>`
   color: ${({ isFocused, isDisabled, isError, theme }) =>
     isDisabled
@@ -147,14 +143,14 @@ const StyledFilledTextFieldTitle = styled.span<{
           ? theme.primaryNormal
           : theme.labelAlternative};
 
-  font-feature-settings: 'ss10' on;
+  font-feature-settings: "ss10" on;
   ${DodamTypography.Label.Medium}
-`
+`;
 
 const StyledFilledTextFieldInput = styled.div<{
-  isFocused: boolean
-  isDisabled?: boolean
-  isError: boolean
+  isFocused: boolean;
+  isDisabled?: boolean;
+  isError: boolean;
 }>`
   display: flex;
   justify-content: space-between;
@@ -177,12 +173,12 @@ const StyledFilledTextFieldInput = styled.div<{
 
   background-color: ${({ isFocused, isError }) =>
     isError
-      ? hexToRgba('#E52222', 0.03)
+      ? hexToRgba("#E52222", 0.03)
       : isFocused
-        ? hexToRgba('#008BFF', 0.03)
-        : 'transparent'};
+        ? hexToRgba("#008BFF", 0.03)
+        : "transparent"};
 
-  ${DodamShape['Medium']}
+  ${DodamShape["Medium"]}
 
   input {
     color: ${({ theme }) => theme.labelStrong};
@@ -221,11 +217,11 @@ const StyledFilledTextFieldInput = styled.div<{
     display: flex;
     align-items: center;
   }
-`
+`;
 
 const StyledFilledTextFieldSupportingText = styled.span<{
-  isDisabled?: boolean
-  isError: boolean
+  isDisabled?: boolean;
+  isError: boolean;
 }>`
   color: ${({ isDisabled, isError, theme }) =>
     isDisabled
@@ -233,6 +229,6 @@ const StyledFilledTextFieldSupportingText = styled.span<{
       : isError
         ? theme.statusNegative
         : theme.labelAlternative};
-  font-feature-settings: 'ss10' on;
+  font-feature-settings: "ss10" on;
   ${DodamTypography.Label.Medium}
-`
+`;
