@@ -1,4 +1,8 @@
-import { CSSObject, ExecutionProps, createGlobalStyle } from "styled-components";
+import {
+  CSSObject,
+  ExecutionProps,
+  createGlobalStyle,
+} from "styled-components";
 
 type CustomStlye = {
   customStyle?: CSSObject;
@@ -14,4 +18,8 @@ export const DodamGlobalStyles: React.NamedExoticComponent<
 
       ${({ customStyle }) => customStyle}
     }
+
+  body {
+    overflow-y: hidden;
+  }
 `;
