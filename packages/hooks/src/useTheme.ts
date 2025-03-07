@@ -49,7 +49,16 @@ export const useTheme = () => {
   };
 
   useEffect(() => {
-    setCurrentTheme(getTheme());
+    const handleThemeChange = (e: StorageEvent) => {
+      if (e.key === DODAM_THEME_KEY) {
+        setCurrentTheme(getTheme());
+      }
+    };
+
+    window.addEventListener("storage", handleThemeChange);
+    return () => {
+      window.removeEventListener("storage", handleThemeChange);
+    };
   }, []);
 
   return {

@@ -1,8 +1,12 @@
 import styled, { css } from "styled-components";
-import { DodamShape, typographyType, DodamTypography,DodamTheme } from "@dds-web/styles";
+import { DodamShape, typographyType, DodamTypography } from "@dds-web/styles";
 
-export const DatePickerContainer = styled.div<{color:string}>`
-  border-bottom: 1px solid ${({ theme,color }) => color ?  theme[color as unknown as keyof typeof theme] : theme.labelStrong};
+export const DatePickerContainer = styled.div<{ color: string }>`
+  border-bottom: 1px solid
+    ${({ theme, color }) =>
+      color
+        ? theme[color as unknown as keyof typeof theme]
+        : theme.labelStrong};
   position: relative;
 
   &:hover {
@@ -11,27 +15,27 @@ export const DatePickerContainer = styled.div<{color:string}>`
 `;
 
 export const DatePickerWrap = styled.div<{
-  width?:number;
-  height?:number;
+  width?: number;
+  height?: number;
   typography: typographyType;
 }>`
-  width: ${({ width }) => (width ? `${width}px` : '100%')};
-  height: ${({ height }) => (height ? `${height}px` : '100%')};
+  width: ${({ width }) => (width ? `${width}px` : "100%")};
+  height: ${({ height }) => (height ? `${height}px` : "100%")};
   padding: 6px 0px;
   min-width: 110px;
   cursor: pointer;
   display: flex;
-  align-items:center;
-  justify-content:space-between;
+  align-items: center;
+  justify-content: space-between;
   box-sizing: border-box;
   position: relative;
-    ${({ typography }) => DodamTypography[typography[0]][typography[1]]}
+  ${({ typography }) => DodamTypography[typography[0]][typography[1]]}
 `;
 
-export const DatePickerDate = styled.span<{color:string}>`
-  color: ${({ theme,color }) => color ? theme[color as unknown as keyof typeof theme] : theme.labelStrong};
+export const DatePickerDate = styled.span<{ color: string }>`
+  color: ${({ theme, color }) =>
+    color ? theme[color as unknown as keyof typeof theme] : theme.labelStrong};
 `;
-
 
 export const DatePickerCalendar = styled.div<{ x: number; y: number }>`
   max-width: 320px;
@@ -45,8 +49,10 @@ export const DatePickerCalendar = styled.div<{ x: number; y: number }>`
   z-index: 10;
   transform: translate(-50%, -0%);
   border: 0px;
-  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
-    0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+  box-shadow:
+    0px 5px 5px -3px rgb(0 0 0 / 20%),
+    0px 8px 10px 1px rgb(0 0 0 / 14%),
+    0px 3px 14px 2px rgb(0 0 0 / 12%);
   display: flex;
   flex-direction: column;
 `;
@@ -62,21 +68,22 @@ export const DatePickerCalendarHeader = styled.div`
   font-size: 1rem;
   color: ${({ theme }) => theme.labelStrong};
 `;
+
 export const DatePickerHeaderTitle = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   height: 50%;
-  
-  
-`
+`;
+
 export const DatePickerHeaderContect = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   height: 50%;
-`
+`;
+
 export const DatePickerCalendarHeaderArrow = styled.button`
   width: 40%;
   background: none;
@@ -102,14 +109,14 @@ export const DatePickerCalendarHeaderArrowIcon = styled.div`
   }
 `;
 
-export const DatePickerCalendarHeaderDayWrap=styled.div`
+export const DatePickerCalendarHeaderDayWrap = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const DatePickerCalendarHeaderDayItem=styled.span`
+export const DatePickerCalendarHeaderDayItem = styled.span`
   width: 36px;
   margin: 0px 2px;
   font-size: 12px;
@@ -117,7 +124,7 @@ export const DatePickerCalendarHeaderDayItem=styled.span`
   color: ${({ theme }) => theme.labelAlternative};
 `;
 
-export const DatePickerCalendarItemWrap =styled.div`
+export const DatePickerCalendarItemWrap = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 12px;
@@ -126,8 +133,8 @@ export const DatePickerCalendarItemWrap =styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   row-gap: 0px;
-  
 `;
+
 export const DatePickerCalendarItem = styled.button<{
   isDisabled: boolean;
   isSelected: boolean;

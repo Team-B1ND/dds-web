@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-type DatePickerMode = 'entire' | 'future';
+type DatePickerMode = "entire" | "future";
 
 interface DatePickerParams {
   value: string;
   splitCharacter: string;
   onChange: (e: Date) => void;
-  type:DatePickerMode;
+  type: DatePickerMode;
 }
 
 export const useDatePicker = ({
@@ -14,16 +14,14 @@ export const useDatePicker = ({
   splitCharacter,
   onChange,
   type,
-}: DatePickerParams) => {  
-
+}: DatePickerParams) => {
   //날짜 초깃값
   const date = value.split(splitCharacter);
-  
+
   const $year = Number(date[0]);
   const $month = Number(date[1]);
   const $day = Number(date[2]);
 
-  
   //캘린터 핸들 상태
   const [fold, setFold] = useState(true);
 
@@ -32,12 +30,10 @@ export const useDatePicker = ({
     year: $year,
     month: $month,
   });
-  
 
   //value전날 확인
-  const beforePeriod = $day + new Date(calendarDate.year, calendarDate.month - 1, 0).getDay();
- 
-  
+  const beforePeriod =
+    $day + new Date(calendarDate.year, calendarDate.month - 1, 0).getDay();
 
   //사용자가 선택한 날짜
   const [selectDate, setSelectDate] = useState({
@@ -79,7 +75,6 @@ export const useDatePicker = ({
     let beforeLastDay = new Date(calendarDate.year, month - 1, 0).getDay();
     let afterLastDate = new Date(calendarDate.year, month, 0).getDate();
     let afterLastDay = new Date(calendarDate.year, month, 0).getDay();
-    
 
     let beforeDayList: number[] = [];
     let afterDayList: number[] = [];
@@ -89,7 +84,6 @@ export const useDatePicker = ({
         beforeDayList.unshift(0);
       }
     }
-
 
     for (let i = 1; i < 7 - afterLastDay; i++) {
       afterDayList.push(0);
@@ -155,7 +149,6 @@ export const useDatePicker = ({
   //캘린더 날짜 배열을 다시 만들기 위해 캘린더 달 체크
   useEffect(() => {
     setDayList(createDayList(calendarDate.month));
-    
   }, [calendarDate.month]);
 
   //캘린더 날짜 배열 다시 만들어지면 해당 달 첫째날 마지막날 계산을 위해 날짜 배열 체크
@@ -184,7 +177,6 @@ export const useDatePicker = ({
       document.body.style.cssText = `
       position: fixed; 
       top: -${window.scrollY}px;
-      overflow-y: scroll;
       width: 100%;`;
       return () => {
         const scrollY = document.body.style.top;
@@ -208,7 +200,6 @@ export const useDatePicker = ({
     dayList,
     onChangeCalendarMonth,
     $month,
-    beforePeriod
+    beforePeriod,
   };
 };
-

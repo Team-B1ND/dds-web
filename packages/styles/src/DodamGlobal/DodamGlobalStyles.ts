@@ -1,4 +1,8 @@
-import { CSSObject, ExecutionProps, createGlobalStyle } from "styled-components";
+import {
+  CSSObject,
+  ExecutionProps,
+  createGlobalStyle,
+} from "styled-components";
 
 type CustomStlye = {
   customStyle?: CSSObject;
