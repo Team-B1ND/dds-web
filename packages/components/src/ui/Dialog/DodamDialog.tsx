@@ -90,6 +90,7 @@ const DodamConfirmComponent = ({
   class DodamDialogClass {
     private static instance: DodamDialogClass;
     private blockedEvents: EventListener[] = [];
+    private routerBlocked = false;
   
     private constructor() {}
   
@@ -105,10 +106,12 @@ const DodamConfirmComponent = ({
       document.body.appendChild(container);
       this.disableScroll();
       this.blockAllEvents();
+      this.blockRouterNavigation();
   
       const close = () => {
         this.enableScroll();
         this.unblockAllEvents();
+        this.unblockRouterNavigation();
         ReactDOM.unmountComponentAtNode(container);
         document.body.removeChild(container);
       };
@@ -125,10 +128,12 @@ const DodamConfirmComponent = ({
         document.body.appendChild(container);
         this.disableScroll();
         this.blockAllEvents();
+        this.blockRouterNavigation();
   
         const handleClose = (result: boolean) => {
           this.enableScroll();
           this.unblockAllEvents();
+          this.unblockRouterNavigation();
           ReactDOM.unmountComponentAtNode(container);
           document.body.removeChild(container);
           resolve(result);
@@ -145,41 +150,41 @@ const DodamConfirmComponent = ({
       });
     }
   
-    /**
-     * Stop all events
-     */
+    private blockRouterNavigation() {
+      window.addEventListener("beforeunload", this.blockNavigation);
+    }
+  
+    private unblockRouterNavigation() {
+      window.removeEventListener("beforeunload", this.blockNavigation);
+    }
+  
+    private blockNavigation(e: BeforeUnloadEvent) {
+      e.returnValue = "정말 이 페이지를 떠나시겠습니까?";
+    }
+  
     private blockAllEvents() {
       const preventEvent = (e: Event) => {
-        if (
-          e.type === "beforeunload" || // refresh event
-          (e.type === "click" && !(e.target as HTMLElement).closest(".dialog-button"))
-        ) {
+        const container = document.getElementById("dodam-dialog-container");
+        if (container && container.contains(e.target as Node)) {
+          // 다이얼로그 내부에서 발생한 이벤트는 막지 않음
           return;
         }
-    
         e.stopPropagation();
         e.preventDefault();
       };
-  
-      // List of events to block
+    
       const events = ["click", "touchstart", "wheel"];
-  
       events.forEach((event) => {
         document.addEventListener(event, preventEvent, true);
         this.blockedEvents.push(preventEvent);
       });
     }
   
-    /**
-     *Recover all events
-     */
     private unblockAllEvents() {
       const events = ["click", "keydown", "touchstart", "wheel"];
-  
       events.forEach((event, index) => {
         document.removeEventListener(event, this.blockedEvents[index], true);
       });
-  
       this.blockedEvents = [];
     }
   
@@ -191,6 +196,7 @@ const DodamConfirmComponent = ({
       document.body.style.overflow = "";
     }
   }
+  
   
   export const DodamDialog = {
     alert: (message: string, title: string = window.location.origin) =>
@@ -205,7 +211,7 @@ const DodamConfirmComponent = ({
   
 
 
-const Container = styled.div`
+  const Container = styled.div.attrs({ id: "dodam-dialog-container" })`
   position: fixed;
   top: 0;
   left: 0;

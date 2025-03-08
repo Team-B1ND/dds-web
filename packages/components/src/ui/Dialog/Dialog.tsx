@@ -162,4 +162,5 @@ const StyledTitle = (titleColor: CSSProperties["color"]) => css`
 
 const StyledText = (textColor: CSSProperties["color"]) => css`
   color: ${({ theme }) => textColor || theme.labelAlternative};
+  white-space: pre-line;
 `;
