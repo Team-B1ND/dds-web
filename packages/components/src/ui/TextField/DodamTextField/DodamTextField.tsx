@@ -75,7 +75,6 @@ export const DodamTextField = ({
         <label style={labelStyle}>{label}</label>
         {showIcon &&
           value.trim().length > 0  &&
-          onRemoveClick &&
           (isError ? (
             <ExclamationmarkCircle
               color={theme.statusNegative}
