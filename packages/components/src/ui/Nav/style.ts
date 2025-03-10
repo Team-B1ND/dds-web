@@ -26,7 +26,7 @@ export const DodamNavBox = styled.div`
 export const DodamNav = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   height: 100%;
   padding: 12px;
   ${DodamShape.Large};
