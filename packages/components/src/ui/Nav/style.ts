@@ -5,11 +5,11 @@ export const DodamNavBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 58px;
-  padding-bottom: 59px;
+  padding: 58px 32px 59px 32px;
   width: 250px;
   min-width: 150px;
   height: 100%;
+  z-index: 3;
 
   @media (max-width: 1068px) {
     position: fixed;
@@ -34,7 +34,7 @@ export const DodamNav = styled.div`
 
   @media (max-width: 1068px) {
     flex-direction: row;
-    min-width: 421px;
+    /* min-width: 421px; */
     width: 100%;
     justify-content: space-around;
     align-items: center;
@@ -91,6 +91,7 @@ export const DodamButton = styled.div<{ $active: boolean }>`
   background-color: ${({ theme, $active }) =>
     $active ? theme.primaryNormal : "transparent"};
   cursor: pointer;
+
   @media (max-width: 1068px) {
     width: 50px;
     justify-content: center;
@@ -99,9 +100,17 @@ export const DodamButton = styled.div<{ $active: boolean }>`
       display: none;
     }
   }
+
+  @media (max-width: 797px) {
+    &[data-name="WIKI"] {
+      display: none;
+    }
+  }
+
   @media (max-width: 568px) {
     width: 44px;
   }
+
   span {
     ${DodamTypography.Body1.Medium};
     color: ${({ theme, $active }) =>
@@ -117,6 +126,7 @@ export const DodamButton = styled.div<{ $active: boolean }>`
       0px 0px 1px 0px rgba(0, 0, 0, 0.08);
   }
 `;
+
 
 export const AddButton = styled.div`
   display: flex;

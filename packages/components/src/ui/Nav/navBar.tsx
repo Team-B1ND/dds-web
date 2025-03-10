@@ -34,25 +34,27 @@ export const DodamNavBar = ({
           </S.DodamLogo>
           <S.DodamContent>
             <S.DodamButtonBox>
-              {NAV_LINKS.map((item, idx) => {
-                const Icon = item.img;
-                const isActive = location === item.values;
-                return (
-                  <S.DodamButton
-                    $active={isActive}
-                    key={idx}
-                    as="a"
-                    onClick={() => nav.handleMenuItemClick(item.link)}>
-                    {Icon && (
-                      <Icon
-                        size={24}
-                        color={isActive ? "staticWhite" : "labelNormal"}
-                      />
-                    )}
-                    <span>{item.name}</span>
-                  </S.DodamButton>
-                );
-              })}
+            {NAV_LINKS.map((item, idx) => {
+              const Icon = item.img;
+              const isActive = location === item.values;
+              return (
+                <S.DodamButton
+                  $active={isActive}
+                  key={idx}
+                  as="a"
+                  onClick={() => nav.handleMenuItemClick(item.link)}
+                  data-name={item.name} 
+                >
+                  {Icon && (
+                    <Icon
+                      size={24}
+                      color={isActive ? "staticWhite" : "labelNormal"}
+                    />
+                  )}
+                  <span>{item.name}</span>
+                </S.DodamButton>
+              );
+            })}
             </S.DodamButtonBox>
           </S.DodamContent>
           <S.AddButton onClick={nav.hahdleOpenNavBar}>

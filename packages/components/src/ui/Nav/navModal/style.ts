@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { DodamShape, DodamTypography } from "@dds-web/styles";
 
 export const Popover = styled.div`
+    
     position: absolute;
+    
     left: 200px;
     bottom: 30px;
     display: inline-flex;
@@ -14,12 +16,14 @@ export const Popover = styled.div`
     ${DodamShape.Large}
     background-color: ${({theme})=>theme.backgroundNormal};
     box-shadow: 0px 6px 18px 0px rgba(0, 0, 0, 0.08);
-    @media (max-width: 1068px) {
-    width: 220px;
-    bottom: 80px;
-    left:70vw;
     
+    @media (max-width: 1068px) {
+        width: 220px;
+        bottom: 80px;
+        right: 5rem;
+        left: auto;
     }
+
 `
 export const ModalBox = styled.div`
     display: flex;
