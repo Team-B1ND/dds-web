@@ -2,23 +2,32 @@ import React from "react";
 import styled from "styled-components";
 
 type Divider = "Large" | "Small";
+type DirectionType = "horizontal" | "vertical";
 
 interface DodamDividerProps {
   type: Divider;
+  direction?: DirectionType;
 }
 
-export const DodamDivider = ({ type }: DodamDividerProps) => {
+export const DodamDivider = ({
+  type,
+  direction = "horizontal",
+}: DodamDividerProps) => {
   return (
-    <DividerContainer type={type}>
-        
-    </DividerContainer>
-  )
+    <DividerContainer type={type} direction={direction}></DividerContainer>
+  );
 };
 
-const DividerContainer = styled.div<{ type: Divider }>`
-    min-width: 100px;
-    width: 100%;
-    height: ${({ type }) => (type === "Large" ? "8px" : "1px")};
-    flex-shrink: 0;
-    background-color: ${({ theme }) => theme.lineAlternative}; 
+const DividerContainer = styled.div<{
+  type: Divider;
+  direction: DirectionType;
+}>`
+  width: ${({ type, direction }) =>
+    direction === "horizontal" ? "100%" : type === "Large" ? "8px" : "1px"};
+  height: ${({ type, direction }) =>
+    direction === "vertical" ? "100%" : type === "Large" ? "8px" : "1px"};
+  min-width: ${({ direction }) => direction === "horizontal" && "100px"};
+  min-height: ${({ direction }) => direction === "vertical" && "100px"};
+  flex-shrink: 0;
+  background-color: ${({ theme }) => theme.lineAlternative};
 `;
