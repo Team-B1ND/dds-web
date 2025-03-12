@@ -148,7 +148,7 @@ const StyledSegmentedButton = styled.button<{
   padding: ${({ type }) => (type === "inline" ? "6px 12px;" : "")};
   cursor: pointer;
   position: relative;
-  z-index: 10;
+  z-index: 3;
   outline: none;
 `;
 

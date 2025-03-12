@@ -34,7 +34,7 @@ export const NAV_LINKS: readonly NavLink[] = [
   { name: "일정", link: "http://dodam.b1nd.com/schedule", img: Calender, values: "schedule" },
   { name: "기상송", link: "http://dodam.b1nd.com/wakesong", img: Note, values: "wakesong" },
   { name: "심자신청", link: "http://dodam.b1nd.com/nightstudy", img: MoonPlus, values: "nightstudy" },
-  { name: "DGIT", link: "http://dgit.b1nd.com/", img: Chart, values: "dgit" },
+  { name: "DGIT", link: "http://dodam.b1nd.com/dgit", img: Chart, values: "dgit" },
   { name: "WIKI", link: "https://sh031224.github.io/ask-for-information/", img: Dev, values: "ask" },
   { name: "리크루트", link: "http://dodam.b1nd.com/recruit", img: Magnifyingglass, values: "recruit" },
   { name: "동아리", link: "http://dodam.b1nd.com/club", img: People, values: "club" },
