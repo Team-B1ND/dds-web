@@ -11,7 +11,7 @@ export const DodamNavBox = styled.div`
   height: 100%;
   z-index: 3;
 
-  @media (max-width: 1068px) {
+  @media (max-width: 1068px), (max-height: 794px) {
     position: fixed;
     display: flex;
     align-items: center;
@@ -32,7 +32,7 @@ export const DodamNav = styled.div`
   ${DodamShape.Large};
   background-color: ${({ theme }) => theme.backgroundNormal};
 
-  @media (max-width: 1068px) {
+  @media (max-width: 1068px), (max-height: 794px) {
     flex-direction: row;
     /* min-width: 421px; */
     width: 100%;
@@ -50,7 +50,7 @@ export const DodamLogo = styled.div`
   margin-bottom: 8px;
   padding: 8px 0 8px 5px;
   cursor: pointer;
-  @media (max-width: 1068px) {
+  @media (max-width: 1068px), (max-height: 794px) {
     flex-direction: row;
     width: 30%;
     justify-content: space-around;
@@ -73,7 +73,7 @@ export const DodamButtonBox = styled.div`
   justify-content: space-around;
   height: 55%;
 
-  @media (max-width: 1068px) {
+  @media (max-width: 1068px), (max-height: 794px) {
     flex-direction: row;
     width: 100%;
     height: 100%;
@@ -92,7 +92,7 @@ export const DodamButton = styled.div<{ $active: boolean }>`
     $active ? theme.primaryNormal : "transparent"};
   cursor: pointer;
 
-  @media (max-width: 1068px) {
+  @media (max-width: 1068px), (max-height: 794px) {
     width: 50px;
     justify-content: center;
     padding: 0;
@@ -140,7 +140,7 @@ export const AddButton = styled.div`
     ${DodamTypography.Body1.Medium}
     color:  ${({ theme }) => theme.labelNormal};
   }
-  @media (max-width: 1068px) {
+  @media (max-width: 1068px), (max-height: 794px) {
     width: 100px;
     span {
       display: none;
