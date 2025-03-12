@@ -16,6 +16,7 @@ export interface DodamFilledTextFieldProps {
   label: string;
   isError?: boolean;
   width?: number;
+  name?: string;
   value: string;
   placeholder: string;
   isDisabled?: boolean;
@@ -36,6 +37,7 @@ export const DodamFilledTextField = ({
   label,
   isError,
   width,
+  name,
   value,
   isDisabled,
   supportingText,
@@ -68,6 +70,7 @@ export const DodamFilledTextField = ({
           isDisabled={isDisabled}
           isError={isError!}>
           <input
+            name={name}
             type={type === "text" ? "text" : isShowValue ? "text" : "password"}
             disabled={isDisabled}
             placeholder={placeholder}
