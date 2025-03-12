@@ -6,10 +6,13 @@ type DirectionType = "horizontal" | "vertical";
 
 interface DodamDividerProps {
   type: Divider;
-  direction: DirectionType;
+  direction?: DirectionType;
 }
 
-export const DodamDivider = ({ type, direction }: DodamDividerProps) => {
+export const DodamDivider = ({
+  type,
+  direction = "horizontal",
+}: DodamDividerProps) => {
   return (
     <DividerContainer type={type} direction={direction}></DividerContainer>
   );
