@@ -7,7 +7,7 @@ export const DodamNavBox = styled.div`
   align-items: center;
   padding: 58px 22px 59px 22px;
   width: 250px;
-  min-width: 200px;
+  min-width: 250px;
   height: 100%;
   z-index: 3;
 
