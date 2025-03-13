@@ -232,6 +232,9 @@ importers:
       '@dds-web/foundations':
         specifier: workspace:*
         version: link:../foundations
+      '@dds-web/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@types/styled-components':
         specifier: ^5.1.34
         version: 5.1.34
