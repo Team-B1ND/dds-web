@@ -1,16 +1,24 @@
 import styled, { css } from "styled-components";
 import { DodamShape, typographyType, DodamTypography } from "@dds-web/styles";
+import { DateType } from "./DodamDatePicker";
 
-export const DatePickerContainer = styled.div<{ color: string }>`
+export const DatePickerContainer = styled.div<{
+  color: string;
+  dateType: DateType;
+}>`
   border-bottom: 1px solid
-    ${({ theme, color }) =>
-      color
-        ? theme[color as unknown as keyof typeof theme]
-        : theme.labelStrong};
+    ${({ theme, color, dateType }) =>
+      dateType === "date"
+        ? color
+          ? theme[color as unknown as keyof typeof theme]
+          : theme.labelStrong
+        : "transparent"};
   position: relative;
 
   &:hover {
-    border-bottom: 1px solid ${({ theme }) => theme.primaryNormal};
+    border-bottom: 1px solid
+      ${({ theme, dateType }) =>
+        dateType === "date" ? theme.primaryNormal : "transparent"};
   }
 `;
 

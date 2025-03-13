@@ -12,7 +12,8 @@
     "typescript": "^5.4.2"
   },
   "devDependencies": {
-    "@dds-web/foundations": "workspace:*",
+    "@dds-web/foundations": "workspace: *",
+    "@dds-web/utils": "workspace: *",
     "@types/styled-components": "^5.1.34"
   },
   "peerDependencies": {
