@@ -7,34 +7,24 @@ export const DatePickerContainer = styled.div<{
   dateType: DateType;
 }>`
   border-bottom: 1px solid
-    ${({ theme, color, dateType }) =>
-      dateType === "date"
-        ? color
-          ? theme[color as unknown as keyof typeof theme]
-          : theme.labelStrong
-        : "transparent"};
+    ${({ theme, color }) =>
+      color
+        ? theme[color as unknown as keyof typeof theme]
+        : theme.labelStrong};
   position: relative;
-
-  &:hover {
-    border-bottom: 1px solid
-      ${({ theme, dateType }) =>
-        dateType === "date" ? theme.primaryNormal : "transparent"};
-  }
 `;
 
 export const DatePickerWrap = styled.div<{
-  width?: number;
   height?: number;
   typography: typographyType;
 }>`
-  width: ${({ width }) => (width ? `${width}px` : "100%")};
   height: ${({ height }) => (height ? `${height}px` : "100%")};
   padding: 6px 0px;
-  min-width: 110px;
   cursor: pointer;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  gap: 12px;
   box-sizing: border-box;
   position: relative;
   ${({ typography }) => DodamTypography[typography[0]][typography[1]]}
@@ -51,7 +41,7 @@ export const DatePickerCalendar = styled.div<{ x: number; y: number }>`
   padding: 24px;
   border-radius: 28px;
   background-color: ${({ theme }) => theme.backgroundNormal};
-  top: ${({ y }) => y - 100}px;
+  top: ${({ y }) => y}px;
   left: ${({ x }) => x}px;
   position: fixed;
   z-index: 10;

@@ -62,7 +62,6 @@ export const DodamDatePicker = ({
       ref={datePicker.containerRef}>
       <S.DatePickerWrap
         id={itemKey}
-        width={width}
         height={height}
         typography={typography!}
         onClick={() => datePicker.setFold((prev) => !prev)}>
@@ -76,8 +75,8 @@ export const DodamDatePicker = ({
       </S.DatePickerWrap>
       {!datePicker.fold && (
         <S.DatePickerCalendar
-          y={coordX ? coordX : datePicker.calendarCoord.y + Number(height)}
-          x={coordY ? coordY : datePicker.calendarCoord.x + Number(width) / 2}>
+          y={coordX ? coordX : datePicker.calendarCoord.y + height!}
+          x={coordY ? coordY : datePicker.calendarCoord.x + width! / 2}>
           <S.DatePickerCalendarHeader>
             <S.DatePickerHeaderTitle>
               <DodamHeading2 fontScale="Bold" text={title} />
