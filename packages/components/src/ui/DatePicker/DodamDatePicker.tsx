@@ -4,7 +4,7 @@ import { useDatePicker } from "@dds-web/hooks";
 import { ChevronRight, ChevronLeft, Calender } from "@dds-web/assets";
 import { DAY } from "./constant";
 import { DodamHeading2 } from "../Typography";
-import { DodamLightTheme, typographyType } from "@dds-web/styles";
+import { typographyType } from "@dds-web/styles";
 import { CSSObject } from "styled-components";
 import { DodamTheme } from "@dds-web/styles";
 
@@ -86,11 +86,11 @@ export const DodamDatePicker = ({
               <S.DatePickerCalendarHeaderArrow>
                 <S.DatePickerCalendarHeaderArrowIcon
                   onClick={() => datePicker.onChangeCalendarMonth("prev")}>
-                  <ChevronLeft color={`${DodamLightTheme.primaryNormal}`} />
+                  <ChevronLeft color="primaryNormal" />
                 </S.DatePickerCalendarHeaderArrowIcon>
                 <S.DatePickerCalendarHeaderArrowIcon
                   onClick={() => datePicker.onChangeCalendarMonth("next")}>
-                  <ChevronRight color={`${DodamLightTheme.primaryNormal}`} />
+                  <ChevronRight color="primaryNormal" />
                 </S.DatePickerCalendarHeaderArrowIcon>
               </S.DatePickerCalendarHeaderArrow>
             </S.DatePickerHeaderContect>
