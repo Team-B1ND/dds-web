@@ -1,6 +1,6 @@
 {
   "name": "@b1nd/dds-web",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "types": "dist/index.d.ts",
   "main": "dist/cjs/index.cjs.js",
