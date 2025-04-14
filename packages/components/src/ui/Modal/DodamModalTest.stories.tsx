@@ -7,7 +7,7 @@ const meta: Meta<typeof DodamModal> = {
   component: DodamModal,
   argTypes: {
     isOpen: { control: "boolean" },
-    background: { control: "boolean" },
+    $background: { control: "boolean" },
   },
 };
 
