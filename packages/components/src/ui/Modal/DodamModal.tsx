@@ -8,10 +8,10 @@ interface ModalProps {
   close?: () => void;
   children: React.ReactNode;
   customStyle?: CSSObject;
-  background?: boolean;
+  $background?: boolean;
 }
 
-export const DodamModal = ({ isOpen, close, children, customStyle, background }: ModalProps) => {
+export const DodamModal = ({ isOpen, close, children, customStyle, $background }: ModalProps) => {
   const [modalRoot, setModalRoot] = useState<HTMLElement | null>(null);
 
 
@@ -45,7 +45,7 @@ export const DodamModal = ({ isOpen, close, children, customStyle, background }:
    * Render into modalRoot using React Portal
    */
   return ReactDOM.createPortal(
-    <Background onClick={close} customStyle={customStyle} background={background}>
+    <Background onClick={close} customStyle={customStyle} $background={$background}>
       {children}
     </Background>,
     modalRoot

@@ -2,7 +2,7 @@ import styled, { CSSObject } from "styled-components";
 
 export const Background = styled.div<{ 
   customStyle?: CSSObject;
-  background?: boolean;
+  $background?: boolean;
 }>`
   ${({ customStyle }) => customStyle && Object.entries(customStyle)
     .map(([key, value]) => `${key}: ${value} !important;`)
@@ -15,7 +15,7 @@ export const Background = styled.div<{
   top: 0;
   left: 0;
 
-  ${({ background }) => background ? `background-color: rgba(0, 0, 0, 0.4);` : `background-color: transparent;`};
+  ${({ $background }) => $background ? `background-color: rgba(0, 0, 0, 0.4);` : `background-color: transparent;`};
   z-index: 3;
 
   display: flex;
