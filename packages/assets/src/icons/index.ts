@@ -29,5 +29,5 @@ export * from './notfoundpage';
 export * from './File';
 export * from './Photo';
 export * from './avatar';
-export * from "./Peoples";
+export * from "./People";
 export * from "./Clock";
