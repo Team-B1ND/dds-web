@@ -1,7 +1,7 @@
 import React from "react";
 import { IconProps } from "./type";
 import { StyledPath, StyledSvg,StyledCicle } from "./style";
-import { AVATAR_ITMES } from "./constant";
+import { AVATAR_ITEMS } from "./constant";
 
 type sizeType = 'extraSmall' | 'small' | 'medium' | 'large' | 'extraLarge' | 'xxl';
 
@@ -19,7 +19,7 @@ export const Avatar = ({ size = 'small', color="fillAlternative", $svgStyle, $pa
     xxl: 128
   }[size] || 24;
 
-  const paths = AVATAR_ITMES[size] || AVATAR_ITMES.small;
+  const paths = AVATAR_ITEMS[size] || AVATAR_ITEMS.small;
 
   return (
     <StyledSvg
