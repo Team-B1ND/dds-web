@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, SetStateAction, Dispatch } from "react";
 import styled from "styled-components";
 import { DodamTheme, DodamTypography } from "@dds-web/styles";
 import { DodamShape } from "@dds-web/styles";
@@ -14,6 +14,7 @@ export interface SegmentedBtnProps {
   num: number;
   type: ButtonType;
   data: SegmentedBtnDataProps[];
+  setData?: Dispatch<SetStateAction<SegmentedBtnDataProps[]>>;
   width?: number;
   height?: number;
   onClick?: (text?: string) => void;
@@ -26,6 +27,7 @@ export const DodamSegmentedButton = ({
   num,
   type,
   data,
+  setData,
   width,
   height,
   onClick,
@@ -50,6 +52,13 @@ export const DodamSegmentedButton = ({
     if (onClick) {
       onClick(text);
     }
+    if (setData) {
+      setData((prevData) =>
+        prevData.map((item, idx) =>
+          id === idx ? { ...item, isAtv: true } : { ...item, isAtv: false }
+        )
+      );
+    }
   };
 
   useEffect(() => {
@@ -57,6 +66,9 @@ export const DodamSegmentedButton = ({
     setSelectedIdx(activeIdx)
 
     setSegmentedBtnData(data);
+    if (setData) {
+      setData(data)
+    };
   }, [data]);
 
   useEffect(() => {
@@ -85,7 +97,7 @@ export const DodamSegmentedButton = ({
           left={indicatorStyle.left}
           customBackbgroundColor={customBackbgroundColor}
         />
-        {segmentedBtndata.map((item, idx) => (
+        {(setData ? data : segmentedBtndata).map((item, idx) => (
           <StyledSegmentedButton
             key={idx}
             ref={(e: HTMLButtonElement | null) => (buttonRefs.current[idx] = e)}
