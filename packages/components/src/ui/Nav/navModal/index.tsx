@@ -27,7 +27,7 @@ const NavModal = ({
       isOpen={modalOpen}
       close={hahdleOpen}
       customStyle={{ display: "block" }}
-      background={false}>
+      $background={false}>
       <S.Popover onClick={(e) => e.stopPropagation()}>
         <S.ModalBox onClick={() => window.open(NAV_BAR_MODAL_DAUTH.link)}>
           <p>Dauth</p>
